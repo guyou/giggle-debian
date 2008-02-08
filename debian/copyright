@@ -1,0 +1,99 @@
+This package was debianized by Andrea Corradi <lash@semailer.com> on
+Thu,  8 Mar 2007 13:43:42 +0100.
+
+It was downloaded from http://ftp.imendio.com/pub/imendio/giggle/src/
+
+Upstream Author: Carlos Garnacho <carlosg@gnome.org>
+                 Mikael Hallendal <micke@imendio.com>
+                 Richard Hult <richard@imendio.com>
+
+Copyright: 2007 Imendio AB
+           
+License:
+
+   This package is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+
+   This package is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this package; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
+
+On Debian systems, the complete text of the GNU General
+Public License can be found in `/usr/share/common-licenses/GPL'.
+
+Files: src/eggfindbar.h, src/eggfindbar.c are under LGPL license
+
+Copyright: 2004 Red Hat, Inc.
+
+License:
+   This library is free software; you can redistribute it and/or
+   modify it under the terms of the GNU Library General Public License as
+   published by the Free Software Foundation; either version 2 of the
+   License, or (at your option) any later version.
+
+   This library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Library General Public License for more details.
+
+   You should have received a copy of the GNU Library General Public License
+   along with this package; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
+
+On Debian systems, the complete text of the GNU  Library General
+Public License can be found in `/usr/share/common-licenses/LGPL-2'.
+
+Files: src/ige-mac-menu.h src/ige-mac-menu.c are under LGPL license
+
+Copyright (C) 2007 Pioneer Research Center USA, Inc.
+Copyright (C) 2007 Imendio AB
+
+License:
+   This library is free software; you can redistribute it and/or
+   modify it under the terms of the GNU Lesser General Public
+   License as published by the Free Software Foundation; version 2.1
+   of the License.
+   
+   This library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Lesser General Public License for more details.
+
+   You should have received a copy of the GNU Library General Public License
+   along with this package; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
+
+On Debian systems, the complete text of the GNU  Library General
+Public License can be found in `/usr/share/common-licenses/LGPL-2.1'.
+
+File: test/check-bare.c
+
+Copyright (C) 2007  Sven Herzberg
+
+License:
+   This work is provided "as is"; redistribution and modification
+   in whole or in part, in any medium, physical or electronic is
+   permitted without restriction.
+   
+   This work is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+   
+   In no event shall the authors or contributors be liable for any
+   direct, indirect, incidental, special, exemplary, or consequential
+   damages (including, but not limited to, procurement of substitute
+   goods or services; loss of use, data, or profits; or business
+   interruption) however caused and on any theory of liability, whether
+   in contract, strict liability, or tort (including negligence or
+   otherwise) arising in any way out of the use of this software, even
+   if advised of the possibility of such damage.
+
+The Debian packaging is (C) 2007, Andrea Corradi <lash@semailer.com> and
+is licensed under the GPL, see above.

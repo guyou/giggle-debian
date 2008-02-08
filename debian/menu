@@ -1,0 +1,5 @@
+?package(giggle):\
+	needs="X11"\
+	section="Applications/Programming"\
+	title="Giggle"\
+	command="/usr/bin/giggle"

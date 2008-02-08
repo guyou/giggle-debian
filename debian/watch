@@ -1,0 +1,4 @@
+version=3
+
+http://ftp.imendio.com/pub/imendio/giggle/src/giggle-(.*)\.tar\.gz
+

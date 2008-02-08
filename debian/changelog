@@ -1,0 +1,28 @@
+giggle (0.4-2) unstable; urgency=low
+
+  * rules: Add dh_icons (Closes: #464459)
+
+ -- Andrea Corradi <lash@semailer.com>  Fri, 08 Feb 2008 11:31:42 +0100
+
+giggle (0.4-1) unstable; urgency=low
+
+  * New upstream release (Closes: #456196)
+  * Move the Homepage from Description to Source section
+  * Replace, in menu file, Apps with Application in according
+    to the new policy
+
+ -- Andrea Corradi <lash@semailer.com>  Sun, 16 Dec 2007 22:23:49 +0100
+
+giggle (0.3-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Andrea Corradi <lash@semailer.com>  Wed, 09 May 2007 21:16:35 +0200
+
+giggle (0.2-1) unstable; urgency=low
+
+  * Initial release (Closes: #413998)
+  * debian/menu: add giggle to the debian menu
+
+ -- Andrea Corradi <lash@semailer.com>  Tue, 17 Apr 2007 13:40:13 +0200
+
