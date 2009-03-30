@@ -1,6 +1,8 @@
 #!/usr/bin/make -f
 # -*- makefile -*-
 
+include /usr/share/quilt/quilt.make
+
 #export DH_VERBOSE=1
 
 # These are used for cross-compiling and for saving the configure script
@@ -17,17 +19,16 @@ else
 endif
 
 ORIGFILES = config.sub config.guess \
-       src/giggle-enums.c src/giggle-enums.h \
-       src/giggle-marshal.c src/giggle-marshal.h
+			libgiggle/giggle-enums.c libgiggle/giggle-marshal.c \
+			libgiggle-git/giggle-git-enums.c
 
-config.status: configure
+config.status: patch
 	dh_testdir
 
 	for f in $(ORIGFILES) ; do [ -e $$f.d-r-orig ] || cp -p $$f $$f.d-r-orig ; done
 	[ ! -e /usr/share/misc/config.sub ] || cp -f /usr/share/misc/config.sub config.sub
 	[ ! -e /usr/share/misc/config.guess ] || cp -f /usr/share/misc/config.guess config.guess
-	./configure --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) --prefix=/usr --libdir=/usr/lib/giggle --mandir=\$${prefix}/share/man --infodir=\$${prefix}/share/info CFLAGS="$(CFLAGS)" LDFLAGS="-Wl,-z,defs,--as-needed"
-
+	./configure --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) --prefix=/usr --libdir=/usr/lib/giggle --mandir=\$${prefix}/share/man --infodir=\$${prefix}/share/info CFLAGS="$(CFLAGS)" LDFLAGS="-Wl,-z,--as-needed"
 
 build: build-stamp
 
@@ -37,7 +38,7 @@ build-stamp:  config.status
 	$(MAKE)
 	touch $@
 
-clean:
+clean: unpatch
 	dh_testdir
 	dh_testroot
 	rm -f build-stamp 
@@ -65,7 +66,6 @@ binary-arch: build install
 	dh_installmenu
 	dh_desktop
 	dh_icons
-	dh_link
 	dh_strip
 	dh_compress
 	dh_fixperms

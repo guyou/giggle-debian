@@ -1,13 +1,15 @@
-This package was debianized by Andrea Corradi <lash@semailer.com> on
+This package was debianized by Andrea Corradi <lash@sunstable.it> on
 Thu,  8 Mar 2007 13:43:42 +0100.
 
-It was downloaded from http://ftp.imendio.com/pub/imendio/giggle/src/
+It was downloaded from http://ftp.gnome.org/pub/GNOME/sources/giggle/
 
 Upstream Author: Carlos Garnacho <carlosg@gnome.org>
                  Mikael Hallendal <micke@imendio.com>
                  Richard Hult <richard@imendio.com>
+                 Mathias Hasselmann <mathias@taschenorakel.de>
 
-Copyright: 2007 Imendio AB
+Copyright: 2007, 2008 Imendio AB
+Copyright (C) 2008, 2009 Mathias Hasselmann
            
 License:
 
@@ -95,5 +97,29 @@ License:
    otherwise) arising in any way out of the use of this software, even
    if advised of the possibility of such damage.
 
-The Debian packaging is (C) 2007, Andrea Corradi <lash@semailer.com> and
-is licensed under the GPL, see above.
+File: po/vi.po
+
+Copyright (C) 2007 Nguyễn Thái Ngọc Duy
+
+License:
+
+   This package is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+
+   This package is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this package; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
+
+On Debian systems, the complete text of the GNU General
+Public License can be found in `/usr/share/common-licenses/GPL'.
+
+The Debian packaging is
+Copyright (C) 2007-2009, Andrea Corradi <lash@unstable.it>
+and is licensed under the GPL, see above.

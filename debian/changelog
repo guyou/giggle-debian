@@ -1,3 +1,31 @@
+giggle (0.4.91-1) unstable; urgency=low
+
+  * New upstream release (Closes:  #519014)
+  * Use Standards-Version 3.8.1
+  * Add new Build-Depends
+  * Update Homepage and watch file
+  * Update debian/copyright
+  * Remove patch
+  * Update path in debian/rules
+  * Remove defs option from LDFLAGS
+
+ -- Andrea Corradi <lash@unstable.it>  Mon, 30 Mar 2009 19:41:43 +0000
+
+giggle (0.4-4) unstable; urgency=low
+
+  * Add ctrl-r-refresh patch (Closes: #497174)
+
+  * Add get-gitdir-from-command-line patch (Closes: 499354)  
+
+ -- Andrea Corradi <lash@unstable.it>  Thu, 18 Sep 2008 21:13:02 +0200
+
+giggle (0.4-3) unstable; urgency=low
+
+  * Change maintainer email
+  * Use Standards-Version 3.8.0
+
+ -- Andrea Corradi <lash@unstable.it>  Wed, 06 Aug 2008 11:50:23 +0200
+
 giggle (0.4-2) unstable; urgency=low
 
   * rules: Add dh_icons (Closes: #464459)

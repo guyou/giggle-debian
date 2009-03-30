@@ -1,14 +1,14 @@
 Source: giggle
 Section: devel
 Priority: optional
-Maintainer: Andrea Corradi <lash@semailer.com>
-Build-Depends: debhelper (>= 5), autotools-dev, libglib2.0-dev (>= 2.12), libgtk2.0-dev (>= 2.10), libglade2-dev (>= 2.4), libgtksourceview2.0-dev (>= 2.0), libxml-parser-perl, git-core (>= 1.4.4.3)
-Homepage: http://developer.imendio.com/projects/giggle/
-Standards-Version: 3.7.3
+Maintainer: Andrea Corradi <lash@unstable.it>
+Build-Depends: debhelper (>= 5.0.51), quilt, autotools-dev, libglib2.0-dev (>= 2.18), libgtk2.0-dev (>= 2.12), libglade2-dev (>= 2.4), libgtksourceview2.0-dev (>= 2.0), libxml-parser-perl, git-core (>= 1.5.6.3), libebook1.2-dev, intltool (>= 0.35)
+Homepage: http://live.gnome.org/giggle
+Standards-Version: 3.8.1
 
 Package: giggle
 Architecture: any
-Depends: git-core (>= 1.4.4.3), ${shlibs:Depends}
+Depends: git-core (>= 1.5.6.3), ${shlibs:Depends}
 Description: Gtk+ frontend for the git directory tracker
  Giggle is a Gtk frontend to the git directory tracker.
  With Giggle you will be able to visualize and browse easily
