@@ -1,7 +1,7 @@
 #!/usr/bin/make -f
 # -*- makefile -*-
 
-include /usr/share/quilt/quilt.make
+#include /usr/share/quilt/quilt.make
 
 #export DH_VERBOSE=1
 
@@ -22,7 +22,7 @@ ORIGFILES = config.sub config.guess \
 			libgiggle/giggle-enums.c libgiggle/giggle-marshal.c \
 			libgiggle-git/giggle-git-enums.c
 
-config.status: patch
+config.status:
 	dh_testdir
 
 	for f in $(ORIGFILES) ; do [ -e $$f.d-r-orig ] || cp -p $$f $$f.d-r-orig ; done
@@ -38,7 +38,7 @@ build-stamp:  config.status
 	$(MAKE)
 	touch $@
 
-clean: unpatch
+clean:
 	dh_testdir
 	dh_testroot
 	rm -f build-stamp 
@@ -52,7 +52,7 @@ install: build
 	dh_clean -k 
 	dh_installdirs
 
-	$(MAKE) DESTDIR=$(CURDIR)/debian/giggle install
+	$(MAKE) DESTDIR=$(CURDIR)/debian/tmp install
 
 
 binary-indep: build install
@@ -61,10 +61,10 @@ binary-arch: build install
 	dh_testdir
 	dh_testroot
 	dh_installchangelogs
+	dh_install
 	dh_installdocs
 	dh_installman debian/giggle.1
 	dh_installmenu
-	dh_desktop
 	dh_icons
 	dh_strip
 	dh_compress

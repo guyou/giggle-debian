@@ -1,18 +1,47 @@
 Source: giggle
-Section: devel
+Section: vcs
 Priority: optional
 Maintainer: Andrea Corradi <lash@unstable.it>
-Build-Depends: debhelper (>= 5.0.51), quilt, autotools-dev, libglib2.0-dev (>= 2.18), libgtk2.0-dev (>= 2.12), libglade2-dev (>= 2.4), libgtksourceview2.0-dev (>= 2.0), libxml-parser-perl, git-core (>= 1.5.6.3), libebook1.2-dev, intltool (>= 0.35)
+Build-Depends: debhelper (>= 5.0.51), autotools-dev, libglib2.0-dev (>= 2.18), libgtk2.0-dev (>= 2.18), libgtksourceview2.0-dev (>= 2.0), libxml-parser-perl, git-core (>= 1:1.5.6.3), libebook1.2-dev, libvte-dev (>= 1:0.17), intltool (>= 0.35)
 Homepage: http://live.gnome.org/giggle
-Standards-Version: 3.8.1
+Standards-Version: 3.8.3
 
 Package: giggle
 Architecture: any
-Depends: git-core (>= 1.5.6.3), ${shlibs:Depends}
+Depends: git-core (>= 1:1.5.6.3), ${shlibs:Depends}, ${misc:Depends}
 Description: Gtk+ frontend for the git directory tracker
  Giggle is a Gtk frontend to the git directory tracker.
  With Giggle you will be able to visualize and browse easily
  the revision tree, view changed files and differences between
  revisions, visualize summarized info for the project, commit
  changes and other useful tasks for any git projects contributor.
+
+
+Package: giggle-terminal-view-plugin
+Architecture: any
+Depends: giggle (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
+Description: Gtk+ frontend for the git directory tracker - terminal plugin
+ Giggle is a Gtk frontend to the git directory tracker.
+ With Giggle you will be able to visualize and browse easily
+ the revision tree, view changed files and differences between
+ revisions, visualize summarized info for the project, commit
+ changes and other useful tasks for any git projects contributor.
+ .
+ This package contains the terminal plugin
+ .
+
+
+Package: giggle-personal-details-plugin
+Architecture: any
+Depends: giggle (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
+Description: Gtk+ frontend for the git directory tracker - personal details plugin
+ Giggle is a Gtk frontend to the git directory tracker.
+ With Giggle you will be able to visualize and browse easily
+ the revision tree, view changed files and differences between
+ revisions, visualize summarized info for the project, commit
+ changes and other useful tasks for any git projects contributor.
+ .
+ This package provides integration with evolution addressbooks
+ .
+
 

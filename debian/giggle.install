@@ -1,0 +1,5 @@
+debian/tmp/usr/share
+debian/tmp/usr/include
+debian/tmp/usr/bin
+debian/tmp/usr/lib/giggle/*.so
+debian/tmp/usr/lib/giggle/*.0
