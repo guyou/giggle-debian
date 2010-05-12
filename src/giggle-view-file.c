@@ -24,10 +24,10 @@
 #include "giggle-file-list.h"
 #include "giggle-rev-list-view.h"
 #include "giggle-view-history.h"
-#include "giggle-view-shell.h"
 
 #include <libgiggle/giggle-history.h>
 #include <libgiggle/giggle-searchable.h>
+#include <libgiggle/giggle-view-shell.h>
 
 #include <libgiggle-git/giggle-git.h>
 #include <libgiggle-git/giggle-git-blame.h>
@@ -53,6 +53,11 @@
 
 #define GET_PRIV(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), GIGGLE_TYPE_VIEW_FILE, GiggleViewFilePriv))
 
+#define CHUNK_NAME(state, suffix) \
+	(GTK_STATE_SELECTED == (state) \
+		? "giggle-chunk-selected-" suffix \
+		: "giggle-chunk-"          suffix)
+
 typedef struct {
 	GtkWidget           *file_list;
 	GtkWidget           *revision_list;
@@ -61,6 +66,7 @@ typedef struct {
 	GtkWidget           *goto_entry;
 	GtkWidget           *hpaned;
 	GtkWidget           *vpaned;
+	GtkWidget           *window;
 
 	GtkActionGroup      *action_group;
 
@@ -143,9 +149,7 @@ view_file_set_property (GObject      *object,
 static void
 view_file_finalize (GObject *object)
 {
-	GiggleViewFilePriv *priv;
-
-	priv = GET_PRIV (object);
+	GiggleViewFilePriv *priv = GET_PRIV (object);
 
 	g_free (priv->current_file);
 
@@ -153,11 +157,26 @@ view_file_finalize (GObject *object)
 }
 
 static void
+view_file_set_focus_cb (GtkWindow      *window,
+			GtkWidget      *widget,
+			GiggleViewFile *view)
+{
+	GiggleViewFilePriv *priv = GET_PRIV (view);
+	GtkAction          *action;
+
+	action = gtk_action_group_get_action (priv->action_group, "ViewFileShowChangeSet");
+
+	gtk_action_set_sensitive (action, gtk_widget_has_focus (priv->source_view) |
+					  gtk_widget_has_focus (priv->revision_list));
+
+	action = gtk_action_group_get_action (priv->action_group, "ViewFileSelectRevision");
+	gtk_action_set_sensitive (action, gtk_widget_has_focus (priv->source_view));
+}
+
+static void
 view_file_dispose (GObject *object)
 {
-	GiggleViewFilePriv *priv;
-
-	priv = GET_PRIV (object);
+	GiggleViewFilePriv *priv = GET_PRIV (object);
 
 	if (priv->configuration) {
 		g_object_unref (priv->configuration);
@@ -174,6 +193,12 @@ view_file_dispose (GObject *object)
 		priv->action_group = NULL;
 	}
 
+	if (priv->window) {
+		g_signal_handlers_disconnect_by_func (priv->window,
+						      view_file_set_focus_cb, object);
+		priv->window = NULL;
+	}
+
 	G_OBJECT_CLASS (giggle_view_file_parent_class)->dispose (object);
 }
 
@@ -187,9 +212,98 @@ view_file_goto_line_cb (GtkAction      *action,
 
 	g_object_set
 		(priv->goto_toolbar, "visible",
-		 !GTK_WIDGET_VISIBLE (priv->goto_toolbar), NULL);
+		 !gtk_widget_get_visible (priv->goto_toolbar), NULL);
 
 	gtk_widget_grab_focus (priv->goto_entry);
+}
+
+static void
+view_file_revision_list_revision_activated_cb (GiggleRevListView *list,
+					       GiggleRevision    *revision,
+					       GiggleViewFile    *view)
+{
+	GiggleView *history_view = NULL;
+	GtkWidget  *shell;
+
+	shell = gtk_widget_get_ancestor (GTK_WIDGET (view), GIGGLE_TYPE_VIEW_SHELL);
+
+	if (shell)
+		history_view = giggle_view_shell_find_view (GIGGLE_VIEW_SHELL (shell),
+							    GIGGLE_TYPE_VIEW_HISTORY);
+
+	if (history_view) {
+		giggle_view_history_select (GIGGLE_VIEW_HISTORY (history_view), revision);
+		giggle_view_shell_select (GIGGLE_VIEW_SHELL (shell), history_view);
+	}
+}
+
+static GiggleRevision *
+source_view_get_revision_at_iter (GtkTextIter *iter)
+{
+	GiggleRevision *revision = NULL;
+	GSList         *l;
+
+	for (l = gtk_text_iter_get_marks (iter); l; l = l->next) {
+		revision = g_object_get_data (l->data, "giggle-revision");
+
+		if (revision)
+			break;
+	}
+
+	return revision;
+}
+
+static GiggleRevision *
+source_view_get_revision_at_insert (GtkTextView *view)
+{
+	GtkTextBuffer *buffer;
+	GtkTextMark   *insert;
+	GtkTextIter    iter;
+
+	buffer = gtk_text_view_get_buffer (view);
+	insert = gtk_text_buffer_get_insert (buffer);
+	gtk_text_buffer_get_iter_at_mark (buffer, &iter, insert);
+
+	return source_view_get_revision_at_iter (&iter);
+}
+
+static void
+view_file_show_changeset_cb (GtkAction      *action,
+			     GiggleViewFile *view)
+{
+	GiggleViewFilePriv *priv = GET_PRIV (view);
+	GiggleRevision     *revision = NULL;
+
+	if (gtk_widget_has_focus (priv->revision_list)) {
+		revision = priv->current_revision;
+	} else if (gtk_widget_has_focus (priv->source_view)) {
+		revision = source_view_get_revision_at_insert (GTK_TEXT_VIEW (priv->source_view));
+	}
+
+	if (revision) {
+		view_file_revision_list_revision_activated_cb
+			(GIGGLE_REV_LIST_VIEW (priv->revision_list),
+			 revision, view);
+	}
+}
+
+static void
+view_file_select_revision_cb (GtkAction      *action,
+			      GiggleViewFile *view)
+{
+	GiggleViewFilePriv *priv = GET_PRIV (view);
+	GiggleRevision     *revision = NULL;
+	GList              *selection;
+
+	if (gtk_widget_has_focus (priv->source_view))
+		revision = source_view_get_revision_at_insert (GTK_TEXT_VIEW (priv->source_view));
+
+	if (revision) {
+		selection = g_list_prepend (NULL, revision);
+		giggle_rev_list_view_set_selection (GIGGLE_REV_LIST_VIEW (priv->revision_list),
+						    selection);
+		g_list_free (selection);
+	}
 }
 
 static void
@@ -202,6 +316,9 @@ view_file_add_ui (GiggleView   *view,
 		"    <menu action='GoMenu'>"
 		"      <separator />"
 		"      <menuitem action='ViewFileGotoLine' />"
+		"      <separator />"
+		"      <menuitem action='ViewFileShowChangeSet' />"
+		"      <menuitem action='ViewFileSelectRevision' />"
 		"    </menu>"
 		"  </menubar>"
 		"</ui>";
@@ -212,11 +329,19 @@ view_file_add_ui (GiggleView   *view,
 		  N_("Highlight specified line number"),
 		  G_CALLBACK (view_file_goto_line_cb)
 		},
+		{ "ViewFileShowChangeSet", NULL,
+		  N_("Show _Changes"), NULL,
+		  N_("Show changes for selected revision"),
+		  G_CALLBACK (view_file_show_changeset_cb)
+		},
+		{ "ViewFileSelectRevision", NULL,
+		  N_("Select _Revision"), NULL,
+		  N_("Select revision of selected line"),
+		  G_CALLBACK (view_file_select_revision_cb)
+		},
 	};
 
-	GiggleViewFilePriv *priv;
-
-	priv = GET_PRIV (view);
+	GiggleViewFilePriv *priv = GET_PRIV (view);
 
 	if (!priv->action_group) {
 		priv->action_group = gtk_action_group_new (giggle_view_get_name (view));
@@ -230,35 +355,316 @@ view_file_add_ui (GiggleView   *view,
 	}
 
 	gtk_action_group_set_visible (priv->action_group, TRUE);
+
+	priv->window = gtk_widget_get_ancestor (GTK_WIDGET (view), GTK_TYPE_WINDOW);
+
+	if (priv->window)
+		g_signal_connect_after (priv->window, "set-focus",
+					G_CALLBACK (view_file_set_focus_cb), view);
+
+	view_file_set_focus_cb (NULL, NULL, GIGGLE_VIEW_FILE (view));
 }
 
 static void
 view_file_remove_ui (GiggleView *view)
 {
-	GiggleViewFilePriv *priv;
-
-	priv = GET_PRIV (view);
+	GiggleViewFilePriv *priv = GET_PRIV (view);
 
 	if (priv->action_group)
 		gtk_action_group_set_visible (priv->action_group, FALSE);
+
+	if (priv->window) {
+		g_signal_handlers_disconnect_by_func (priv->window,
+						      view_file_set_focus_cb, view);
+		priv->window = NULL;
+	}
+}
+
+static inline guint8
+convert_color_channel (guint  src,
+                       guint8 alpha)
+{
+	return (alpha ? ((src << 8) - src) / alpha : 0);
+}
+
+static GdkPixbuf *
+create_pixbuf_from_image (cairo_surface_t *image)
+{
+	int           width, height, stride, x, y;
+	const guint8 *source, *s, *rs;
+	guchar       *target, *t, *rt;
+
+	width  = cairo_image_surface_get_width  (image);
+	height = cairo_image_surface_get_height (image);
+	stride = cairo_image_surface_get_stride (image);
+	source = cairo_image_surface_get_data   (image);
+
+	target = g_new (guchar, stride * height);
+
+	for (y = 0, s = source, t = target; y < height; ++y, s += stride, t += stride) {
+		for (x = 0, rs = s, rt = t; x < width; ++x, rs += 4, rt += 4) {
+			rt[0] = convert_color_channel (rs[2], rs[3]);
+			rt[1] = convert_color_channel (rs[1], rs[3]);
+			rt[2] = convert_color_channel (rs[0], rs[3]);
+			rt[3] =                               rs[3];
+		}
+	}
+
+	return gdk_pixbuf_new_from_data (target, GDK_COLORSPACE_RGB,
+			                 TRUE, 8, width, height, stride,
+					 (GdkPixbufDestroyNotify) g_free, NULL);
+}
+
+static void
+render_chunk_marker (cairo_t    *cr,
+		     const char *name,
+		     int         width,
+		     int         height,
+		     GdkColor   *color)
+{
+	double           r, g, b;
+	double           x0, y0, x1, y1;
+	double           alpha = 0.5;
+	gboolean         start = FALSE;
+	gboolean         end = FALSE;
+	cairo_pattern_t *gradient;
+
+	if (!g_str_has_prefix (name, "giggle-chunk-"))
+		return;
+
+	if (strstr (name, "-selected"))
+		alpha = 1.0;
+	if (strstr (name, "-start"))
+		start = TRUE;
+	if (strstr (name, "-end"))
+		end = TRUE;
+
+	x0 = 2;
+	y0 = 0;
+	x1 = width - 3;
+	y1 = height - 1;
+
+	r = color->red   / 65535.0;
+	g = color->green / 65535.0;
+	b = color->blue  / 65535.0;
+
+	gradient = cairo_pattern_create_linear (0, 0, 0, height);
+
+	if (start) {
+		cairo_pattern_add_color_stop_rgba (gradient, 0.0, r, g, b, 0.0 * alpha);
+		cairo_pattern_add_color_stop_rgba (gradient, 0.1, r, g, b, 0.3 * alpha);
+		cairo_pattern_add_color_stop_rgba (gradient, 0.4, r, g, b, 0.8 * alpha);
+
+		cairo_move_to  (cr, x0,     y0 + 9);
+		cairo_curve_to (cr, x0,     y0 + 1, x0, y0 + 1, x0 + 8, y0 + 1);
+		cairo_line_to  (cr, x1 - 8, y0 + 1);
+		cairo_curve_to (cr, x1,     y0 + 1, x1, y0 + 1, x1,     y0 + 9);
+	} else {
+		cairo_pattern_add_color_stop_rgba (gradient, 0.0, r, g, b, 0.6 * alpha);
+
+		cairo_move_to (cr, x0, y0);
+		cairo_line_to (cr, x1, y0);
+	}
+
+	if (end) {
+		cairo_pattern_add_color_stop_rgba (gradient, 1.0, r, g, b, 0.0 * alpha);
+		cairo_pattern_add_color_stop_rgba (gradient, 0.9, r, g, b, 0.3 * alpha);
+		cairo_pattern_add_color_stop_rgba (gradient, 0.6, r, g, b, 0.6 * alpha);
+
+		cairo_line_to  (cr, x1,     y1 - 9);
+		cairo_curve_to (cr, x1,     y1 - 1, x1, y1 - 1, x1 - 8, y1 - 1);
+		cairo_line_to  (cr, x0 + 8, y1 - 1);
+		cairo_curve_to (cr, x0,     y1 - 1, x0, y1 - 1, x0,     y1 - 9);
+	} else {
+		cairo_pattern_add_color_stop_rgba (gradient, 1.0, r, g, b, 0.6 * alpha);
+
+		cairo_line_to (cr, x1, y1 + 1);
+		cairo_line_to (cr, x0, y1 + 1);
+	}
+
+	cairo_set_source (cr, gradient);
+	cairo_pattern_destroy (gradient);
+	cairo_fill (cr);
+
+	x0 += 0.5;
+	y0 += 0.5;
+	x1 += 0.5;
+	y1 += 0.5;
+
+	if (start) {
+		if (end) {
+			cairo_move_to  (cr, x0, y0 + 9);
+		} else {
+			cairo_move_to  (cr, x0, y1);
+			cairo_line_to  (cr, x0, y0 + 8);
+		}
+
+		cairo_curve_to (cr, x0,     y0 + 1, x0, y0 + 1, x0 + 8, y0 + 1);
+		cairo_line_to  (cr, x1 - 8, y0 + 1);
+		cairo_curve_to (cr, x1,     y0 + 1, x1, y0 + 1, x1,     y0 + 9);
+	} else {
+		cairo_move_to (cr, x1, y0);
+	}
+
+	if (end) {
+		cairo_line_to  (cr, x1,     y1 - 9);
+		cairo_curve_to (cr, x1,     y1 - 1, x1, y1 - 1, x1 - 8, y1 - 1);
+		cairo_line_to  (cr, x0 + 8, y1 - 1);
+		cairo_curve_to (cr, x0,     y1 - 1, x0, y1 - 1, x0,     y1 - 9);
+	} else {
+		cairo_line_to (cr, x1, y1 + 1);
+		cairo_move_to (cr, x0, y1);
+	}
+
+	if (!start)
+		cairo_line_to (cr, x0, y0);
+
+	cairo_set_line_width (cr, 1);
+	cairo_set_source_rgba (cr, r, g, b, alpha);
+	cairo_stroke (cr);
+}
+
+static GdkPixbuf *
+create_category_icon (GiggleViewFilePriv *priv,
+		      const char         *name)
+{
+	int              width, height;
+	GdkColor        *color;
+	GdkPixbuf       *pixbuf;
+	cairo_surface_t *image;
+	cairo_t         *canvas;
+
+	gtk_icon_size_lookup (GTK_ICON_SIZE_MENU, &width, &height);
+	image = cairo_image_surface_create (CAIRO_FORMAT_ARGB32, width, height);
+
+	canvas = cairo_create (image);
+	color = &gtk_widget_get_style (priv->source_view)->base[GTK_STATE_SELECTED];
+	pixbuf = create_pixbuf_from_image (image);
+
+	cairo_surface_destroy (image);
+	cairo_destroy (canvas);
+
+	return pixbuf;
+}
+
+static void
+create_category (GiggleViewFilePriv *priv,
+		 const char         *name)
+{
+	GdkPixbuf *pixbuf;
+
+	pixbuf = gtk_widget_render_icon (priv->source_view, name,
+					 GTK_ICON_SIZE_MENU, NULL);
+
+	if (!pixbuf)
+		pixbuf = create_category_icon (priv, name);
+	
+	if (pixbuf) {
+		gtk_source_view_set_mark_category_icon_from_pixbuf
+			(GTK_SOURCE_VIEW (priv->source_view),
+			 name, pixbuf);
+
+		g_object_unref (pixbuf);
+	}
+}
+
+static void
+source_view_style_set_cb (GtkWidget      *widget,
+			  GtkStyle       *prev,
+			  GiggleViewFile *view)
+{
+	GiggleViewFilePriv *priv = GET_PRIV (view);
+
+	create_category (priv, "giggle-chunk-start");
+	create_category (priv, "giggle-chunk-start-end");
+	create_category (priv, "giggle-chunk-middle");
+	create_category (priv, "giggle-chunk-end");
+
+	create_category (priv, "giggle-chunk-selected-start");
+	create_category (priv, "giggle-chunk-selected-start-end");
+	create_category (priv, "giggle-chunk-selected-middle");
+	create_category (priv, "giggle-chunk-selected-end");
+}
+
+static gboolean
+source_view_expose_event_cb (GtkTextView    *text_view,
+			     GdkEventExpose *event,
+			     GiggleViewFile *view)
+{
+	GiggleViewFilePriv *priv = GET_PRIV (view);
+	GtkSourceBuffer    *buffer;
+	GdkRectangle        visible_rect;
+	int                 y, height;
+	int                 margin_width;
+	GdkWindow          *left_margin;
+	GSList             *markers;
+	const char         *name;
+	GdkColor           *color;
+	GtkTextIter         iter;
+	cairo_t            *cr;
+
+	left_margin = gtk_text_view_get_window (text_view, GTK_TEXT_WINDOW_LEFT);
+
+	if (left_margin != event->window)
+		return FALSE;
+
+	buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (text_view));
+	color = &gtk_widget_get_style (priv->source_view)->base[GTK_STATE_SELECTED];
+
+	cr = gdk_cairo_create (event->window);
+	gdk_cairo_region (cr, event->region);
+	cairo_clip (cr);
+
+	gtk_text_view_get_visible_rect (text_view, &visible_rect);
+	gtk_text_view_get_iter_at_location (text_view, &iter, visible_rect.x, visible_rect.y);
+	visible_rect.y += visible_rect.height;
+
+	gdk_drawable_get_size (left_margin, &margin_width, NULL);
+	cairo_translate (cr, margin_width - 16, 0); /* FIXME: see GB#572785 */
+
+	do {
+		gtk_text_view_get_line_yrange (text_view, &iter, &y, &height);
+
+		if (y >= visible_rect.y)
+			break;
+
+		markers = gtk_source_buffer_get_source_marks_at_iter (buffer, &iter, NULL);
+
+		for (name = NULL; markers; name = NULL) {
+			name = gtk_source_mark_get_category (markers->data);
+
+			if (name && g_str_has_prefix (name, "giggle-chunk-"))
+				break;
+
+			markers = g_slist_delete_link (markers, markers);
+		}
+
+		if (name) /* FIXME: see GB#572785 */
+			render_chunk_marker (cr, name, 16, height, color);
+
+		g_slist_free (markers);
+
+		cairo_translate (cr, 0, height);
+	} while (gtk_text_iter_forward_line (&iter));
+
+	cairo_destroy (cr);
+
+	return FALSE;
 }
 
 static void
 giggle_view_file_class_init (GiggleViewFileClass *class)
 {
-	GObjectClass    *object_class;
-	GiggleViewClass *view_class;
-
-	object_class = G_OBJECT_CLASS (class);
-	view_class = GIGGLE_VIEW_CLASS (class);
+	GObjectClass    *object_class = G_OBJECT_CLASS (class);
+	GiggleViewClass *view_class   = GIGGLE_VIEW_CLASS (class);
 
 	object_class->get_property = view_file_get_property;
 	object_class->set_property = view_file_set_property;
-	object_class->finalize = view_file_finalize;
-	object_class->dispose = view_file_dispose;
+	object_class->finalize     = view_file_finalize;
+	object_class->dispose      = view_file_dispose;
 
-	view_class->add_ui = view_file_add_ui;
-	view_class->remove_ui = view_file_remove_ui;
+	view_class->add_ui         = view_file_add_ui;
+	view_class->remove_ui      = view_file_remove_ui;
 
 	g_object_class_install_property (object_class,
 					 PROP_PATH,
@@ -304,7 +710,7 @@ view_file_find_language (GiggleViewFile *view,
 	manager = gtk_source_language_manager_get_default ();
 	ids = gtk_source_language_manager_get_language_ids (manager);
 
-	content_type = g_content_type_guess (priv->current_file, text, len, NULL);
+	content_type = g_content_type_guess (priv->current_file, (guchar *)text, len, NULL);
 	filename = g_path_get_basename (priv->current_file);
 
 	for (; *ids; ++ids) {
@@ -371,20 +777,31 @@ view_file_set_source_code (GiggleViewFile *view,
 }
 
 static const char *
-get_line_category (int line,
-		   int num_lines)
+get_line_category (int          line,
+		   GtkStateType state,
+		   int          num_lines)
 {
 	if (!line) {
 		if (1 == num_lines)
-			return "giggle-chunk-start-end";
+			return CHUNK_NAME (state, "start-end");
 
-		return "giggle-chunk-start";
+		return CHUNK_NAME (state, "start");
 	}
 
 	if (line < num_lines - 1)
-		return "giggle-chunk-middle";
+		return CHUNK_NAME (state, "middle");
 
-	return "giggle-chunk-end";
+	return CHUNK_NAME (state, "end");
+}
+
+static GtkStateType
+get_chunk_state (GiggleViewFilePriv        *priv,
+		 const GiggleGitBlameChunk *chunk)
+{
+	if (!giggle_revision_compare (priv->current_revision, chunk->revision))
+		return GTK_STATE_SELECTED;
+
+	return GTK_STATE_NORMAL;
 }
 
 static void
@@ -396,11 +813,12 @@ view_file_blame_job_callback (GiggleGit *git,
 	GiggleViewFile            *view;
 	GiggleViewFilePriv        *priv;
 	const GiggleGitBlameChunk *chunk;
-	int			   i, l;
-	GtkSourceBuffer		  *buffer;
-	GtkSourceMark		  *mark;
-	GtkTextIter		   iter;
-	const char		  *category;
+	int                        i, l;
+	GtkSourceBuffer           *buffer;
+	GtkSourceMark             *mark;
+	GtkTextIter                iter;
+	const char                *category;
+	GtkStateType               state;
 
 	view = GIGGLE_VIEW_FILE (data);
 	priv = GET_PRIV (view);
@@ -413,7 +831,8 @@ view_file_blame_job_callback (GiggleGit *git,
 
 		for (i = 0; (chunk = giggle_git_blame_get_chunk (GIGGLE_GIT_BLAME (job), i)); ++i) {
 			for (l = 0; l < chunk->num_lines; ++l) {
-				category = get_line_category (l, chunk->num_lines);
+				state = get_chunk_state (priv, chunk);
+				category = get_line_category (l, state, chunk->num_lines);
 
 				gtk_text_buffer_get_iter_at_line (GTK_TEXT_BUFFER (buffer),
 								  &iter, chunk->result_line + l - 1);
@@ -625,26 +1044,6 @@ view_file_revision_list_selection_changed_cb (GiggleRevListView *list,
 	giggle_history_changed (GIGGLE_HISTORY (view));
 }
 
-static void
-view_file_revision_list_revision_activated_cb (GiggleRevListView *list,
-					       GiggleRevision    *revision,
-					       GiggleViewFile    *view)
-{
-	GiggleView *history_view = NULL;
-	GtkWidget  *shell;
-
-	shell = gtk_widget_get_ancestor (GTK_WIDGET (view), GIGGLE_TYPE_VIEW_SHELL);
-
-	if (shell)
-		history_view = giggle_view_shell_find_view (GIGGLE_VIEW_SHELL (shell),
-							    GIGGLE_TYPE_VIEW_HISTORY);
-
-	if (history_view) {
-		giggle_view_history_select (GIGGLE_VIEW_HISTORY (history_view), revision);
-		giggle_view_shell_select (GIGGLE_VIEW_SHELL (shell), history_view);
-	}
-}
-
 static gboolean
 is_numeric (const char *text)
 {
@@ -775,181 +1174,6 @@ goto_toolbar_init (GiggleViewFile *view)
 	return priv->goto_toolbar;
 }
 
-static inline guint8
-convert_color_channel (guint  src,
-                       guint8 alpha)
-{
-	return (alpha ? ((src << 8) - src) / alpha : 0);
-}
-
-
-static GdkPixbuf *
-create_pixbuf_from_image (cairo_surface_t *image)
-{
-	int           width, height, stride, x, y;
-	const guint8 *source, *s, *rs;
-	guchar       *target, *t, *rt;
-
-	width  = cairo_image_surface_get_width  (image);
-	height = cairo_image_surface_get_height (image);
-	stride = cairo_image_surface_get_stride (image);
-	source = cairo_image_surface_get_data   (image);
-
-	target = g_new (guchar, stride * height);
-
-	for (y = 0, s = source, t = target; y < height; ++y, s += stride, t += stride) {
-		for (x = 0, rs = s, rt = t; x < width; ++x, rs += 4, rt += 4) {
-			rt[0] = convert_color_channel (rs[2], rs[3]);
-			rt[1] = convert_color_channel (rs[1], rs[3]);
-			rt[2] = convert_color_channel (rs[0], rs[3]);
-			rt[3] =                               rs[3];
-		}
-	}
-
-	return gdk_pixbuf_new_from_data (target, GDK_COLORSPACE_RGB,
-			                 TRUE, 8, width, height, stride,
-					 (GdkPixbufDestroyNotify) g_free, NULL);
-}
-
-static GdkPixbuf *
-render_category_icon (GiggleViewFilePriv *priv,
-		      const char         *name)
-{
-	double           r, g, b;
-	double		 x0, y0, x1, y1;
-	int		 width, height;
-	gboolean         start = FALSE;
-	gboolean         end = FALSE;
-	GdkPixbuf       *pixbuf;
-	cairo_pattern_t *gradient;
-	cairo_surface_t *image;
-	cairo_t         *canvas;
-
-	if (!g_str_has_prefix (name, "giggle-chunk-"))
-		return NULL;
-
-	if (strstr (name, "-start"))
-		start = TRUE;
-	if (strstr (name, "-end"))
-		end = TRUE;
-
-	gtk_icon_size_lookup (GTK_ICON_SIZE_MENU, &width, &height); //--height; /* FIXME */
-
-	image = cairo_image_surface_create (CAIRO_FORMAT_ARGB32, width, height);
-	gradient = cairo_pattern_create_linear (0, 0, 0, height - 1);
-	canvas = cairo_create (image);
-
-	x0 = 2;
-	y0 = 0;
-	x1 = width - 3;
-	y1 = height - 1;
-
-	r = priv->source_view->style->base[GTK_STATE_SELECTED].red   / 65535.0;
-	g = priv->source_view->style->base[GTK_STATE_SELECTED].green / 65535.0;
-	b = priv->source_view->style->base[GTK_STATE_SELECTED].blue  / 65535.0;
-
-	if (start) {
-		cairo_pattern_add_color_stop_rgba (gradient, 0.0, r, g, b, 0.00);
-		cairo_pattern_add_color_stop_rgba (gradient, 0.1, r, g, b, 0.05);
-		cairo_pattern_add_color_stop_rgba (gradient, 0.4, r, g, b, 0.15);
-
-		cairo_move_to  (canvas, x0,     y0 + 9);
-		cairo_curve_to (canvas, x0,     y0 + 1, x0, y0 + 1, x0 + 8, y0 + 1);
-		cairo_line_to  (canvas, x1 - 8, y0 + 1);
-		cairo_curve_to (canvas, x1,     y0 + 1, x1, y0 + 1, x1,     y0 + 9);
-	} else {
-		cairo_pattern_add_color_stop_rgba (gradient, 0.0, r, g, b, 0.10);
-
-		cairo_move_to (canvas, x0, y0);
-		cairo_line_to (canvas, x1, y0);
-	}
-
-	if (end) {
-		cairo_pattern_add_color_stop_rgba (gradient, 1.0, r, g, b, 0.00);
-		cairo_pattern_add_color_stop_rgba (gradient, 0.9, r, g, b, 0.05);
-		cairo_pattern_add_color_stop_rgba (gradient, 0.6, r, g, b, 0.10);
-
-		cairo_line_to  (canvas, x1,     y1 - 9);
-		cairo_curve_to (canvas, x1,     y1 - 1, x1, y1 - 1, x1 - 8, y1 - 1);
-		cairo_line_to  (canvas, x0 + 8, y1 - 1);
-		cairo_curve_to (canvas, x0,     y1 - 1, x0, y1 - 1, x0,     y1 - 9);
-	} else {
-		cairo_pattern_add_color_stop_rgba (gradient, 1.0, r, g, b, 0.10);
-
-		cairo_line_to (canvas, x1, y1);
-		cairo_line_to (canvas, x0, y1);
-	}
-
-	cairo_set_source (canvas, gradient);
-	cairo_fill (canvas);
-
-	x0 += 0.5;
-	y0 += 0.5;
-	x1 += 0.5;
-	y1 += 0.5;
-
-	if (start) {
-		if (end) {
-			cairo_move_to  (canvas, x0, y0 + 9);
-		} else {
-			cairo_move_to  (canvas, x0, y1);
-			cairo_line_to  (canvas, x0, y0 + 8);
-		}
-
-		cairo_curve_to (canvas, x0,     y0 + 1, x0, y0 + 1, x0 + 8, y0 + 1);
-		cairo_line_to  (canvas, x1 - 8, y0 + 1);
-		cairo_curve_to (canvas, x1,     y0 + 1, x1, y0 + 1, x1,     y0 + 9);
-	} else {
-		cairo_move_to (canvas, x1, y0);
-	}
-
-	if (end) {
-		cairo_line_to  (canvas, x1,     y1 - 9);
-		cairo_curve_to (canvas, x1,     y1 - 1, x1, y1 - 1, x1 - 8, y1 - 1);
-		cairo_line_to  (canvas, x0 + 8, y1 - 1);
-		cairo_curve_to (canvas, x0,     y1 - 1, x0, y1 - 1, x0,     y1 - 9);
-	} else {
-		cairo_line_to (canvas, x1, y1 + 1);
-		cairo_move_to (canvas, x0, y1);
-	}
-
-	if (!start)
-		cairo_line_to (canvas, x0, y0);
-
-	cairo_set_line_width (canvas, 1);
-	cairo_set_source_rgba (canvas, r, g, b, 0.3);
-	cairo_stroke (canvas);
-
-	pixbuf = create_pixbuf_from_image (image);
-
-	cairo_pattern_destroy (gradient);
-	cairo_surface_destroy (image);
-	cairo_destroy (canvas);
-
-	return pixbuf;
-}
-
-static void
-create_category (GiggleViewFilePriv *priv,
-		 const char         *name)
-{
-	GdkPixbuf *pixbuf;
-
-	pixbuf = gtk_widget_render_icon (priv->source_view, name,
-					 GTK_ICON_SIZE_MENU, NULL);
-
-	if (!pixbuf)
-		pixbuf = render_category_icon (priv, name);
-	
-	if (pixbuf) {
-		gtk_source_view_set_mark_category_pixbuf
-			(GTK_SOURCE_VIEW (priv->source_view),
-			 name, pixbuf);
-
-		g_object_unref (pixbuf);
-	}
-}
-
 static gboolean
 source_view_query_tooltip_cb (GtkWidget  *widget,
                               gint        x,
@@ -961,18 +1185,22 @@ source_view_query_tooltip_cb (GtkWidget  *widget,
 	GiggleRevision  *revision;
 	GdkRectangle     bounds;
 	GtkTextIter      iter;
-	GSList          *l;
 
 	gtk_text_view_window_to_buffer_coords (GTK_TEXT_VIEW (widget),
 					       GTK_TEXT_WINDOW_WIDGET, x, y, &x, &y);
 	gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (widget), &iter, x, y);
 	gtk_text_iter_backward_chars (&iter, gtk_text_iter_get_line_offset (&iter));
 
-	for (l = gtk_text_iter_get_marks (&iter); l; l = l->next) {
-		revision = g_object_get_data (l->data, "giggle-revision");
+	revision = source_view_get_revision_at_iter (&iter);
 
-		if (!revision)
-			continue;
+	if (revision) {
+		const char    *committer_name = NULL;
+		const char    *author_name = NULL;
+		GtkAllocation  allocation;
+		GiggleAuthor  *committer = NULL;
+		GiggleAuthor  *author = NULL;
+
+		gtk_widget_get_allocation (widget, &allocation);
 
 		if (giggle_revision_get_date (revision)) {
 			strftime (date, sizeof date, "%c",
@@ -981,11 +1209,20 @@ source_view_query_tooltip_cb (GtkWidget  *widget,
 			*date = '\0';
 		}
 
+		author = giggle_revision_get_author (revision);
+		committer = giggle_revision_get_committer (revision);
+
+		if (author)
+			author_name = giggle_author_get_name (author);
+		if (committer)
+			committer_name = giggle_author_get_name (committer);
+
 		markup = g_markup_printf_escaped
-			("<b>%s</b> %s\n<b>%s</b> %s\n<b>%s</b> %s\n%s",
-			 _("Author:"),   giggle_revision_get_author (revision),
-			 _("Date:"),     date,
-			 _("SHA:"),      giggle_revision_get_sha (revision),
+			("<b>%s</b> %s\n<b>%s</b> %s\n<b>%s</b> %s\n<b>%s</b> %s\n%s",
+			 _("Author:"),    author_name,
+			 _("Committer:"), committer_name,
+			 _("Date:"),      date,
+			 _("SHA:"),       giggle_revision_get_sha (revision),
 			 giggle_revision_get_short_log (revision));
 
 		gtk_text_view_get_line_yrange (GTK_TEXT_VIEW (widget),
@@ -995,7 +1232,7 @@ source_view_query_tooltip_cb (GtkWidget  *widget,
 						       0, bounds.y, NULL, &bounds.y);
 
 		bounds.x = 0;
-		bounds.width = widget->allocation.width;
+		bounds.width = allocation.width;
 
 		gtk_tooltip_set_tip_area (tooltip, &bounds);
 		gtk_tooltip_set_markup (tooltip, markup);
@@ -1004,7 +1241,6 @@ source_view_query_tooltip_cb (GtkWidget  *widget,
 
 		return TRUE;
 	}
-
 
 	return FALSE;
 }
@@ -1128,8 +1364,8 @@ view_file_snapshot_dispose (GObject *object)
 static void
 giggle_view_file_snapshot_class_init (GiggleViewFileSnapshotClass *class)
 {
-	GObjectClass *object_class = G_OBJECT_CLASS (class);
-	object_class->dispose = view_file_snapshot_dispose;
+	GObjectClass   *object_class = G_OBJECT_CLASS (class);
+	object_class->dispose   = view_file_snapshot_dispose;
 }
 
 static GObject *
@@ -1279,15 +1515,14 @@ giggle_view_file_init (GiggleViewFile *view)
 
 	g_signal_connect (priv->source_view, "query-tooltip",
 			  G_CALLBACK (source_view_query_tooltip_cb), view);
+	g_signal_connect (priv->source_view, "style-set",
+			  G_CALLBACK (source_view_style_set_cb), view);
+	g_signal_connect (priv->source_view, "expose-event",
+			  G_CALLBACK (source_view_expose_event_cb), view);
 
 	monospaced = pango_font_description_from_string ("Mono");
 	gtk_widget_modify_font (priv->source_view, monospaced);
 	pango_font_description_free (monospaced);
-
-	create_category (priv, "giggle-chunk-start");
-	create_category (priv, "giggle-chunk-start-end");
-	create_category (priv, "giggle-chunk-end");
-	create_category (priv, "giggle-chunk-middle");
 
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (priv->source_view));
 	gtk_source_buffer_set_highlight_syntax (GTK_SOURCE_BUFFER (buffer), TRUE);

@@ -1,6 +1,6 @@
 gladedir = $(datadir)/giggle/glade
 dist_glade_DATA = \
-	main-window.glade
+	main-window.ui
 
 desktop_in_data=giggle.desktop.in
 desktop_DATA=$(desktop_in_data:.desktop.in=.desktop)

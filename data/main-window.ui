@@ -1,26 +1,26 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--*- mode: xml -*-->
-<glade-interface>
-  <widget class="GtkWindow" id="remote_editor">
+<?xml version="1.0"?>
+<interface>
+  <requires lib="gtk+" version="2.16"/>
+  <!-- interface-naming-policy project-wide -->
+  <object class="GtkWindow" id="remote_editor">
     <property name="visible">True</property>
     <property name="title">window1</property>
     <child>
-      <widget class="GtkVBox" id="remote_vbox">
+      <object class="GtkVBox" id="remote_vbox">
         <property name="visible">True</property>
         <property name="spacing">12</property>
         <child>
-          <widget class="GtkTable" id="table2">
+          <object class="GtkTable" id="table2">
             <property name="visible">True</property>
             <property name="n_rows">2</property>
             <property name="n_columns">2</property>
             <property name="column_spacing">6</property>
             <property name="row_spacing">6</property>
             <child>
-              <widget class="GtkEntry" id="entry_remote_url">
+              <object class="GtkEntry" id="entry_remote_url">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-              </widget>
+              </object>
               <packing>
                 <property name="left_attach">1</property>
                 <property name="right_attach">2</property>
@@ -30,10 +30,10 @@
               </packing>
             </child>
             <child>
-              <widget class="GtkEntry" id="entry_remote_name">
+              <object class="GtkEntry" id="entry_remote_name">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-              </widget>
+              </object>
               <packing>
                 <property name="left_attach">1</property>
                 <property name="right_attach">2</property>
@@ -41,11 +41,11 @@
               </packing>
             </child>
             <child>
-              <widget class="GtkLabel" id="label13">
+              <object class="GtkLabel" id="label13">
                 <property name="visible">True</property>
                 <property name="xalign">0</property>
                 <property name="label" translatable="yes">URL:</property>
-              </widget>
+              </object>
               <packing>
                 <property name="top_attach">1</property>
                 <property name="bottom_attach">2</property>
@@ -54,66 +54,68 @@
               </packing>
             </child>
             <child>
-              <widget class="GtkLabel" id="label11">
+              <object class="GtkLabel" id="label11">
                 <property name="visible">True</property>
                 <property name="xalign">0</property>
                 <property name="label" translatable="yes">Name:</property>
-              </widget>
+              </object>
               <packing>
                 <property name="x_options">GTK_FILL</property>
                 <property name="y_options"></property>
               </packing>
             </child>
-          </widget>
+          </object>
           <packing>
             <property name="expand">False</property>
+            <property name="position">0</property>
           </packing>
         </child>
         <child>
-          <widget class="GtkVBox" id="vbox10">
+          <object class="GtkVBox" id="vbox10">
             <property name="visible">True</property>
             <property name="spacing">6</property>
             <child>
-              <widget class="GtkLabel" id="label12">
+              <object class="GtkLabel" id="label12">
                 <property name="visible">True</property>
                 <property name="xalign">0</property>
                 <property name="label" translatable="yes">&lt;b&gt;Branches&lt;/b&gt;</property>
                 <property name="use_markup">True</property>
-              </widget>
+              </object>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">False</property>
+                <property name="position">0</property>
               </packing>
             </child>
             <child>
-              <widget class="GtkAlignment" id="alignment5">
+              <object class="GtkAlignment" id="alignment5">
                 <property name="visible">True</property>
                 <property name="left_padding">6</property>
                 <child>
-                  <widget class="GtkScrolledWindow" id="scrolledwindow7">
+                  <object class="GtkScrolledWindow" id="scrolledwindow7">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-                    <property name="shadow_type">GTK_SHADOW_IN</property>
+                    <property name="hscrollbar_policy">automatic</property>
+                    <property name="shadow_type">in</property>
                     <child>
-                      <widget class="GtkTreeView" id="treeview_remote_branches">
+                      <object class="GtkTreeView" id="treeview_remote_branches">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                      </widget>
+                      </object>
                     </child>
-                  </widget>
+                  </object>
                 </child>
-              </widget>
+              </object>
               <packing>
                 <property name="position">1</property>
               </packing>
             </child>
-          </widget>
+          </object>
           <packing>
             <property name="position">1</property>
           </packing>
         </child>
-      </widget>
+      </object>
     </child>
-  </widget>
-</glade-interface>
+  </object>
+</interface>

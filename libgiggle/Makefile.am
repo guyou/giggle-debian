@@ -3,7 +3,7 @@ libgiggledir = $(pkgincludedir)/libgiggle
 AM_CPPFLAGS = \
 	-I$(top_srcdir) \
 	-DGLADEDIR='"$(pkgdatadir)/glade"' \
-	-DPLUGINDIR='"$(pkglibdir)/plugins"' \
+	-DPLUGINDIR='"$(pkglibdir)/plugins/$(VERSION)"' \
 	$(GIGGLE_CFLAGS) $(PLATFORM_CFLAGS) \
 	$(WARN_CFLAGS)
 
@@ -20,13 +20,15 @@ libgiggle_h_files = \
 	giggle-plugin-manager.h \
 	giggle-plugin.h \
 	giggle-ref.h \
+	giggle-remote-branch.h \
 	giggle-remote-ref.h \
 	giggle-remote.h \
-	giggle-remote-branch.h \
 	giggle-revision.h \
 	giggle-searchable.h \
 	giggle-sysdeps.h \
 	giggle-tag.h \
+	giggle-view.h \
+	giggle-view-shell.h \
 	$(NULL)
 
 libgiggle_la_SOURCES = \
@@ -39,16 +41,18 @@ libgiggle_la_SOURCES = \
 	giggle-error.c \
 	giggle-history.c \
 	giggle-job.c \
-	giggle-plugin.c \
 	giggle-plugin-manager.c \
+	giggle-plugin.c \
 	giggle-ref.c \
-	giggle-remote.c \
 	giggle-remote-branch.c \
+	giggle-remote-ref.c \
+	giggle-remote.c \
 	giggle-revision.c \
 	giggle-searchable.c \
 	giggle-sysdeps.c \
 	giggle-tag.c \
-	giggle-remote-ref.c \
+	giggle-view.c \
+	giggle-view-shell.c \
 	$(NULL)
 
 libgiggle_HEADERS = \
@@ -61,32 +65,32 @@ libgiggle_la_LIBADD = \
 	$(GIGGLE_LIBS)
 libgiggle_la_LDFLAGS = \
 	$(AM_LDFLAGS) \
-	-release $(PACKAGE_VERSION) \
+	-version-info $(LIBGIGGLE_ABI) \
 	-Wl,--as-needed -Wl,--no-undefined \
 	$(NULL)
 
 giggle-enums.h: giggle-enums.h.in $(libgiggle_h_files)
-	( cd $(srcdir) && $(GLIB_MKENUMS) --template $^ ) > xgen-gtbh
-	( cmp -s xgen-gtbh $@ || (echo "Creating $@..."; cp xgen-gtbh $@ ))
-	( rm -f xgen-gtbh )
+	$(AM_V_at)( cd $(srcdir) && $(GLIB_MKENUMS) --template $^ ) > xgen-gtbh
+	$(AM_V_at)( cmp -s xgen-gtbh $@ || (echo "  ENUM  $@..."; cp xgen-gtbh $@ ))
+	$(AM_V_at)( rm -f xgen-gtbh )
 
 giggle-enums.c: giggle-enums.c.in $(libgiggle_h_files)
-	( cd $(srcdir) && $(GLIB_MKENUMS) --template $^ ) > xgen-gtbc
-	( cmp -s xgen-gtbc $@ || (echo "Creating $@..."; cp xgen-gtbc $@ ))
-	( rm -f xgen-gtbc )
+	$(AM_V_at)( cd $(srcdir) && $(GLIB_MKENUMS) --template $^ ) > xgen-gtbc
+	$(AM_V_at)( cmp -s xgen-gtbc $@ || (echo "  ENUM  $@..."; cp xgen-gtbc $@ ))
+	$(AM_V_at)( rm -f xgen-gtbc )
 
 giggle-marshal.h: giggle-marshal.list
-	( cd $(srcdir) && \
+	$(AM_V_at)( cd $(srcdir) && \
 	  $(GLIB_GENMARSHAL) --prefix=giggle_marshal $< --header ) > xgen-gmh
-	( cmp -s xgen-gmh $@ || (echo "Creating $@..."; cp xgen-gmh $@ ))
-	( rm -f xgen-gmh )
+	$(AM_V_at)( cmp -s xgen-gmh $@ || (echo "  GENM  $@..."; cp xgen-gmh $@ ))
+	$(AM_V_at)( rm -f xgen-gmh )
 
 giggle-marshal.c: giggle-marshal.list
-	( cd $(srcdir) && \
+	$(AM_V_at)( cd $(srcdir) && \
 	  echo "#include \"giggle-marshal.h\"" && \
 	  $(GLIB_GENMARSHAL) --prefix=giggle_marshal $< --body ) > xgen-gmc
-	( cmp -s xgen-gmc $@ || (echo "Creating $@..."; cp xgen-gmc $@ ))
-	( rm -f xgen-gmc )
+	$(AM_V_at)( cmp -s xgen-gmc $@ || (echo "  GENM  $@..."; cp xgen-gmc $@ ))
+	$(AM_V_at)( rm -f xgen-gmc )
 
 BUILT_SOURCES = \
 	giggle-marshal.h \

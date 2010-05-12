@@ -28,13 +28,13 @@
 #include "giggle-helpers.h"
 #include "giggle-view-file.h"
 #include "giggle-view-history.h"
-#include "giggle-view-shell.h"
 #include "giggle-view-summary.h"
 
 #include <libgiggle/giggle-clipboard.h>
 #include <libgiggle/giggle-history.h>
 #include <libgiggle/giggle-plugin-manager.h>
 #include <libgiggle/giggle-searchable.h>
+#include <libgiggle/giggle-view-shell.h>
 
 #include <libgiggle-git/giggle-git-config.h>
 
@@ -48,7 +48,6 @@
 
 #define GET_PRIV(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), GIGGLE_TYPE_WINDOW, GiggleWindowPriv))
 
-#define RECENT_FILES_GROUP		"giggle"
 #define RECENT_REPOS_PLACEHOLDER_PATH	"/ui/MainMenubar/ProjectMenu/RecentRepositories"
 
 #define HISTORY_GO_BACK_PATH		"/ui/MainToolbar/HistoryGoBack"
@@ -316,7 +315,7 @@ window_save_state (GiggleWindow *window)
 	g_snprintf (geometry, sizeof (geometry), "%dx%d+%d+%d",
 		    priv->width, priv->height, priv->x, priv->y);
 
-	maximized = gdk_window_get_state (GTK_WIDGET (window)->window) & GDK_WINDOW_STATE_MAXIMIZED;
+	maximized = gdk_window_get_state (gtk_widget_get_window (GTK_WIDGET (window))) & GDK_WINDOW_STATE_MAXIMIZED;
 
 	giggle_git_config_set_field (priv->configuration,
 				     GIGGLE_GIT_CONFIG_FIELD_MAIN_WINDOW_GEOMETRY,
@@ -337,7 +336,7 @@ window_configure_event (GtkWidget         *widget,
 {
 	GiggleWindowPriv *priv = GET_PRIV (widget);
 
-	if (!(gdk_window_get_state (widget->window) & GDK_WINDOW_STATE_MAXIMIZED)) {
+	if (!(gdk_window_get_state (gtk_widget_get_window (widget)) & GDK_WINDOW_STATE_MAXIMIZED)) {
 		gtk_window_get_size (GTK_WINDOW (widget), &priv->width, &priv->height);
 		gtk_window_get_position (GTK_WINDOW (widget), &priv->x, &priv->y);
 	}
@@ -605,7 +604,7 @@ window_bind_state (GiggleWindow *window)
 
 	priv = GET_PRIV (window);
 
-	if (!GTK_WIDGET_VISIBLE (window)) {
+	if (!gtk_widget_get_visible (GTK_WIDGET (window))) {
 		geometry = giggle_git_config_get_field (priv->configuration,
 							GIGGLE_GIT_CONFIG_FIELD_MAIN_WINDOW_GEOMETRY);
 		maximized = giggle_git_config_get_boolean_field (priv->configuration,
@@ -713,9 +712,9 @@ window_action_properties_cb (GtkAction    *action,
 
 		summary_view = giggle_view_summary_new ();
 
-		gtk_box_pack_start_defaults
-			(GTK_BOX (GTK_DIALOG (priv->summary_dialog)->vbox),
-			 summary_view);
+		gtk_box_pack_start
+			(GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (priv->summary_dialog))),
+			 summary_view, TRUE, TRUE, 0);
 
 		gtk_window_set_default_size
 			(GTK_WINDOW (priv->summary_dialog), 460, 400);
@@ -891,7 +890,7 @@ static void
 window_action_homepage_cb (GtkAction    *action,
 			   GiggleWindow *window)
 {
-	window_visit_uri (window, PACKAGE_WEBSITE);
+	window_visit_uri (window, PACKAGE_URL);
 }
 
 static void
@@ -919,8 +918,8 @@ window_action_about_cb (GtkAction    *action,
 			       "Copyright \xc2\xa9 2007-2008 Imendio AB\n"
 			       "Copyright \xc2\xa9 2008 Mathias Hasselmann",
 			       "translator-credits", _("translator-credits"),
-			       "comments", _("A graphical frontend to the git directory tracker."),
-			       "website", PACKAGE_WEBSITE,
+			       "comments", _("A graphical frontend to the git content tracker."),
+			       "website", PACKAGE_URL,
 			       "logo-icon-name", PACKAGE,
 			       "version", VERSION,
 			       "authors", authors,
@@ -1030,7 +1029,6 @@ window_create_ui_manager (GiggleWindow *window)
 		  G_CALLBACK (window_action_delete_cb)
 		},
 
-		/* Toolbar items */
 		{ "HistoryGoBack", GTK_STOCK_GO_BACK, NULL,
 		  "<alt>Left", N_("Go backward in history"),
 		  G_CALLBACK (window_action_history_go_back)
@@ -1229,7 +1227,7 @@ window_recent_connect_proxy_cb (GtkActionGroup *action_group,
 	if (!GTK_IS_MENU_ITEM (proxy))
 		return;
 
-	label = GTK_LABEL (GTK_BIN (proxy)->child);
+	label = GTK_LABEL (gtk_bin_get_child (GTK_BIN (proxy)));
 
 	gtk_label_set_ellipsize (label, PANGO_ELLIPSIZE_MIDDLE);
 	gtk_label_set_max_width_chars (label, RECENT_ITEM_MAX_N_CHARS);
@@ -1298,7 +1296,7 @@ window_recent_repositories_update (GiggleWindow *window)
 	for (l = recent_items; l && count < MAX_N_RECENT; l = l->next) {
 		info = l->data;
 
-		if (gtk_recent_info_has_group (info, RECENT_FILES_GROUP)) {
+		if (gtk_recent_info_has_group (info, PACKAGE)) {
 			if (!gtk_recent_info_exists (info))
 				continue;
 
@@ -1423,7 +1421,7 @@ window_update_search_ui (GiggleWindow *window)
 	GtkActionGroup   *action_group;
 	GiggleView       *view;
 
-	if (GTK_WIDGET_VISIBLE (priv->view_shell)) {
+	if (gtk_widget_get_visible (priv->view_shell)) {
 		view = giggle_view_shell_get_selected (GIGGLE_VIEW_SHELL (priv->view_shell));
 		searchable = GIGGLE_IS_SEARCHABLE (view);
 	}
@@ -1513,7 +1511,7 @@ window_directory_changed_cb (GiggleGit    *git,
 static void
 window_recent_repositories_add (GiggleWindow *window)
 {
-	static gchar     *groups[] = { RECENT_FILES_GROUP, NULL };
+	static gchar     *groups[] = { PACKAGE, NULL };
 	GiggleWindowPriv *priv;
 	GtkRecentData     data = { 0, };
 	const gchar      *repository;
@@ -1591,6 +1589,7 @@ giggle_window_init (GiggleWindow *window)
 
 	priv->view_shell = giggle_view_shell_new_with_ui (priv->ui_manager,
 							  "WindowViewShellActions");
+
 	priv->history_view = giggle_view_history_new (priv->ui_manager);
 	priv->file_view = giggle_view_file_new ();
 
@@ -1617,8 +1616,8 @@ giggle_window_init (GiggleWindow *window)
 	giggle_view_shell_append_view (GIGGLE_VIEW_SHELL (priv->view_shell),
 				       GIGGLE_VIEW (priv->history_view));
 
-	gtk_box_pack_start_defaults (GTK_BOX (priv->content_vbox),
-				     priv->view_shell);
+	gtk_box_pack_start (GTK_BOX (priv->content_vbox),
+	                    priv->view_shell, TRUE, TRUE, 0);
 
 	gtk_container_add (GTK_CONTAINER (window), priv->content_vbox);
 	gtk_widget_show_all (priv->content_vbox);
@@ -1634,6 +1633,9 @@ giggle_window_init (GiggleWindow *window)
 #endif
 
 	priv->plugin_manager = giggle_plugin_manager_new ();
+
+	giggle_plugin_manager_add_widget (priv->plugin_manager,
+					  "ViewShell", priv->view_shell);
 
 	g_signal_connect (priv->plugin_manager, "plugin-added",
 			  G_CALLBACK (window_plugin_added_cb), window);

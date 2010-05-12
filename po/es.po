@@ -2,14 +2,15 @@
 # Copyright (C) 2007 Imendio AB
 # This file is distributed under the same license as the giggle package.
 # Carlos Garnacho <carlosg@gnome.org>, 2007.
+# Javier Jardón <jjardon@gnome.org>, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: giggle VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-03-27 17:46+0200\n"
-"PO-Revision-Date: 2007-02-01 02:58+0100\n"
-"Last-Translator: Carlos Garnacho <carlos@imendio.com>\n"
+"PO-Revision-Date: 2010-01-24 04:24+0100\n"
+"Last-Translator: Javier Jardón <jjardon@gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -69,15 +70,15 @@ msgstr "Iluminar color"
 
 #: ../src/eggfindbar.c:180
 msgid "Color of highlight for all matches"
-msgstr ""
+msgstr "Color para destacar todas las coincidencias"
 
 #: ../src/eggfindbar.c:186
 msgid "Current color"
-msgstr ""
+msgstr "Color actual"
 
 #: ../src/eggfindbar.c:187
 msgid "Color of highlight for the current match"
-msgstr ""
+msgstr "Color para destacar la coincidencia actual"
 
 #: ../src/eggfindbar.c:320
 msgid "Find:"
@@ -89,7 +90,7 @@ msgstr "Buscar Anterior"
 
 #: ../src/eggfindbar.c:332
 msgid "Find previous occurrence of the search string"
-msgstr ""
+msgstr "Buscar la ocurrencia previa de la cadena a buscar"
 
 #: ../src/eggfindbar.c:337
 msgid "Find Next"
@@ -97,7 +98,7 @@ msgstr "Buscar Siguiente"
 
 #: ../src/eggfindbar.c:340
 msgid "Find next occurrence of the search string"
-msgstr ""
+msgstr "Buscar la siguiente ocurrencia de la cadena a buscar"
 
 #: ../src/eggfindbar.c:348
 msgid "C_ase Sensitive"
@@ -105,10 +106,10 @@ msgstr "_Sensible a mayusculas"
 
 #: ../src/eggfindbar.c:351
 msgid "Toggle case sensitive search"
-msgstr ""
+msgstr "Conmutar a búsqueda sensible a mayúsculas"
 
-#: ../src/giggle-authors-view.c:80
 # c-format
+#: ../src/giggle-authors-view.c:80
 msgid ""
 "An error occurred when retrieving authors list:\n"
 "%s"
@@ -120,8 +121,8 @@ msgstr ""
 msgid "Authors:"
 msgstr "Autores:"
 
-#: ../src/giggle-branches-view.c:80
 # c-format
+#: ../src/giggle-branches-view.c:80
 msgid ""
 "An error occurred when retrieving branches list:\n"
 "%s"
@@ -133,8 +134,8 @@ msgstr ""
 msgid "Branches:"
 msgstr "Ramas de desarrollo:"
 
-#: ../src/giggle-diff-tree-view.c:105 ../src/giggle-file-list.c:1334
 # c-format
+#: ../src/giggle-diff-tree-view.c:105 ../src/giggle-file-list.c:1334
 msgid ""
 "An error occurred when retrieving different files list:\n"
 "%s"
@@ -163,8 +164,8 @@ msgstr "Bitácora de la revision:"
 msgid "Co_mmit"
 msgstr "Co_mmit"
 
-#: ../src/giggle-diff-window.c:199
 # c-format
+#: ../src/giggle-diff-window.c:199
 msgid ""
 "An error occurred when committing:\n"
 "%s"
@@ -196,8 +197,8 @@ msgstr "_Mostrar todos los archivos"
 msgid "Project"
 msgstr "Proyecto"
 
-#: ../src/giggle-file-list.c:563
 # c-format
+#: ../src/giggle-file-list.c:563
 msgid ""
 "An error occurred when retrieving the file list:\n"
 "%s"
@@ -205,8 +206,8 @@ msgstr ""
 "Ha ocurrido un error extrayendo la lista de archivos:\n"
 "%s"
 
-#: ../src/giggle-file-list.c:733
 # c-format
+#: ../src/giggle-file-list.c:733
 msgid ""
 "An error occurred when adding a file to git:\n"
 "%s"
@@ -222,7 +223,8 @@ msgstr "¿Borrar patrón?"
 msgid ""
 "The selected file was shadowed by a glob pattern that may be hiding other "
 "files, delete it?"
-msgstr "El archivo seleccionado está oculto por un patrón glob que puede ocultar "
+msgstr ""
+"El archivo seleccionado está oculto por un patrón glob que puede ocultar "
 "otros archivos, ¿Borrar patrón?"
 
 #: ../src/giggle-personal-details-window.c:127
@@ -310,23 +312,23 @@ msgstr "Cambios locales"
 #. TRANSLATORS: it's a strftime format string
 #: ../src/giggle-revision-list.c:824
 msgid "%I:%M %p"
-msgstr ""
+msgstr "%I:%M %p"
 
 #. TRANSLATORS: it's a strftime format string
 #: ../src/giggle-revision-list.c:837
 msgid "%a %I:%M %p"
-msgstr ""
+msgstr "%a %I:%M %p"
 
 #. TRANSLATORS: it's a strftime format string
 #: ../src/giggle-revision-list.c:849
 msgid "%b %d %I:%M %p"
-msgstr ""
+msgstr "%d %b %I:%M %p"
 
 #. it's older
 #. TRANSLATORS: it's a strftime format string
 #: ../src/giggle-revision-list.c:854
 msgid "%b %d %Y"
-msgstr ""
+msgstr "%d %b %Y"
 
 #: ../src/giggle-revision-list.c:1203
 msgid "Enter branch name:"
@@ -362,9 +364,9 @@ msgstr "_Información de la revisión"
 msgid "_Differences"
 msgstr "_Diferencias"
 
+# c-format
 #: ../src/giggle-view-file.c:189 ../src/giggle-view-history.c:440
 #: ../src/giggle-view-history.c:533
-# c-format
 msgid ""
 "An error occurred when getting the revisions list:\n"
 "%s"
@@ -401,9 +403,8 @@ msgid "_Go"
 msgstr "_Ir a"
 
 #: ../src/giggle-window.c:153
-#, fuzzy
 msgid "_View"
-msgstr "_Archivo"
+msgstr "_Vista"
 
 #: ../src/giggle-window.c:157
 msgid "_Help"

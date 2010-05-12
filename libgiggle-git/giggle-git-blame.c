@@ -21,6 +21,7 @@
 #include "config.h"
 #include "giggle-git-blame.h"
 
+#include <stdio.h>
 #include <string.h>
 
 typedef struct GiggleGitBlamePriv GiggleGitBlamePriv;
@@ -150,7 +151,7 @@ git_blame_get_command_line (GiggleJob *job, gchar **command_line)
 
 	file = g_shell_quote (priv->file);
 
-	*command_line = g_strconcat (GIT_COMMAND " blame --incremental",
+	*command_line = g_strconcat (GIT_COMMAND " blame --incremental ",
 				     sha, " ", file, NULL);
 
 	g_free (file);
@@ -166,9 +167,11 @@ git_blame_handle_output (GiggleJob   *job,
 	GiggleGitBlamePriv  *priv;
 	const char          *start, *end;
 	GiggleGitBlameChunk *chunk = NULL;
+	GiggleAuthor        *author = NULL;
+	GiggleAuthor        *committer = NULL;
 	char                 sha[41];
-	time_t		     time;
-	int		     i;
+	time_t               time;
+	int                  i;
 
 	priv = GET_PRIV (job);
 
@@ -180,12 +183,13 @@ git_blame_handle_output (GiggleJob   *job,
 			break;
 
 		if (!chunk) {
-			chunk = g_slice_new (GiggleGitBlameChunk);
+			chunk = g_slice_new0 (GiggleGitBlameChunk);
 			g_ptr_array_add (priv->chunks, chunk);
 
-			sscanf (start, "%40s %d %d %d", sha,
-				&chunk->source_line, &chunk->result_line,
-				&chunk->num_lines);
+			g_warn_if_fail (4 == sscanf
+				(start, "%40s %d %d %d", sha,
+				 &chunk->source_line, &chunk->result_line,
+				 &chunk->num_lines));
 
 			chunk->revision = g_hash_table_lookup (priv->revision_cache, sha);
 
@@ -196,19 +200,27 @@ git_blame_handle_output (GiggleJob   *job,
 						     g_strdup (sha), chunk->revision);
 			}
 		} else if (g_str_has_prefix (start, "author ")) {
-			char *author = g_strndup (start + 7, end - start - 7);
-			g_object_set (chunk->revision, "author", author, NULL);
-			g_free (author);
+			char *name = g_strndup (start + 7, end - start - 7);
+			author = giggle_author_new_from_name (name, NULL);
+			giggle_revision_set_author (chunk->revision, author);
+			g_object_unref (author);
+			g_free (name);
+		} else if (g_str_has_prefix (start, "committer ")) {
+			char *name = g_strndup (start + 10, end - start - 10);
+			committer = giggle_author_new_from_name (name, NULL);
+			giggle_revision_set_committer (chunk->revision, author);
+			g_object_unref (committer);
+			g_free (name);
 		} else if (1 == sscanf (start, "author-time %d\n", &i)) {
-			struct tm *date = g_new (struct tm, 1);
-
-			time = i;
-			g_object_set (chunk->revision, "date", gmtime_r (&time, date), NULL);
+			struct tm *date = g_new (struct tm, 1); time = i;
+			giggle_revision_set_date (chunk->revision, gmtime_r (&time, date));
 		} else if (g_str_has_prefix (start, "summary ")) {
 			char *summary = g_strndup (start + 8, end - start - 8);
-			g_object_set (chunk->revision, "short-log", summary, NULL);
+			giggle_revision_set_short_log (chunk->revision, summary);
 			g_free (summary);
 		} else if (g_str_has_prefix (start, "filename ")) {
+			committer = NULL;
+			author = NULL;
 			chunk = NULL;
 		}
 	}

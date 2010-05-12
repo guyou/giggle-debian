@@ -20,16 +20,10 @@
 
 #include <config.h>
 
-#include "giggle-remote-editor.h"
-
 #include <glib/gi18n.h>
-#include <gtk/gtkbox.h>
-#include <gtk/gtkcellrenderertext.h>
-#include <gtk/gtkentry.h>
-#include <gtk/gtkstock.h>
-#include <gtk/gtktreeview.h>
-#include <glade/glade.h>
+#include <gtk/gtk.h>
 
+#include "giggle-remote-editor.h"
 #include "giggle-helpers.h"
 
 typedef struct GiggleRemoteEditorPriv GiggleRemoteEditorPriv;
@@ -186,23 +180,29 @@ static void
 giggle_remote_editor_init (GiggleRemoteEditor *remote_editor)
 {
 	GiggleRemoteEditorPriv *priv;
-	GladeXML               *xml;
+	GtkBuilder             *builder;
+	GError                 *error = NULL;
 
 	priv = GET_PRIV (remote_editor);
 
 	gtk_dialog_set_has_separator (GTK_DIALOG (remote_editor), FALSE);
 
-	xml = glade_xml_new (GLADEDIR "/main-window.glade", "remote_vbox", NULL);
+	builder = gtk_builder_new ();
+	if(!gtk_builder_add_from_file (builder, GLADEDIR "/main-window.ui", &error)) {
+		g_warning ("Couldn't load biulder file: %s", error->message);
+		g_error_free (error);
+	}
 
-	gtk_box_pack_start_defaults (GTK_BOX (GTK_DIALOG (remote_editor)->vbox),
-				     glade_xml_get_widget (xml, "remote_vbox"));
+	gtk_box_pack_start (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (remote_editor))),
+	                    GTK_WIDGET (gtk_builder_get_object (builder, "remote_vbox")),
+	                    TRUE, TRUE, 0);
 
-	priv->entry_name = glade_xml_get_widget (xml, "entry_remote_name");;
-	priv->entry_url = glade_xml_get_widget (xml, "entry_remote_url");;
-	priv->treeview_branches = glade_xml_get_widget (xml, "treeview_remote_branches");
+	priv->entry_name = GTK_WIDGET (gtk_builder_get_object (builder, "entry_remote_name"));
+	priv->entry_url = GTK_WIDGET (gtk_builder_get_object (builder, "entry_remote_url"));
+	priv->treeview_branches = GTK_WIDGET (gtk_builder_get_object (builder, "treeview_remote_branches"));
 	remote_editor_setup_treeview (remote_editor);
 
-	g_object_unref (xml);
+	g_object_unref (builder);
 
 	gtk_window_set_default_size (GTK_WINDOW (remote_editor), 350, 200);
 }

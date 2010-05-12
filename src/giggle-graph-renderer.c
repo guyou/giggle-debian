@@ -222,7 +222,7 @@ giggle_graph_renderer_get_size (GtkCellRenderer *cell,
 	gint size;
 
 	priv = GIGGLE_GRAPH_RENDERER (cell)->_priv;
-	size = PANGO_PIXELS (pango_font_description_get_size (widget->style->font_desc));
+	size = PANGO_PIXELS (pango_font_description_get_size (gtk_widget_get_style (widget)->font_desc));
 
 	if (height) {
 		*height = PATH_SPACE (size);
@@ -251,7 +251,7 @@ set_source_color (cairo_t         *cr,
 	GtkStyle *style;
 
 
-	if (GTK_WIDGET_IS_SENSITIVE (widget)) {
+	if (gtk_widget_is_sensitive (widget)) {
 		gdk_cairo_set_source_color (cr, &colors[color_index]);
 	} else {
 		style = gtk_widget_get_style (widget);
@@ -296,7 +296,7 @@ giggle_graph_renderer_render (GtkCellRenderer *cell,
 	y = background_area->y;
 	h = background_area->height;
 	revision = priv->revision;
-	size = PANGO_PIXELS (pango_font_description_get_size (widget->style->font_desc));
+	size = PANGO_PIXELS (pango_font_description_get_size (gtk_widget_get_style (widget)->font_desc));
 
 	table = g_hash_table_new (g_direct_hash, g_direct_equal);
 	paths_state = g_object_get_qdata (G_OBJECT (revision), revision_paths_state_quark);

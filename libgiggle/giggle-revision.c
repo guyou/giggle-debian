@@ -18,21 +18,28 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#include <config.h>
-#include <gtk/gtk.h>
-#include <time.h>
-
-#include "giggle-branch.h"
+#include "config.h"
 #include "giggle-revision.h"
 
-typedef struct GiggleRevisionPriv GiggleRevisionPriv;
+#include <time.h>
 
-struct GiggleRevisionPriv {
-	gchar              *sha;
-	gchar              *author;
-	gchar              *email;
+#define GET_PRIV(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), GIGGLE_TYPE_REVISION, GiggleRevisionPriv))
+
+enum {
+	PROP_0,
+	PROP_SHA,
+	PROP_AUTHOR,
+	PROP_COMMITTER,
+	PROP_DATE,
+	PROP_SHORT_LOG
+};
+
+typedef struct {
+	char               *sha;
 	struct tm          *date;
-	gchar              *short_log;
+	GiggleAuthor       *author;
+	GiggleAuthor       *committer;
+	char               *short_log;
 
 	GList              *descendent_branches;
 
@@ -42,93 +49,95 @@ struct GiggleRevisionPriv {
 
 	GList              *parents;
 	GList              *children;
-};
-
-static void revision_finalize           (GObject        *object);
-static void revision_get_property       (GObject        *object,
-					 guint           param_id,
-					 GValue         *value,
-					 GParamSpec     *pspec);
-static void revision_set_property       (GObject        *object,
-					 guint           param_id,
-					 const GValue   *value,
-					 GParamSpec     *pspec);
-
-static void revision_add_descendent_branch (GiggleRevision *revision,
-					    GiggleBranch   *branch);
+}  GiggleRevisionPriv;
 
 G_DEFINE_TYPE (GiggleRevision, giggle_revision, G_TYPE_OBJECT)
 
-enum {
-	PROP_0,
-	PROP_SHA,
-	PROP_AUTHOR,
-	PROP_EMAIL,
-	PROP_DATE,
-	PROP_SHORT_LOG
-};
-
-#define GET_PRIV(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), GIGGLE_TYPE_REVISION, GiggleRevisionPriv))
+static void
+revision_add_descendent_branch (GiggleRevision *revision,
+				GiggleBranch   *branch);
 
 static void
-giggle_revision_class_init (GiggleRevisionClass *class)
+revision_set_property (GObject      *object,
+		       guint         param_id,
+		       const GValue *value,
+		       GParamSpec   *pspec)
 {
-	GObjectClass *object_class = G_OBJECT_CLASS (class);
+	GiggleRevisionPriv *priv;
 
-	object_class->finalize     = revision_finalize;
-	object_class->get_property = revision_get_property;
-	object_class->set_property = revision_set_property;
+	priv = GET_PRIV (object);
 
-	g_object_class_install_property (
-		object_class,
-		PROP_SHA,
-		g_param_spec_string ("sha",
-				     "SHA",
-				     "SHA hash of the revision",
-				     NULL,
-				     G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+	switch (param_id) {
+	case PROP_SHA:
+		g_free (priv->sha);
+		priv->sha = g_value_dup_string (value);
+		break;
 
-	g_object_class_install_property (
-		object_class,
-		PROP_AUTHOR,
-		g_param_spec_string ("author",
-				     "Author",
-				     "Author of the revision",
-				     NULL,
-				     G_PARAM_READWRITE));
+	case PROP_AUTHOR:
+		if (priv->author)
+			g_object_unref (priv->author);
 
-	g_object_class_install_property (
-		object_class,
-		PROP_EMAIL,
-		g_param_spec_string ("email",
-				     "Email",
-				     "Email address for author of the revision",
-				     NULL,
-				     G_PARAM_READWRITE));
+		priv->author = g_value_dup_object (value);
+		break;
 
-	g_object_class_install_property (
-		object_class,
-		PROP_DATE,
-		g_param_spec_pointer ("date",
-				      "Date",
-				      "Date of the revision",
-				      G_PARAM_READWRITE));
+	case PROP_COMMITTER:
+		if (priv->committer)
+			g_object_unref (priv->committer);
 
-	g_object_class_install_property (
-		object_class,
-		PROP_SHORT_LOG,
-		g_param_spec_string ("short-log",
-				     "Short log",
-				     "Short log of the revision",
-				     NULL,
-				     G_PARAM_READWRITE));
+		priv->committer = g_value_dup_object (value);
+		break;
 
-	g_type_class_add_private (object_class, sizeof (GiggleRevisionPriv));
+	case PROP_DATE:
+		g_free (priv->date);
+		priv->date = g_value_get_pointer (value);
+		break;
+
+	case PROP_SHORT_LOG:
+		g_free (priv->short_log);
+		priv->short_log = g_value_dup_string (value);
+		break;
+
+	default:
+		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, param_id, pspec);
+		break;
+	}
 }
 
 static void
-giggle_revision_init (GiggleRevision *revision)
+revision_get_property (GObject    *object,
+		       guint       param_id,
+		       GValue     *value,
+		       GParamSpec *pspec)
 {
+	GiggleRevisionPriv *priv;
+
+	priv = GET_PRIV (object);
+
+	switch (param_id) {
+	case PROP_SHA:
+		g_value_set_string (value, priv->sha);
+		break;
+
+	case PROP_AUTHOR:
+		g_value_set_object (value, priv->author);
+		break;
+
+	case PROP_COMMITTER:
+		g_value_set_object (value, priv->committer);
+		break;
+
+	case PROP_DATE:
+		g_value_set_pointer (value, priv->date);
+		break;
+
+	case PROP_SHORT_LOG:
+		g_value_set_string (value, priv->short_log);
+		break;
+
+	default:
+		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, param_id, pspec);
+		break;
+	}
 }
 
 static void
@@ -138,17 +147,17 @@ revision_finalize (GObject *object)
 	GiggleRevisionPriv *priv;
 
 	revision = GIGGLE_REVISION (object);
-
 	priv = GET_PRIV (revision);
 
 	g_free (priv->sha);
-	g_free (priv->author);
-	g_free (priv->email);
 	g_free (priv->short_log);
 
-	if (priv->date) {
+	if (priv->author)
+		g_object_unref (priv->author);
+	if (priv->committer)
+		g_object_unref (priv->committer);
+	if (priv->date)
 		g_free (priv->date);
-	}
 
 	g_list_free (priv->parents);
 	g_list_free (priv->children);
@@ -168,72 +177,60 @@ revision_finalize (GObject *object)
 }
 
 static void
-revision_get_property (GObject    *object,
-		       guint       param_id,
-		       GValue     *value,
-		       GParamSpec *pspec)
+giggle_revision_class_init (GiggleRevisionClass *class)
 {
-	GiggleRevisionPriv *priv;
+	GObjectClass *object_class = G_OBJECT_CLASS (class);
 
-	priv = GET_PRIV (object);
+	object_class->set_property = revision_set_property;
+	object_class->get_property = revision_get_property;
+	object_class->finalize     = revision_finalize;
 
-	switch (param_id) {
-	case PROP_SHA:
-		g_value_set_string (value, priv->sha);
-		break;
-	case PROP_AUTHOR:
-		g_value_set_string (value, priv->author);
-		break;
-	case PROP_EMAIL:
-		g_value_set_string (value, priv->email);
-		break;
-	case PROP_DATE:
-		g_value_set_pointer (value, priv->date);
-		break;
-	case PROP_SHORT_LOG:
-		g_value_set_string (value, priv->short_log);
-		break;
-	default:
-		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, param_id, pspec);
-		break;
-	}
+	g_object_class_install_property
+		(object_class, PROP_SHA,
+		 g_param_spec_string ("sha", "SHA",
+				      "SHA hash of the revision",
+				      NULL,
+				      G_PARAM_READWRITE |
+				      G_PARAM_STATIC_STRINGS |
+				      G_PARAM_CONSTRUCT_ONLY));
+
+	g_object_class_install_property
+		(object_class, PROP_AUTHOR,
+		 g_param_spec_object ("author", "Author",
+				      "Author of the revision",
+				      GIGGLE_TYPE_AUTHOR,
+				      G_PARAM_READWRITE |
+				      G_PARAM_STATIC_STRINGS));
+
+	g_object_class_install_property
+		(object_class, PROP_COMMITTER,
+		 g_param_spec_object ("committer", "Committer",
+				      "Committer of the revision",
+				      GIGGLE_TYPE_AUTHOR,
+				      G_PARAM_READWRITE |
+				      G_PARAM_STATIC_STRINGS));
+
+	g_object_class_install_property
+		(object_class, PROP_DATE,
+		 g_param_spec_pointer ("date", "Date",
+				       "Date of the revision",
+				       G_PARAM_READWRITE |
+				       G_PARAM_STATIC_STRINGS));
+
+	g_object_class_install_property
+		(object_class, PROP_SHORT_LOG,
+		 g_param_spec_string ("short-log", "Short log",
+				      "Short log of the revision",
+				      NULL,
+				      G_PARAM_READWRITE |
+				      G_PARAM_STATIC_STRINGS));
+
+	g_type_class_add_private (object_class, sizeof (GiggleRevisionPriv));
 }
 
 static void
-revision_set_property (GObject      *object,
-		       guint         param_id,
-		       const GValue *value,
-		       GParamSpec   *pspec)
+giggle_revision_init (GiggleRevision *revision)
 {
-	GiggleRevisionPriv *priv;
-
-	priv = GET_PRIV (object);
-
-	switch (param_id) {
-	case PROP_SHA:
-		g_free (priv->sha);
-		priv->sha = g_value_dup_string (value);
-		break;
-	case PROP_AUTHOR:
-		g_free (priv->author);
-		priv->author = g_value_dup_string (value);
-		break;
-	case PROP_EMAIL:
-		g_free (priv->email);
-		priv->email = g_value_dup_string (value);
-		break;
-	case PROP_DATE:
-		g_free (priv->date);
-		priv->date = g_value_get_pointer (value);
-		break;
-	case PROP_SHORT_LOG:
-		g_free (priv->short_log);
-		priv->short_log = g_value_dup_string (value);
-		break;
-	default:
-		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, param_id, pspec);
-		break;
-	}
 }
 
 GiggleRevision *
@@ -245,61 +242,71 @@ giggle_revision_new (const gchar *sha)
 const gchar *
 giggle_revision_get_sha (GiggleRevision *revision)
 {
-	GiggleRevisionPriv *priv;
-
 	g_return_val_if_fail (GIGGLE_IS_REVISION (revision), NULL);
-
-	priv = GET_PRIV (revision);
-
-	return priv->sha;
+	return GET_PRIV (revision)->sha;
 }
 
-const gchar *
+GiggleAuthor *
 giggle_revision_get_author (GiggleRevision *revision)
 {
-	GiggleRevisionPriv *priv;
-
 	g_return_val_if_fail (GIGGLE_IS_REVISION (revision), NULL);
-
-	priv = GET_PRIV (revision);
-
-	return priv->author;
+	return GET_PRIV (revision)->author;
 }
 
-const gchar *
-giggle_revision_get_email (GiggleRevision *revision)
+void
+giggle_revision_set_author (GiggleRevision *revision,
+			    GiggleAuthor   *author)
 {
-	GiggleRevisionPriv *priv;
+	g_return_if_fail (GIGGLE_IS_REVISION (revision));
+	g_return_if_fail (GIGGLE_IS_AUTHOR (author) | !author);
+	g_object_set (revision, "author", author, NULL);
+}
 
+GiggleAuthor *
+giggle_revision_get_committer (GiggleRevision *revision)
+{
 	g_return_val_if_fail (GIGGLE_IS_REVISION (revision), NULL);
+	return GET_PRIV (revision)->committer;
+}
 
-	priv = GET_PRIV (revision);
-
-	return priv->email;
+void
+giggle_revision_set_committer (GiggleRevision *revision,
+			       GiggleAuthor   *committer)
+{
+	g_return_if_fail (GIGGLE_IS_REVISION (revision));
+	g_return_if_fail (GIGGLE_IS_AUTHOR (committer) | !committer);
+	g_object_set (revision, "committer", committer, NULL);
 }
 
 const struct tm *
 giggle_revision_get_date (GiggleRevision *revision)
 {
-	GiggleRevisionPriv *priv;
-
 	g_return_val_if_fail (GIGGLE_IS_REVISION (revision), NULL);
+	return GET_PRIV (revision)->date;
+}
 
-	priv = GET_PRIV (revision);
-
-	return priv->date;
+void
+giggle_revision_set_date (GiggleRevision  *revision,
+			  const struct tm *date)
+{
+	g_return_if_fail (GIGGLE_IS_REVISION (revision));
+	g_return_if_fail (NULL != date);
+	g_object_set (revision, "date", date, NULL);
 }
 
 const gchar *
 giggle_revision_get_short_log (GiggleRevision *revision)
 {
-	GiggleRevisionPriv *priv;
-
 	g_return_val_if_fail (GIGGLE_IS_REVISION (revision), NULL);
+	return GET_PRIV (revision)->short_log;
+}
 
-	priv = GET_PRIV (revision);
-
-	return priv->short_log;
+void
+giggle_revision_set_short_log (GiggleRevision *revision,
+			       const char     *short_log)
+{
+	g_return_if_fail (GIGGLE_IS_REVISION (revision));
+	g_object_set (revision, "short-log", short_log, NULL);
 }
 
 static void
@@ -311,7 +318,7 @@ revision_propagate_descendent_branches (GiggleRevision *revision,
 	parents = giggle_revision_get_parents (revision);
 
 	while (parents) {
-		revision_add_descendent_branch (GIGGLE_REVISION (parents->data), branch);
+		revision_add_descendent_branch (parents->data, branch);
 		parents = parents->next;
 	}
 }
@@ -350,7 +357,7 @@ giggle_revision_add_child (GiggleRevision *revision,
 
 	/* propagate descendent branches to new child */
 	while (branches) {
-		revision_add_descendent_branch (child, GIGGLE_BRANCH (branches->data));
+		revision_add_descendent_branch (child, branches->data);
 		branches = branches->next;
 	}
 }
@@ -373,25 +380,15 @@ giggle_revision_remove_child (GiggleRevision *revision,
 GList*
 giggle_revision_get_parents (GiggleRevision *revision)
 {
-	GiggleRevisionPriv *priv;
-
 	g_return_val_if_fail (GIGGLE_IS_REVISION (revision), NULL);
-
-	priv = GET_PRIV (revision);
-
-	return priv->parents;
+	return GET_PRIV (revision)->parents;
 }
 
 GList*
 giggle_revision_get_children (GiggleRevision *revision)
 {
-	GiggleRevisionPriv *priv;
-
 	g_return_val_if_fail (GIGGLE_IS_REVISION (revision), NULL);
-
-	priv = GET_PRIV (revision);
-
-	return priv->children;
+	return GET_PRIV (revision)->children;
 }
 
 void
@@ -428,13 +425,8 @@ giggle_revision_remove_parent (GiggleRevision *revision,
 GList*
 giggle_revision_get_branch_heads (GiggleRevision *revision)
 {
-	GiggleRevisionPriv *priv;
-
 	g_return_val_if_fail (GIGGLE_IS_REVISION (revision), NULL);
-
-	priv = GET_PRIV (revision);
-
-	return priv->branch_heads;
+	return GET_PRIV (revision)->branch_heads;
 }
 
 void
@@ -457,13 +449,8 @@ giggle_revision_add_branch_head (GiggleRevision *revision,
 GList *
 giggle_revision_get_tags (GiggleRevision *revision)
 {
-	GiggleRevisionPriv *priv;
-
 	g_return_val_if_fail (GIGGLE_IS_REVISION (revision), NULL);
-
-	priv = GET_PRIV (revision);
-
-	return priv->tags;
+	return GET_PRIV (revision)->tags;
 }
 
 void
@@ -484,13 +471,8 @@ giggle_revision_add_tag (GiggleRevision *revision,
 GList *
 giggle_revision_get_remotes (GiggleRevision *revision)
 {
-	GiggleRevisionPriv *priv;
-
 	g_return_val_if_fail (GIGGLE_IS_REVISION (revision), NULL);
-
-	priv = GET_PRIV (revision);
-
-	return priv->remotes;
+	return GET_PRIV (revision)->remotes;
 }
 
 void
@@ -511,13 +493,8 @@ giggle_revision_add_remote (GiggleRevision *revision,
 GList*
 giggle_revision_get_descendent_branches (GiggleRevision *revision)
 {
-	GiggleRevisionPriv *priv;
-
 	g_return_val_if_fail (GIGGLE_IS_REVISION (revision), NULL);
-
-	priv = GET_PRIV (revision);
-
-	return priv->descendent_branches;
+	return GET_PRIV (revision)->descendent_branches;
 }
 
 int
@@ -526,6 +503,7 @@ giggle_revision_compare (gconstpointer a,
 {
 	if (!GIGGLE_IS_REVISION (a))
 		return GIGGLE_IS_REVISION (b) ? -1 : 0;
+
 	if (!GIGGLE_IS_REVISION (b))
 		return 1;
 

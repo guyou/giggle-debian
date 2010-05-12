@@ -338,26 +338,33 @@ avatar_image_expose_event (GtkWidget      *widget,
 			   GdkEventExpose *event)
 {
 	GiggleAvatarImagePriv *priv = GET_PRIV (widget);
+	GtkAllocation          allocation;
+	GtkRequisition         requisition;
+	GtkStyle              *style;
 	float                  xalign, yalign;
 	double                 x, y;
 	int                    w, h;
 	cairo_t               *cr;
 
+	gtk_widget_size_request (widget, &requisition);
+	gtk_widget_get_allocation (widget, &allocation);
+	style = gtk_widget_get_style (widget);
+
 	cr = gdk_cairo_create (event->window);
 	gdk_cairo_region (cr, event->region);
 	cairo_clip (cr);
 
-	w = widget->requisition.width;
-	h = widget->requisition.height;
+	w = requisition.width;
+	h = requisition.height;
 
 	gtk_misc_get_alignment (GTK_MISC (widget), &xalign, &yalign);
 
 	cairo_translate
-		(cr, (int) ((widget->allocation.width - w) * xalign),
-		 (int) ((widget->allocation.height - h) * yalign));
+		(cr, (int) ((allocation.width - w) * xalign),
+		 (int) ((allocation.height - h) * yalign));
 
 	rounded_rectangle (cr, 0.5, 0.5, w - 1, h - 1, MIN (w, h) * 0.2);
-	gdk_cairo_set_source_color (cr, &widget->style->base[GTK_STATE_NORMAL]);
+	gdk_cairo_set_source_color (cr, &style->base[GTK_STATE_NORMAL]);
 	cairo_fill_preserve (cr);
 
 	if (priv->pixbuf) {
@@ -368,7 +375,7 @@ avatar_image_expose_event (GtkWidget      *widget,
 		cairo_fill_preserve (cr);
 	}
 
-	gdk_cairo_set_source_color (cr, &widget->style->text[GTK_STATE_NORMAL]);
+	gdk_cairo_set_source_color (cr, &style->text[GTK_STATE_NORMAL]);
 	cairo_set_line_width (cr, 1);
 	cairo_stroke (cr);
 
