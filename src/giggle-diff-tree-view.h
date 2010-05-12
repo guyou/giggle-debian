@@ -24,7 +24,7 @@
 #include <glib-object.h>
 #include <gtk/gtk.h>
 
-#include "giggle-revision.h"
+#include "libgiggle/giggle-revision.h"
 
 G_BEGIN_DECLS
 
@@ -55,9 +55,6 @@ void               giggle_diff_tree_view_set_revisions     (GiggleDiffTreeView *
 							    GiggleRevision     *to);
 
 gchar *            giggle_diff_tree_view_get_selection     (GiggleDiffTreeView *view);
-gboolean           giggle_diff_tree_view_get_compact_mode  (GiggleDiffTreeView *view);
-void               giggle_diff_tree_view_set_compact_mode  (GiggleDiffTreeView *view,
-							    gboolean            compact_mode);
 
 G_END_DECLS
 

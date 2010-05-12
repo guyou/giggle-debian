@@ -25,6 +25,7 @@
 #include <gtk/gtk.h>
 
 #include "giggle-view.h"
+#include "libgiggle/giggle-revision.h"
 
 G_BEGIN_DECLS
 
@@ -47,18 +48,13 @@ struct GiggleViewHistoryClass {
 };
 
 GType              giggle_view_history_get_type          (void);
-GtkWidget *        giggle_view_history_new               (void);
+GtkWidget *        giggle_view_history_new               (GtkUIManager      *manager);
 
-void               giggle_view_history_set_compact_mode  (GiggleViewHistory *view,
-							  gboolean           compact_mode);
-gboolean           giggle_view_history_get_compact_mode  (GiggleViewHistory *view);
+void               giggle_view_history_set_graph_visible (GiggleViewHistory *view,
+							  gboolean           visible);
 
-void               giggle_view_history_set_file_list_visible (GiggleViewHistory *view,
-							      gboolean           visible);
-gboolean           giggle_view_history_get_file_list_visible (GiggleViewHistory *view);
-
-void               giggle_view_history_set_graph_visible     (GiggleViewHistory *view,
-							      gboolean           visible);
+gboolean           giggle_view_history_select            (GiggleViewHistory *view,
+							  GiggleRevision    *revision);
 
 G_END_DECLS
 

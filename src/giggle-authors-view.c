@@ -18,15 +18,15 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#include <config.h>
-#include <glib/gi18n.h>
-#include <gtk/gtk.h>
-
+#include "config.h"
 #include "giggle-authors-view.h"
-#include "giggle-git-authors.h"
-#include "giggle-author.h"
-#include "giggle-job.h"
-#include "giggle-git.h"
+
+#include <libgiggle/giggle-author.h>
+
+#include <libgiggle-git/giggle-git.h>
+#include <libgiggle-git/giggle-git-authors.h>
+
+#include <glib/gi18n.h>
 
 typedef struct GiggleAuthorsViewPriv GiggleAuthorsViewPriv;
 
@@ -77,7 +77,7 @@ authors_view_job_callback (GiggleGit *git,
 						 GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
 						 GTK_MESSAGE_ERROR,
 						 GTK_BUTTONS_OK,
-						 _("An error ocurred when retrieving authors list:\n%s"),
+						 _("An error occurred when retrieving authors list:\n%s"),
 						 error->message);
 
 		gtk_dialog_run (GTK_DIALOG (dialog));
@@ -144,6 +144,9 @@ giggle_authors_view_init (GiggleAuthorsView *view)
 				  G_CALLBACK (authors_view_update), view);
 
 	g_object_set (view, "label", _("Authors:"), NULL);
+
+	/* initialize for first time */
+	authors_view_update (view);
 }
 
 static void

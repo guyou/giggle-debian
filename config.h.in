@@ -1,10 +1,16 @@
 /* config.h.in.  Generated from configure.ac by autoheader.  */
 
+/* Use features from libebook */
+#undef ENABLE_EDS
+
 /* always defined to indicate that i18n is enabled */
 #undef ENABLE_NLS
 
 /* Gettext package name */
 #undef GETTEXT_PACKAGE
+
+/* format string for time_t */
+#undef GIGGLE_FORMAT_TIME_T
 
 /* GIT command path */
 #undef GIT_COMMAND
@@ -65,6 +71,10 @@
 
 /* Define the location where the catalogs will be installed */
 #undef LOCALEDIR
+
+/* Define to the sub-directory in which libtool stores uninstalled libraries.
+   */
+#undef LT_OBJDIR
 
 /* Name of package */
 #undef PACKAGE
