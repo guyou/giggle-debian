@@ -18,16 +18,17 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#include <config.h>
-#include <glib/gi18n.h>
-#include <gtk/gtk.h>
-#include <string.h>
-
+#include "config.h"
 #include "giggle-diff-window.h"
 #include "giggle-diff-view.h"
-#include "giggle-git-commit.h"
-#include "giggle-job.h"
-#include "giggle-git.h"
+
+#include <libgiggle/giggle-job.h>
+
+#include <libgiggle-git/giggle-git.h>
+#include <libgiggle-git/giggle-git-commit.h>
+
+#include <glib/gi18n.h>
+#include <string.h>
 
 typedef struct GiggleDiffWindowPriv GiggleDiffWindowPriv;
 
@@ -203,7 +204,7 @@ diff_window_job_callback (GiggleGit *git,
 						 GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
 						 GTK_MESSAGE_ERROR,
 						 GTK_BUTTONS_CLOSE,
-						 _("An error ocurred when committing:\n%s"),
+						 _("An error occurred when committing:\n%s"),
 						 error->message);
 
 		gtk_dialog_run (GTK_DIALOG (dialog));

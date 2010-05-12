@@ -18,15 +18,16 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#include <config.h>
-#include <glib/gi18n.h>
-#include <gtk/gtk.h>
-
+#include "config.h"
 #include "giggle-branches-view.h"
-#include "giggle-git-refs.h"
-#include "giggle-ref.h"
-#include "giggle-job.h"
-#include "giggle-git.h"
+
+#include <libgiggle/giggle-ref.h>
+#include <libgiggle/giggle-job.h>
+
+#include <libgiggle-git/giggle-git.h>
+#include <libgiggle-git/giggle-git-refs.h>
+
+#include <glib/gi18n.h>
 
 typedef struct GiggleBranchesViewPriv GiggleBranchesViewPriv;
 
@@ -77,7 +78,7 @@ branches_view_job_callback (GiggleGit *git,
 						 GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
 						 GTK_MESSAGE_ERROR,
 						 GTK_BUTTONS_OK,
-						 _("An error ocurred when retrieving branches list:\n%s"),
+						 _("An error occurred when retrieving branches list:\n%s"),
 						 error->message);
 
 		gtk_dialog_run (GTK_DIALOG (dialog));
@@ -144,6 +145,9 @@ giggle_branches_view_init (GiggleBranchesView *view)
 				  G_CALLBACK (branches_view_update), view);
 
 	g_object_set (view, "label", _("Branches:"), NULL);
+
+	/* initialize for first time */
+	branches_view_update (view);
 }
 
 static void

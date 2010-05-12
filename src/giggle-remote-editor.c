@@ -30,7 +30,7 @@
 #include <gtk/gtktreeview.h>
 #include <glade/glade.h>
 
-#include "giggle-tree-view-helpers.h"
+#include "giggle-helpers.h"
 
 typedef struct GiggleRemoteEditorPriv GiggleRemoteEditorPriv;
 
@@ -141,24 +141,21 @@ remote_editor_tree_cell_data_func (GtkTreeViewColumn *tree_column,
 {
 	GiggleRemoteBranch *branch = NULL;
 
-	gtk_tree_model_get (model, iter,
-			    COL_BRANCH, &branch,
-			    -1);
+	gtk_tree_model_get (model, iter, COL_BRANCH, &branch, -1);
 
 	if (branch) {
 		g_object_set (cell,
-			      "foreground", "black",
 			      "text", giggle_remote_branch_get_refspec (branch),
-			      NULL);
+			      "style", PANGO_STYLE_NORMAL, NULL);
+
 		g_object_unref (branch);
 	} else {
 		g_object_set (cell,
-			      "foreground", "slategray",
-			      "text", _("Double click to add mapping..."),
-			      NULL);
+			      "text", _("Click to add mapping..."),
+			      "style", PANGO_STYLE_ITALIC, NULL);
 	}
 }
-	
+
 static void
 remote_editor_setup_treeview (GiggleRemoteEditor *self)
 {
@@ -169,7 +166,7 @@ remote_editor_setup_treeview (GiggleRemoteEditor *self)
 	priv = GET_PRIV (self);
 
 	g_signal_connect (priv->treeview_branches, "key-press-event",
-			  G_CALLBACK (tree_view_delete_selection_on_list_store), NULL);
+			  G_CALLBACK (giggle_list_view_delete_selection), NULL);
 
 	store = gtk_list_store_new (N_COLUMNS, G_TYPE_OBJECT);
 	gtk_tree_view_set_model (GTK_TREE_VIEW (priv->treeview_branches), GTK_TREE_MODEL (store));

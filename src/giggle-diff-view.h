@@ -26,7 +26,7 @@
 #include <gtksourceview/gtksourceview.h>
 #include <gtksourceview/gtksourcelanguagemanager.h>
 
-#include "giggle-revision.h"
+#include "libgiggle/giggle-revision.h"
 
 G_BEGIN_DECLS
 
@@ -58,10 +58,16 @@ void               giggle_diff_view_set_revisions     (GiggleDiffView *diff_view
 void               giggle_diff_view_diff_current      (GiggleDiffView *diff_view,
 						       GList          *files);
 
-gboolean           giggle_diff_view_get_compact_mode  (GiggleDiffView *view);
+void               giggle_diff_view_set_current_hunk  (GiggleDiffView *diff_view,
+						       int             hunk_index);
+int                giggle_diff_view_get_current_hunk  (GiggleDiffView *diff_view);
 
-void               giggle_diff_view_set_compact_mode  (GiggleDiffView *view,
-						       gboolean        compact_mode);
+int                giggle_diff_view_get_n_hunks       (GiggleDiffView *diff_view);
+
+void               giggle_diff_view_scroll_to_file    (GiggleDiffView *diff_view,
+						       const char     *filename);
+
+const char *       giggle_diff_view_get_current_file  (GiggleDiffView *diff_view);
 
 G_END_DECLS
 
