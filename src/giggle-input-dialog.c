@@ -137,7 +137,8 @@ giggle_input_dialog_init (GiggleInputDialog *input_dialog)
 			  G_CALLBACK (input_dialog_entry_insert_text), input_dialog);
 
 	gtk_widget_show_all (box);
-	gtk_container_add (GTK_CONTAINER (GTK_DIALOG (input_dialog)->vbox), box);
+	gtk_container_add (GTK_CONTAINER (gtk_dialog_get_content_area (GTK_DIALOG (input_dialog))),
+	                   box);
 
 	gtk_dialog_add_button (GTK_DIALOG (input_dialog),
 			       GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);

@@ -20,14 +20,10 @@
 
 #include <config.h>
 
-#include "giggle-short-list.h"
-
 #include <glib/gi18n.h>
-#include <gtk/gtkbutton.h>
-#include <gtk/gtkdialog.h>
-#include <gtk/gtklabel.h>
-#include <gtk/gtkscrolledwindow.h>
-#include <gtk/gtkstock.h>
+#include <gtk/gtk.h>
+
+#include "giggle-short-list.h"
 #include "libgiggle/giggle-marshal.h"
 
 typedef struct GiggleShortListPriv GiggleShortListPriv;
@@ -140,6 +136,8 @@ short_list_size_allocate (GtkWidget     *widget,
 {
 	GiggleShortListPriv *priv;
 	GtkAllocation        child_allocation;
+	GtkRequisition       label_requisition;
+	GtkRequisition       data_requisition;
 	GList               *children, *list;
 	gint                 border_width, spacing;
 	gint                 content_height = 0;
@@ -147,7 +145,8 @@ short_list_size_allocate (GtkWidget     *widget,
 	priv = GET_PRIV (widget);
 	border_width = gtk_container_get_border_width (GTK_CONTAINER (widget));
 	spacing = gtk_box_get_spacing (GTK_BOX (widget));
-	widget->allocation = *allocation;
+
+	gtk_widget_set_allocation (widget, allocation);
 
 	/* FIXME: we're not taking content_box spacing into
 	 * account, but we're setting it to 0 in init() anyway...
@@ -165,24 +164,32 @@ short_list_size_allocate (GtkWidget     *widget,
 	child_allocation.width = allocation->width;
 
 	/* allocate label */
+	gtk_widget_size_request (priv->label, &label_requisition);
+
 	child_allocation.y = allocation->y;
-	child_allocation.height = priv->label->requisition.height;
+	child_allocation.height = label_requisition.height;
 	gtk_widget_size_allocate (priv->label, &child_allocation);
 
-	allocation->y += priv->label->requisition.height + spacing;
-	allocation->height -= priv->label->requisition.height + spacing;
+	allocation->y += label_requisition.height + spacing;
+	allocation->height -= label_requisition.height + spacing;
 
 	children = list = gtk_container_get_children (GTK_CONTAINER (priv->content_box));
 
 	while (list) {
-		content_height += GTK_WIDGET (list->data)->requisition.height;
+		gtk_widget_size_request (list->data, &data_requisition);
+
+		content_height += data_requisition.height;
 		list = list->next;
 	}
 
 	if (content_height > allocation->height) {
+		GtkRequisition  button_requisition;
+
+		gtk_widget_size_request (priv->more_button, &button_requisition);
+
 		/* just show the elements that fit in the allocation */
 		child_allocation.y = allocation->y;
-		child_allocation.height = allocation->height - priv->more_button->requisition.height;
+		child_allocation.height = allocation->height - button_requisition.height;
 		gtk_widget_size_allocate (priv->content_box, &child_allocation);
 
 		allocation->y += child_allocation.height + spacing;
@@ -192,19 +199,21 @@ short_list_size_allocate (GtkWidget     *widget,
 		content_height = child_allocation.height;
 
 		while (list) {
-			if (content_height > GTK_WIDGET (list->data)->requisition.height) {
+			gtk_widget_size_request (list->data, &data_requisition);
+
+			if (content_height > data_requisition.height) {
 				gtk_widget_set_child_visible (GTK_WIDGET (list->data), TRUE);
 			} else {
 				gtk_widget_set_child_visible (GTK_WIDGET (list->data), FALSE);
 			}
 
-			content_height -= GTK_WIDGET (list->data)->requisition.height;
+			content_height -= data_requisition.height;
 			list = list->next;
 		}
 
 		/* allocate button */
 		child_allocation.y = allocation->y;
-		child_allocation.height = priv->more_button->requisition.height;
+		child_allocation.height = button_requisition.height;
 		gtk_widget_size_allocate (priv->more_button, &child_allocation);
 		gtk_widget_set_child_visible (priv->more_button, TRUE);
 	} else {
@@ -273,7 +282,8 @@ short_list_show_dialog (GiggleShortList* self)
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled),
 					GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 	gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolled), GTK_SHADOW_IN);
-	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dialog)->vbox), scrolled, TRUE, TRUE, 0);
+	gtk_box_pack_start (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (dialog))),
+	                    scrolled, TRUE, TRUE, 0);
 
 	treeview = gtk_tree_view_new_with_model (priv->model);
 	gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (treeview), FALSE);

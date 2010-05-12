@@ -1,3 +1,66 @@
+Giggle 0.4.95, 2010-01-25
+=========================
+
+Main repo changed to: http://git.gnome.org/browse/giggle/
+
+Notes:
+
+ * This is a development release leading up to Giggle 0.5.
+   Focus was fixing build issues found in the last release.
+
+ * This is unstable development release. While it has had a bit of testing,
+   there are plenty of bugs and regressions remaining to be found.
+   This release should not be used in production.
+
+ * Bugs should be reported to http://bugzilla.gnome.org/.
+
+Bugs fixed:
+
+ * 570506 - Reset config hash-table on repository switch instead of unref
+ * 566158 - Use gnome-autogen.sh to fix builddir != srcdir builds
+ * 591198 - Get rid of shave with AM_SILENT_RULES automake option
+ * 590819 - Migrate to GtkBuilder
+ * 573382 - Detect invalid characters in diff view
+ * 572666 - Improve rendering of annotation markers
+ * 573405 - Implement GiggleClipboard interface for terminal view
+ * 573403 - Open terminals in repository folder
+ * 572506 - Cleanup library dependencies
+ * 572530 - Call setlocale() to translate --help output
+ * 572486 - Use a better icon for the diff view
+ * 572446 - Use git diff-tree instead of git diff
+
+Other changes:
+
+ * New GTK+ required version is 2.18
+ * Bumped GtkSourceView required version to 2.8
+ * Removed libglade dependency
+ * Remove Glib/GTK+ deprecated symbols
+ * Use only single Glib/GTK+ includes
+ * Use accessor functions instead direct access (compile with -DGSEAL_ENABLED)
+
+Translations:
+
+ * Added simplified Chinese (zh_CN) translation by Aron Xu
+ * Added Russian (ru) translation by Trukhachev Alexey
+ * Added Punjabi (pa) translation by A S Alam
+ * Updated French (fr) translation by Stéphane Raimbault and spip
+ * Updated German (de) translation by Mathias Hasselmann
+ * Updated Polish (pl) translation by Łukasz Jernaś
+ * Updated Slovenian (sl) translation by Andrej Žnidaršič
+
+Contributors:
+
+ * Andreas Köhler
+ * Daniel Schierbeck
+ * Davyd Madeley
+ * Guilhem Bonnefille
+ * Hans Breuer
+ * Javier Jardón
+ * Jonh Wendell
+ * Mathias Hasselmann
+ * Stephane Delcroix
+ * Thomas Hindoe Paaboel Andersen
+
 Giggle 0.4.91, 2009-02-16
 =========================
 
@@ -124,7 +187,7 @@ Downloads:
 Giggle 0.2, 2007-03-29
 ======================
 
-Giggle is a graphical frontend for the git directory tracker (think of gitk on GTK+).
+Giggle is a graphical frontend for the git content tracker (think of gitk on GTK+).
 
 Bugs fixed since the last release:
 

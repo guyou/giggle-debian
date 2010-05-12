@@ -94,7 +94,8 @@ label_action_update_proxies (GtkAction *action)
 		return;
 
 	for (l = gtk_action_get_proxies (action); l; l = l->next)
-		gtk_action_connect_proxy (action, l->data);
+		gtk_activatable_set_related_action (GTK_ACTIVATABLE (action),
+		                                    l->data);
 		
 }
 

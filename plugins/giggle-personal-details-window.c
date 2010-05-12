@@ -262,7 +262,7 @@ giggle_personal_details_window_init (GigglePersonalDetailsWindow *window)
 	gtk_table_attach (GTK_TABLE (table), priv->email_entry, 1, 2, 1, 2, GTK_FILL|GTK_EXPAND, GTK_FILL, 0, 0);
 
 	gtk_widget_show_all (table);
-	gtk_container_add (GTK_CONTAINER (GTK_DIALOG (window)->vbox), table);
+	gtk_container_add (GTK_CONTAINER (gtk_dialog_get_content_area (GTK_DIALOG (window))), table);
 
 	gtk_window_set_title (GTK_WINDOW (window), _("Personal Details"));
 	gtk_window_set_resizable (GTK_WINDOW (window), FALSE);

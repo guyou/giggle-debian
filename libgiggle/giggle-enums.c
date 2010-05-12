@@ -35,6 +35,23 @@ giggle_plugin_error_get_type(void) {
 	
 	return etype;
 }
+/* enumerations from "giggle-remote-branch.h" */
+#include "giggle-remote-branch.h"
+GType
+giggle_remote_direction_get_type(void) {
+	static GType etype = 0;
+	if(!etype) {
+		static const GEnumValue values[] = {
+			{GIGGLE_REMOTE_DIRECTION_PUSH, "GIGGLE_REMOTE_DIRECTION_PUSH", "push"},
+			{GIGGLE_REMOTE_DIRECTION_PULL, "GIGGLE_REMOTE_DIRECTION_PULL", "pull"},
+			{0, NULL, NULL}
+		};
+
+		etype = g_enum_register_static("GiggleRemoteDirection", values);
+	}
+	
+	return etype;
+}
 /* enumerations from "giggle-remote.h" */
 #include "giggle-remote.h"
 GType
@@ -49,23 +66,6 @@ giggle_remote_mechanism_get_type(void) {
 		};
 
 		etype = g_enum_register_static("GiggleRemoteMechanism", values);
-	}
-	
-	return etype;
-}
-/* enumerations from "giggle-remote-branch.h" */
-#include "giggle-remote-branch.h"
-GType
-giggle_remote_direction_get_type(void) {
-	static GType etype = 0;
-	if(!etype) {
-		static const GEnumValue values[] = {
-			{GIGGLE_REMOTE_DIRECTION_PUSH, "GIGGLE_REMOTE_DIRECTION_PUSH", "push"},
-			{GIGGLE_REMOTE_DIRECTION_PULL, "GIGGLE_REMOTE_DIRECTION_PULL", "pull"},
-			{0, NULL, NULL}
-		};
-
-		etype = g_enum_register_static("GiggleRemoteDirection", values);
 	}
 	
 	return etype;

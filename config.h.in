@@ -6,7 +6,10 @@
 /* always defined to indicate that i18n is enabled */
 #undef ENABLE_NLS
 
-/* Gettext package name */
+/* Use features from vte */
+#undef ENABLE_VTE
+
+/* Define to the gettext package name */
 #undef GETTEXT_PACKAGE
 
 /* format string for time_t */
@@ -76,6 +79,9 @@
    */
 #undef LT_OBJDIR
 
+/* Define to 1 if your C compiler doesn't accept -c and -o together. */
+#undef NO_MINUS_C_MINUS_O
+
 /* Name of package */
 #undef PACKAGE
 
@@ -90,6 +96,9 @@
 
 /* Define to the one symbol short name of this package. */
 #undef PACKAGE_TARNAME
+
+/* Define to the home page for this package. */
+#undef PACKAGE_URL
 
 /* Define to the version of this package. */
 #undef PACKAGE_VERSION

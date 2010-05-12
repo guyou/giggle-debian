@@ -21,12 +21,9 @@
 #ifndef __GIGGLE_REVISION_H__
 #define __GIGGLE_REVISION_H__
 
-#include <glib-object.h>
-#include <gdk/gdk.h>
-#include <gtk/gtktreemodel.h>
-
-#include "giggle-ref.h"
+#include "giggle-author.h"
 #include "giggle-branch.h"
+#include "giggle-ref.h"
 
 G_BEGIN_DECLS
 
@@ -55,10 +52,18 @@ GType              giggle_revision_get_type          (void);
 GiggleRevision *   giggle_revision_new               (const gchar *sha);
 
 const gchar *      giggle_revision_get_sha           (GiggleRevision   *revision);
-const gchar *      giggle_revision_get_author        (GiggleRevision   *revision);
-const gchar *      giggle_revision_get_email         (GiggleRevision   *revision);
+GiggleAuthor *     giggle_revision_get_author        (GiggleRevision   *revision);
+void               giggle_revision_set_author        (GiggleRevision   *revision,
+						      GiggleAuthor     *author);
+GiggleAuthor *     giggle_revision_get_committer     (GiggleRevision   *revision);
+void               giggle_revision_set_committer     (GiggleRevision   *revision,
+						      GiggleAuthor     *committer);
 const struct tm *  giggle_revision_get_date          (GiggleRevision   *revision);
+void               giggle_revision_set_date          (GiggleRevision   *revision,
+						      const struct tm  *date);
 const gchar *      giggle_revision_get_short_log     (GiggleRevision   *revision);
+void               giggle_revision_set_short_log     (GiggleRevision   *revision,
+						      const char       *short_log);
 
 GList *            giggle_revision_get_children      (GiggleRevision   *revision);
 GList *            giggle_revision_get_parents       (GiggleRevision   *revision);

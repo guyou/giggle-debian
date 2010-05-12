@@ -589,7 +589,7 @@ rev_list_view_style_set (GtkWidget *widget,
 
 	gtk_tree_view_column_set_min_width (priv->emblem_column,
 					    priv->emblem_size * 3 +
-					    2 * widget->style->xthickness);
+					    2 * gtk_widget_get_style (widget)->xthickness);
 
 	GTK_WIDGET_CLASS (giggle_rev_list_view_parent_class)->style_set (widget, prev_style);
 }
@@ -1459,25 +1459,21 @@ rev_list_view_cell_data_author_func (GtkCellLayout   *layout,
 				     GtkTreeIter     *iter,
 				     gpointer         data)
 {
-	GiggleRevListViewPriv *priv;
-	GiggleRevision         *revision;
-	const gchar            *author = NULL;
+	GiggleAuthor   *author = NULL;
+	const char     *name = NULL;
+	GiggleRevision *revision;
 
-	priv = GET_PRIV (data);
+	gtk_tree_model_get (model, iter, COL_OBJECT, &revision, -1);
 
-	gtk_tree_model_get (model, iter,
-			    COL_OBJECT, &revision,
-			    -1);
-
-	if (revision) {
+	if (revision)
 		author = giggle_revision_get_author (revision);
-	}
+	if (author)
+		name = giggle_author_get_name (author);
 
-	g_object_set (cell, "text", author, NULL);
+	g_object_set (cell, "text", name, NULL);
 
-	if (revision) {
+	if (revision)
 		g_object_unref (revision);
-	}
 }
 
 static gchar *
@@ -1685,7 +1681,7 @@ giggle_rev_list_view_init (GiggleRevListView *rev_list_view)
 	GtkCellRenderer       *cell;
 
 	priv = GET_PRIV (rev_list_view);
-	font_size = pango_font_description_get_size (GTK_WIDGET (rev_list_view)->style->font_desc);
+	font_size = pango_font_description_get_size (gtk_widget_get_style (GTK_WIDGET (rev_list_view))->font_desc);
 	font_size = PANGO_PIXELS (font_size);
 
 	/* yes, it's a hack */
@@ -1918,6 +1914,7 @@ giggle_rev_list_view_set_selection (GiggleRevListView *list,
 	GtkTreeSelection *selection;
 	GiggleRevision   *revision;
 	GtkTreeModel     *model;
+	GtkTreePath      *path;
 	GtkTreeIter       iter;
 	GList            *l;
 
@@ -1935,6 +1932,17 @@ giggle_rev_list_view_set_selection (GiggleRevListView *list,
 			l = g_list_find_custom (revisions, revision, giggle_revision_compare);
 
 			if (l) {
+				if (!count) {
+					path = gtk_tree_model_get_path (model, &iter);
+
+					gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (list),
+								      path, NULL, TRUE, 0.5, 0.0);
+					gtk_tree_view_set_cursor (GTK_TREE_VIEW (list),
+								  path, NULL, FALSE);
+
+					gtk_tree_path_free (path);
+				}
+
 				gtk_tree_selection_select_iter (selection, &iter);
 				revisions = g_list_delete_link (revisions, l);
 				count += 1;

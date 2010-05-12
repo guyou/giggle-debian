@@ -3,7 +3,6 @@ libgiggle_gitdir = $(pkgincludedir)/libgiggle-git
 AM_CPPFLAGS = \
 	-I$(top_srcdir) \
 	-DGLADEDIR='"$(pkgdatadir)/glade"' \
-	-DPLUGINDIR='"$(pkglibdir)/plugins"' \
 	$(GIGGLE_CFLAGS) $(PLATFORM_CFLAGS) \
 	$(WARN_CFLAGS)
 
@@ -63,22 +62,24 @@ libgiggle_git_HEADERS = \
 	$(NULL)
 
 libgiggle_git_la_LIBADD = \
-	$(GIGGLE_LIBS) ../libgiggle/libgiggle.la
+	../libgiggle/libgiggle.la \
+	$(GIGGLE_LIBS)
+
 libgiggle_git_la_LDFLAGS = \
 	$(AM_LDFLAGS) \
-	-release $(PACKAGE_VERSION) \
+	-version-info $(LIBGIGGLE_GIT_ABI) \
 	-Wl,--as-needed -Wl,--no-undefined \
 	$(NULL)
 
 giggle-git-enums.h: giggle-git-enums.h.in $(libgiggle_git_h_files)
-	( cd $(srcdir) && $(GLIB_MKENUMS) --template $^ ) > xgen-gtbh
-	( cmp -s xgen-gtbh $@ || (echo "Creating $@..."; cp xgen-gtbh $@ ))
-	( rm -f xgen-gtbh )
+	$(AM_V_at)( cd $(srcdir) && $(GLIB_MKENUMS) --template $^ ) > xgen-gtbh
+	$(AM_V_at)( cmp -s xgen-gtbh $@ || (echo "  ENUM  $@..."; cp xgen-gtbh $@ ))
+	$(AM_V_at)( rm -f xgen-gtbh )
 
 giggle-git-enums.c: giggle-git-enums.c.in $(libgiggle_git_h_files)
-	( cd $(srcdir) && $(GLIB_MKENUMS) --template $^ ) > xgen-gtbc
-	( cmp -s xgen-gtbc $@ || (echo "Creating $@..."; cp xgen-gtbc $@ ))
-	( rm -f xgen-gtbc )
+	$(AM_V_at)( cd $(srcdir) && $(GLIB_MKENUMS) --template $^ ) > xgen-gtbc
+	$(AM_V_at)( cmp -s xgen-gtbc $@ || (echo "  ENUM  $@..."; cp xgen-gtbc $@ ))
+	$(AM_V_at)( rm -f xgen-gtbc )
 
 BUILT_SOURCES = \
 	giggle-git-enums.h \

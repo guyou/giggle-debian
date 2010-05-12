@@ -709,38 +709,19 @@ static void
 file_list_edit_file (GtkAction      *action,
 		     GiggleFileList *list)
 {
-	GiggleFileListPriv*priv = GET_PRIV (list);
-	GAppLaunchContext *context;
-	GList             *selection, *l;
-	char              *filename, *uri;
-	GError            *error = NULL;
-	const char        *dir;
+	GiggleFileListPriv *priv = GET_PRIV (list);
+	GList              *selection, *l;
+	GAppLaunchContext  *context;
+	const char         *dir;
 
 	context = giggle_create_app_launch_context (GTK_WIDGET (list));
 	selection = giggle_file_list_get_selection (list);
 	dir = giggle_git_get_directory (priv->git);
 
-	for (l = selection; l; l = l->next) {
-		filename = g_build_filename (dir, l->data, NULL);
-		uri = g_filename_to_uri (filename, NULL, &error);
-		g_free (filename);
-
-		if (!uri) {
-			g_warning ("%s: %s", G_STRFUNC, error->message);
-			g_clear_error (&error);
-			continue;
-		}
-
-		if (!g_app_info_launch_default_for_uri (uri, context, &error)) {
-			g_warning ("%s: %s", G_STRFUNC, error->message);
-			g_clear_error (&error);
-		}
-
-		g_free (uri);
+	for (l = selection; l; l = g_list_delete_link (l, l)) {
+		giggle_open_file_with_context (context, dir, l->data);
+		g_free (l->data);
 	}
-
-	g_list_foreach (selection, (GFunc) g_free, NULL);
-	g_list_free (selection);
 
 	g_object_unref (context);
 }
@@ -1299,7 +1280,7 @@ file_list_cell_data_background_func (GtkCellLayout   *cell_layout,
 
 	file_list = GIGGLE_FILE_LIST (data);
 	priv = GET_PRIV (file_list);
-	color = GTK_WIDGET (file_list)->style->bg[GTK_STATE_NORMAL];
+	color = gtk_widget_get_style (GTK_WIDGET (file_list))->bg[GTK_STATE_NORMAL];
 
 	gtk_tree_model_get (tree_model, iter,
 			    COL_REL_PATH, &rel_path,
@@ -1356,7 +1337,7 @@ file_list_cell_data_sensitive_func (GtkCellLayout   *layout,
 
 	if (GTK_IS_CELL_RENDERER_TEXT (renderer)) {
 		state = (value) ? GTK_STATE_NORMAL : GTK_STATE_INSENSITIVE;
-		color = GTK_WIDGET (list)->style->text [state];
+		color = gtk_widget_get_style (GTK_WIDGET (list))->text [state];
 		g_object_set (renderer, "foreground-gdk", &color, NULL);
 	} else {
 		g_object_set (renderer, "sensitive", value, NULL);

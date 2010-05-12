@@ -1,29 +1,41 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_PREREQ([2.59])
+AC_PREREQ(2.63.2)
+AC_INIT([Giggle],
+        [0.4.95],
+        [http://bugzilla.gnome.org/enter_bug.cgi?product=giggle],
+        [giggle],
+        [http://live.gnome.org/giggle])
 
-AC_INIT([giggle],[0.4.91],
-        [http://bugzilla.gnome.org/enter_bug.cgi?product=giggle])
-
-AC_CONFIG_SRCDIR([src/giggle-main.c])
+AC_CONFIG_HEADERS([config.h])
+AC_CONFIG_SRCDIR([configure.ac])
 AC_CONFIG_MACRO_DIR([m4])
 
-AM_INIT_AUTOMAKE([-Wall -Werror])
-AM_CONFIG_HEADER([config.h])
+AM_INIT_AUTOMAKE([1.10 check-news -Wall -Werror])
+# Support silent build rules, requires at least automake-1.11. Disable
+# by either passing --disable-silent-rules to configure or passing V=1
+# to make
+m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 
-AM_DISABLE_STATIC
-CXX=no
-F77=no
-AM_PROG_LIBTOOL
-
-AC_ISC_POSIX
+# Check for programs
 AC_PROG_CC
-AM_PROG_CC_STDC
-AC_HEADER_STDC
+AM_PROG_CC_C_O
+AC_PROG_CXX
 
-AM_PATH_GLIB_2_0
+# Initialize libtool
+LT_PREREQ([2.2.6])
+LT_INIT([disable-static win32-dll])
 
-dnl Defined in acinclude.m4
-IMENDIO_COMPILE_WARNINGS
+GNOME_COMMON_INIT
+GNOME_MAINTAINER_MODE_DEFINES
+GNOME_COMPILE_WARNINGS([maximum])
+GNOME_CXX_WARNINGS
+
+AC_PATH_PROG(GLIB_GENMARSHAL, glib-genmarshal)
+AC_PATH_PROG(GLIB_MKENUMS, glib-mkenums)
+
+AC_SUBST([LIBGIGGLE_ABI],     [0:0:0])
+AC_SUBST([LIBGIGGLE_GIT_ABI], [0:0:0])
+
 
 dnl  ------------------
 dnl | Pkgconfig checks |---------------------------------------
@@ -33,10 +45,13 @@ PKG_CHECK_MODULES(GIGGLE, [
         gio-2.0           >= 2.18
         glib-2.0          >= 2.18
         gthread-2.0       >= 2.16
-        gtk+-2.0          >= 2.12
-        gtksourceview-2.0 >  2.0
-        libglade-2.0      >  2.4
+        gtk+-2.0          >= 2.18
+        gtksourceview-2.0 >= 2.8
 ])
+
+dnl  -----------------------
+dnl | Evolution Data Server |-----------------------------------
+dnl  -----------------------
 
 AC_ARG_ENABLE([evolution-data-server],
               [AS_HELP_STRING([--disable-evolution-data-server],
@@ -48,6 +63,25 @@ then
   PKG_CHECK_MODULES(EBOOK, [libebook-1.2])
   AC_DEFINE(ENABLE_EDS, 1, [Use features from libebook])
 fi
+
+AM_CONDITIONAL([ENABLE_EDS], [test "$enable_evolution_data_server" = "yes"])
+
+dnl  ------------------
+dnl | terminal support |-----------------------------------
+dnl  ------------------
+
+AC_ARG_ENABLE([terminal],
+              [AS_HELP_STRING([--disable-terminal],
+                              [disable features using vte terminal widget])],,
+              [enable_terminal=yes])
+
+if test "$enable_terminal" = "yes"
+then
+  PKG_CHECK_MODULES(VTE, [vte >= 0.17])
+  AC_DEFINE(ENABLE_VTE, 1, [Use features from vte])
+fi
+
+AM_CONDITIONAL([ENABLE_VTE], [test "$enable_terminal" = "yes"])
 
 dnl  ----------------------
 dnl | library requirements |-----------------------------------
@@ -82,13 +116,12 @@ AC_RUN_IFELSE(
 dnl  ------------------
 dnl | Language Support |---------------------------------------
 dnl  ------------------
-GETTEXT_PACKAGE=giggle
-AC_SUBST(GETTEXT_PACKAGE)
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE",[Gettext package name])
-AM_GLIB_DEFINE_LOCALEDIR(LOCALEDIR)
-
+IT_PROG_INTLTOOL([0.40.0])
+AC_SUBST([GETTEXT_PACKAGE], [giggle])
+AM_GNU_GETTEXT_VERSION([0.17])
 AM_GLIB_GNU_GETTEXT
-IT_PROG_INTLTOOL([0.35.0])
+AC_DEFINE([GETTEXT_PACKAGE], [PACKAGE_TARNAME],[Define to the gettext package name])
+AM_GLIB_DEFINE_LOCALEDIR(LOCALEDIR)
 
 AC_SUBST([CONFIG_STATUS_DEPENDENCIES],['$(top_srcdir)/po/LINGUAS'])
 
@@ -137,8 +170,8 @@ dnl correct flags to aclocal.
 ACLOCAL_AMFLAGS="\${ACLOCAL_FLAGS}"
 AC_SUBST(ACLOCAL_AMFLAGS)
 
-AC_OUTPUT([
-        Makefile 
+AC_CONFIG_FILES([
+        Makefile
         data/Makefile
         libgiggle/Makefile
         libgiggle-git/Makefile
@@ -149,8 +182,11 @@ AC_OUTPUT([
         test/Makefile
 ])
 
+AC_OUTPUT
+
 echo
 echo "Prefix:                    $prefix"
 echo "GIT command path:          $GIT_COMMAND"
 echo "Use Evolution Data Server: $enable_evolution_data_server"
+echo "Use VTE terminal widget:   $enable_terminal"
 echo
