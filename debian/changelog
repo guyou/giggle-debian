@@ -1,19 +1,11 @@
-giggle (0.4.95-1) unstable; urgency=low
+giggle (0.5-1) unstable; urgency=low
 
   * New upstream release
-  * Fix git-core version (Closes: #568587)
-  * Provide a package for each plugins (Closes: #530677)
-  * Update copyright
-  * Remove dh_desktop (deprecated)
-  * Use dh_install
-  * Switch to 3.0 (quilt) source format
-  * Add giggle.shlibs file
-  * Update Standards-Version to 3.8.3
-  * Add ${misc:Depends} as packages dependence
-  * Update libgtk2.0-dev build-depends to 2.18
-  * Remove libglade2-dev from build-depends
+  * Move plugins in a separate package (Closes: #530677)
+  * Correct version of git-core dependence (Closes: #56857)
+  * Use Standards-Version 3.8.4
 
- -- Andrea Corradi <lash@unstable.it>  Sat, 06 Feb 2010 12:21:35 +0100
+ -- Andrea Corradi <lash@unstable.it>  Thu, 13 May 2010 15:11:08 +0200
 
 giggle (0.4.91-1) unstable; urgency=low
 
