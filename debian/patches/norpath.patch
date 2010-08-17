@@ -1,0 +1,51 @@
+diff --git a/libgiggle-git/Makefile.in b/libgiggle-git/Makefile.in
+index 9dd2efd..991d980 100644
+--- a/libgiggle-git/Makefile.in
++++ b/libgiggle-git/Makefile.in
+@@ -437,7 +437,7 @@ clean-libLTLIBRARIES:
+ 	  rm -f "$${dir}/so_locations"; \
+ 	done
+ libgiggle-git.la: $(libgiggle_git_la_OBJECTS) $(libgiggle_git_la_DEPENDENCIES) 
+-	$(AM_V_CCLD)$(libgiggle_git_la_LINK) -rpath $(libdir) $(libgiggle_git_la_OBJECTS) $(libgiggle_git_la_LIBADD) $(LIBS)
++	$(AM_V_CCLD)$(libgiggle_git_la_LINK) $(libgiggle_git_la_OBJECTS) $(libgiggle_git_la_LIBADD) $(LIBS)
+ 
+ mostlyclean-compile:
+ 	-rm -f *.$(OBJEXT)
+diff --git a/libgiggle/Makefile.in b/libgiggle/Makefile.in
+index 62843e2..171f4a6 100644
+--- a/libgiggle/Makefile.in
++++ b/libgiggle/Makefile.in
+@@ -434,7 +434,7 @@ clean-libLTLIBRARIES:
+ 	  rm -f "$${dir}/so_locations"; \
+ 	done
+ libgiggle.la: $(libgiggle_la_OBJECTS) $(libgiggle_la_DEPENDENCIES) 
+-	$(AM_V_CCLD)$(libgiggle_la_LINK) -rpath $(libdir) $(libgiggle_la_OBJECTS) $(libgiggle_la_LIBADD) $(LIBS)
++	$(AM_V_CCLD)$(libgiggle_la_LINK) $(libgiggle_la_OBJECTS) $(libgiggle_la_LIBADD) $(LIBS)
+ 
+ mostlyclean-compile:
+ 	-rm -f *.$(OBJEXT)
+diff --git a/plugins/Makefile.in b/plugins/Makefile.in
+index 8f3a7b2..a5f9dc9 100644
+--- a/plugins/Makefile.in
++++ b/plugins/Makefile.in
+@@ -111,7 +111,7 @@ libterminal_view_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
+ 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
+ 	$(libterminal_view_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
+ 	$(LDFLAGS) -o $@
+-@ENABLE_VTE_TRUE@am_libterminal_view_la_rpath = -rpath $(plugindir)
++@ENABLE_VTE_TRUE@
+ DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
+ depcomp = $(SHELL) $(top_srcdir)/depcomp
+ am__depfiles_maybe = depfiles
+@@ -440,9 +440,9 @@ clean-pluginLTLIBRARIES:
+ libhello-world.la: $(libhello_world_la_OBJECTS) $(libhello_world_la_DEPENDENCIES) 
+ 	$(AM_V_CCLD)$(LINK)  $(libhello_world_la_OBJECTS) $(libhello_world_la_LIBADD) $(LIBS)
+ libpersonal-details.la: $(libpersonal_details_la_OBJECTS) $(libpersonal_details_la_DEPENDENCIES) 
+-	$(AM_V_CCLD)$(libpersonal_details_la_LINK) -rpath $(plugindir) $(libpersonal_details_la_OBJECTS) $(libpersonal_details_la_LIBADD) $(LIBS)
++	$(AM_V_CCLD)$(libpersonal_details_la_LINK) $(libpersonal_details_la_OBJECTS) $(libpersonal_details_la_LIBADD) $(LIBS)
+ libterminal-view.la: $(libterminal_view_la_OBJECTS) $(libterminal_view_la_DEPENDENCIES) 
+-	$(AM_V_CCLD)$(libterminal_view_la_LINK) $(am_libterminal_view_la_rpath) $(libterminal_view_la_OBJECTS) $(libterminal_view_la_LIBADD) $(LIBS)
++	$(AM_V_CCLD)$(libterminal_view_la_LINK) $(libterminal_view_la_OBJECTS) $(libterminal_view_la_LIBADD) $(LIBS)
+ 
+ mostlyclean-compile:
+ 	-rm -f *.$(OBJEXT)

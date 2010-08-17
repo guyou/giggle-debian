@@ -1,9 +1,9 @@
-giggle (0.5-1.1) unstable; urgency=low
+giggle (0.5-2) unstable; urgency=low
 
-  * Non-maintainer upload.
-  * Fix FTBFS with ld --no-add-needed (closes: #615278).
+  * Added path that remove rpath option
+  * Added plugins as Suggests
 
- -- Julien Cristau <jcristau@debian.org>  Fri, 11 Mar 2011 19:22:37 +0100
+ -- Andrea Corradi <lash@unstable.it>  Tue, 17 Aug 2010 15:01:40 +0200
 
 giggle (0.5-1) unstable; urgency=low
 
