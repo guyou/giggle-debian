@@ -128,6 +128,8 @@ giggle_tree_view_select_row_by_string (GtkWidget  *treeview,
 		g_free (text);
 		return TRUE;
 	}
+	g_free (text);
+	text = NULL;
 
 	if (tree_model_find_string (model, &iter, NULL, column, pattern)) {
 		path = gtk_tree_model_get_path (model, &iter);

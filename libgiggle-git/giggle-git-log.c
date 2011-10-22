@@ -209,6 +209,8 @@ git_log_parse_log (const gchar *output)
 		i++;
 	}
 
+	g_strfreev(lines);
+
 	return g_string_free (long_log, FALSE);
 }
 

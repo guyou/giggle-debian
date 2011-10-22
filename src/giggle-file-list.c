@@ -1382,14 +1382,14 @@ file_list_cell_pixbuf_func (GtkCellLayout   *layout,
 			icon_name = "text-x-generic";
 			break;
 		case GIGGLE_GIT_FILE_STATUS_CHANGED:
-			icon_name = "gtk-new";
+			icon_name = "document-new";
 			break;
 		case GIGGLE_GIT_FILE_STATUS_DELETED:
 		case GIGGLE_GIT_FILE_STATUS_UNMERGED:
-			icon_name = "gtk-delete";
+			icon_name = "edit-delete";
 			break;
 		case GIGGLE_GIT_FILE_STATUS_KILLED:
-			icon_name = "gtk-stop";
+			icon_name = "process-stop";
 			break;
 		default:
 			g_assert_not_reached ();

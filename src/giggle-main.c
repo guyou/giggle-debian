@@ -86,6 +86,8 @@ main (int    argc,
 
 		goto end;
 	}
+	/* Freing memory */
+	g_option_context_free (context);
 
 	gtk_icon_theme_prepend_search_path (gtk_icon_theme_get_default (), ICONDIR);
 

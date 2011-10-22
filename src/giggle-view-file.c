@@ -310,7 +310,7 @@ static void
 view_file_add_ui (GiggleView   *view,
 		  GtkUIManager *manager)
 {
-	const static char layout[] =
+	static const char layout[] =
 		"<ui>"
 		"  <menubar name='MainMenubar'>"
 		"    <menu action='GoMenu'>"
@@ -687,6 +687,7 @@ show_error (GiggleViewFile *view,
 					 GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
 					 GTK_MESSAGE_ERROR,
 					 GTK_BUTTONS_OK,
+	                                 "%s: %s",
 					 message, error->message);
 
 	gtk_dialog_run (GTK_DIALOG (dialog));
