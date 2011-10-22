@@ -1,3 +1,37 @@
+Giggle 0.4.96, 2010-02-09
+=========================
+
+ * This is a development release leading up to Giggle 0.5.
+   Focus was fixing build issues found in the last release.
+
+ * This is unstable development release. While it has had a bit of testing,
+   there are plenty of bugs and regressions remaining to be found.
+   This release should not be used in production.
+
+ * Bugs should be reported to http://bugzilla.gnome.org/.
+
+Bugs fixed:
+
+ * 608101 - Give CLI options higher priority than environment variables (Florian Müllner)
+
+Other changes:
+
+ * Some cleanups of the code
+
+Translations:
+
+ * Updated Slovenian (sl) translation by Andrej Žnidaršič
+ * Updated German (de) translation by Mario Blättermann
+ * Added Hungarian (hu) translation by Gabor Kelemen
+ * Updated French (fr) translation by Claude Paroz
+ * Updated Spanish (es) translation by Javier Jardón
+
+Contributors:
+
+ * Florian Müllner
+ * Javier Jardón
+
+
 Giggle 0.4.95, 2010-01-25
 =========================
 

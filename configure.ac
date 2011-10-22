@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_PREREQ(2.63.2)
+AC_PREREQ(2.64)
 AC_INIT([Giggle],
-        [0.4.95],
+        [0.4.96],
         [http://bugzilla.gnome.org/enter_bug.cgi?product=giggle],
         [giggle],
         [http://live.gnome.org/giggle])
@@ -18,17 +18,26 @@ m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 
 # Check for programs
 AC_PROG_CC
-AM_PROG_CC_C_O
+AC_PROG_CC_C_O
 AC_PROG_CXX
 
 # Initialize libtool
 LT_PREREQ([2.2.6])
 LT_INIT([disable-static win32-dll])
 
-GNOME_COMMON_INIT
+# Checks for header files.
+AC_CHECK_HEADERS([fcntl.h locale.h stdlib.h string.h unistd.h])
+
+# Checks for typedefs, structures, and compiler characteristics.
+AC_C_INLINE
+
+# Checks for library functions.
+AC_FUNC_MKTIME
+AC_CHECK_FUNCS([localtime_r setlocale strchr strrchr strstr])
+
 GNOME_MAINTAINER_MODE_DEFINES
 GNOME_COMPILE_WARNINGS([maximum])
-GNOME_CXX_WARNINGS
+GNOME_CXX_WARNINGS([yes])
 
 AC_PATH_PROG(GLIB_GENMARSHAL, glib-genmarshal)
 AC_PATH_PROG(GLIB_MKENUMS, glib-mkenums)
@@ -165,20 +174,16 @@ fi
 
 dnl -----------------------------------------------------------
 
-dnl This will cause the automake generated makefiles to pass the
-dnl correct flags to aclocal.
-ACLOCAL_AMFLAGS="\${ACLOCAL_FLAGS}"
-AC_SUBST(ACLOCAL_AMFLAGS)
 
 AC_CONFIG_FILES([
         Makefile
         data/Makefile
-        libgiggle/Makefile
         libgiggle-git/Makefile
-        plugins/Makefile
-        src/Makefile
+        libgiggle/Makefile
         pixmaps/Makefile
+        plugins/Makefile
         po/Makefile.in
+        src/Makefile
         test/Makefile
 ])
 

@@ -28,6 +28,7 @@
 
 static gboolean diff_window = FALSE;
 static gboolean version = FALSE;
+static gchar **dirs = NULL;
 
 static GOptionEntry options[] = {
 	{ "diff", 'd',
@@ -37,6 +38,9 @@ static GOptionEntry options[] = {
 	{ "version", 'v',
 	  0, G_OPTION_ARG_NONE, &version,
 	  N_("Show version information and exit"), NULL },
+	{ G_OPTION_REMAINING, '\0',
+	  0, G_OPTION_ARG_FILENAME_ARRAY, &dirs,
+	  NULL, N_("[DIRECTORY]") },
 	{ NULL }
 };
 
@@ -60,7 +64,7 @@ main (int    argc,
 	gdk_threads_init ();
 	gdk_threads_enter ();
 
- 	context = g_option_context_new (N_("[DIRECTORY]"));
+	context = g_option_context_new (NULL);
 
 	g_option_context_set_translation_domain (context, GETTEXT_PACKAGE);
 	g_option_context_add_main_entries (context, options, GETTEXT_PACKAGE);
@@ -101,15 +105,16 @@ main (int    argc,
 	g_set_application_name ("Giggle");
 	window = giggle_window_new ();
 
-	/* parse GIT_DIR into dir and unset it; if empty use the current_wd */
-	dir = g_strdup (g_getenv ("GIT_DIR"));
-
-	if (!dir || !*dir) {
-		g_free (dir);
-
-		if (argc > 1 && *argv[1]) {
-			dir = g_strdup (argv[1]);
-		} else {
+	/* Set dir to:
+	    - the first remaining arg, or
+	    - the value of GIT_DIR, or
+	    - the current working dir */
+	if (dirs && *dirs) {
+		dir = g_strdup (*dirs);
+		g_strfreev (dirs);
+	} else {
+		dir = g_strdup (g_getenv ("GIT_DIR"));
+		if (dir == NULL) {
 			dir = g_get_current_dir ();
 		}
 	}

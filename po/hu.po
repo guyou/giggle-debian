@@ -1,23 +1,21 @@
-# German translation of giggle.
-# Copyright (C) 2007 Imendio AB
+# Hungarian translation of giggle
+# Copyright 2010 Free Software Foundation, Inc.
 # This file is distributed under the same license as the giggle package.
-# Sven Herzberg <sven@imendio.com>, 2007.
-# Mathias Hasselmann <hasselmm@gnome.org>, 2009.
-# Mario Blättermann <mariobl@gnome.org>, 2010.
-# Christian Kirbach <Christian.Kirbach@googlemail.com>, 2010.
+#
+# Gabor Kelemen <kelemeng at gnome dot hu>, 2010.
 msgid ""
 msgstr ""
-"Project-Id-Version: giggle 0.4.91\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=giggle\n"
-"POT-Creation-Date: 2010-01-29 17:47+0000\n"
-"PO-Revision-Date: 2010-01-31 22:27+0100\n"
-"Last-Translator: Christian Kirbach <Christian.Kirbach@googlemail.com>\n"
-"Language-Team: Deutsch <gnome-de@gnome.org>\n"
+"Project-Id-Version: giggle master\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-02-04 12:14+0100\n"
+"PO-Revision-Date: 2010-02-04 12:22+0100\n"
+"Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
+"Language-Team: Hungarian <gnome at fsf dot hu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #: ../data/giggle.desktop.in.h:1
 msgid "Giggle"
@@ -25,82 +23,81 @@ msgstr "Giggle"
 
 #: ../data/giggle.desktop.in.h:2
 msgid "Git repository viewer"
-msgstr "Ansicht für Git-Softwarebestände"
+msgstr "Git tárolómegjelenítő"
 
-#: ../data/main-window.glade.h:1
+#: ../data/main-window.ui.h:1
 msgid "<b>Branches</b>"
-msgstr "<b>Zweige</b>"
+msgstr ""
 
-#: ../data/main-window.glade.h:2
+#: ../data/main-window.ui.h:2
 msgid "Name:"
-msgstr "Name:"
+msgstr "Név:"
 
-#: ../data/main-window.glade.h:3
+#: ../data/main-window.ui.h:3
 msgid "URL:"
-msgstr "Adresse:"
+msgstr "URL:"
 
 #: ../libgiggle/giggle-plugin.c:528
 #, c-format
 msgid "Cannot find plugin description in '%s'"
-msgstr "Pluginbeschreibung konnte in »%s« nicht gefunden werden"
+msgstr ""
 
 #: ../plugins/giggle-personal-details-window.c:82
 msgid "There was an error setting the configuration"
-msgstr "Beim Setzen der Konfiguration ist ein Fehler aufgetreten"
+msgstr ""
 
 #: ../plugins/giggle-personal-details-window.c:184
 msgid "There was an error getting the configuration"
-msgstr "Beim Lesen der Konfiguration ist ein Fehler aufgetreten"
+msgstr ""
 
 #: ../plugins/giggle-personal-details-window.c:248
 msgid "_Name:"
-msgstr "_Name:"
+msgstr "_Név:"
 
 #: ../plugins/giggle-personal-details-window.c:256
 msgid "_Email:"
-msgstr "_E-Mail:"
+msgstr "_E-mail:"
 
 #: ../plugins/giggle-personal-details-window.c:267
 #: ../plugins/personal-details.xml.h:2
 msgid "Personal Details"
-msgstr "Persönliche Angaben"
+msgstr "Személyes adatok"
 
 #: ../plugins/giggle-view-terminal.c:109
 msgid "_Terminal"
-msgstr "_Terminal"
+msgstr "_Terminál"
 
 #: ../plugins/giggle-view-terminal.c:110
 msgid "Issue git commands via terminal"
-msgstr "Ausgabe der GIT-Befehle im Terminal anzeigen"
+msgstr ""
 
 #: ../src/eggfindbar.c:307
 msgid "Find:"
-msgstr "Suche:"
+msgstr "Keresés:"
 
 #: ../src/eggfindbar.c:316
 msgid "Find Previous"
-msgstr "Rückwärts suchen"
+msgstr "Előző találat"
 
 #: ../src/eggfindbar.c:319
 msgid "Find previous occurrence of the search string"
-msgstr "Vorherigen Treffer der Suchzeichenkette anzeigen"
+msgstr "A keresendő karakterlánc előző előfordulásának keresése"
 
-#: ../src/eggfindbar.c:324
+#: ../src/eggfindbar.c:323
 msgid "Find Next"
-msgstr "Weitersuchen"
+msgstr "Következő találat"
 
-#: ../src/eggfindbar.c:327
+#: ../src/eggfindbar.c:326
 msgid "Find next occurrence of the search string"
-msgstr "Nächsten Treffer der Suchzeichenkette anzeigen"
+msgstr "A keresendő karakterlánc következő előfordulásának keresése"
 
-#: ../src/eggfindbar.c:335
+#: ../src/eggfindbar.c:333
 msgid "C_ase Sensitive"
-msgstr "_Groß-/Kleinschreibung beachten"
+msgstr "Na_gybetűérzékeny"
 
-#: ../src/eggfindbar.c:339
+#: ../src/eggfindbar.c:337
 msgid "Toggle case sensitive search"
-msgstr ""
-"Berücksichtigung der Groß-/Kleinschreibung bei der Suche ein- und ausschalten"
+msgstr "Váltás a kis- és nagybetűérzékeny keresés között"
 
 #: ../src/giggle-authors-view.c:80
 #, c-format
@@ -108,12 +105,10 @@ msgid ""
 "An error occurred when retrieving authors list:\n"
 "%s"
 msgstr ""
-"Beim Lesen der Autoren trat ein Fehler auf:\n"
-"%s"
 
 #: ../src/giggle-authors-view.c:146
 msgid "Authors:"
-msgstr "Autoren:"
+msgstr ""
 
 #: ../src/giggle-branches-view.c:81
 #, c-format
@@ -121,12 +116,10 @@ msgid ""
 "An error occurred when retrieving branches list:\n"
 "%s"
 msgstr ""
-"Beim Lesen der Zweige trat ein Fehler auf:\n"
-"%s"
 
-#: ../src/giggle-branches-view.c:147 ../src/giggle-revision-view.c:206
+#: ../src/giggle-branches-view.c:147 ../src/giggle-revision-view.c:209
 msgid "Branches:"
-msgstr "Zweige:"
+msgstr "Ágak:"
 
 #: ../src/giggle-diff-tree-view.c:142 ../src/giggle-file-list.c:1675
 #, c-format
@@ -134,12 +127,10 @@ msgid ""
 "An error occurred when retrieving different files list:\n"
 "%s"
 msgstr ""
-"Beim Lesen von Änderungen trat ein Fehler auf:\n"
-"%s"
 
 #: ../src/giggle-diff-tree-view.c:209
 msgid "Changed files"
-msgstr "Veränderte Dateien"
+msgstr ""
 
 #: ../src/giggle-diff-view.c:603
 #, c-format
@@ -147,36 +138,32 @@ msgid ""
 "An error occurred when retrieving a diff:\n"
 "%s"
 msgstr ""
-"Beim Empfangen von Änderungen trat ein Fehler auf:\n"
-"%s"
 
 #: ../src/giggle-diff-window.c:82
 msgid "Commit changes"
-msgstr "Änderungen sichern"
+msgstr ""
 
 #: ../src/giggle-diff-window.c:104
 msgid "Revision log:"
-msgstr "Revisionsprotokoll:"
+msgstr ""
 
-#: ../src/giggle-diff-window.c:134
+#: ../src/giggle-diff-window.c:135
 msgid "Co_mmit"
-msgstr "_Einspielen"
+msgstr ""
 
-#: ../src/giggle-diff-window.c:207
+#: ../src/giggle-diff-window.c:208
 #, c-format
 msgid ""
 "An error occurred when committing:\n"
 "%s"
 msgstr ""
-"Beim Sichern der Änderungen trat ein Fehler auf:\n"
-"%s"
 
 #: ../src/giggle-file-list.c:394
 #, c-format
 msgid ""
 "An error occurred when retrieving the file list:\n"
 "%s"
-msgstr "Beim Empfangen der Dateiliste trat ein Fehler auf: %s"
+msgstr ""
 
 #: ../src/giggle-file-list.c:767
 #, c-format
@@ -184,312 +171,305 @@ msgid ""
 "An error occurred when adding a file to git:\n"
 "%s"
 msgstr ""
-"Beim Hinzufügen der Datei trat ein Fehler auf:\n"
-"%s"
 
 #: ../src/giggle-file-list.c:827 ../src/giggle-file-list.c:853
 #: ../src/giggle-rev-list-view.c:1184 ../src/giggle-rev-list-view.c:1215
 #, c-format
 msgid "Could not save the patch as %s"
-msgstr "Der Patch konnte nicht als %s gespeichert werden"
+msgstr ""
 
 #: ../src/giggle-file-list.c:832 ../src/giggle-file-list.c:858
 #: ../src/giggle-rev-list-view.c:1192 ../src/giggle-rev-list-view.c:1220
 msgid "No error was given"
-msgstr "Kein Fehler angegeben"
+msgstr "Nincs megadva hiba"
 
 #: ../src/giggle-file-list.c:879 ../src/giggle-rev-list-view.c:1246
 #, c-format
 msgid "Patch saved as %s"
-msgstr "Patch gespeichert unter %s"
+msgstr ""
 
 #: ../src/giggle-file-list.c:883 ../src/giggle-rev-list-view.c:1250
 #, c-format
 msgid "Created in project directory"
-msgstr "Erstellt im Projektordner"
+msgstr ""
 
 #: ../src/giggle-file-list.c:886 ../src/giggle-rev-list-view.c:1253
 #, c-format
 msgid "Created in directory %s"
-msgstr "Erstellt im Ordner %s"
+msgstr ""
 
 #: ../src/giggle-file-list.c:921 ../src/giggle-rev-list-view.c:1306
 msgid "Create Patch"
-msgstr "Patch erstellen"
+msgstr "Folt létrehozása"
 
-# »Mustervergleich« stammt aus Fedora chkconfig.
 #: ../src/giggle-file-list.c:1024
 msgid "Delete glob pattern?"
-msgstr "Mustervergleich löschen?"
+msgstr ""
 
-# CHECK
 #: ../src/giggle-file-list.c:1027
 msgid ""
 "The selected file was shadowed by a glob pattern that may be hiding other "
 "files, delete it?"
 msgstr ""
-"Die gewählte Datei war durche einen Mustervergleich überlagert, der andere "
-"Dateien verbergen könnte. Soll diese gelöscht werden?"
 
 #: ../src/giggle-file-list.c:1423
 msgid "_Commit Changes"
-msgstr "Änderungen _sichern"
+msgstr ""
 
 #: ../src/giggle-file-list.c:1425
 msgid "A_dd file to repository"
-msgstr "Datei zum Softwarebestand _hinzufügen"
+msgstr ""
 
 #: ../src/giggle-file-list.c:1426 ../src/giggle-rev-list-view.c:1660
 msgid "Create _Patch"
-msgstr "_Patch erstellen"
+msgstr ""
 
 #: ../src/giggle-file-list.c:1427
 msgid "_Add to .gitignore"
-msgstr "Zu .gitignore _hinzufügen"
+msgstr ""
 
 #: ../src/giggle-file-list.c:1428
 msgid "_Remove from .gitignore"
-msgstr "Aus .gitignore _entfernen"
+msgstr ""
 
 #: ../src/giggle-file-list.c:1432
 msgid "_Show all files"
-msgstr "_Alle Dateien anzeigen"
+msgstr ""
 
 #: ../src/giggle-file-list.c:1471
 msgid "Project"
 msgstr "Projekt"
 
-#: ../src/giggle-main.c:35
+#: ../src/giggle-main.c:36
 msgid "Show the diff window"
-msgstr "Änderungen anzeigen"
+msgstr ""
 
-#: ../src/giggle-main.c:39
+#: ../src/giggle-main.c:40
 msgid "Show version information and exit"
-msgstr "Versionsinformation anzeigen und beenden"
+msgstr "Verzióinformáció megjelenítése, majd kilépés"
 
-#: ../src/giggle-main.c:63
+#: ../src/giggle-main.c:43
 msgid "[DIRECTORY]"
-msgstr "[ORDNER]"
+msgstr "[KÖNYVTÁR]"
 
-#: ../src/giggle-main.c:69
+#: ../src/giggle-main.c:73
 #, c-format
 msgid "Report errors (in English, with LC_ALL=C) to <%s>."
-msgstr "Melden Sie Fehler (auf Englisch mit LC_ALL=C) an <%s>"
+msgstr ""
 
-#: ../src/giggle-main.c:70
+#: ../src/giggle-main.c:74
 msgid "Giggle is a graphical frontend for the git content tracker."
-msgstr "Giggle ist eine graphische Schnittstelle für git"
+msgstr ""
 
-#: ../src/giggle-main.c:78
+#: ../src/giggle-main.c:82
 #, c-format
 msgid "Try `%s --help' for more information.\n"
-msgstr "»%s --help« gibt weitere Informationen aus.\n"
+msgstr ""
 
-# CHECK
-#: ../src/giggle-remote-editor.c:154
+#: ../src/giggle-remote-editor.c:148
 msgid "Click to add mapping..."
-msgstr "Klicken, um Zuordnung hinzuzufügen …"
+msgstr ""
 
-#: ../src/giggle-remote-editor.c:180
+#: ../src/giggle-remote-editor.c:174
 msgid "Branches"
-msgstr "Zweige"
+msgstr "Ágak"
 
 #: ../src/giggle-remote-editor.c:375
 msgid "Unnamed"
-msgstr "Unbenannt"
+msgstr "Névtelen"
 
 #: ../src/giggle-remotes-view.c:265
 msgid "Icon"
-msgstr "Symbol"
+msgstr "Ikon"
 
 #: ../src/giggle-remotes-view.c:271
 msgid "Name"
-msgstr "Name"
+msgstr "Név"
 
 #: ../src/giggle-remotes-view.c:276
 msgid "URL"
-msgstr "Adresse"
+msgstr "URL"
 
 #: ../src/giggle-remotes-view.c:289
 msgid "Double click to add remote..."
-msgstr "Doppelklicken, um entfernten Bestand hinzuzufügen …"
+msgstr ""
 
-#: ../src/giggle-revision-view.c:198 ../src/giggle-view-file.c:1219
+#: ../src/giggle-revision-view.c:201 ../src/giggle-view-file.c:1222
 msgid "Author:"
-msgstr "Autor:"
+msgstr "Szerző:"
 
-#: ../src/giggle-revision-view.c:202 ../src/giggle-view-file.c:1220
+#: ../src/giggle-revision-view.c:205 ../src/giggle-view-file.c:1223
 msgid "Committer:"
-msgstr "Einspieler:"
+msgstr ""
 
-#: ../src/giggle-revision-view.c:204 ../src/giggle-view-file.c:1221
+#: ../src/giggle-revision-view.c:207 ../src/giggle-view-file.c:1224
 msgid "Date:"
-msgstr "Datum:"
+msgstr "Dátum:"
 
-#: ../src/giggle-revision-view.c:205 ../src/giggle-view-file.c:1222
+#: ../src/giggle-revision-view.c:208 ../src/giggle-view-file.c:1225
 msgid "SHA:"
-msgstr "SHA:"
+msgstr ""
 
-#: ../src/giggle-revision-view.c:224
+#: ../src/giggle-revision-view.c:227
 msgid "Change Log:"
-msgstr "Änderungsprotokoll:"
+msgstr ""
 
-#: ../src/giggle-revision-view.c:507
+#: ../src/giggle-revision-view.c:510
 msgid "_Details"
-msgstr "_Details"
+msgstr "_Részletek"
 
-#: ../src/giggle-revision-view.c:508
+#: ../src/giggle-revision-view.c:511
 msgid "Display revision details"
-msgstr "Revisionsdetails anzeigen"
+msgstr ""
 
 #: ../src/giggle-rev-list-view.c:353
 #, c-format
 msgid "Delete branch \"%s\""
-msgstr "Zweig »%s« löschen"
+msgstr ""
 
 #: ../src/giggle-rev-list-view.c:356
 #, c-format
 msgid "Delete tag \"%s\""
-msgstr "Markierung »%s« löschen"
+msgstr ""
 
 #: ../src/giggle-rev-list-view.c:523
 msgid "Branch"
-msgstr "Zweig"
+msgstr "Ág"
 
 #: ../src/giggle-rev-list-view.c:526
 msgid "Tag"
-msgstr "Markierung"
+msgstr "Tag"
 
 #: ../src/giggle-rev-list-view.c:529
 msgid "Remote"
-msgstr "Entfernt:"
+msgstr "Távoli"
 
 #: ../src/giggle-rev-list-view.c:1074
 msgid "Enter branch name:"
-msgstr "Zweignamen eingeben:"
+msgstr ""
 
 #: ../src/giggle-rev-list-view.c:1125
 msgid "Enter tag name:"
-msgstr "Markierungsnamen eingeben:"
+msgstr ""
 
 #: ../src/giggle-rev-list-view.c:1186
 #, c-format
 msgid "Could not create patch"
-msgstr "Patch konnte nicht erstellt werden"
+msgstr ""
 
 #: ../src/giggle-rev-list-view.c:1447
 msgid "Uncommitted changes"
-msgstr "Ungesicherte Änderungen"
+msgstr ""
 
 #. TRANSLATORS: it's a strftime format string
 #: ../src/giggle-rev-list-view.c:1501
 msgid "%I:%M %p"
-msgstr "%H:%M"
+msgstr "%l.%M %P"
 
 #. TRANSLATORS: it's a strftime format string
 #: ../src/giggle-rev-list-view.c:1514
 msgid "%a %I:%M %p"
-msgstr "%a %H:%M"
+msgstr "%a %l.%M %p"
 
 #. TRANSLATORS: it's a strftime format string
 #: ../src/giggle-rev-list-view.c:1526
 msgid "%b %d %I:%M %p"
-msgstr "%b %d %H:%M"
+msgstr "%b %e %l.%M %p"
 
 #. it's older
 #. TRANSLATORS: it's a strftime format string
 #: ../src/giggle-rev-list-view.c:1531
 msgid "%b %d %Y"
-msgstr "%d. %b %Y"
+msgstr "%Y %b. %d"
 
 #: ../src/giggle-rev-list-view.c:1657
 msgid "Commit"
-msgstr "Sichern"
+msgstr "Véglegesítés"
 
 #: ../src/giggle-rev-list-view.c:1658
 msgid "Create _Branch"
-msgstr "Neuer _Zweig"
+msgstr ""
 
 #: ../src/giggle-rev-list-view.c:1659
 msgid "Create _Tag"
-msgstr "Neue _Markierung"
+msgstr ""
 
 #: ../src/giggle-rev-list-view.c:1720
 msgid "Graph"
-msgstr "Baum"
+msgstr "Grafikon"
 
 #: ../src/giggle-rev-list-view.c:1738
 msgid "Short Log"
-msgstr "Kurzprotokoll"
+msgstr "Rövid napló"
 
 #: ../src/giggle-rev-list-view.c:1757
 msgid "Author"
-msgstr "Autor"
+msgstr "Szerző"
 
 #: ../src/giggle-rev-list-view.c:1774
 msgid "Date"
-msgstr "Datum"
+msgstr "Dátum"
 
-#: ../src/giggle-short-list.c:265
+#: ../src/giggle-short-list.c:274
 msgid "Details"
-msgstr "Details"
+msgstr "Részletek"
 
-#: ../src/giggle-short-list.c:375
+#: ../src/giggle-short-list.c:385
 msgid "Show A_ll..."
-msgstr "_Alles anzeigen …"
+msgstr ""
 
 #: ../src/giggle-view-diff.c:108
 #, c-format
 msgid "Change %d of %d"
-msgstr "Änderung %d von %d"
+msgstr ""
 
 #: ../src/giggle-view-diff.c:185
 msgid "_Previous Change"
-msgstr "_Vorherige Änderung"
+msgstr ""
 
 #: ../src/giggle-view-diff.c:185
 msgid "View previous change"
-msgstr "Vorherige Änderung zeigen"
+msgstr ""
 
 #: ../src/giggle-view-diff.c:189
 msgid "_Next Change"
-msgstr "_Nächste Änderung"
+msgstr ""
 
 #: ../src/giggle-view-diff.c:189
 msgid "View next change"
-msgstr "Nächste Änderung zeigen"
+msgstr ""
 
 #: ../src/giggle-view-diff.c:349
 msgid "_Changes"
-msgstr "_Änderungen"
+msgstr "Válto_ztatások"
 
 #: ../src/giggle-view-diff.c:350
 msgid "Browse a revision's changes"
-msgstr "Änderungen einer Revision sichten"
+msgstr ""
 
 #: ../src/giggle-view-file.c:328
 msgid "_Goto Line Number"
-msgstr "Zur _Zeile springen"
+msgstr ""
 
 #: ../src/giggle-view-file.c:329
 msgid "Highlight specified line number"
-msgstr "Die gewählte Zeile hervorheben"
+msgstr ""
 
 #: ../src/giggle-view-file.c:333
 msgid "Show _Changes"
-msgstr "_Änderungen zeigen"
+msgstr ""
 
 #: ../src/giggle-view-file.c:334
 msgid "Show changes for selected revision"
-msgstr "Änderungen für die ausgewählte Revision anzeigen"
+msgstr ""
 
 #: ../src/giggle-view-file.c:338
 msgid "Select _Revision"
-msgstr "_Revision auswählen"
+msgstr ""
 
 #: ../src/giggle-view-file.c:339
 msgid "Select revision of selected line"
-msgstr "Revision der ausgewählten Zeile anzeigen"
+msgstr ""
 
 #: ../src/giggle-view-file.c:904
 #, c-format
@@ -497,116 +477,108 @@ msgid ""
 "An error occurred when getting file ref:\n"
 "%s"
 msgstr ""
-"Beim Holen der Dateireferenzen trat ein Fehler auf:\n"
-"%s"
 
-#: ../src/giggle-view-file.c:975 ../src/giggle-view-history.c:250
-#: ../src/giggle-view-history.c:345
+#: ../src/giggle-view-file.c:975 ../src/giggle-view-history.c:253
+#: ../src/giggle-view-history.c:348
 #, c-format
 msgid ""
 "An error occurred when getting the revisions list:\n"
 "%s"
 msgstr ""
-"Beim Empfangen der Revisionsliste trat ein Fehler auf:\n"
-"%s"
 
 #: ../src/giggle-view-file.c:1135
 msgid "Line Number:"
-msgstr "Zeilennummer:"
+msgstr ""
 
-#: ../src/giggle-view-file.c:1568
+#: ../src/giggle-view-file.c:1571
 msgid "_Browse"
-msgstr "_Dateien"
+msgstr "_Tallózás"
 
-#: ../src/giggle-view-file.c:1569
+#: ../src/giggle-view-file.c:1572
 msgid "Browse the files of this project"
-msgstr "Die Dateien des Projekts sichten"
+msgstr ""
 
-#: ../src/giggle-view-history.c:834
+#: ../src/giggle-view-history.c:842
 msgid "_History"
-msgstr "_Verlauf"
+msgstr "_Előzmények"
 
-#: ../src/giggle-view-history.c:835
+#: ../src/giggle-view-history.c:843
 msgid "Browse the history of this project"
-msgstr "Den Verlauf des Projekts sichten"
+msgstr ""
 
 #: ../src/giggle-view-summary.c:117
 msgid "<b>Description:</b>"
-msgstr "<b>Beschreibung:</b>"
+msgstr "<b>Leírás:</b>"
 
 #: ../src/giggle-view-summary.c:163
 msgid "<b>Remotes:</b>"
-msgstr "<b>Entfernte Bestände:</b>"
+msgstr ""
 
 #: ../src/giggle-view-summary.c:189
 msgid "_Summary"
-msgstr "_Zusammenfassung"
+msgstr ""
 
 #: ../src/giggle-view-summary.c:192
 msgid "_Branches"
-msgstr "_Zweige"
+msgstr "Ága_k"
 
 #: ../src/giggle-view-summary.c:195
 msgid "_Authors"
-msgstr "_Autoren"
+msgstr ""
 
 #: ../src/giggle-view-summary.c:198
 msgid "_Remotes"
-msgstr "Entfe_rnte Bestände"
+msgstr ""
 
 #: ../src/giggle-window.c:562
 msgid "About Giggle"
-msgstr "Info zu Giggle"
+msgstr ""
 
 #: ../src/giggle-window.c:587
 #, c-format
 msgid "The directory '%s' does not look like a git repository."
-msgstr "Der Ordner »%s« sieht nicht nach einem GIT-Softwarebestand aus."
+msgstr ""
 
 #: ../src/giggle-window.c:670
 msgid "Select git repository"
-msgstr "Einen GIT-Softwarebestand auswählen"
+msgstr ""
 
 #: ../src/giggle-window.c:706
 #, c-format
 msgid "Properties of %s"
-msgstr "Eigenschaften von %s"
+msgstr "%s tulajdonságai"
 
 #: ../src/giggle-window.c:920
 msgid "translator-credits"
-msgstr ""
-"Sven Herzberg <sven@imendio.com>\n"
-"Mathias Hasselmann <hasselmm@gnome.org>\n"
-"Mario Blättermann <mariobl@gnome.org>\n"
-"Christian Kirbach <Christian.Kirbach@googlemail.com>"
+msgstr "Kelemen Gábor <kelemeng@gnome.hu>"
 
 #: ../src/giggle-window.c:921
 msgid "A graphical frontend to the git content tracker."
-msgstr "Eine graphische Schnittstelle für git"
+msgstr ""
 
 #: ../src/giggle-window.c:976
 msgid "_Find..."
-msgstr "_Suchen …"
+msgstr "_Keresés…"
 
 #: ../src/giggle-window.c:977
 msgid "Find..."
-msgstr "Suchen …"
+msgstr "Keresés…"
 
 #: ../src/giggle-window.c:983
 msgid "Find Ne_xt"
-msgstr "_Weitersuchen"
+msgstr "Kö_vetkező találat"
 
 #: ../src/giggle-window.c:984
 msgid "Find next match"
-msgstr "Nächste Übereinstimmung suchen"
+msgstr ""
 
 #: ../src/giggle-window.c:987
 msgid "Find Pre_vious"
-msgstr "_Rückwärts suchen"
+msgstr "Elő_ző találat"
 
 #: ../src/giggle-window.c:988
 msgid "Find previous match"
-msgstr "Vorherige Übereinstimmung suchen"
+msgstr ""
 
 #: ../src/giggle-window.c:994
 msgid "_Project"
@@ -614,91 +586,91 @@ msgstr "_Projekt"
 
 #: ../src/giggle-window.c:995
 msgid "_Edit"
-msgstr "_Bearbeiten"
+msgstr "S_zerkesztés"
 
 #: ../src/giggle-window.c:996
 msgid "_Go"
-msgstr "_Gehe zu"
+msgstr "_Ugrás"
 
 #: ../src/giggle-window.c:997
 msgid "_View"
-msgstr "_Ansicht"
+msgstr "_Nézet"
 
 #: ../src/giggle-window.c:998
 msgid "_Help"
-msgstr "_Hilfe"
+msgstr "_Súgó"
 
 #: ../src/giggle-window.c:1001
 msgid "Open a git repository"
-msgstr "Einen GIT-Softwarebestand öffnen"
+msgstr ""
 
 #: ../src/giggle-window.c:1006
 msgid "_Save patch"
-msgstr "Patch _speichern"
+msgstr ""
 
 #: ../src/giggle-window.c:1006
 msgid "Save a patch"
-msgstr "Einen Patch speichern"
+msgstr ""
 
 #: ../src/giggle-window.c:1010
 msgid "_Diff current changes"
-msgstr "Aktuelle _Unterschiede"
+msgstr ""
 
 #: ../src/giggle-window.c:1010
 msgid "Diff current changes"
-msgstr "Aktuelle Unterschiede"
+msgstr ""
 
 #: ../src/giggle-window.c:1015
 msgid "Quit the application"
-msgstr "Die Anwendung beenden"
+msgstr "Kilépés az alkalmazásból"
 
 #: ../src/giggle-window.c:1033
 msgid "Go backward in history"
-msgstr "In Chronik zurück gehen"
+msgstr ""
 
 #: ../src/giggle-window.c:1037
 msgid "Go forward in history"
-msgstr "In Chronik nach vorn gehen"
+msgstr ""
 
 #: ../src/giggle-window.c:1041
 msgid "Visit _Homepage"
-msgstr "_Homepage besuchen"
+msgstr ""
 
 #: ../src/giggle-window.c:1042
 msgid "Visit the homepage of Giggle"
-msgstr "Die Homepage von Giggle besuchen"
+msgstr ""
 
 #: ../src/giggle-window.c:1045
 msgid "Report _Issue"
-msgstr "_Problem berichten"
+msgstr ""
 
 #: ../src/giggle-window.c:1046
 msgid "Report an issue you've found in Giggle"
-msgstr "Ein Problem in Giggle berichten"
+msgstr ""
 
 #: ../src/giggle-window.c:1050
 msgid "About this application"
-msgstr "Informationen über diese Anwendung"
+msgstr "Az alkalmazás névjegye"
 
 #: ../src/giggle-window.c:1057
 msgid "Show revision tree"
-msgstr "Revisionsbaum anzeigen"
+msgstr ""
 
 #: ../src/giggle-window.c:1064
 msgid "Show and edit project properties"
-msgstr "Projekteigenschaften zeigen und ändern"
+msgstr ""
 
 #: ../src/giggle-window.c:1068
 msgid "Refresh current view"
-msgstr "Aktuelle Ansicht auffrischen"
+msgstr ""
 
 #: ../src/giggle-window.c:1399
 msgid "Search Inside _Patches"
-msgstr "_Patches durchsuchen"
+msgstr ""
 
 #: ../src/giggle-window.c:1671
 msgid "Save patch file"
-msgstr "Eine Patch-Datei speichern"
+msgstr ""
 
 #: ../src/giggle-window.c:1691
 #, c-format
@@ -706,72 +678,32 @@ msgid ""
 "An error occurred when saving to file:\n"
 "%s"
 msgstr ""
-"Beim Speichern der Datei trat ein Fehler auf:\n"
-"%s"
 
 #: ../plugins/hello-world.xml.h:1
 msgid "Check if the plugin system works"
-msgstr "Überprüfen, ob das Plugin-System funktioniert"
+msgstr ""
 
 #: ../plugins/hello-world.xml.h:2
 msgid "Demonstration of Giggle's Plugin System"
-msgstr "Demonstration des Plugin-Systems von Giggle"
+msgstr ""
 
 #: ../plugins/hello-world.xml.h:3
 msgid "Hello World"
-msgstr "Hallo Welt"
+msgstr ""
 
 #: ../plugins/personal-details.xml.h:1
 msgid "Edit personal details"
-msgstr "Persönliche Angaben bearbeiten"
+msgstr ""
 
 #: ../plugins/terminal-view.xml.h:1
 msgid "Create _Terminal"
-msgstr "_Terminal erstellen"
+msgstr ""
 
 #: ../plugins/terminal-view.xml.h:2
 msgid "Create new tab in git terminal"
-msgstr "Neuen Reiter im Git-Terminal anlegen"
+msgstr ""
 
 #: ../plugins/terminal-view.xml.h:3
 msgid "Terminal window"
-msgstr "Terminalfenster"
+msgstr ""
 
-#~ msgid "Search string"
-#~ msgstr "Suchmuster"
-
-#~ msgid "Highlight color"
-#~ msgstr "Hervorhebungsfarbe"
-
-#~ msgid "Current color"
-#~ msgstr "Aktuelle Farbe"
-
-#~ msgid "_Differences"
-#~ msgstr "_Unterschiede"
-
-#~ msgid "_Compact Mode"
-#~ msgstr "_Kompakt"
-
-#~ msgid "_Open"
-#~ msgstr "Ö_ffnen"
-
-#~ msgid "_Quit"
-#~ msgstr "_Beenden"
-
-#~ msgid "Edit Personal _Details"
-#~ msgstr "Persönliche Angaben _bearbeiten"
-
-#~ msgid "_About"
-#~ msgstr "_Info"
-
-#~ msgid "_Back"
-#~ msgstr "_Zurück"
-
-#~ msgid "_Forward"
-#~ msgstr "_Weiter"
-
-#~ msgid "<b>Branches:</b>"
-#~ msgstr "<b>Zweige:</b>"
-
-#~ msgid "<b>Authors:</b>"
-#~ msgstr "<b>Autoren:</b>"

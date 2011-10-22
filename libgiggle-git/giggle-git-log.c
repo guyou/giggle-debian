@@ -218,13 +218,10 @@ git_log_handle_output (GiggleJob   *job,
 		       gsize        output_len)
 {
 	GiggleGitLogPriv  *priv;
-	gchar            **lines;
 
 	priv = GET_PRIV (job);
 
-	lines = g_strsplit (output_str, "\n", -1);
 	priv->log = git_log_parse_log (output_str);
-	g_strfreev (lines);
 }
 
 GiggleJob *
