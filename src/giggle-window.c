@@ -887,13 +887,6 @@ window_visit_uri (GiggleWindow *window,
 }
 
 static void
-window_action_homepage_cb (GtkAction    *action,
-			   GiggleWindow *window)
-{
-	window_visit_uri (window, PACKAGE_URL);
-}
-
-static void
 window_action_bug_report_cb (GtkAction    *action,
 			     GiggleWindow *window)
 {
@@ -904,6 +897,13 @@ static void
 window_action_about_cb (GtkAction    *action,
 			GiggleWindow *window)
 {
+	gchar *license_translated;
+
+	const char *artists[] = {
+		"Andreas Nilsson",
+		NULL
+	};
+
 	const gchar *authors[] = {
 		"Carlos Garnacho",
 		"Mathias Hasselmann",
@@ -913,17 +913,59 @@ window_action_about_cb (GtkAction    *action,
 		NULL
 	};
 
+	const gchar *documenters[] = {
+		NULL
+	};
+
+	const gchar *copyright = _("Copyright © 2007 - 2008 Imendio AB\n"
+	                           "Copyright © 2008 - 2010 Mathias Hasselmann");
+
+	const gchar *license[] = {
+		N_("This program is free software; you can redistribute it and/or modify "
+		   "it under the terms of the GNU General Public License as published by "
+		   "the Free Software Foundation; either version 2 of the License, or "
+		   "(at your option) any later version."),
+		N_("This program is distributed in the hope that it will be useful, "
+		   "but WITHOUT ANY WARRANTY; without even the implied warranty of "
+		   "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the "
+		   "GNU General Public License for more details."),
+		N_("You should have received a copy of the GNU General Public License "
+		   "along with this program; if not, write to the Free Software Foundation, Inc., "
+		   "51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA")
+	};
+	license_translated = g_strjoin ("\n\n",
+	                                _(license[0]),
+	                                _(license[1]),
+	                                _(license[2]),
+	                                NULL);
+
+	/* Translators: This is a special message that shouldn't be translated
+         * literally. It is used in the about box to give credits to
+         * the translators.
+         * Thus, you should translate it to your name and email address.
+         * You should also include other translators who have contributed to
+         * this translation; in that case, please write each of them on a separate
+         * line seperated by newlines (\n).
+         */
+	const gchar *translators = _("translator-credits");
+
 	gtk_show_about_dialog (GTK_WINDOW (window),
-			       "copyright",
-			       "Copyright \xc2\xa9 2007-2008 Imendio AB\n"
-			       "Copyright \xc2\xa9 2008 Mathias Hasselmann",
-			       "translator-credits", _("translator-credits"),
-			       "comments", _("A graphical frontend to the git content tracker."),
+	                       "artists", artists,
+	                       "authors", authors,
+	                       "comments", _("A graphical frontend for Git"),
+			       "copyright", copyright,
+	                       /* "documenters", documenters, */
+	                       "license", license_translated,
+	                       "logo-icon-name", PACKAGE,
+	                       "title", _("About Giggle"),
+			       "translator-credits", translators,
+	                       "version", VERSION,
 			       "website", PACKAGE_URL,
-			       "logo-icon-name", PACKAGE,
-			       "version", VERSION,
-			       "authors", authors,
+	                       "website-label", _("Giggle Website"),
+	                       "wrap-license", TRUE,
 			       NULL);
+
+	g_free (license_translated);
 }
 
 static void
@@ -1038,10 +1080,6 @@ window_create_ui_manager (GiggleWindow *window)
 		  G_CALLBACK (window_action_history_go_forward)
 		},
 
-		{ "Homepage", GTK_STOCK_HOME, N_("Visit _Homepage"),
-		  NULL, N_("Visit the homepage of Giggle"),
-		  G_CALLBACK (window_action_homepage_cb)
-		},
 		{ "BugReport", NULL, N_("Report _Issue"),
 		  NULL, N_("Report an issue you've found in Giggle"),
 		  G_CALLBACK (window_action_bug_report_cb)
@@ -1114,7 +1152,6 @@ window_create_ui_manager (GiggleWindow *window)
 		"      <menuitem action='HistoryGoForward'/>"
 		"    </menu>"
 		"    <menu action='HelpMenu'>"
-		"      <menuitem action='Homepage'/>"
 		"      <menuitem action='BugReport'/>"
 		"      <separator/>"
 		"      <menuitem action='About'/>"

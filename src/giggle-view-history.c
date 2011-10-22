@@ -183,9 +183,12 @@ view_history_set_busy (GtkWidget *widget,
 	GdkCursor *cursor;
 	GdkWindow *window;
 
-	if (!GTK_WIDGET_REALIZED (widget)) {
+#if GTK_CHECK_VERSION (2,19,5)
+	if (!gtk_widget_get_realized (widget))
+#else
+	if (!GTK_WIDGET_REALIZED (widget))
+#endif
 		return;
-	}
 
 	window = gtk_widget_get_window (widget);
 

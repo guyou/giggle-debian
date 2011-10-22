@@ -1,3 +1,33 @@
+Giggle 0.4.97, 2010-02-25
+=========================
+
+ * This is a development release leading up to Giggle 0.5.
+   Focus was fixing build issues found in the last release.
+
+ * This is unstable development release. While it has had a bit of testing,
+   there are plenty of bugs and regressions remaining to be found.
+   This release should not be used in production.
+
+ * Bugs should be reported to http://bugzilla.gnome.org/.
+
+Changes:
+
+ * Giggle can be compiled now with -DGSEAL_ENABLED, so is fully GTK+ 3
+   compatible
+ * Some improvements in the About dialog
+
+Translations:
+
+ * Added Czech (cs) translation by Marek Černocký
+ * Updated Slovenian (sl) translation by Andrej Žnidaršič
+ * Updated Polish (pl) translation by Łukasz Jernaś
+ * Updated German (de) translation by Mario Blättermann
+ * Updated Spanish (es) translation by Jorge González
+
+Contributors:
+
+ * Javier Jardón
+
 Giggle 0.4.96, 2010-02-09
 =========================
 
