@@ -1,3 +1,26 @@
+Giggle 0.5, 2010-03-29
+=========================
+Changes:
+
+ * Several performance improvements
+ * Fix crash when searching
+ * Improve responsiveness when executing git commands
+ * Some memory fixes
+
+Translations:
+
+ * Added Galician (gl) translation by Fran Diéguez
+ * Added Norwegian (nb) translation by Kjartan Maraas
+ * Updated French (fr) translation by Bruno Brouard
+ * Updated Spanish (es) translation by Jorge González
+
+Contributors:
+
+ * Javier Jardón
+ * Guilhem Bonnefille
+ * Florian Müllner
+ * Edward Hervey
+
 Giggle 0.4.97, 2010-02-25
 =========================
 

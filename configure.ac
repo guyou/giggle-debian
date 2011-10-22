@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_PREREQ(2.64)
+AC_PREREQ([2.64])
 AC_INIT([Giggle],
-        [0.4.97],
+        [0.5],
         [http://bugzilla.gnome.org/enter_bug.cgi?product=giggle],
         [giggle],
         [http://live.gnome.org/giggle])
@@ -10,7 +10,7 @@ AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_SRCDIR([configure.ac])
 AC_CONFIG_MACRO_DIR([m4])
 
-AM_INIT_AUTOMAKE([1.10 check-news -Wall -Werror])
+AM_INIT_AUTOMAKE([1.10 check-news -Wall])
 # Support silent build rules, requires at least automake-1.11. Disable
 # by either passing --disable-silent-rules to configure or passing V=1
 # to make
