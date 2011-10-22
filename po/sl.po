@@ -1,15 +1,16 @@
 # Slovenian translation for giggle.
 # Copyright (C) 2010 giggle's COPYRIGHT HOLDER
 # This file is distributed under the same license as the giggle package.
+#
 # Andrej Žnidaršič <andrej.znidarsic@gmail.com>, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: giggle master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=giggle\n"
-"POT-Creation-Date: 2010-01-22 04:33+0000\n"
-"PO-Revision-Date: 2010-01-29 18:47+0100\n"
-"Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
+"POT-Creation-Date: 2010-02-10 19:52+0000\n"
+"PO-Revision-Date: 2010-02-11 21:12+0100\n"
+"Last-Translator: Andrej Žnidaršič <andrej.znidarsic@gmail.com>\n"
 "Language-Team: Slovenian <gnome-si@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,15 +28,15 @@ msgstr "Giggle"
 msgid "Git repository viewer"
 msgstr "Pregledovalnik skladišč git"
 
-#: ../data/main-window.glade.h:1
+#: ../data/main-window.ui.h:1
 msgid "<b>Branches</b>"
 msgstr "<b>Veje</b>"
 
-#: ../data/main-window.glade.h:2
+#: ../data/main-window.ui.h:2
 msgid "Name:"
 msgstr "Ime:"
 
-#: ../data/main-window.glade.h:3
+#: ../data/main-window.ui.h:3
 msgid "URL:"
 msgstr "URL:"
 
@@ -43,6 +44,18 @@ msgstr "URL:"
 #, c-format
 msgid "Cannot find plugin description in '%s'"
 msgstr "Ni mogoče najti opisa vstavka v '%s'"
+
+#: ../plugins/hello-world.xml.h:1
+msgid "Check if the plugin system works"
+msgstr "Preverjanje delovanja sistema vstavkov"
+
+#: ../plugins/hello-world.xml.h:2
+msgid "Demonstration of Giggle's Plugin System"
+msgstr "Prikaz Giggle sistema vstavkov"
+
+#: ../plugins/hello-world.xml.h:3
+msgid "Hello World"
+msgstr "Pozdravljen svet"
 
 #: ../plugins/giggle-personal-details-window.c:82
 msgid "There was an error setting the configuration"
@@ -73,6 +86,22 @@ msgstr "_Terminal"
 msgid "Issue git commands via terminal"
 msgstr "Izdaja ukazov git preko terminala"
 
+#: ../plugins/personal-details.xml.h:1
+msgid "Edit personal details"
+msgstr "Uredi osebne podrobnosti"
+
+#: ../plugins/terminal-view.xml.h:1
+msgid "Create _Terminal"
+msgstr "Ustvari _terminal"
+
+#: ../plugins/terminal-view.xml.h:2
+msgid "Create new tab in git terminal"
+msgstr "Ustvarjanje novega zavihka v terminalu git"
+
+#: ../plugins/terminal-view.xml.h:3
+msgid "Terminal window"
+msgstr "Okno terminala"
+
 #: ../src/eggfindbar.c:307
 msgid "Find:"
 msgstr "Najdi:"
@@ -85,19 +114,19 @@ msgstr "Najdi predhodno"
 msgid "Find previous occurrence of the search string"
 msgstr "Najde predhodno pojavljanje iskanega niza"
 
-#: ../src/eggfindbar.c:324
+#: ../src/eggfindbar.c:323
 msgid "Find Next"
 msgstr "Najdi naslednje"
 
-#: ../src/eggfindbar.c:327
+#: ../src/eggfindbar.c:326
 msgid "Find next occurrence of the search string"
 msgstr "Najde naslednje pojavljanje iskanega niza"
 
-#: ../src/eggfindbar.c:335
+#: ../src/eggfindbar.c:333
 msgid "C_ase Sensitive"
 msgstr "Upoštevaj _velikost črk"
 
-#: ../src/eggfindbar.c:339
+#: ../src/eggfindbar.c:337
 msgid "Toggle case sensitive search"
 msgstr "Preklop upoštevanje velikosti črk"
 
@@ -124,7 +153,7 @@ msgstr ""
 "%s"
 
 #: ../src/giggle-branches-view.c:147
-#: ../src/giggle-revision-view.c:206
+#: ../src/giggle-revision-view.c:209
 msgid "Branches:"
 msgstr "Veje:"
 
@@ -159,11 +188,11 @@ msgstr "Uveljavi spremembe"
 msgid "Revision log:"
 msgstr "Dnevnik predelav:"
 
-#: ../src/giggle-diff-window.c:134
+#: ../src/giggle-diff-window.c:135
 msgid "Co_mmit"
 msgstr "U_veljavi"
 
-#: ../src/giggle-diff-window.c:207
+#: ../src/giggle-diff-window.c:208
 #, c-format
 msgid ""
 "An error occurred when committing:\n"
@@ -265,37 +294,37 @@ msgstr "_Pokaži vse datoteke"
 msgid "Project"
 msgstr "Projekt"
 
-#: ../src/giggle-main.c:35
+#: ../src/giggle-main.c:36
 msgid "Show the diff window"
 msgstr "Pokaži okno primerjave"
 
-#: ../src/giggle-main.c:39
+#: ../src/giggle-main.c:40
 msgid "Show version information and exit"
 msgstr "Izpiši podrobnosti različice in končaj"
 
-#: ../src/giggle-main.c:63
+#: ../src/giggle-main.c:43
 msgid "[DIRECTORY]"
 msgstr "[MAPA]"
 
-#: ../src/giggle-main.c:69
+#: ../src/giggle-main.c:73
 #, c-format
 msgid "Report errors (in English, with LC_ALL=C) to <%s>."
 msgstr "Poročanje napak (v Angleščini, z LC_ACC=C) <%s>"
 
-#: ../src/giggle-main.c:70
+#: ../src/giggle-main.c:74
 msgid "Giggle is a graphical frontend for the git content tracker."
 msgstr "Giggle je grafično začelje za sledilnik vsebine git."
 
-#: ../src/giggle-main.c:78
+#: ../src/giggle-main.c:82
 #, c-format
 msgid "Try `%s --help' for more information.\n"
 msgstr "Poskusite `%s --help` za več podrobnosti.\n"
 
-#: ../src/giggle-remote-editor.c:154
+#: ../src/giggle-remote-editor.c:148
 msgid "Click to add mapping..."
 msgstr "Kliknite za dodajanje preslikave ..."
 
-#: ../src/giggle-remote-editor.c:180
+#: ../src/giggle-remote-editor.c:174
 msgid "Branches"
 msgstr "Veje"
 
@@ -319,35 +348,35 @@ msgstr "URL"
 msgid "Double click to add remote..."
 msgstr "Dvoklik za dodajanje oddaljenega ..."
 
-#: ../src/giggle-revision-view.c:198
-#: ../src/giggle-view-file.c:1219
+#: ../src/giggle-revision-view.c:201
+#: ../src/giggle-view-file.c:1222
 msgid "Author:"
 msgstr "Avtor:"
 
-#: ../src/giggle-revision-view.c:202
-#: ../src/giggle-view-file.c:1220
+#: ../src/giggle-revision-view.c:205
+#: ../src/giggle-view-file.c:1223
 msgid "Committer:"
 msgstr "Uveljavitelj:"
 
-#: ../src/giggle-revision-view.c:204
-#: ../src/giggle-view-file.c:1221
+#: ../src/giggle-revision-view.c:207
+#: ../src/giggle-view-file.c:1224
 msgid "Date:"
 msgstr "Datum:"
 
-#: ../src/giggle-revision-view.c:205
-#: ../src/giggle-view-file.c:1222
+#: ../src/giggle-revision-view.c:208
+#: ../src/giggle-view-file.c:1225
 msgid "SHA:"
 msgstr "SHA:"
 
-#: ../src/giggle-revision-view.c:224
+#: ../src/giggle-revision-view.c:227
 msgid "Change Log:"
 msgstr "Dnevnik sprememb:"
 
-#: ../src/giggle-revision-view.c:507
+#: ../src/giggle-revision-view.c:510
 msgid "_Details"
 msgstr "_Podrobnosti"
 
-#: ../src/giggle-revision-view.c:508
+#: ../src/giggle-revision-view.c:511
 msgid "Display revision details"
 msgstr "Prikaz podrobnosti predelave"
 
@@ -439,11 +468,11 @@ msgstr "Avtor"
 msgid "Date"
 msgstr "Datum"
 
-#: ../src/giggle-short-list.c:265
+#: ../src/giggle-short-list.c:274
 msgid "Details"
 msgstr "Podrobnosti"
 
-#: ../src/giggle-short-list.c:375
+#: ../src/giggle-short-list.c:385
 msgid "Show A_ll..."
 msgstr "Pokaži _vse ..."
 
@@ -510,8 +539,8 @@ msgstr ""
 "%s"
 
 #: ../src/giggle-view-file.c:975
-#: ../src/giggle-view-history.c:250
-#: ../src/giggle-view-history.c:345
+#: ../src/giggle-view-history.c:256
+#: ../src/giggle-view-history.c:351
 #, c-format
 msgid ""
 "An error occurred when getting the revisions list:\n"
@@ -524,19 +553,19 @@ msgstr ""
 msgid "Line Number:"
 msgstr "Številka vrstice:"
 
-#: ../src/giggle-view-file.c:1568
+#: ../src/giggle-view-file.c:1571
 msgid "_Browse"
 msgstr "Pre_brskaj"
 
-#: ../src/giggle-view-file.c:1569
+#: ../src/giggle-view-file.c:1572
 msgid "Browse the files of this project"
 msgstr "Brskanje datotek tega projekta"
 
-#: ../src/giggle-view-history.c:834
+#: ../src/giggle-view-history.c:845
 msgid "_History"
 msgstr "_Zgodovina"
 
-#: ../src/giggle-view-history.c:835
+#: ../src/giggle-view-history.c:846
 msgid "Browse the history of this project"
 msgstr "Brskaj po zgodovini tega projekta"
 
@@ -565,6 +594,7 @@ msgid "_Remotes"
 msgstr "_Oddaljena"
 
 #: ../src/giggle-window.c:562
+#: ../src/giggle-window.c:960
 msgid "About Giggle"
 msgstr "O programu"
 
@@ -583,130 +613,154 @@ msgid "Properties of %s"
 msgstr "Lastnosti %s"
 
 #: ../src/giggle-window.c:920
+msgid ""
+"Copyright © 2007 - 2008 Imendio AB\n"
+"Copyright © 2008 - 2010 Mathias Hasselmann"
+msgstr ""
+"Avtorske pravice © 2007 - 2008 Imendio AB\n"
+"Avtorske pravice © 2008 - 2010 Mathias Hasselmann"
+
+#: ../src/giggle-window.c:924
+msgid "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version."
+msgstr "Ta program je prosta programska oprema. Program lahko uporabljate v skladu s pogoji Splošne Javne Licence (GNU General Public License); ali različico 2 Licence, ali (na vašo željo) katerakoli kasnejša različica."
+
+#: ../src/giggle-window.c:928
+msgid "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details."
+msgstr "Ta program je distribuiran v upanju da bo uporaben, toda BREZ KAKRŠNIHKOLI ZAGOTOVIL; tudi brez impliciranih zagotovila za PRODAJO ali PRIMERNOST ZA DOLOČEN NAMEN. Oglejte si GNU General Public Licence za več podrobnosti."
+
+#: ../src/giggle-window.c:932
+msgid "You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA"
+msgstr "Skupaj s tem programom bi morali prejeti izvod Splošnega dovoljenja GNU (GNU General Public License); če ga niste, pišite na Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA."
+
+#. Translators: This is a special message that shouldn't be translated
+#. * literally. It is used in the about box to give credits to
+#. * the translators.
+#. * Thus, you should translate it to your name and email address.
+#. * You should also include other translators who have contributed to
+#. * this translation; in that case, please write each of them on a separate
+#. * line seperated by newlines (\n).
+#.
+#: ../src/giggle-window.c:950
 msgid "translator-credits"
 msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 
-#: ../src/giggle-window.c:921
-msgid "A graphical frontend to the git content tracker."
-msgstr "Grafično začelje sledilnika vsebine git."
+#: ../src/giggle-window.c:955
+msgid "A graphical frontend for Git"
+msgstr "Grafično začelje za Git"
 
-#: ../src/giggle-window.c:976
+#: ../src/giggle-window.c:964
+msgid "Giggle Website"
+msgstr "Spletna stran Giggle"
+
+#: ../src/giggle-window.c:1018
 msgid "_Find..."
 msgstr "_Najdi ..."
 
-#: ../src/giggle-window.c:977
+#: ../src/giggle-window.c:1019
 msgid "Find..."
 msgstr "Najdi ..."
 
-#: ../src/giggle-window.c:983
+#: ../src/giggle-window.c:1025
 msgid "Find Ne_xt"
 msgstr "Najdi na_slednje"
 
-#: ../src/giggle-window.c:984
+#: ../src/giggle-window.c:1026
 msgid "Find next match"
 msgstr "Najdi naslednje skladanje"
 
-#: ../src/giggle-window.c:987
+#: ../src/giggle-window.c:1029
 msgid "Find Pre_vious"
 msgstr "Najdi pre_dhodno"
 
-#: ../src/giggle-window.c:988
+#: ../src/giggle-window.c:1030
 msgid "Find previous match"
 msgstr "Najdi predhodni zadetek"
 
-#: ../src/giggle-window.c:994
+#: ../src/giggle-window.c:1036
 msgid "_Project"
 msgstr "P_rojekt"
 
-#: ../src/giggle-window.c:995
+#: ../src/giggle-window.c:1037
 msgid "_Edit"
 msgstr "_Uredi"
 
-#: ../src/giggle-window.c:996
+#: ../src/giggle-window.c:1038
 msgid "_Go"
 msgstr "Po_jdi"
 
-#: ../src/giggle-window.c:997
+#: ../src/giggle-window.c:1039
 msgid "_View"
 msgstr "_Pogled"
 
-#: ../src/giggle-window.c:998
+#: ../src/giggle-window.c:1040
 msgid "_Help"
 msgstr "Pomo_č"
 
-#: ../src/giggle-window.c:1001
+#: ../src/giggle-window.c:1043
 msgid "Open a git repository"
 msgstr "Odpri skladišče get"
 
-#: ../src/giggle-window.c:1006
+#: ../src/giggle-window.c:1048
 msgid "_Save patch"
 msgstr "_Shrani popravek"
 
-#: ../src/giggle-window.c:1006
+#: ../src/giggle-window.c:1048
 msgid "Save a patch"
 msgstr "Shranjevanje popravka"
 
-#: ../src/giggle-window.c:1010
+#: ../src/giggle-window.c:1052
 msgid "_Diff current changes"
 msgstr "_Primerjaj trenutne spremembe"
 
-#: ../src/giggle-window.c:1010
+#: ../src/giggle-window.c:1052
 msgid "Diff current changes"
 msgstr "Primerjava trenutnih sprememb"
 
-#: ../src/giggle-window.c:1015
+#: ../src/giggle-window.c:1057
 msgid "Quit the application"
 msgstr "Končaj program"
 
-#: ../src/giggle-window.c:1033
+#: ../src/giggle-window.c:1075
 msgid "Go backward in history"
 msgstr "Pojdi nazaj v zgodovini"
 
-#: ../src/giggle-window.c:1037
+#: ../src/giggle-window.c:1079
 msgid "Go forward in history"
 msgstr "Pojdi naprej v zgodovini"
 
-#: ../src/giggle-window.c:1041
-msgid "Visit _Homepage"
-msgstr "Obišči _domačo stran"
-
-#: ../src/giggle-window.c:1042
-msgid "Visit the homepage of Giggle"
-msgstr "Obisk domače strani Giggle-a"
-
-#: ../src/giggle-window.c:1045
+#: ../src/giggle-window.c:1083
 msgid "Report _Issue"
 msgstr "Poročaj _težavo"
 
-#: ../src/giggle-window.c:1046
+#: ../src/giggle-window.c:1084
 msgid "Report an issue you've found in Giggle"
 msgstr "Poročilo o napaki, ki ste jo našli v Giggle"
 
-#: ../src/giggle-window.c:1050
+#: ../src/giggle-window.c:1088
 msgid "About this application"
 msgstr "O programu"
 
-#: ../src/giggle-window.c:1057
+#: ../src/giggle-window.c:1095
 msgid "Show revision tree"
 msgstr "Pokaži drevo predelav"
 
-#: ../src/giggle-window.c:1064
+#: ../src/giggle-window.c:1102
 msgid "Show and edit project properties"
 msgstr "Pokaži in uredi lastnosti projekta"
 
-#: ../src/giggle-window.c:1068
+#: ../src/giggle-window.c:1106
 msgid "Refresh current view"
 msgstr "Osveži trenutni pogled"
 
-#: ../src/giggle-window.c:1399
+#: ../src/giggle-window.c:1436
 msgid "Search Inside _Patches"
 msgstr "Išči znotraj _popravkov"
 
-#: ../src/giggle-window.c:1671
+#: ../src/giggle-window.c:1708
 msgid "Save patch file"
 msgstr "Shrani datoteko popravka"
 
-#: ../src/giggle-window.c:1691
+#: ../src/giggle-window.c:1728
 #, c-format
 msgid ""
 "An error occurred when saving to file:\n"
@@ -715,31 +769,8 @@ msgstr ""
 "Med shranjevanjem v datoteko je prišlo do napake:\n"
 "%s"
 
-#: ../plugins/hello-world.xml.h:1
-msgid "Check if the plugin system works"
-msgstr "Preverjanje delovanja sistema vstavkov"
-
-#: ../plugins/hello-world.xml.h:2
-msgid "Demonstration of Giggle's Plugin System"
-msgstr "Prikaz Giggle sistema vstavkov"
-
-#: ../plugins/hello-world.xml.h:3
-msgid "Hello World"
-msgstr "Pozdravljen svet"
-
-#: ../plugins/personal-details.xml.h:1
-msgid "Edit personal details"
-msgstr "Uredi osebne podrobnosti"
-
-#: ../plugins/terminal-view.xml.h:1
-msgid "Create _Terminal"
-msgstr "Ustvari _terminal"
-
-#: ../plugins/terminal-view.xml.h:2
-msgid "Create new tab in git terminal"
-msgstr "Ustvarjanje novega zavihka v terminalu git"
-
-#: ../plugins/terminal-view.xml.h:3
-msgid "Terminal window"
-msgstr "Okno terminala"
+#~ msgid "Visit _Homepage"
+#~ msgstr "Obišči _domačo stran"
+#~ msgid "Visit the homepage of Giggle"
+#~ msgstr "Obisk domače strani Giggle-a"
 
