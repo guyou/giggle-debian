@@ -1,3 +1,10 @@
+giggle (0.6.1-1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * New upstream release (Closes: #646858)
+
+ -- Guilhem BONNEFILLE <bonnefil@hercules.olympe.fr>  Mon, 28 Nov 2011 23:15:20 +0100
+
 giggle (0.5-2) UNRELEASED; urgency=low
 
   * Added path that remove rpath option
