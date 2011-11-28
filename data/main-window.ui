@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <requires lib="gtk+" version="2.16"/>
-  <object class="GtkWindow" id="remote_editor">
-    <property name="visible">True</property>
-    <property name="title">window1</property>
-    <child>
+  <!-- interface-requires gtk+ 3.0 -->
       <object class="GtkBox" id="remote_vbox">
         <property name="visible">True</property>
+        <property name="can_focus">False</property>
         <property name="orientation">vertical</property>
         <property name="spacing">12</property>
         <child>
           <object class="GtkTable" id="table2">
             <property name="visible">True</property>
+            <property name="can_focus">False</property>
             <property name="n_rows">2</property>
             <property name="n_columns">2</property>
             <property name="column_spacing">6</property>
@@ -43,6 +41,7 @@
             <child>
               <object class="GtkLabel" id="label13">
                 <property name="visible">True</property>
+                <property name="can_focus">False</property>
                 <property name="xalign">0</property>
                 <property name="label" translatable="yes">URL:</property>
               </object>
@@ -56,6 +55,7 @@
             <child>
               <object class="GtkLabel" id="label11">
                 <property name="visible">True</property>
+                <property name="can_focus">False</property>
                 <property name="xalign">0</property>
                 <property name="label" translatable="yes">Name:</property>
               </object>
@@ -74,11 +74,13 @@
         <child>
           <object class="GtkBox" id="vbox10">
             <property name="visible">True</property>
+            <property name="can_focus">False</property>
             <property name="orientation">vertical</property>
             <property name="spacing">6</property>
             <child>
               <object class="GtkLabel" id="label12">
                 <property name="visible">True</property>
+                <property name="can_focus">False</property>
                 <property name="xalign">0</property>
                 <property name="label" translatable="yes">Branches</property>
                 <attributes>
@@ -94,6 +96,7 @@
             <child>
               <object class="GtkAlignment" id="alignment5">
                 <property name="visible">True</property>
+                <property name="can_focus">False</property>
                 <property name="left_padding">6</property>
                 <child>
                   <object class="GtkScrolledWindow" id="scrolledwindow7">
@@ -104,21 +107,27 @@
                       <object class="GtkTreeView" id="treeview_remote_branches">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="vexpand">True</property>
+                        <child internal-child="selection">
+                          <object class="GtkTreeSelection" id="treeview-selection1"/>
+                        </child>
                       </object>
                     </child>
                   </object>
                 </child>
               </object>
               <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
                 <property name="position">1</property>
               </packing>
             </child>
           </object>
           <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
             <property name="position">1</property>
           </packing>
         </child>
       </object>
-    </child>
-  </object>
 </interface>

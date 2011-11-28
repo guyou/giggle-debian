@@ -181,6 +181,7 @@ giggle_remote_editor_init (GiggleRemoteEditor *remote_editor)
 {
 	GiggleRemoteEditorPriv *priv;
 	GtkBuilder             *builder;
+	GtkWidget              *content_area, *remote_vbox;
 	GError                 *error = NULL;
 
 	priv = GET_PRIV (remote_editor);
@@ -191,9 +192,9 @@ giggle_remote_editor_init (GiggleRemoteEditor *remote_editor)
 		g_error_free (error);
 	}
 
-	gtk_box_pack_start (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (remote_editor))),
-	                    GTK_WIDGET (gtk_builder_get_object (builder, "remote_vbox")),
-	                    TRUE, TRUE, 0);
+	content_area = gtk_dialog_get_content_area (GTK_DIALOG (remote_editor));
+	remote_vbox = GTK_WIDGET (gtk_builder_get_object (builder, "remote_vbox"));
+	gtk_container_add (GTK_CONTAINER (content_area), remote_vbox);
 
 	priv->entry_name = GTK_WIDGET (gtk_builder_get_object (builder, "entry_remote_name"));
 	priv->entry_url = GTK_WIDGET (gtk_builder_get_object (builder, "entry_remote_url"));
@@ -202,7 +203,7 @@ giggle_remote_editor_init (GiggleRemoteEditor *remote_editor)
 
 	g_object_unref (builder);
 
-	gtk_window_set_default_size (GTK_WINDOW (remote_editor), 350, 200);
+	gtk_window_set_default_size (GTK_WINDOW (remote_editor), 400, 250);
 }
 
 static GObject *

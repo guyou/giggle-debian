@@ -147,6 +147,25 @@ git_commit_set_property (GObject      *object,
 	}
 }
 
+static gchar *
+git_commit_escape_arg (gchar *arg)
+{
+	GString *escaped;
+	gunichar c;
+
+	escaped = g_string_new ("");
+	while ((c = g_utf8_get_char (arg))) {
+		if (c == '\\' || c == '"') {
+			g_string_append_c (escaped, '\\');
+		}
+
+		g_string_append_unichar (escaped, c);
+		arg = g_utf8_next_char (arg);
+	}
+
+	return g_string_free (escaped, FALSE);
+}
+
 static gboolean
 git_commit_get_command_line (GiggleJob *job, gchar **command_line)
 {
@@ -160,7 +179,7 @@ git_commit_get_command_line (GiggleJob *job, gchar **command_line)
 	str = g_string_new (GIT_COMMAND " commit");
 
 	if (priv->log) {
-		escaped = g_strescape (priv->log, "\b\f\n\r\t\\");
+		escaped = git_commit_escape_arg (priv->log);
 	} else {
 		escaped = g_strdup ("");
 	}

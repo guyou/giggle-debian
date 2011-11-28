@@ -900,7 +900,7 @@ static void
 window_action_help_index_cb (GtkAction    *action,
                              GiggleWindow *window)
 {
-	window_visit_uri (window, "ghelp:" PACKAGE_TARNAME);
+	window_visit_uri (window, "help:" PACKAGE_TARNAME);
 }
 
 static void
