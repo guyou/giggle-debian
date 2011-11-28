@@ -7,3 +7,4 @@ Exec=giggle %F
 Icon=giggle
 StartupNotify=true
 Categories=Development;RevisionControl;
+MimeType=x-scheme-handler/git;

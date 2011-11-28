@@ -117,12 +117,13 @@ giggle_input_dialog_init (GiggleInputDialog *input_dialog)
 
 	priv = GET_PRIV (input_dialog);
 
-	box = gtk_vbox_new (6, FALSE);
+	box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
 	gtk_container_set_border_width (GTK_CONTAINER (box), 7);
 
 	priv->label = gtk_label_new (NULL);
 	g_object_ref_sink (priv->label);
-	gtk_misc_set_alignment (GTK_MISC (priv->label), 0., 0.);
+	gtk_widget_set_halign (priv->label, GTK_ALIGN_START);
+	gtk_widget_set_valign (priv->label, GTK_ALIGN_START);
 	gtk_box_pack_start (GTK_BOX (box), priv->label, FALSE, FALSE, 0);
 
 	priv->entry = gtk_entry_new ();
@@ -149,7 +150,6 @@ giggle_input_dialog_init (GiggleInputDialog *input_dialog)
 	gtk_window_set_resizable (GTK_WINDOW (input_dialog), FALSE);
 
 	gtk_dialog_set_default_response (GTK_DIALOG (input_dialog), GTK_RESPONSE_OK);
-	g_object_set (input_dialog, "has-separator", FALSE, NULL);
 }
 
 static void
@@ -192,10 +192,7 @@ input_dialog_get_property (GObject    *object,
 			   GValue     *value,
 			   GParamSpec *pspec)
 {
-	GiggleInputDialogPriv *priv;
 	const gchar           *text;
-
-	priv = GET_PRIV (object);
 
 	switch (param_id) {
 	case PROP_TEXT:
@@ -216,7 +213,7 @@ giggle_input_dialog_new (const gchar *text)
 			     NULL);
 }
 
-G_CONST_RETURN gchar*
+const gchar*
 giggle_input_dialog_get_text (GiggleInputDialog *input_dialog)
 {
 	GiggleInputDialogPriv *priv;

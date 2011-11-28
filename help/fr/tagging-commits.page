@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="tagging-commits" xml:lang="fr">
+  <info>
+    <link type="guide" xref="index#basics"/>
+    <desc>Étiquetage de <em>commits</em></desc>
+
+    <credit type="author">
+      <name>Łukasz Jernaś</name>
+      <email>deejay1@srem.org</email>
+    </credit>
+
+<!--
+    <copyright>
+      <year>2010</year>
+      <name>GNOME Documentation Project</name>
+    </copyright>
+-->
+    <license>
+      <p>Creative Commons Share Alike 3.0</p>
+    </license>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Denis Jasselette</mal:name>
+      <mal:email>denis.jasselette@yahoo.fr</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Gérard Baylard</mal:name>
+      <mal:email>gerard dot b at bbox dot fr</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Bruno Brouard</mal:name>
+      <mal:email>annoa.b@gmail.com</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Julien Hardelin</mal:name>
+      <mal:email>jhardlin@orangefr</mal:email>
+      <mal:years>2011</mal:years>
+    </mal:credit>
+  </info>
+
+  <title>Étiquetage de <em>commits</em></title>
+    <p>Pour créer une nouvelle étiquette, ouvrez le menu contextuel en cliquant avec le bouton droit sur un <em>commit</em> dans la fenêtre des révisions (peu importe que vous soyez en vue Parcourir ou Historique). Ensuite, choisissez <gui>Créer une étiquette</gui> et saisissez un nom dans la boîte de dialogue qui apparaît.</p>
+    <p>Notez qu'une nouvelle icône est apparue à côté de la révision sélectionnée ; c'est la nouvelle étiquette.</p>
+
+</page>

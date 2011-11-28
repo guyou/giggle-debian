@@ -1,23 +1,23 @@
 # Czech translation for giggle.
 # Copyright (C) 2010 giggle's COPYRIGHT HOLDER
 # This file is distributed under the same license as the giggle package.
-# Marek Černocký <marek@manet.cz>, 2010.
+#
+# Marek Černocký <marek@manet.cz>, 2010, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: giggle master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=giggle\n"
-"POT-Creation-Date: 2010-02-22 13:50+0000\n"
-"PO-Revision-Date: 2010-02-22 15:22+0100\n"
+"product=giggle&keywords=I18N+L10N\n"
+"POT-Creation-Date: 2011-07-19 19:49+0000\n"
+"PO-Revision-Date: 2011-07-21 08:15+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: cs\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Poedit-Language: Czech\n"
-"X-Poedit-SourceCharset: utf-8\n"
 
 #: ../data/giggle.desktop.in.h:1
 msgid "Giggle"
@@ -27,9 +27,9 @@ msgstr "Giggle"
 msgid "Git repository viewer"
 msgstr "Prohlížeč repozitářů git"
 
-#: ../data/main-window.ui.h:1
-msgid "<b>Branches</b>"
-msgstr "<b>Větve</b>"
+#: ../data/main-window.ui.h:1 ../src/giggle-remote-editor.c:174
+msgid "Branches"
+msgstr "Větve"
 
 #: ../data/main-window.ui.h:2
 msgid "Name:"
@@ -68,20 +68,20 @@ msgstr "Vyskytla se chyba při čtení nastavení"
 msgid "_Name:"
 msgstr "Jmé_no:"
 
-#: ../plugins/giggle-personal-details-window.c:256
+#: ../plugins/giggle-personal-details-window.c:258
 msgid "_Email:"
 msgstr "_E-mail:"
 
-#: ../plugins/giggle-personal-details-window.c:267
+#: ../plugins/giggle-personal-details-window.c:271
 #: ../plugins/personal-details.xml.h:2
 msgid "Personal Details"
 msgstr "Osobní údaje"
 
-#: ../plugins/giggle-view-terminal.c:109
+#: ../plugins/giggle-view-terminal.c:97
 msgid "_Terminal"
 msgstr "_Terminál"
 
-#: ../plugins/giggle-view-terminal.c:110
+#: ../plugins/giggle-view-terminal.c:98
 msgid "Issue git commands via terminal"
 msgstr "Zadat příkazy git přes terminál"
 
@@ -101,21 +101,21 @@ msgstr "Vytvořit novou kartu v terminálu git"
 msgid "Terminal window"
 msgstr "Terminálové okno"
 
-#: ../src/eggfindbar.c:307
+#: ../src/eggfindbar.c:305
 msgid "Find:"
 msgstr "Najít:"
 
-#: ../src/eggfindbar.c:316
-msgid "Find Previous"
-msgstr "Najít předchozí"
+#: ../src/eggfindbar.c:314 ../src/giggle-window.c:1035
+msgid "Find Pre_vious"
+msgstr "Najít pře_dchozí"
 
-#: ../src/eggfindbar.c:319
+#: ../src/eggfindbar.c:318
 msgid "Find previous occurrence of the search string"
 msgstr "Najít předchozí výskyt hledaného řetězce"
 
-#: ../src/eggfindbar.c:323
-msgid "Find Next"
-msgstr "Najít následující"
+#: ../src/eggfindbar.c:322 ../src/giggle-window.c:1031
+msgid "Find Ne_xt"
+msgstr "Najít ná_sledující"
 
 #: ../src/eggfindbar.c:326
 msgid "Find next occurrence of the search string"
@@ -123,7 +123,7 @@ msgstr "Najít následující výskyt hledaného řetězce"
 
 #: ../src/eggfindbar.c:333
 msgid "C_ase Sensitive"
-msgstr "Rozlišovat velikost písmen"
+msgstr "Rozlišov_at velikost písmen"
 
 #: ../src/eggfindbar.c:337
 msgid "Toggle case sensitive search"
@@ -151,11 +151,35 @@ msgstr ""
 "Vyskytla se chyba při získávání seznamu větví:\n"
 "%s"
 
-#: ../src/giggle-branches-view.c:147 ../src/giggle-revision-view.c:209
+#: ../src/giggle-branches-view.c:147 ../src/giggle-revision-view.c:216
 msgid "Branches:"
 msgstr "Větve:"
 
-#: ../src/giggle-diff-tree-view.c:142 ../src/giggle-file-list.c:1675
+#: ../src/giggle-clone-dialog.c:260
+msgid "Clone Repository"
+msgstr "Klonování repozitáře"
+
+#: ../src/giggle-clone-dialog.c:268
+msgid "Cl_one"
+msgstr "Kl_onovat"
+
+#: ../src/giggle-clone-dialog.c:292
+msgid "_Repository:"
+msgstr "_Repozitář:"
+
+#: ../src/giggle-clone-dialog.c:300
+msgid "_Local name:"
+msgstr "_Místní název:"
+
+#: ../src/giggle-clone-dialog.c:305
+msgid "Please select a location for the clone"
+msgstr "Vyberte prosím umístění pro kopii klonování"
+
+#: ../src/giggle-clone-dialog.c:308
+msgid "Clone in _folder:"
+msgstr "Klonovat ve _složce:"
+
+#: ../src/giggle-diff-tree-view.c:142 ../src/giggle-file-list.c:1664
 #, c-format
 msgid ""
 "An error occurred when retrieving different files list:\n"
@@ -168,7 +192,7 @@ msgstr ""
 msgid "Changed files"
 msgstr "Změněné soubory"
 
-#: ../src/giggle-diff-view.c:603
+#: ../src/giggle-diff-view.c:715
 #, c-format
 msgid ""
 "An error occurred when retrieving a diff:\n"
@@ -185,11 +209,11 @@ msgstr "Zařadit změny"
 msgid "Revision log:"
 msgstr "Popis revize:"
 
-#: ../src/giggle-diff-window.c:135
+#: ../src/giggle-diff-window.c:132
 msgid "Co_mmit"
 msgstr "Zap_sat"
 
-#: ../src/giggle-diff-window.c:208
+#: ../src/giggle-diff-window.c:205
 #, c-format
 msgid ""
 "An error occurred when committing:\n"
@@ -198,7 +222,7 @@ msgstr ""
 "Vyskytla se chyba při zařazování:\n"
 "%s"
 
-#: ../src/giggle-file-list.c:394
+#: ../src/giggle-file-list.c:390
 #, c-format
 msgid ""
 "An error occurred when retrieving the file list:\n"
@@ -207,7 +231,7 @@ msgstr ""
 "Vyskytla se chyba při získávání seznamu souborů:\n"
 "%s"
 
-#: ../src/giggle-file-list.c:767
+#: ../src/giggle-file-list.c:759
 #, c-format
 msgid ""
 "An error occurred when adding a file to git:\n"
@@ -216,41 +240,41 @@ msgstr ""
 "Vyskytla se chyba při přidávání souboru do git:\n"
 "%s"
 
-#: ../src/giggle-file-list.c:827 ../src/giggle-file-list.c:853
-#: ../src/giggle-rev-list-view.c:1184 ../src/giggle-rev-list-view.c:1215
+#: ../src/giggle-file-list.c:819 ../src/giggle-file-list.c:845
+#: ../src/giggle-rev-list-view.c:1194 ../src/giggle-rev-list-view.c:1225
 #, c-format
 msgid "Could not save the patch as %s"
 msgstr "Nelze uložit záplatu jako %s"
 
-#: ../src/giggle-file-list.c:832 ../src/giggle-file-list.c:858
-#: ../src/giggle-rev-list-view.c:1192 ../src/giggle-rev-list-view.c:1220
+#: ../src/giggle-file-list.c:824 ../src/giggle-file-list.c:850
+#: ../src/giggle-rev-list-view.c:1202 ../src/giggle-rev-list-view.c:1230
 msgid "No error was given"
 msgstr "Chybová zpráva nebyla uvedena"
 
-#: ../src/giggle-file-list.c:879 ../src/giggle-rev-list-view.c:1246
+#: ../src/giggle-file-list.c:871 ../src/giggle-rev-list-view.c:1256
 #, c-format
 msgid "Patch saved as %s"
 msgstr "Záplata uložena jako %s"
 
-#: ../src/giggle-file-list.c:883 ../src/giggle-rev-list-view.c:1250
+#: ../src/giggle-file-list.c:875 ../src/giggle-rev-list-view.c:1260
 #, c-format
 msgid "Created in project directory"
 msgstr "Vytvořena v adresáři projektu"
 
-#: ../src/giggle-file-list.c:886 ../src/giggle-rev-list-view.c:1253
+#: ../src/giggle-file-list.c:878 ../src/giggle-rev-list-view.c:1263
 #, c-format
 msgid "Created in directory %s"
 msgstr "Vytvořena v adresáři %s"
 
-#: ../src/giggle-file-list.c:921 ../src/giggle-rev-list-view.c:1306
+#: ../src/giggle-file-list.c:913 ../src/giggle-rev-list-view.c:1316
 msgid "Create Patch"
 msgstr "Vytvořit záplatu"
 
-#: ../src/giggle-file-list.c:1024
+#: ../src/giggle-file-list.c:1016
 msgid "Delete glob pattern?"
 msgstr "Smazat globální vzor?"
 
-#: ../src/giggle-file-list.c:1027
+#: ../src/giggle-file-list.c:1019
 msgid ""
 "The selected file was shadowed by a glob pattern that may be hiding other "
 "files, delete it?"
@@ -258,56 +282,68 @@ msgstr ""
 "Vybraný soubor byl zastíněn globálním vzorem, který může skrývat další "
 "soubory. Smazat jej?"
 
-#: ../src/giggle-file-list.c:1423
+#: ../src/giggle-file-list.c:1414
 msgid "_Commit Changes"
 msgstr "_Zařadit změny"
 
-#: ../src/giggle-file-list.c:1425
+#: ../src/giggle-file-list.c:1416
 msgid "A_dd file to repository"
 msgstr "Přid_at soubor do repozitáře"
 
-#: ../src/giggle-file-list.c:1426 ../src/giggle-rev-list-view.c:1660
+#: ../src/giggle-file-list.c:1417 ../src/giggle-rev-list-view.c:1664
 msgid "Create _Patch"
 msgstr "Vytvořit zá_platu"
 
-#: ../src/giggle-file-list.c:1427
+#: ../src/giggle-file-list.c:1418
 msgid "_Add to .gitignore"
 msgstr "Přid_at do .gitignore"
 
-#: ../src/giggle-file-list.c:1428
+#: ../src/giggle-file-list.c:1419
 msgid "_Remove from .gitignore"
 msgstr "Odeb_rat z .gitignore"
 
-#: ../src/giggle-file-list.c:1432
+#: ../src/giggle-file-list.c:1423
 msgid "_Show all files"
 msgstr "_Zobrazit všechny soubory"
 
-#: ../src/giggle-file-list.c:1471
+#: ../src/giggle-file-list.c:1462
 msgid "Project"
 msgstr "Projekt"
 
-#: ../src/giggle-main.c:36
+#: ../src/giggle-helpers.c:178
+msgid "An error ocurred:"
+msgstr "Vyskytla se chyba:"
+
+#: ../src/giggle-main.c:38
+msgid "Clone a repository"
+msgstr "Klonovat repozitář"
+
+#: ../src/giggle-main.c:39 ../src/giggle-remotes-view.c:276
+msgid "URL"
+msgstr "URL"
+
+#: ../src/giggle-main.c:42
 msgid "Show the diff window"
 msgstr "Zobrazit okno s rozdílovými údaji diff"
 
-#: ../src/giggle-main.c:40
+#: ../src/giggle-main.c:46
 msgid "Show version information and exit"
 msgstr "Zobrazit informace o verzi a skončit"
 
-#: ../src/giggle-main.c:43
+#: ../src/giggle-main.c:49
 msgid "[DIRECTORY]"
 msgstr "[ADRESÁŘ]"
 
-#: ../src/giggle-main.c:73
+#: ../src/giggle-main.c:79
 #, c-format
 msgid "Report errors (in English, with LC_ALL=C) to <%s>."
 msgstr "Chyby hlaste (v angličtině, s LC_ALL=C) na <%s>."
 
-#: ../src/giggle-main.c:74
+#: ../src/giggle-main.c:80
 msgid "Giggle is a graphical frontend for the git content tracker."
 msgstr "Giggle je grafické rozhraní ke správci obsahu git."
 
-#: ../src/giggle-main.c:82
+#: ../src/giggle-main.c:88
 #, c-format
 msgid "Try `%s --help' for more information.\n"
 msgstr "Pokud chcete více informací, zkuste „%s --help“.\n"
@@ -316,11 +352,7 @@ msgstr "Pokud chcete více informací, zkuste „%s --help“.\n"
 msgid "Click to add mapping..."
 msgstr "Kliknutím přidáte mapování…"
 
-#: ../src/giggle-remote-editor.c:174
-msgid "Branches"
-msgstr "Větve"
-
-#: ../src/giggle-remote-editor.c:375
+#: ../src/giggle-remote-editor.c:366
 msgid "Unnamed"
 msgstr "Nepojmenovaný"
 
@@ -332,192 +364,188 @@ msgstr "Ikona"
 msgid "Name"
 msgstr "Název"
 
-#: ../src/giggle-remotes-view.c:276
-msgid "URL"
-msgstr "URL"
-
 #: ../src/giggle-remotes-view.c:289
 msgid "Double click to add remote..."
 msgstr "Dvojitým kliknutím přidáte vzdálenou větev…"
 
-#: ../src/giggle-revision-view.c:201 ../src/giggle-view-file.c:1222
+#: ../src/giggle-revision-view.c:208 ../src/giggle-view-file.c:1218
 msgid "Author:"
 msgstr "Autor:"
 
-#: ../src/giggle-revision-view.c:205 ../src/giggle-view-file.c:1223
+#: ../src/giggle-revision-view.c:212 ../src/giggle-view-file.c:1219
 msgid "Committer:"
 msgstr "Zařadil:"
 
-#: ../src/giggle-revision-view.c:207 ../src/giggle-view-file.c:1224
+#: ../src/giggle-revision-view.c:214 ../src/giggle-view-file.c:1220
 msgid "Date:"
 msgstr "Datum:"
 
-#: ../src/giggle-revision-view.c:208 ../src/giggle-view-file.c:1225
+#: ../src/giggle-revision-view.c:215 ../src/giggle-view-file.c:1221
 msgid "SHA:"
 msgstr "SHA:"
 
-#: ../src/giggle-revision-view.c:227
+#: ../src/giggle-revision-view.c:234
 msgid "Change Log:"
 msgstr "Popis změny:"
 
-#: ../src/giggle-revision-view.c:510
+#: ../src/giggle-revision-view.c:522
 msgid "_Details"
 msgstr "Po_drobnosti"
 
-#: ../src/giggle-revision-view.c:511
+#: ../src/giggle-revision-view.c:523
 msgid "Display revision details"
 msgstr "Zobrazit podrobnosti o revizi"
 
-#: ../src/giggle-rev-list-view.c:353
+#: ../src/giggle-rev-list-view.c:349
 #, c-format
 msgid "Delete branch \"%s\""
 msgstr "Smazat větev „%s“"
 
-#: ../src/giggle-rev-list-view.c:356
+#: ../src/giggle-rev-list-view.c:352
 #, c-format
 msgid "Delete tag \"%s\""
-msgstr "Smazat jmenovku „%s“"
+msgstr "Smazat značku „%s“"
 
-#: ../src/giggle-rev-list-view.c:523
+#: ../src/giggle-rev-list-view.c:522
 msgid "Branch"
 msgstr "Větev"
 
-#: ../src/giggle-rev-list-view.c:526
+#: ../src/giggle-rev-list-view.c:525
 msgid "Tag"
-msgstr "Jmenovka"
+msgstr "Značka"
 
-#: ../src/giggle-rev-list-view.c:529
+#: ../src/giggle-rev-list-view.c:528
 msgid "Remote"
 msgstr "Vzdálená"
 
-#: ../src/giggle-rev-list-view.c:1074
+#: ../src/giggle-rev-list-view.c:1084
 msgid "Enter branch name:"
 msgstr "Zadejte název větve:"
 
-#: ../src/giggle-rev-list-view.c:1125
+#: ../src/giggle-rev-list-view.c:1135
 msgid "Enter tag name:"
-msgstr "Zadejte název jmenovky:"
+msgstr "Zadejte název značky:"
 
-#: ../src/giggle-rev-list-view.c:1186
+#: ../src/giggle-rev-list-view.c:1196
 #, c-format
 msgid "Could not create patch"
 msgstr "Nelze vytvořit záplatu"
 
-#: ../src/giggle-rev-list-view.c:1447
+#: ../src/giggle-rev-list-view.c:1454
 msgid "Uncommitted changes"
 msgstr "Nezařazené změny"
 
 #. TRANSLATORS: it's a strftime format string
-#: ../src/giggle-rev-list-view.c:1501
+#: ../src/giggle-rev-list-view.c:1508
 msgid "%I:%M %p"
 msgstr "%H:%M"
 
 #. TRANSLATORS: it's a strftime format string
-#: ../src/giggle-rev-list-view.c:1514
+#: ../src/giggle-rev-list-view.c:1521
 msgid "%a %I:%M %p"
 msgstr "%s %H:%M"
 
 #. TRANSLATORS: it's a strftime format string
-#: ../src/giggle-rev-list-view.c:1526
+#: ../src/giggle-rev-list-view.c:1533
 msgid "%b %d %I:%M %p"
 msgstr "%e. %b, %H:%M"
 
 #. it's older
 #. TRANSLATORS: it's a strftime format string
-#: ../src/giggle-rev-list-view.c:1531
+#: ../src/giggle-rev-list-view.c:1538
 msgid "%b %d %Y"
 msgstr "%e. %b %Y"
 
-#: ../src/giggle-rev-list-view.c:1657
+#: ../src/giggle-rev-list-view.c:1661
 msgid "Commit"
 msgstr "Zařadit"
 
-#: ../src/giggle-rev-list-view.c:1658
+#: ../src/giggle-rev-list-view.c:1662
 msgid "Create _Branch"
 msgstr "Vytvořit _větev"
 
-#: ../src/giggle-rev-list-view.c:1659
+#: ../src/giggle-rev-list-view.c:1663
 msgid "Create _Tag"
-msgstr "Vytvořit _jmenovku"
+msgstr "Vytvořit _značku"
 
-#: ../src/giggle-rev-list-view.c:1720
+#: ../src/giggle-rev-list-view.c:1729
 msgid "Graph"
 msgstr "Graf"
 
-#: ../src/giggle-rev-list-view.c:1738
+#: ../src/giggle-rev-list-view.c:1747
 msgid "Short Log"
 msgstr "Zkrácený popis"
 
-#: ../src/giggle-rev-list-view.c:1757
+#: ../src/giggle-rev-list-view.c:1766
 msgid "Author"
 msgstr "Autor"
 
-#: ../src/giggle-rev-list-view.c:1774
+#: ../src/giggle-rev-list-view.c:1783
 msgid "Date"
 msgstr "Datum"
 
-#: ../src/giggle-short-list.c:274
+#: ../src/giggle-short-list.c:303
 msgid "Details"
 msgstr "Podrobnosti"
 
-#: ../src/giggle-short-list.c:385
+#: ../src/giggle-short-list.c:419
 msgid "Show A_ll..."
 msgstr "Zobrazit _všechny…"
 
-#: ../src/giggle-view-diff.c:108
+#: ../src/giggle-view-diff.c:110
 #, c-format
 msgid "Change %d of %d"
 msgstr "Změna %d z %d"
 
-#: ../src/giggle-view-diff.c:185
+#: ../src/giggle-view-diff.c:187
 msgid "_Previous Change"
 msgstr "_Předchozí změna"
 
-#: ../src/giggle-view-diff.c:185
+#: ../src/giggle-view-diff.c:187
 msgid "View previous change"
 msgstr "Zobrazit předchozí změnu"
 
-#: ../src/giggle-view-diff.c:189
+#: ../src/giggle-view-diff.c:191
 msgid "_Next Change"
 msgstr "_Následující změna"
 
-#: ../src/giggle-view-diff.c:189
+#: ../src/giggle-view-diff.c:191
 msgid "View next change"
 msgstr "Zobrazit následující změnu"
 
-#: ../src/giggle-view-diff.c:349
+#: ../src/giggle-view-diff.c:353
 msgid "_Changes"
 msgstr "_Změny"
 
-#: ../src/giggle-view-diff.c:350
+#: ../src/giggle-view-diff.c:354
 msgid "Browse a revision's changes"
 msgstr "Procházet změny revizí"
 
-#: ../src/giggle-view-file.c:328
+#: ../src/giggle-view-file.c:327
 msgid "_Goto Line Number"
 msgstr "_Přejít na řádek"
 
-#: ../src/giggle-view-file.c:329
+#: ../src/giggle-view-file.c:328
 msgid "Highlight specified line number"
 msgstr "Zvýraznit zadaný řádek číslo"
 
-#: ../src/giggle-view-file.c:333
+#: ../src/giggle-view-file.c:332
 msgid "Show _Changes"
 msgstr "Zobrazit _změny"
 
-#: ../src/giggle-view-file.c:334
+#: ../src/giggle-view-file.c:333
 msgid "Show changes for selected revision"
 msgstr "Zobrazit změny pro vybranou revizi"
 
-#: ../src/giggle-view-file.c:338
+#: ../src/giggle-view-file.c:337
 msgid "Select _Revision"
 msgstr "Vybrat _revizi"
 
-#: ../src/giggle-view-file.c:339
+#: ../src/giggle-view-file.c:338
 msgid "Select revision of selected line"
 msgstr "Vybrat revizi vybrané řádky"
 
-#: ../src/giggle-view-file.c:904
+#: ../src/giggle-view-file.c:900
 #, c-format
 msgid ""
 "An error occurred when getting file ref:\n"
@@ -526,8 +554,8 @@ msgstr ""
 "Vyskytla se chyba při získávání odkazu souboru:\n"
 "%s"
 
-#: ../src/giggle-view-file.c:975 ../src/giggle-view-history.c:256
-#: ../src/giggle-view-history.c:351
+#: ../src/giggle-view-file.c:971 ../src/giggle-view-history.c:250
+#: ../src/giggle-view-history.c:345
 #, c-format
 msgid ""
 "An error occurred when getting the revisions list:\n"
@@ -536,108 +564,81 @@ msgstr ""
 "Vyskytla se chyba při získávání seznamu revizí:\n"
 "%s"
 
-#: ../src/giggle-view-file.c:1135
+#: ../src/giggle-view-file.c:1131
 msgid "Line Number:"
 msgstr "Číslo řádku:"
 
-#: ../src/giggle-view-file.c:1571
+#: ../src/giggle-view-file.c:1569
 msgid "_Browse"
 msgstr "_Procházet"
 
-#: ../src/giggle-view-file.c:1572
+#: ../src/giggle-view-file.c:1570
 msgid "Browse the files of this project"
 msgstr "Procházet soubory tohoto projektu"
 
-#: ../src/giggle-view-history.c:845
+#: ../src/giggle-view-history.c:848
 msgid "_History"
 msgstr "_Historie"
 
-#: ../src/giggle-view-history.c:846
+#: ../src/giggle-view-history.c:849
 msgid "Browse the history of this project"
 msgstr "Procházet historii tohoto projektu"
 
-#: ../src/giggle-view-summary.c:117
-msgid "<b>Description:</b>"
-msgstr "<b>Popis:</b>"
+#: ../src/giggle-view-summary.c:119
+msgid "Description:"
+msgstr "Popis:"
 
-#: ../src/giggle-view-summary.c:163
-msgid "<b>Remotes:</b>"
-msgstr "<b>Vzdálené:</b>"
+#: ../src/giggle-view-summary.c:169
+msgid "Remotes:"
+msgstr "Vzdálené:"
 
-#: ../src/giggle-view-summary.c:189
+#: ../src/giggle-view-summary.c:197
 msgid "_Summary"
 msgstr "_Souhrn"
 
-#: ../src/giggle-view-summary.c:192
+#: ../src/giggle-view-summary.c:200
 msgid "_Branches"
 msgstr "Vě_tve"
 
-#: ../src/giggle-view-summary.c:195
+#: ../src/giggle-view-summary.c:203
 msgid "_Authors"
 msgstr "_Autoři"
 
-#: ../src/giggle-view-summary.c:198
+#: ../src/giggle-view-summary.c:206
 msgid "_Remotes"
 msgstr "Vz_dálené"
 
-#: ../src/giggle-window.c:562 ../src/giggle-window.c:960
-msgid "About Giggle"
-msgstr "O aplikaci Giggle"
-
-#: ../src/giggle-window.c:587
+#: ../src/giggle-window.c:563
 #, c-format
 msgid "The directory '%s' does not look like a git repository."
 msgstr "Nevypadá to, že by adresář „%s“ byl repozitář git."
 
-#: ../src/giggle-window.c:670
+#: ../src/giggle-window.c:646
 msgid "Select git repository"
 msgstr "Vybrat repozitář git"
 
-#: ../src/giggle-window.c:706
+#: ../src/giggle-window.c:699
 #, c-format
 msgid "Properties of %s"
 msgstr "Vlastnosti projektu %s"
 
-#: ../src/giggle-window.c:920
+#: ../src/giggle-window.c:929
+msgid "Contributors:"
+msgstr "Přispěli:"
+
+#: ../src/giggle-window.c:942
+#| msgid ""
+#| "Copyright © 2007 - 2008 Imendio AB\n"
+#| "Copyright © 2008 - 2009 Mathias Hasselmann\n"
+#| "Copyright © 2009 - 2010 The Giggle authors"
 msgid ""
 "Copyright © 2007 - 2008 Imendio AB\n"
-"Copyright © 2008 - 2010 Mathias Hasselmann"
+"Copyright © 2008 - 2009 Mathias Hasselmann\n"
+"Copyright © 2009 - 2011 The Giggle authors"
 msgstr ""
-"Copyright © 2007 - 2008 Imendio AB\n"
-"Copyright © 2008 - 2010 Mathias Hasselmann"
-
-#: ../src/giggle-window.c:924
-msgid ""
-"This program is free software; you can redistribute it and/or modify it "
-"under the terms of the GNU General Public License as published by the Free "
-"Software Foundation; either version 2 of the License, or (at your option) "
-"any later version."
-msgstr ""
-"Tento program je svobodný software; můžete jej šířit a modifikovat podle "
-"ustanovení GNU General Public License, vydávané Free Software Foundation; a "
-"to buď verze 2 této licence anebo (podle vlastního uvážení) kterékoliv "
-"pozdější verze."
-
-#: ../src/giggle-window.c:928
-msgid ""
-"This program is distributed in the hope that it will be useful, but WITHOUT "
-"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
-"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
-"more details."
-msgstr ""
-"Tento program je rozšiřován v naději, že bude užitečný, avšak BEZ JAKÉKOLIV "
-"ZÁRUKY; neposkytují se ani odvozené záruky PRODEJNOSTI anebo VHODNOSTI PRO "
-"URČITÝ ÚČEL. Další podrobnosti hledejte v GNU General Public License."
-
-#: ../src/giggle-window.c:932
-msgid ""
-"You should have received a copy of the GNU General Public License along with "
-"this program; if not, write to the Free Software Foundation, Inc., 51 "
-"Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA"
-msgstr ""
-"Kopii GNU General Public License jste měl(a) obdržet spolu s tímto "
-"programem; pokud se tak nestalo, napište o ni Free Software Foundation, "
-"Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA"
+"Copyright © 2007 – 2008 Imendio AB\n"
+"Copyright © 2008 – 2009 Mathias Hasselmann\n"
+"Copyright © 2009 – 2011 Autoři projektu Giggle"
 
 #. Translators: This is a special message that shouldn't be translated
 #. * literally. It is used in the about box to give credits to
@@ -647,127 +648,151 @@ msgstr ""
 #. * this translation; in that case, please write each of them on a separate
 #. * line seperated by newlines (\n).
 #.
-#: ../src/giggle-window.c:950
+#: ../src/giggle-window.c:954
 msgid "translator-credits"
 msgstr "Marek Černocký <marek@manet.cz>"
 
-#: ../src/giggle-window.c:955
+#: ../src/giggle-window.c:959
 msgid "A graphical frontend for Git"
 msgstr "Grafické rozhraní ke správci obsahu git"
 
 #: ../src/giggle-window.c:964
+msgid "About Giggle"
+msgstr "O aplikaci Giggle"
+
+#: ../src/giggle-window.c:968
 msgid "Giggle Website"
 msgstr "Webové stránky Giggle"
 
-#: ../src/giggle-window.c:1018
+#: ../src/giggle-window.c:1024
 msgid "_Find..."
 msgstr "_Najít…"
 
-#: ../src/giggle-window.c:1019
+#: ../src/giggle-window.c:1025
 msgid "Find..."
 msgstr "Najít…"
 
-#: ../src/giggle-window.c:1025
-msgid "Find Ne_xt"
-msgstr "Najít ná_sledující"
-
-#: ../src/giggle-window.c:1026
+#: ../src/giggle-window.c:1032
 msgid "Find next match"
 msgstr "Najít následující shodu"
 
-#: ../src/giggle-window.c:1029
-msgid "Find Pre_vious"
-msgstr "Najít pře_dchozí"
-
-#: ../src/giggle-window.c:1030
+#: ../src/giggle-window.c:1036
 msgid "Find previous match"
 msgstr "Najít předchozí shodu"
 
-#: ../src/giggle-window.c:1036
+#: ../src/giggle-window.c:1042
 msgid "_Project"
 msgstr "_Projekt"
 
-#: ../src/giggle-window.c:1037
+#: ../src/giggle-window.c:1043
 msgid "_Edit"
 msgstr "_Upravit"
 
-#: ../src/giggle-window.c:1038
+#: ../src/giggle-window.c:1044
 msgid "_Go"
 msgstr "Pře_jít"
 
-#: ../src/giggle-window.c:1039
+#: ../src/giggle-window.c:1045
 msgid "_View"
 msgstr "_Zobrazit"
 
-#: ../src/giggle-window.c:1040
+#: ../src/giggle-window.c:1046
 msgid "_Help"
 msgstr "_Nápověda"
 
-#: ../src/giggle-window.c:1043
+#: ../src/giggle-window.c:1049
 msgid "Open a git repository"
 msgstr "Otevřít repozitář git"
 
-#: ../src/giggle-window.c:1048
+#: ../src/giggle-window.c:1053
+msgid "Clone _location"
+msgstr "Klonovat _umístění"
+
+#: ../src/giggle-window.c:1053
+msgid "Clone a location"
+msgstr "Klonovat umístění"
+
+#: ../src/giggle-window.c:1058
 msgid "_Save patch"
 msgstr "_Uložit záplatu"
 
-#: ../src/giggle-window.c:1048
+#: ../src/giggle-window.c:1058
 msgid "Save a patch"
 msgstr "Uložit záplatu"
 
-#: ../src/giggle-window.c:1052
+#: ../src/giggle-window.c:1062
 msgid "_Diff current changes"
 msgstr "Vygenerovat _diff současných změn"
 
-#: ../src/giggle-window.c:1052
+#: ../src/giggle-window.c:1062
 msgid "Diff current changes"
 msgstr "Vygenerovat rozdílové údaje ve formátu diff pro současné změny"
 
-#: ../src/giggle-window.c:1057
+#: ../src/giggle-window.c:1067
 msgid "Quit the application"
 msgstr "Ukončit aplikaci"
 
-#: ../src/giggle-window.c:1075
+#: ../src/giggle-window.c:1085
 msgid "Go backward in history"
 msgstr "Přejít v historii zpět"
 
-#: ../src/giggle-window.c:1079
+#: ../src/giggle-window.c:1089
 msgid "Go forward in history"
 msgstr "Přejít v historii vpřed"
 
-#: ../src/giggle-window.c:1083
+#: ../src/giggle-window.c:1093
+msgid "_Contents"
+msgstr "_Obsah"
+
+#: ../src/giggle-window.c:1094
+msgid "Show user guide for Giggle"
+msgstr "Zobrazit uživatelskou příručku pro aplikaci Giggle"
+
+#: ../src/giggle-window.c:1097
 msgid "Report _Issue"
 msgstr "Nahlásit _problém"
 
-#: ../src/giggle-window.c:1084
+#: ../src/giggle-window.c:1098
 msgid "Report an issue you've found in Giggle"
 msgstr "Nahlásit problém, který jste našli v aplikaci Giggle"
 
-#: ../src/giggle-window.c:1088
+#: ../src/giggle-window.c:1102
 msgid "About this application"
 msgstr "O této aplikaci"
 
-#: ../src/giggle-window.c:1095
+#: ../src/giggle-window.c:1109
 msgid "Show revision tree"
 msgstr "Zobrazit strom revizí"
 
-#: ../src/giggle-window.c:1102
+#: ../src/giggle-window.c:1116
+msgid "Show diffs by chunk"
+msgstr "Zobrazit rozdíly podle bloku"
+
+#: ../src/giggle-window.c:1119
+msgid "Show diffs by file"
+msgstr "Zobrazit rozdíly podle souboru"
+
+#: ../src/giggle-window.c:1122
+msgid "Show all diffs"
+msgstr "Zobrazit všechny rozdíly"
+
+#: ../src/giggle-window.c:1128
 msgid "Show and edit project properties"
 msgstr "Zobrazit a upravit vlastnosti projektu"
 
-#: ../src/giggle-window.c:1106
+#: ../src/giggle-window.c:1132
 msgid "Refresh current view"
 msgstr "Obnovit současné zobrazení"
 
-#: ../src/giggle-window.c:1436
+#: ../src/giggle-window.c:1472
 msgid "Search Inside _Patches"
 msgstr "Hledat uvnitř zá_plat"
 
-#: ../src/giggle-window.c:1708
+#: ../src/giggle-window.c:1741
 msgid "Save patch file"
 msgstr "Uložit soubor se záplatou"
 
-#: ../src/giggle-window.c:1728
+#: ../src/giggle-window.c:1761
 #, c-format
 msgid ""
 "An error occurred when saving to file:\n"
@@ -775,4 +800,3 @@ msgid ""
 msgstr ""
 "Vyskytla se chyba při ukládání do souboru:\n"
 "%s"
-

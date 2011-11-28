@@ -53,6 +53,9 @@ GtkWidget *        giggle_view_history_new               (GtkUIManager      *man
 void               giggle_view_history_set_graph_visible (GiggleViewHistory *view,
 							  gboolean           visible);
 
+void               giggle_view_history_set_view_style (GiggleViewHistory *view,
+						       gint           style);
+
 gboolean           giggle_view_history_select            (GiggleViewHistory *view,
 							  GiggleRevision    *revision);
 

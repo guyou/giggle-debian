@@ -49,8 +49,8 @@ struct _GiggleRefClass {
 GType                   giggle_ref_get_type          (void) G_GNUC_CONST;
 GiggleRef             * giggle_ref_new               (const gchar *name);
 
-G_CONST_RETURN gchar  * giggle_ref_get_name          (GiggleRef   *ref);
-G_CONST_RETURN gchar  * giggle_ref_get_sha           (GiggleRef   *ref);
+const gchar *           giggle_ref_get_name          (GiggleRef   *ref);
+const gchar *           giggle_ref_get_sha           (GiggleRef   *ref);
 
 
 G_END_DECLS

@@ -194,10 +194,6 @@ rev_list_view_set_property (GObject      *object,
 			    const GValue *value,
 			    GParamSpec   *pspec)
 {
-	GiggleRevListViewPriv *priv;
-
-	priv = GET_PRIV (object);
-
 	switch (param_id) {
 	case PROP_GRAPH_VISIBLE:
 		giggle_rev_list_view_set_graph_visible (GIGGLE_REV_LIST_VIEW (object),
@@ -464,6 +460,7 @@ revision_tooltip_add_refs (GString  *str,
 			   GList    *list)
 {
 	GiggleRef *ref;
+	gchar     *escaped_string;
 
 	if (str->len > 0 && list)
 		g_string_append (str, "\n");
@@ -472,8 +469,10 @@ revision_tooltip_add_refs (GString  *str,
 		ref = list->data;
 		list = list->next;
 
+		escaped_string = g_markup_escape_text (giggle_ref_get_name (ref), -1);
 		g_string_append_printf (str, "<b>%s</b>: %s", label,
-					giggle_ref_get_name (ref));
+		                        escaped_string);
+		g_free (escaped_string);
 
 		if (list)
 			g_string_append (str, "\n");
@@ -557,10 +556,11 @@ finish:
 }
 
 static void
-rev_list_view_style_set (GtkWidget *widget,
-			 GtkStyle  *prev_style)
+rev_list_view_style_updated (GtkWidget *widget)
 {
 	GiggleRevListViewPriv *priv = GET_PRIV (widget);
+	GtkStyleContext       *context;
+	GtkBorder              border;
 	GtkIconTheme          *icon_theme;
 	GdkScreen             *screen;
 	int                    w, h;
@@ -587,11 +587,13 @@ rev_list_view_style_set (GtkWidget *widget,
 	priv->emblem_tag    = gtk_icon_theme_load_icon (icon_theme, "giggle-tag",
 							priv->emblem_size, 0, NULL);
 
+	context = gtk_widget_get_style_context (widget);
+	gtk_style_context_get_border (context, 0, &border);
 	gtk_tree_view_column_set_min_width (priv->emblem_column,
 					    priv->emblem_size * 3 +
-					    2 * gtk_widget_get_style (widget)->xthickness);
+					    border.left + border.right);
 
-	GTK_WIDGET_CLASS (giggle_rev_list_view_parent_class)->style_set (widget, prev_style);
+	GTK_WIDGET_CLASS (giggle_rev_list_view_parent_class)->style_updated (widget);
 }
 
 static void
@@ -631,7 +633,7 @@ giggle_rev_list_view_class_init (GiggleRevListViewClass *class)
 
 	widget_class->button_press_event  = rev_list_view_button_press;
 	widget_class->query_tooltip       = rev_list_view_query_tooltip;
-	widget_class->style_set           = rev_list_view_style_set;
+	widget_class->style_updated       = rev_list_view_style_updated;
 
 	tree_view_class->row_activated    = rev_list_view_row_activated;
 
@@ -871,7 +873,8 @@ static gboolean
 rev_list_view_search (GiggleSearchable      *searchable,
 		      const gchar           *search_term,
 		      GiggleSearchDirection  direction,
-		      gboolean               full_search)
+		      gboolean               full_search,
+		      gboolean               case_insensitive)
 {
 	GiggleRevListViewPriv *priv;
 	GtkTreeModel           *model;
@@ -1244,15 +1247,15 @@ rev_list_view_create_patch_callback (GiggleGit *git,
 	/* We didn't show any of the errors above, report the success */
 	if (show_success) {
 		gchar *dirname;
-		gchar *basename;
+		gchar *the_basename;
 		gchar *secondary_str;
 
 		dirname = g_path_get_dirname (filename);
-		basename = g_path_get_basename (filename);
-		
-		primary_str = g_strdup_printf (_("Patch saved as %s"), basename);
-		g_free (basename);
-		
+		the_basename = g_path_get_basename (filename);
+
+		primary_str = g_strdup_printf (_("Patch saved as %s"), the_basename);
+		g_free (the_basename);
+
 		if (!dirname || strcmp (dirname, ".") == 0) {
 			secondary_str = g_strdup_printf (_("Created in project directory"));
 			g_free (dirname);
@@ -1435,11 +1438,8 @@ rev_list_view_cell_data_log_func (GtkCellLayout   *layout,
 				  GtkTreeIter     *iter,
 				  gpointer         data)
 {
-	GiggleRevListViewPriv *priv;
 	GiggleRevision         *revision;
 	gchar                  *markup;
-
-	priv = GET_PRIV (data);
 
 	gtk_tree_model_get (model, iter,
 			    COL_OBJECT, &revision,
@@ -1545,13 +1545,10 @@ rev_list_view_cell_data_date_func (GtkCellLayout   *layout,
 				   GtkTreeIter     *iter,
 				   gpointer         data)
 {
-	GiggleRevListViewPriv *priv;
 	GiggleRevision         *revision;
 	gchar                  *format;
 	gchar                   buf[256];
 	const struct tm        *tm;
-
-	priv = GET_PRIV (data);
 
 	gtk_tree_model_get (model, iter,
 			    COL_OBJECT, &revision,
@@ -1681,6 +1678,8 @@ giggle_rev_list_view_init (GiggleRevListView *rev_list_view)
 		"</ui>";
 
 	GiggleRevListViewPriv *priv;
+	GtkStyleContext       *context;
+	const PangoFontDescription *font_desc;
 	GtkTreeSelection      *selection;
 	GtkActionGroup        *action_group;
 	GtkTreeViewColumn     *column;
@@ -1688,7 +1687,10 @@ giggle_rev_list_view_init (GiggleRevListView *rev_list_view)
 	GtkCellRenderer       *cell;
 
 	priv = GET_PRIV (rev_list_view);
-	font_size = pango_font_description_get_size (gtk_widget_get_style (GTK_WIDGET (rev_list_view))->font_desc);
+
+	context = gtk_widget_get_style_context (GTK_WIDGET (rev_list_view));
+	font_desc = gtk_style_context_get_font (context, gtk_widget_get_state_flags (GTK_WIDGET (rev_list_view)));
+	font_size = pango_font_description_get_size (font_desc);
 	font_size = PANGO_PIXELS (font_size);
 
 	/* yes, it's a hack */

@@ -1,0 +1,853 @@
+# Catalan translation of giggle.
+# Copyright (C) 2007 Imendio AB
+# This file is distributed under the same license as the giggle package.
+# Gil Forcada <gilforcada@guifi.net>, 2007-2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: giggle 0.2\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=giggle\n"
+"POT-Creation-Date: 2010-08-08 09:04+0000\n"
+"PO-Revision-Date: 2009-12-07 11:22+0100\n"
+"Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
+"Language-Team: Catalan <tradgnome@softcatala.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../data/giggle.desktop.in.h:1
+msgid "Giggle"
+msgstr "Giggle"
+
+#: ../data/giggle.desktop.in.h:2
+msgid "Git repository viewer"
+msgstr "Visualitzador de dipòsits Git"
+
+#: ../data/giggle.schemas.in.h:1
+msgid "Run Giggle in a terminal?"
+msgstr ""
+
+#: ../data/giggle.schemas.in.h:2
+msgid "Set it at TRUE if you want it activated"
+msgstr ""
+
+#: ../data/giggle.schemas.in.h:3
+msgid "The handler for \"git://\" URLs"
+msgstr ""
+
+#: ../data/main-window.ui.h:1 ../src/giggle-remote-editor.c:174
+msgid "Branches"
+msgstr "Branques"
+
+#: ../data/main-window.ui.h:2
+msgid "Name:"
+msgstr "Nom:"
+
+#: ../data/main-window.ui.h:3
+msgid "URL:"
+msgstr "URL:"
+
+#: ../libgiggle/giggle-plugin.c:528
+#, c-format
+msgid "Cannot find plugin description in '%s'"
+msgstr "No s'ha pogut trobar la descripció del connector a «%s»"
+
+#: ../plugins/hello-world.xml.h:1
+msgid "Check if the plugin system works"
+msgstr "Comprova si els sistema de connectors funciona"
+
+#: ../plugins/hello-world.xml.h:2
+msgid "Demonstration of Giggle's Plugin System"
+msgstr "Demostració del sistema de connectors del Giggle"
+
+#: ../plugins/hello-world.xml.h:3
+msgid "Hello World"
+msgstr "Hola món"
+
+#: ../plugins/giggle-personal-details-window.c:82
+msgid "There was an error setting the configuration"
+msgstr "S'ha produït un error en establir la configuració"
+
+#: ../plugins/giggle-personal-details-window.c:184
+msgid "There was an error getting the configuration"
+msgstr "S'ha produït un error en obtindre la configuració"
+
+#: ../plugins/giggle-personal-details-window.c:248
+msgid "_Name:"
+msgstr "_Nom:"
+
+#: ../plugins/giggle-personal-details-window.c:256
+msgid "_Email:"
+msgstr "_Correu electrònic:"
+
+#: ../plugins/giggle-personal-details-window.c:267
+#: ../plugins/personal-details.xml.h:2
+msgid "Personal Details"
+msgstr "Detalls personals"
+
+#: ../plugins/giggle-view-terminal.c:109
+msgid "_Terminal"
+msgstr "_Terminal"
+
+#: ../plugins/giggle-view-terminal.c:110
+msgid "Issue git commands via terminal"
+msgstr "Executa ordes de git a través d'un terminal"
+
+#: ../plugins/personal-details.xml.h:1
+msgid "Edit personal details"
+msgstr "Edita les dades personals"
+
+#: ../plugins/terminal-view.xml.h:1
+msgid "Create _Terminal"
+msgstr "Crea un _terminal"
+
+#: ../plugins/terminal-view.xml.h:2
+msgid "Create new tab in git terminal"
+msgstr "Crea una pestanya nova en el terminal del git"
+
+#: ../plugins/terminal-view.xml.h:3
+msgid "Terminal window"
+msgstr "Finestra del terminal"
+
+#: ../src/eggfindbar.c:307
+msgid "Find:"
+msgstr "Cerca:"
+
+#: ../src/eggfindbar.c:316
+msgid "Find Previous"
+msgstr "Cerca l'anterior"
+
+#: ../src/eggfindbar.c:319
+msgid "Find previous occurrence of the search string"
+msgstr "Cerca la coincidència anterior del text de cerca"
+
+#: ../src/eggfindbar.c:323
+msgid "Find Next"
+msgstr "Cerca el següent"
+
+#: ../src/eggfindbar.c:326
+msgid "Find next occurrence of the search string"
+msgstr "Cerca la coincidència següent del text de cerca"
+
+#: ../src/eggfindbar.c:333
+msgid "C_ase Sensitive"
+msgstr "_Distingeix entre minúscules i majúscules"
+
+#: ../src/eggfindbar.c:337
+msgid "Toggle case sensitive search"
+msgstr "Commuta la distinció de minúscules i majúscules"
+
+# c-format
+#: ../src/giggle-authors-view.c:80
+#, c-format
+msgid ""
+"An error occurred when retrieving authors list:\n"
+"%s"
+msgstr ""
+"S'ha produït un error en recuperar la llista d'autors:\n"
+"%s"
+
+#: ../src/giggle-authors-view.c:146
+msgid "Authors:"
+msgstr "Autors:"
+
+# c-format
+#: ../src/giggle-branches-view.c:81
+#, c-format
+msgid ""
+"An error occurred when retrieving branches list:\n"
+"%s"
+msgstr ""
+"S'ha produït un error en recuperar la llista de branques:\n"
+"%s"
+
+#: ../src/giggle-branches-view.c:147 ../src/giggle-revision-view.c:209
+msgid "Branches:"
+msgstr "Branques:"
+
+#: ../src/giggle-clone-dialog.c:238
+#, fuzzy
+msgid "Clone Repository"
+msgstr "Seleccioneu el dipòsit GIT"
+
+#: ../src/giggle-clone-dialog.c:247
+msgid "Cl_one"
+msgstr ""
+
+#: ../src/giggle-clone-dialog.c:271
+#, fuzzy
+msgid "_Repository:"
+msgstr "_Repositori:"
+
+#: ../src/giggle-clone-dialog.c:279
+msgid "_Local name:"
+msgstr ""
+
+#: ../src/giggle-clone-dialog.c:284
+msgid "Please select a location for the clone"
+msgstr ""
+
+#: ../src/giggle-clone-dialog.c:287
+msgid "Clone in _folder:"
+msgstr ""
+
+# c-format
+#: ../src/giggle-diff-tree-view.c:142 ../src/giggle-file-list.c:1671
+#, c-format
+msgid ""
+"An error occurred when retrieving different files list:\n"
+"%s"
+msgstr ""
+"S'ha produït un error en recuperar la llista de fitxers diferents:\n"
+"%s"
+
+#: ../src/giggle-diff-tree-view.c:209
+msgid "Changed files"
+msgstr "Fitxers que han canviat"
+
+#: ../src/giggle-diff-view.c:603
+#, c-format
+msgid ""
+"An error occurred when retrieving a diff:\n"
+"%s"
+msgstr ""
+"S'ha produït un error en recuperar un diff:\n"
+"%s"
+
+#: ../src/giggle-diff-window.c:82
+msgid "Commit changes"
+msgstr "Confirma els canvis"
+
+#: ../src/giggle-diff-window.c:104
+msgid "Revision log:"
+msgstr "Registre de revisions:"
+
+#: ../src/giggle-diff-window.c:135
+msgid "Co_mmit"
+msgstr "Confir_ma els canvis"
+
+# c-format
+#: ../src/giggle-diff-window.c:208
+#, c-format
+msgid ""
+"An error occurred when committing:\n"
+"%s"
+msgstr ""
+"S'ha produït un error en confirmar:\n"
+"%s"
+
+# c-format
+#: ../src/giggle-file-list.c:394
+#, c-format
+msgid ""
+"An error occurred when retrieving the file list:\n"
+"%s"
+msgstr ""
+"S'ha produït un error en recuperar la llista de fitxers:\n"
+"%s"
+
+# c-format
+#: ../src/giggle-file-list.c:763
+#, c-format
+msgid ""
+"An error occurred when adding a file to git:\n"
+"%s"
+msgstr ""
+"S'ha produït un error en afegir un fitxer al git:\n"
+"%s"
+
+#: ../src/giggle-file-list.c:823 ../src/giggle-file-list.c:849
+#: ../src/giggle-rev-list-view.c:1194 ../src/giggle-rev-list-view.c:1225
+#, c-format
+msgid "Could not save the patch as %s"
+msgstr "No s'ha pogut alçar el pedaç com a %s"
+
+#: ../src/giggle-file-list.c:828 ../src/giggle-file-list.c:854
+#: ../src/giggle-rev-list-view.c:1202 ../src/giggle-rev-list-view.c:1230
+msgid "No error was given"
+msgstr "No ha retornat cap error"
+
+#: ../src/giggle-file-list.c:875 ../src/giggle-rev-list-view.c:1256
+#, c-format
+msgid "Patch saved as %s"
+msgstr "S'ha alçat el pedaç com a %s"
+
+#: ../src/giggle-file-list.c:879 ../src/giggle-rev-list-view.c:1260
+#, c-format
+msgid "Created in project directory"
+msgstr "S'ha creat en el directori del projecte"
+
+#: ../src/giggle-file-list.c:882 ../src/giggle-rev-list-view.c:1263
+#, c-format
+msgid "Created in directory %s"
+msgstr "S'ha creat en el directori %s"
+
+#: ../src/giggle-file-list.c:917 ../src/giggle-rev-list-view.c:1316
+msgid "Create Patch"
+msgstr "Crea un pedaç"
+
+#: ../src/giggle-file-list.c:1020
+msgid "Delete glob pattern?"
+msgstr "Voleu suprimir el patró glob?"
+
+#: ../src/giggle-file-list.c:1023
+msgid ""
+"The selected file was shadowed by a glob pattern that may be hiding other "
+"files, delete it?"
+msgstr ""
+"El fitxer seleccionat estava ocultat per un patró glob que potser està "
+"ocultant altres fitxers, voleu suprimir el patró?"
+
+#: ../src/giggle-file-list.c:1419
+msgid "_Commit Changes"
+msgstr "_Confirma els canvis"
+
+#: ../src/giggle-file-list.c:1421
+msgid "A_dd file to repository"
+msgstr "_Afig un fitxer al dipòsit"
+
+#: ../src/giggle-file-list.c:1422 ../src/giggle-rev-list-view.c:1670
+msgid "Create _Patch"
+msgstr "Crea un _pedaç"
+
+#: ../src/giggle-file-list.c:1423
+msgid "_Add to .gitignore"
+msgstr "_Afig-lo al .gitignore"
+
+#: ../src/giggle-file-list.c:1424
+msgid "_Remove from .gitignore"
+msgstr "_Suprimeix-lo del .gitignore"
+
+#: ../src/giggle-file-list.c:1428
+msgid "_Show all files"
+msgstr "_Mostra tots els fitxers"
+
+#: ../src/giggle-file-list.c:1467
+msgid "Project"
+msgstr "Projecte"
+
+# c-format
+#: ../src/giggle-helpers.c:178
+#, fuzzy
+msgid "An error ocurred:"
+msgstr ""
+"S'ha produït un error en confirmar:\n"
+"%s"
+
+#: ../src/giggle-main.c:38
+#, fuzzy
+msgid "Clone a repository"
+msgstr "Seleccioneu el dipòsit GIT"
+
+#: ../src/giggle-main.c:39 ../src/giggle-remotes-view.c:276
+msgid "URL"
+msgstr "URL"
+
+#: ../src/giggle-main.c:42
+msgid "Show the diff window"
+msgstr "Mostra la finestra de les diferències"
+
+#: ../src/giggle-main.c:46
+msgid "Show version information and exit"
+msgstr "Mostra la informació de la versió i ix"
+
+#: ../src/giggle-main.c:49
+msgid "[DIRECTORY]"
+msgstr "[DIRECTORI]"
+
+#: ../src/giggle-main.c:79
+#, c-format
+msgid "Report errors (in English, with LC_ALL=C) to <%s>."
+msgstr "Informa d'errades (en anglés, amb LC_ALL=C) a «%s»"
+
+#: ../src/giggle-main.c:80
+msgid "Giggle is a graphical frontend for the git content tracker."
+msgstr "El Giggle és una interfície gràfica per al gestor de continguts git."
+
+#: ../src/giggle-main.c:88
+#, c-format
+msgid "Try `%s --help' for more information.\n"
+msgstr "Per a més informació proveu «%s --help».\n"
+
+#: ../src/giggle-remote-editor.c:148
+msgid "Click to add mapping..."
+msgstr "Feu un clic per a afegir un mapejat..."
+
+#: ../src/giggle-remote-editor.c:375
+msgid "Unnamed"
+msgstr "Sense nom"
+
+#: ../src/giggle-remotes-view.c:265
+msgid "Icon"
+msgstr "Icona"
+
+#: ../src/giggle-remotes-view.c:271
+msgid "Name"
+msgstr "Nom"
+
+#: ../src/giggle-remotes-view.c:289
+msgid "Double click to add remote..."
+msgstr "Feu un doble-clic per a afegir un dipòsit remot..."
+
+#: ../src/giggle-revision-view.c:201 ../src/giggle-view-file.c:1223
+msgid "Author:"
+msgstr "Autor:"
+
+#: ../src/giggle-revision-view.c:205 ../src/giggle-view-file.c:1224
+msgid "Committer:"
+msgstr "Confirmador:"
+
+#: ../src/giggle-revision-view.c:207 ../src/giggle-view-file.c:1225
+msgid "Date:"
+msgstr "Data:"
+
+#: ../src/giggle-revision-view.c:208 ../src/giggle-view-file.c:1226
+msgid "SHA:"
+msgstr "SHA:"
+
+#: ../src/giggle-revision-view.c:227
+msgid "Change Log:"
+msgstr "Registre de canvis:"
+
+#: ../src/giggle-revision-view.c:514
+msgid "_Details"
+msgstr "_Detalls"
+
+#: ../src/giggle-revision-view.c:515
+msgid "Display revision details"
+msgstr "Mostra les dades de la revisió"
+
+#: ../src/giggle-rev-list-view.c:353
+#, c-format
+msgid "Delete branch \"%s\""
+msgstr "Suprimeix la branca «%s»"
+
+#: ../src/giggle-rev-list-view.c:356
+#, c-format
+msgid "Delete tag \"%s\""
+msgstr "Suprimeix l'etiqueta «%s»"
+
+#: ../src/giggle-rev-list-view.c:526
+msgid "Branch"
+msgstr "Branca"
+
+#: ../src/giggle-rev-list-view.c:529
+msgid "Tag"
+msgstr "Etiqueta"
+
+#: ../src/giggle-rev-list-view.c:532
+msgid "Remote"
+msgstr "Remot"
+
+#: ../src/giggle-rev-list-view.c:1084
+msgid "Enter branch name:"
+msgstr "Entreu el nom de la branca:"
+
+#: ../src/giggle-rev-list-view.c:1135
+msgid "Enter tag name:"
+msgstr "Entreu el nom de l'etiqueta:"
+
+#: ../src/giggle-rev-list-view.c:1196
+#, c-format
+msgid "Could not create patch"
+msgstr "No s'ha pogut crear el pedaç"
+
+#: ../src/giggle-rev-list-view.c:1457
+msgid "Uncommitted changes"
+msgstr "Canvis sense confirmar"
+
+#. TRANSLATORS: it's a strftime format string
+#: ../src/giggle-rev-list-view.c:1511
+msgid "%I:%M %p"
+msgstr "%H:%M"
+
+#. TRANSLATORS: it's a strftime format string
+#: ../src/giggle-rev-list-view.c:1524
+msgid "%a %I:%M %p"
+msgstr "%a %H:%M"
+
+#. TRANSLATORS: it's a strftime format string
+#: ../src/giggle-rev-list-view.c:1536
+msgid "%b %d %I:%M %p"
+msgstr "%b %d %H:%M"
+
+#. it's older
+#. TRANSLATORS: it's a strftime format string
+#: ../src/giggle-rev-list-view.c:1541
+msgid "%b %d %Y"
+msgstr "%b %d %Y"
+
+#: ../src/giggle-rev-list-view.c:1667
+msgid "Commit"
+msgstr "Confirma"
+
+#: ../src/giggle-rev-list-view.c:1668
+msgid "Create _Branch"
+msgstr "Crea una _branca"
+
+#: ../src/giggle-rev-list-view.c:1669
+msgid "Create _Tag"
+msgstr "Crea una e_tiqueta"
+
+#: ../src/giggle-rev-list-view.c:1730
+msgid "Graph"
+msgstr "Gràfic"
+
+#: ../src/giggle-rev-list-view.c:1748
+msgid "Short Log"
+msgstr "Registre de canvis curt"
+
+#: ../src/giggle-rev-list-view.c:1767
+msgid "Author"
+msgstr "Autor"
+
+#: ../src/giggle-rev-list-view.c:1784
+msgid "Date"
+msgstr "Data"
+
+#: ../src/giggle-short-list.c:274
+msgid "Details"
+msgstr "Detalls"
+
+#: ../src/giggle-short-list.c:385
+msgid "Show A_ll..."
+msgstr "Mostra-ho _tot..."
+
+#: ../src/giggle-view-diff.c:108
+#, c-format
+msgid "Change %d of %d"
+msgstr "Canvi %d de %d"
+
+#: ../src/giggle-view-diff.c:185
+msgid "_Previous Change"
+msgstr "Canvi _anterior"
+
+#: ../src/giggle-view-diff.c:185
+msgid "View previous change"
+msgstr "Visualitza el canvi anterior"
+
+#: ../src/giggle-view-diff.c:189
+msgid "_Next Change"
+msgstr "Canvi _posterior"
+
+#: ../src/giggle-view-diff.c:189
+msgid "View next change"
+msgstr "Visualitza els canvis posteriors"
+
+#: ../src/giggle-view-diff.c:351
+msgid "_Changes"
+msgstr "_Canvis"
+
+#: ../src/giggle-view-diff.c:352
+msgid "Browse a revision's changes"
+msgstr "Navega pels canvis de la revisió"
+
+#: ../src/giggle-view-file.c:328
+msgid "_Goto Line Number"
+msgstr "_Vés al número de línia"
+
+#: ../src/giggle-view-file.c:329
+msgid "Highlight specified line number"
+msgstr "Ressalta la línia indicada"
+
+#: ../src/giggle-view-file.c:333
+msgid "Show _Changes"
+msgstr "Mostra els _canvis"
+
+#: ../src/giggle-view-file.c:334
+msgid "Show changes for selected revision"
+msgstr "Mostra els canvis de la revisió seleccionada"
+
+#: ../src/giggle-view-file.c:338
+msgid "Select _Revision"
+msgstr "Seleccioneu la _revisió"
+
+#: ../src/giggle-view-file.c:339
+msgid "Select revision of selected line"
+msgstr "Seleccioneu la revisió de la línia seleccionada"
+
+#: ../src/giggle-view-file.c:905
+#, c-format
+msgid ""
+"An error occurred when getting file ref:\n"
+"%s"
+msgstr ""
+"S'ha produït un error en obtindre la referència del fitxer:\n"
+"%s"
+
+# c-format
+#: ../src/giggle-view-file.c:976 ../src/giggle-view-history.c:254
+#: ../src/giggle-view-history.c:349
+#, c-format
+msgid ""
+"An error occurred when getting the revisions list:\n"
+"%s"
+msgstr ""
+"S'ha produït un error a l'obtindre la llista de revisions:\n"
+"%s"
+
+#: ../src/giggle-view-file.c:1136
+msgid "Line Number:"
+msgstr "Número de línia:"
+
+#: ../src/giggle-view-file.c:1572
+msgid "_Browse"
+msgstr "_Navega"
+
+#: ../src/giggle-view-file.c:1573
+msgid "Browse the files of this project"
+msgstr "Navega pels fitxers d'este projecte"
+
+#: ../src/giggle-view-history.c:854
+msgid "_History"
+msgstr "_Historial"
+
+#: ../src/giggle-view-history.c:855
+msgid "Browse the history of this project"
+msgstr "Navega per l'historial del projecte"
+
+#: ../src/giggle-view-summary.c:118
+#, fuzzy
+msgid "Description:"
+msgstr "<b>Descripció:</b>"
+
+#: ../src/giggle-view-summary.c:167
+#, fuzzy
+msgid "Remotes:"
+msgstr "_Remots:"
+
+#: ../src/giggle-view-summary.c:195
+msgid "_Summary"
+msgstr "_Resum"
+
+#: ../src/giggle-view-summary.c:198
+msgid "_Branches"
+msgstr "_Branques"
+
+#: ../src/giggle-view-summary.c:201
+msgid "_Authors"
+msgstr "_Autors:"
+
+#: ../src/giggle-view-summary.c:204
+msgid "_Remotes"
+msgstr "_Remots:"
+
+#: ../src/giggle-window.c:580 ../src/giggle-window.c:1010
+msgid "About Giggle"
+msgstr "Quant al Giggle"
+
+#: ../src/giggle-window.c:605
+#, c-format
+msgid "The directory '%s' does not look like a git repository."
+msgstr "El directori «%s» no pareix que siga un dipòsit GIT."
+
+#: ../src/giggle-window.c:688
+msgid "Select git repository"
+msgstr "Seleccioneu el dipòsit GIT"
+
+#: ../src/giggle-window.c:741
+#, c-format
+msgid "Properties of %s"
+msgstr "Propietats de %s"
+
+#: ../src/giggle-window.c:956
+msgid "Contributors:"
+msgstr ""
+
+#: ../src/giggle-window.c:969
+msgid ""
+"Copyright © 2007 - 2008 Imendio AB\n"
+"Copyright © 2008 - 2009 Mathias Hasselmann\n"
+"Copyright © 2009 - 2010 The Giggle authors"
+msgstr ""
+
+#: ../src/giggle-window.c:974
+msgid ""
+"This program is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version."
+msgstr ""
+
+#: ../src/giggle-window.c:978
+msgid ""
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details."
+msgstr ""
+
+#: ../src/giggle-window.c:982
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"this program; if not, write to the Free Software Foundation, Inc., 51 "
+"Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA"
+msgstr ""
+
+#. Translators: This is a special message that shouldn't be translated
+#. * literally. It is used in the about box to give credits to
+#. * the translators.
+#. * Thus, you should translate it to your name and email address.
+#. * You should also include other translators who have contributed to
+#. * this translation; in that case, please write each of them on a separate
+#. * line seperated by newlines (\n).
+#.
+#: ../src/giggle-window.c:1000
+msgid "translator-credits"
+msgstr "Gil Forcada <gilforcada@guifi.net>"
+
+#: ../src/giggle-window.c:1005
+#, fuzzy
+msgid "A graphical frontend for Git"
+msgstr "Una interfície gràfica pel gestor de continguts git."
+
+#: ../src/giggle-window.c:1014
+#, fuzzy
+msgid "Giggle Website"
+msgstr "Giggle"
+
+#: ../src/giggle-window.c:1072
+msgid "_Find..."
+msgstr "_Cerca..."
+
+#: ../src/giggle-window.c:1073
+msgid "Find..."
+msgstr "Cerca..."
+
+#: ../src/giggle-window.c:1079
+msgid "Find Ne_xt"
+msgstr "Cerca el _següent"
+
+#: ../src/giggle-window.c:1080
+msgid "Find next match"
+msgstr "Cerca la següent coincidència"
+
+#: ../src/giggle-window.c:1083
+msgid "Find Pre_vious"
+msgstr "Cerca l'_anterior"
+
+#: ../src/giggle-window.c:1084
+msgid "Find previous match"
+msgstr "Cerca la coincidència anterior"
+
+#: ../src/giggle-window.c:1090
+msgid "_Project"
+msgstr "_Projecte"
+
+#: ../src/giggle-window.c:1091
+msgid "_Edit"
+msgstr "_Edita"
+
+#: ../src/giggle-window.c:1092
+msgid "_Go"
+msgstr "_Vés a"
+
+#: ../src/giggle-window.c:1093
+msgid "_View"
+msgstr "_Visualitza"
+
+#: ../src/giggle-window.c:1094
+msgid "_Help"
+msgstr "A_juda"
+
+#: ../src/giggle-window.c:1097
+msgid "Open a git repository"
+msgstr "Obri un dipòsit GIT"
+
+#: ../src/giggle-window.c:1101
+msgid "Clone _location"
+msgstr ""
+
+#: ../src/giggle-window.c:1101
+msgid "Clone a location"
+msgstr ""
+
+#: ../src/giggle-window.c:1106
+msgid "_Save patch"
+msgstr "Al_ça el pedaç"
+
+#: ../src/giggle-window.c:1106
+msgid "Save a patch"
+msgstr "Alça un pedaç"
+
+#: ../src/giggle-window.c:1110
+msgid "_Diff current changes"
+msgstr "_Crea el diff dels canvis locals"
+
+#: ../src/giggle-window.c:1110
+msgid "Diff current changes"
+msgstr "Crea el diff dels canvis locals"
+
+#: ../src/giggle-window.c:1115
+msgid "Quit the application"
+msgstr "Ix de l'aplicació"
+
+#: ../src/giggle-window.c:1133
+msgid "Go backward in history"
+msgstr "Vés arrere en l'historial"
+
+#: ../src/giggle-window.c:1137
+msgid "Go forward in history"
+msgstr "Vés avant amb l'historial"
+
+#: ../src/giggle-window.c:1141
+msgid "_Contents"
+msgstr ""
+
+#: ../src/giggle-window.c:1142
+msgid "Show user guide for Giggle"
+msgstr ""
+
+#: ../src/giggle-window.c:1145
+msgid "Report _Issue"
+msgstr "_Informeu d'una errada"
+
+#: ../src/giggle-window.c:1146
+msgid "Report an issue you've found in Giggle"
+msgstr "Informa d'errades que hagueu trobat en el Giggle"
+
+#: ../src/giggle-window.c:1150
+msgid "About this application"
+msgstr "Quant a esta aplicació"
+
+#: ../src/giggle-window.c:1157
+msgid "Show revision tree"
+msgstr "Mostra l'arbre de revisions"
+
+#: ../src/giggle-window.c:1164
+msgid "Show and edit project properties"
+msgstr "Mostra i edita les propietats del projecte"
+
+#: ../src/giggle-window.c:1168
+msgid "Refresh current view"
+msgstr "Actualitza la visualització actual"
+
+#: ../src/giggle-window.c:1500
+msgid "Search Inside _Patches"
+msgstr "Cerca dins dels _pedaços"
+
+#: ../src/giggle-window.c:1769
+msgid "Save patch file"
+msgstr "Alça el fitxer de pedaç"
+
+#: ../src/giggle-window.c:1789
+#, c-format
+msgid ""
+"An error occurred when saving to file:\n"
+"%s"
+msgstr ""
+"S'ha produït un error en alçar al fitxer:\n"
+"%s"
+
+#~ msgid "<b>Branches</b>"
+#~ msgstr "<b>Branques</b>"
+
+#~ msgid "<b>Remotes:</b>"
+#~ msgstr "<b>Remots:</b>"
+
+#~ msgid "Visit _Homepage"
+#~ msgstr "Visiteu el _lloc web"
+
+#~ msgid "Visit the homepage of Giggle"
+#~ msgstr "Visiteu el lloc web del Giggle"

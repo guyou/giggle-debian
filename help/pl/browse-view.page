@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="browse-view" xml:lang="pl">
+  <info>
+    <link type="guide" xref="index#views"/>
+    <desc>Przeglądanie zawartości repozytorium</desc>
+
+    <credit type="author">
+      <name>Łukasz Jernaś</name>
+      <email>deejay1@srem.org</email>
+    </credit>
+
+<!--
+    <copyright>
+      <year>2010</year>
+      <name>GNOME Documentation Project</name>
+    </copyright>
+-->
+    <license>
+      <p>Creative Commons Uznanie autorstwa-Na tych samych warunkach 3.0 Polska</p>
+    </license>
+  </info>
+
+  <title>Widok przeglądania</title>
+   <section id="overview">
+   <title>Przegląd</title>
+   <figure>
+    <desc>Program giggle w widoku przeglądania</desc>
+    <media type="image" src="figures/giggle-browse_view_sections.png" alt="Giggle main window in Browse mode"/>
+   </figure>
+    <p>Widok przeglądania programu <app>Giggle</app> składa się z trzech głównych części:</p>
+     <list type="numbered">
+       <item>
+        <p>Drzewo projektów</p>
+        <p>Wyświetla wszystkie pliki zawarte w bieżącym repozytorium.</p>
+       </item>
+       <item>
+        <p>Podglądu pliku</p>
+        <p>Wyświetla zawartość bieżącego pliku, zgodnie z wybraną rewizją.</p>
+       </item>
+       <item>
+        <p>Wykres historii</p>
+        <p>Wyświetla graficzne odwzorowanie historii bieżącego pliku.</p>
+       </item>
+     </list>
+    </section>
+    <section id="project_tree">
+    <title>Informacje o drzewie projektu</title>
+    <p>Drzewo projektu jest ważną częścią interfejsu użytkownika programu Giggle, oczywiście tylko jeśli jest się tego w pełni świadomym. Domyślnie nie wyświetla ono plików ukrytych za pomocą pliku <file>.gitignore</file>. Zachowanie to można zmienić, klikając prawym przyciskiem myszy i wybierając z menu podręcznego polecenie <gui>Wyświetlaj wszystkie pliki</gui>. Pliki, które nie są częścią repozytorium są wyświetlane jako wyszarzone.</p>
+    <p>Drzewo projektów pozwala na:</p>
+     <list>
+       <item>
+        <p>Dodawanie plików do repozytorium.</p>
+        <p>Przy użyciu polecenia menu podręcznego <gui>Dodaj plik do repozytorium</gui>.</p>
+       </item>
+       <item>
+        <p>Dodawanie i usuwanie plików z <file>.gitignore</file>.</p>
+        <p>Przy użyciu poleceń menu podręcznego <gui>Dodaj do pliku .gitignore</gui> i <gui>Usuń z pliku .gitignore</gui>.</p>
+       </item>
+       <item>
+         <p>Edytowanie plików</p>
+       </item>
+       <item>
+         <p>Zatwierdzanie</p>
+       </item>
+       <item>
+         <p>Tworzenie poprawek</p>
+         <p>Jeśli istnieją niezatwierdzone zmiany w liście plików, można utworzyć łatkę korzystając z polecenia menu podręcznego <gui>Utwórz łatkę</gui>.</p>
+       </item>
+     </list>
+
+    </section>
+<!-- FIXME: I don't really know what's going on in this section so somebody please fill in
+    <section id="file_preview">
+      <title>About the File preview</title>
+    </section>
+-->
+
+</page>

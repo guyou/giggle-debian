@@ -29,6 +29,7 @@ enum {
 	PROP_0,
 	PROP_NAME,
 	PROP_EMAIL,
+	PROP_COMMITS,
 	PROP_STRING,
 };
 
@@ -36,6 +37,7 @@ typedef struct {
 	char* string;
 	char* email;
 	char* name;
+	guint commits;
 } GiggleAuthorPriv;
 
 G_DEFINE_TYPE (GiggleAuthor, giggle_author, G_TYPE_OBJECT)
@@ -63,6 +65,16 @@ author_set_email (GiggleAuthorPriv *priv,
 }
 
 static void
+author_set_commits (GiggleAuthorPriv *priv,
+		    guint             commits)
+{
+	g_free (priv->string);
+
+	priv->commits = commits;
+	priv->string = NULL;
+}
+
+static void
 author_set_string (GiggleAuthorPriv *priv,
 		   const char       *string)
 {
@@ -77,6 +89,9 @@ author_set_string (GiggleAuthorPriv *priv,
 	priv->string = g_strdup (string);
 	priv->email = priv->name = NULL;
 
+       /* if needed, change regex to deal with commit numbers (example below):
+	* regex = g_regex_new ("^\\s*([^<]+?)?\\s*(?:<([^>]+)>)?\\s*(?:\\((\\d+)\\))?\\s*$");
+	* can be accessed via: g_match_info_fetch (match, 3) */
 	if (G_UNLIKELY (!regex)) {
 		regex = g_regex_new ("^\\s*([^<]+?)?\\s*(?:<([^>]+)>)?\\s*$",
 				     G_REGEX_OPTIMIZE | G_REGEX_RAW, 0, &error);
@@ -113,6 +128,10 @@ author_set_property (GObject      *object,
 		author_set_email (priv, g_value_get_string (value));
 		break;
 
+	case PROP_COMMITS:
+		author_set_commits (priv, g_value_get_uint (value));
+		break;
+
 	case PROP_STRING:
 		author_set_string (priv, g_value_get_string (value));
 		break;
@@ -138,6 +157,10 @@ author_get_property (GObject    *object,
 
 	case PROP_EMAIL:
 		g_value_set_string (value, priv->email);
+		break;
+
+	case PROP_COMMITS:
+		g_value_set_uint (value, priv->commits);
 		break;
 
 	case PROP_STRING:
@@ -182,6 +205,11 @@ giggle_author_class_init (GiggleAuthorClass *class)
 					 g_param_spec_string ("email", "Email",
 							      "The email address of the author",
 							      NULL, G_PARAM_READWRITE));
+
+	g_object_class_install_property (object_class, PROP_COMMITS,
+					 g_param_spec_uint ("commits", "Commits",
+							    "The number of commits made by the author",
+							    0, G_MAXUINT, 0, G_PARAM_READWRITE));
 
 	g_object_class_install_property (object_class, PROP_STRING,
 					 g_param_spec_string ("string", "Author String",
@@ -246,6 +274,21 @@ giggle_author_get_name (GiggleAuthor* author)
 }
 
 void
+giggle_author_set_commits (GiggleAuthor *author,
+			   guint         commits)
+{
+	g_return_if_fail (GIGGLE_IS_AUTHOR (author));
+	g_object_set (author, "commits", commits, NULL);
+}
+
+guint
+giggle_author_get_commits (GiggleAuthor *author)
+{
+	g_return_val_if_fail (GIGGLE_IS_AUTHOR (author), 0);
+	return GET_PRIV (author)->commits;
+}
+
+void
 giggle_author_set_string (GiggleAuthor *author,
 			  char const   *string)
 {
@@ -271,9 +314,13 @@ giggle_author_get_string (GiggleAuthor* author)
 			if (string->len > 0)
 				g_string_append_c (string, ' ');
 
-			g_string_append_c (string, '<');
-			g_string_append   (string, priv->email);
-			g_string_append_c (string, '>');
+			g_string_append_printf (string, "<%s> ", priv->email);
+		}
+		if (priv->commits) {
+			if (string->len > 0)
+				g_string_append_c (string, ' ');
+
+			g_string_append_printf (string, "(%d)", priv->commits);
 		}
 
 		if (string->len) {

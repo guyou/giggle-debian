@@ -85,7 +85,7 @@ view_diff_update_status (GiggleViewDiff *view)
 	GiggleViewDiffPriv *priv;
 	GtkAction	   *action;
 	char		   *format, *markup;
-	int		    current_hunk, n_hunks;
+	int		    current_hunk, n_hunks, current_style;
 	char		   *current_file;
 
 	priv = GET_PRIV (view);
@@ -93,7 +93,9 @@ view_diff_update_status (GiggleViewDiff *view)
 	g_object_get (priv->diff_view,
 		      "current-file", &current_file,
 		      "current-hunk", &current_hunk,
-		      "n-hunks", &n_hunks, NULL);
+		      "n-hunks", &n_hunks,
+		      "current-style", &current_style,
+		      NULL);
 
 	if (priv->action_group) {
 		gtk_action_group_set_sensitive (priv->action_group, n_hunks > 0);
@@ -330,7 +332,7 @@ giggle_view_diff_init (GiggleViewDiff *view)
 				  G_CALLBACK (view_diff_update_status), view);
 
 	/* hpaned */
-	priv->hpaned = gtk_hpaned_new ();
+	priv->hpaned = gtk_paned_new (GTK_ORIENTATION_HORIZONTAL);
 	gtk_paned_pack1 (GTK_PANED (priv->hpaned), scrolled_window, FALSE, FALSE);
 	gtk_paned_pack2 (GTK_PANED (priv->hpaned), priv->diff_view_sw, TRUE, FALSE);
 	gtk_widget_show_all (priv->hpaned);
@@ -377,3 +379,17 @@ giggle_view_diff_set_revisions (GiggleViewDiff *view,
 	view_diff_update_status (view);
 }
 
+void
+giggle_view_diff_set_style (GiggleViewDiff *view,
+			    gint style)
+{
+	GiggleViewDiffPriv *priv;
+
+	g_return_if_fail (GIGGLE_IS_VIEW_DIFF (view));
+
+	priv = GET_PRIV (view);
+
+	giggle_diff_view_set_current_style (GIGGLE_DIFF_VIEW (priv->diff_view), style);
+
+	view_diff_update_status (view);
+}

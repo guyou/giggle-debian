@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="opening-repositories" xml:lang="sl">
+  <info>
+    <link type="guide" xref="index#basics"/>
+    <desc>Odpiranje skladišč GIT</desc>
+
+    <credit type="author">
+      <name>Łukasz Jernaś</name>
+      <email>deejay1@srem.org</email>
+    </credit>
+
+<!--
+    <copyright>
+      <year>2010</year>
+      <name>GNOME Documentation Project</name>
+    </copyright>
+-->
+    <license>
+      <p>Creative Commons - deljenje pod enakimi pogoji 3.0</p>
+    </license>
+  </info>
+
+  <title>Odpiranje skladišča</title>
+  <p>Skladišče gir lahko odprete na naslednje načine:</p>
+    <steps>
+      <item>
+        <p>uporabite <guiseq><gui>Projekt</gui><gui>Odpri</gui></guiseq> in izberite mapo s svojim skladiščem,</p>
+      </item>
+      <item>
+        <p>poženite <cmd>giggle</cmd> v mapi vašega projekta,</p>
+      </item>
+      <item>
+        <p>poženite <cmd>giggle</cmd> s potjo skladišča navedeno kot argument.</p>
+      </item>
+   </steps>
+</page>

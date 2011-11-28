@@ -178,10 +178,6 @@ file_list_set_property (GObject      *object,
 			const GValue *value,
 			GParamSpec   *pspec)
 {
-	GiggleFileListPriv *priv;
-
-	priv = GET_PRIV (object);
-
 	switch (param_id) {
 	case PROP_SHOW_ALL:
 		giggle_file_list_set_show_all (GIGGLE_FILE_LIST (object),
@@ -711,19 +707,15 @@ file_list_edit_file (GtkAction      *action,
 {
 	GiggleFileListPriv *priv = GET_PRIV (list);
 	GList              *selection, *l;
-	GAppLaunchContext  *context;
 	const char         *dir;
 
-	context = giggle_create_app_launch_context (GTK_WIDGET (list));
 	selection = giggle_file_list_get_selection (list);
 	dir = giggle_git_get_directory (priv->git);
 
 	for (l = selection; l; l = g_list_delete_link (l, l)) {
-		giggle_open_file_with_context (context, dir, l->data);
+		giggle_open_file (GTK_WIDGET (list), dir, l->data);
 		g_free (l->data);
 	}
-
-	g_object_unref (context);
 }
 
 static void
@@ -870,15 +862,15 @@ file_list_create_patch_callback (GiggleGit *git,
 			g_error_free (save_error);
 		} else {
 			gchar *dirname;
-			gchar *basename;
+			gchar *the_basename;
 			gchar *secondary_str;
 			
 			dirname = g_path_get_dirname (filename);
-			basename = g_path_get_basename (filename);
+			the_basename = g_path_get_basename (filename);
 
-			primary_str = g_strdup_printf (_("Patch saved as %s"), basename);
-			g_free (basename);
-			
+			primary_str = g_strdup_printf (_("Patch saved as %s"), the_basename);
+			g_free (the_basename);
+
 			if (!dirname || strcmp (dirname, ".") == 0) {
 				secondary_str = g_strdup_printf (_("Created in project directory"));
 				g_free (dirname);
@@ -1058,10 +1050,8 @@ static void
 file_list_toggle_show_all (GtkAction      *action,
 			   GiggleFileList *list)
 {
-	GiggleFileListPriv *priv;
 	gboolean active;
 
-	priv = GET_PRIV (list);
 	active = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action));
 	giggle_file_list_set_show_all (list, active);
 }
@@ -1081,12 +1071,10 @@ file_list_populate_dir (GiggleFileList *list,
 			const gchar    *rel_path,
 			GtkTreeIter    *parent_iter)
 {
-	GiggleFileListPriv *priv;
 	GDir               *dir;
 	const gchar        *name;
 	gchar              *full_path, *path;
 
-	priv = GET_PRIV (list);
 	full_path = g_build_filename (directory, rel_path, NULL);
 	dir = g_dir_open (full_path, 0, NULL);
 
@@ -1272,23 +1260,24 @@ file_list_cell_data_background_func (GtkCellLayout   *cell_layout,
 				     GtkTreeIter     *iter,
 				     gpointer         data)
 {
-	GdkColor            color;
-	GiggleFileListPriv *priv;
 	GiggleFileList     *file_list;
+	GtkStyleContext    *context;
+	GdkRGBA             rgba;
 	gboolean            highlight;
 	gchar              *rel_path;
 
 	file_list = GIGGLE_FILE_LIST (data);
-	priv = GET_PRIV (file_list);
-	color = gtk_widget_get_style (GTK_WIDGET (file_list))->bg[GTK_STATE_NORMAL];
+
+	context = gtk_widget_get_style_context (GTK_WIDGET (file_list));
+	gtk_style_context_get_background_color (context, GTK_STATE_FLAG_NORMAL, &rgba);
 
 	gtk_tree_model_get (tree_model, iter,
 			    COL_REL_PATH, &rel_path,
 			    COL_HIGHLIGHT, &highlight,
 			    -1);
 
-	g_object_set (G_OBJECT (renderer), "cell-background-gdk",
-		      (rel_path && *rel_path && highlight) ? &color : NULL,
+	g_object_set (G_OBJECT (renderer), "cell-background-rgba",
+		      (rel_path && *rel_path && highlight) ? &rgba : NULL,
 		      NULL);
 
 	g_free (rel_path);
@@ -1308,7 +1297,8 @@ file_list_cell_data_sensitive_func (GtkCellLayout   *layout,
 	gboolean            value = TRUE;
 	GtkTreeIter         parent;
 	GtkStateType        state;
-	GdkColor            color;
+	GtkStyleContext    *context;
+	GdkRGBA             rgba;
 
 	list = GIGGLE_FILE_LIST (data);
 	priv = GET_PRIV (list);
@@ -1336,9 +1326,10 @@ file_list_cell_data_sensitive_func (GtkCellLayout   *layout,
 	}
 
 	if (GTK_IS_CELL_RENDERER_TEXT (renderer)) {
-		state = (value) ? GTK_STATE_NORMAL : GTK_STATE_INSENSITIVE;
-		color = gtk_widget_get_style (GTK_WIDGET (list))->text [state];
-		g_object_set (renderer, "foreground-gdk", &color, NULL);
+		state = (value) ? GTK_STATE_FLAG_NORMAL : GTK_STATE_FLAG_INSENSITIVE;
+		context = gtk_widget_get_style_context (GTK_WIDGET (list));
+		gtk_style_context_get_color (context, state, &rgba);
+		g_object_set (renderer, "foreground-rgba", &rgba, NULL);
 	} else {
 		g_object_set (renderer, "sensitive", value, NULL);
 	}
@@ -1551,7 +1542,6 @@ giggle_file_list_set_show_all (GiggleFileList *list,
 GList *
 giggle_file_list_get_selection (GiggleFileList *list)
 {
-	GiggleFileListPriv *priv;
 	GtkTreeSelection   *selection;
 	GtkTreeModel       *model;
 	GtkTreeIter         iter;
@@ -1560,7 +1550,6 @@ giggle_file_list_get_selection (GiggleFileList *list)
 
 	g_return_val_if_fail (GIGGLE_IS_FILE_LIST (list), NULL);
 
-	priv = GET_PRIV (list);
 	files = NULL;
 
 	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (list));

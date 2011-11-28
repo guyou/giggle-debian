@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="license" xml:lang="sl">
+
+  <info>
+    <link type="seealso" xref="index"/>
+    <desc>Pravne podrobnosti.</desc>
+  </info>
+
+  <title>Dovoljenje</title>
+  <p>To delo se razširja pod licenco CreativeCommons priznanje avtorstva - deljenje pod enakimi pogoji 3.0 neprenosljiva.</p>
+  <p>Lahko:</p>
+  <terms>
+    <item>
+      <title><em>To share</em></title>
+      <p>Kopirati, razširjati in priobčevati delo javnosti.</p>
+    </item>
+    <item>
+      <title><em>To remix</em></title>
+      <p>Prilagoditi delo.</p>
+    </item>
+  </terms>
+  <p>Pod naslednjimi pogoji:</p>
+  <terms>
+    <item>
+      <title><em>Attribution</em></title>
+      <p>Avtorstvo dela morate priznati na način kot ga je navedel avtor ali lastnik licence (toda ne na način, ki predlaga da podpirajo vas ali vašo uporabo dela).</p>
+    </item>
+    <item>
+      <title><em>Share Alike</em></title>
+      <p>Če spremenite, prilagodite ali gradite na tem delu, lahko nastalo delo distribuirate le pod enako, podobno ali združljivo licenco.</p>
+    </item>
+  </terms>
+  <p>Za polno besedilo licence si oglejte <link href="http://creativecommons.org/licenses/by-sa/3.0/legalcode">spletišče CreativeCommons website</link> ali preberite polno <link href="http://creativecommons.org/licenses/by-sa/3.0/">zavezo Commons</link>.</p>
+</page>

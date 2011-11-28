@@ -219,7 +219,7 @@ git_ignore_save_file (GiggleGitIgnore *git_ignore)
 	GiggleGitIgnorePriv *priv;
 	gchar               *path;
 	GString             *content;
-	gint                 i;
+	guint                i;
 
 	priv = git_ignore->priv;
 
@@ -247,18 +247,18 @@ giggle_git_ignore_new (const gchar *directory_path)
 static const gchar *
 git_ignore_get_basename (const gchar *path)
 {
-	const gchar *basename;
+	const gchar *the_basename;
 
-	basename = strrchr (path, G_DIR_SEPARATOR);
+	the_basename = strrchr (path, G_DIR_SEPARATOR);
 
-	if (!basename) {
-		basename = path;
+	if (!the_basename) {
+		the_basename = path;
 	} else {
 		/* avoid dir separator */
-		basename++;
+		the_basename++;
 	}
 
-	return basename;
+	return the_basename;
 }
 
 static gboolean
@@ -321,7 +321,7 @@ git_ignore_path_matches (const gchar *path,
 			 const gchar *relative_path)
 {
 	gboolean     match = FALSE;
-	gint         n_glob = 0;
+	guint        n_glob = 0;
 	const gchar *glob;
 
 	if (!array) {
@@ -395,7 +395,7 @@ giggle_git_ignore_remove_glob_for_path (GiggleGitIgnore *git_ignore,
 {
 	GiggleGitIgnorePriv *priv;
 	const gchar         *glob;
-	gint                 i = 0;
+	guint                i = 0;
 	gboolean             removed = FALSE;
 	const gchar         *filename;
 

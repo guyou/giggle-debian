@@ -170,7 +170,7 @@ git_blame_handle_output (GiggleJob   *job,
 	GiggleAuthor        *author = NULL;
 	GiggleAuthor        *committer = NULL;
 	char                 sha[41];
-	time_t               time;
+	time_t               author_time;
 	int                  i;
 
 	priv = GET_PRIV (job);
@@ -212,8 +212,8 @@ git_blame_handle_output (GiggleJob   *job,
 			g_object_unref (committer);
 			g_free (name);
 		} else if (1 == sscanf (start, "author-time %d\n", &i)) {
-			struct tm *date = g_new (struct tm, 1); time = i;
-			giggle_revision_set_date (chunk->revision, gmtime_r (&time, date));
+			struct tm *date = g_new (struct tm, 1); author_time = i;
+			giggle_revision_set_date (chunk->revision, gmtime_r (&author_time, date));
 		} else if (g_str_has_prefix (start, "summary ")) {
 			char *summary = g_strndup (start + 8, end - start - 8);
 			giggle_revision_set_short_log (chunk->revision, summary);
@@ -287,17 +287,17 @@ giggle_git_blame_new (GiggleRevision *revision,
 
 const GiggleGitBlameChunk *
 giggle_git_blame_get_chunk (GiggleGitBlame *blame,
-			    int             index)
+			    gint            idx)
 {
 	GiggleGitBlamePriv *priv;
 
 	g_return_val_if_fail (GIGGLE_IS_GIT_BLAME (blame), NULL);
-	g_return_val_if_fail (index >= 0, NULL);
+	g_return_val_if_fail (idx >= 0, NULL);
 
 	priv = GET_PRIV (blame);
 
-	if (index < priv->chunks->len)
-		return priv->chunks->pdata[index];
+	if ((guint) idx < priv->chunks->len)
+		return priv->chunks->pdata[idx];
 
 	return NULL;
 }

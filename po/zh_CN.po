@@ -3,19 +3,20 @@
 # Copyright (C) 2009 THE giggle'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the giggle package.
 # Aron Xu <aronmalache@163.com>, 2009.
-# 
-# 
+#
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: giggle HEAD\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?\n"
-"POT-Creation-Date: 2009-02-28 03:24+0000\n"
-"PO-Revision-Date: 2009-02-28 20:39+0800\n"
-"Last-Translator: Aron Xu <aronmalache@163.com>\n"
-"Language-Team: Chinese/Simplified <i18n-translation@lists.linux.net.cn>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=giggle\n"
+"POT-Creation-Date: 2010-12-04 20:04+0000\n"
+"PO-Revision-Date: 2011-01-12 22:31+0800\n"
+"Last-Translator: Yinghua Wang <wantinghard@gmail.com>\n"
+"Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit"
+"Content-Transfer-Encoding: 8bit\n"
 
 #: ../data/giggle.desktop.in.h:1
 msgid "Giggle"
@@ -25,15 +26,15 @@ msgstr "Giggle"
 msgid "Git repository viewer"
 msgstr "Git 仓库查看器"
 
-#: ../data/main-window.glade.h:1
-msgid "<b>Branches</b>"
-msgstr "<b>分支</b>"
+#: ../data/main-window.ui.h:1 ../src/giggle-remote-editor.c:174
+msgid "Branches"
+msgstr "分支"
 
-#: ../data/main-window.glade.h:2
+#: ../data/main-window.ui.h:2
 msgid "Name:"
 msgstr "名称："
 
-#: ../data/main-window.glade.h:3
+#: ../data/main-window.ui.h:3
 msgid "URL:"
 msgstr "URL："
 
@@ -41,6 +42,18 @@ msgstr "URL："
 #, c-format
 msgid "Cannot find plugin description in '%s'"
 msgstr "无法在“%s“中找到插件描述"
+
+#: ../plugins/hello-world.xml.h:1
+msgid "Check if the plugin system works"
+msgstr "检查插件系统"
+
+#: ../plugins/hello-world.xml.h:2
+msgid "Demonstration of Giggle's Plugin System"
+msgstr "Giggle 插件系统演示"
+
+#: ../plugins/hello-world.xml.h:3
+msgid "Hello World"
+msgstr "Hello World"
 
 #: ../plugins/giggle-personal-details-window.c:82
 msgid "There was an error setting the configuration"
@@ -54,22 +67,38 @@ msgstr "获取设置时出现错误"
 msgid "_Name:"
 msgstr "名称(_N)："
 
-#: ../plugins/giggle-personal-details-window.c:256
+#: ../plugins/giggle-personal-details-window.c:258
 msgid "_Email:"
 msgstr "_Email："
 
-#: ../plugins/giggle-personal-details-window.c:267
+#: ../plugins/giggle-personal-details-window.c:271
 #: ../plugins/personal-details.xml.h:2
 msgid "Personal Details"
 msgstr "个人详细信息"
 
-#: ../plugins/giggle-view-terminal.c:102
+#: ../plugins/giggle-view-terminal.c:109
 msgid "_Terminal"
 msgstr "终端(_T)"
 
-#: ../plugins/giggle-view-terminal.c:103
+#: ../plugins/giggle-view-terminal.c:110
 msgid "Issue git commands via terminal"
-msgstr ""
+msgstr "通过终端执行 git 命令"
+
+#: ../plugins/personal-details.xml.h:1
+msgid "Edit personal details"
+msgstr "编辑个人详细信息"
+
+#: ../plugins/terminal-view.xml.h:1
+msgid "Create _Terminal"
+msgstr "创建终端(_T)"
+
+#: ../plugins/terminal-view.xml.h:2
+msgid "Create new tab in git terminal"
+msgstr "在 git 终端中打开一个新的标签页"
+
+#: ../plugins/terminal-view.xml.h:3
+msgid "Terminal window"
+msgstr "终端窗口"
 
 #: ../src/eggfindbar.c:307
 msgid "Find:"
@@ -81,23 +110,23 @@ msgstr "查找前一个"
 
 #: ../src/eggfindbar.c:319
 msgid "Find previous occurrence of the search string"
-msgstr ""
+msgstr "查找搜索字符串的前一个出现位置"
 
-#: ../src/eggfindbar.c:324
+#: ../src/eggfindbar.c:323
 msgid "Find Next"
 msgstr "查找下一个"
 
-#: ../src/eggfindbar.c:327
+#: ../src/eggfindbar.c:326
 msgid "Find next occurrence of the search string"
-msgstr ""
+msgstr "查找搜索字符串的下一个出现位置"
 
-#: ../src/eggfindbar.c:335
+#: ../src/eggfindbar.c:333
 msgid "C_ase Sensitive"
 msgstr "区分大小写(_A)"
 
-#: ../src/eggfindbar.c:339
+#: ../src/eggfindbar.c:337
 msgid "Toggle case sensitive search"
-msgstr ""
+msgstr "切换区分大小写的搜索"
 
 #: ../src/giggle-authors-view.c:80
 #, c-format
@@ -121,11 +150,35 @@ msgstr ""
 "检索分支列表出错：\n"
 "%s"
 
-#: ../src/giggle-branches-view.c:147 ../src/giggle-revision-view.c:206
+#: ../src/giggle-branches-view.c:147 ../src/giggle-revision-view.c:210
 msgid "Branches:"
 msgstr "分支："
 
-#: ../src/giggle-diff-tree-view.c:142 ../src/giggle-file-list.c:1675
+#: ../src/giggle-clone-dialog.c:238
+msgid "Clone Repository"
+msgstr "克隆仓库"
+
+#: ../src/giggle-clone-dialog.c:246
+msgid "Cl_one"
+msgstr "克隆(_O)"
+
+#: ../src/giggle-clone-dialog.c:270
+msgid "_Repository:"
+msgstr "仓库(_R)："
+
+#: ../src/giggle-clone-dialog.c:278
+msgid "_Local name:"
+msgstr "本地名称(_L)："
+
+#: ../src/giggle-clone-dialog.c:283
+msgid "Please select a location for the clone"
+msgstr "请为本地克隆副本选择一个位置"
+
+#: ../src/giggle-clone-dialog.c:286
+msgid "Clone in _folder:"
+msgstr "克隆到文件夹(_F)："
+
+#: ../src/giggle-diff-tree-view.c:142 ../src/giggle-file-list.c:1671
 #, c-format
 msgid ""
 "An error occurred when retrieving different files list:\n"
@@ -138,7 +191,7 @@ msgstr ""
 msgid "Changed files"
 msgstr "已更改的文件"
 
-#: ../src/giggle-diff-view.c:480
+#: ../src/giggle-diff-view.c:605
 #, c-format
 msgid ""
 "An error occurred when retrieving a diff:\n"
@@ -155,11 +208,11 @@ msgstr "提交更改"
 msgid "Revision log:"
 msgstr "版本日志："
 
-#: ../src/giggle-diff-window.c:134
+#: ../src/giggle-diff-window.c:131
 msgid "Co_mmit"
 msgstr "提交(_O)"
 
-#: ../src/giggle-diff-window.c:207
+#: ../src/giggle-diff-window.c:204
 #, c-format
 msgid ""
 "An error occurred when committing:\n"
@@ -177,7 +230,7 @@ msgstr ""
 "获取文件列表出错：\n"
 "%s"
 
-#: ../src/giggle-file-list.c:767
+#: ../src/giggle-file-list.c:763
 #, c-format
 msgid ""
 "An error occurred when adding a file to git:\n"
@@ -186,110 +239,117 @@ msgstr ""
 "添加文件到 git 出错：\n"
 "%s"
 
-#: ../src/giggle-file-list.c:827 ../src/giggle-file-list.c:853
-#: ../src/giggle-rev-list-view.c:1184 ../src/giggle-rev-list-view.c:1215
+#: ../src/giggle-file-list.c:823 ../src/giggle-file-list.c:849
+#: ../src/giggle-rev-list-view.c:1195 ../src/giggle-rev-list-view.c:1226
 #, c-format
 msgid "Could not save the patch as %s"
-msgstr ""
-"无法将补丁保存为 %s"
+msgstr "无法将补丁保存为 %s"
 
-#: ../src/giggle-file-list.c:832 ../src/giggle-file-list.c:858
-#: ../src/giggle-rev-list-view.c:1192 ../src/giggle-rev-list-view.c:1220
+#: ../src/giggle-file-list.c:828 ../src/giggle-file-list.c:854
+#: ../src/giggle-rev-list-view.c:1203 ../src/giggle-rev-list-view.c:1231
 msgid "No error was given"
 msgstr "没有给出错误"
 
-#: ../src/giggle-file-list.c:879 ../src/giggle-rev-list-view.c:1246
+#: ../src/giggle-file-list.c:875 ../src/giggle-rev-list-view.c:1257
 #, c-format
 msgid "Patch saved as %s"
 msgstr "补丁已存为 %s"
 
-#: ../src/giggle-file-list.c:883 ../src/giggle-rev-list-view.c:1250
+#: ../src/giggle-file-list.c:879 ../src/giggle-rev-list-view.c:1261
 #, c-format
 msgid "Created in project directory"
-msgstr ""
+msgstr "创建到项目目录"
 
-#: ../src/giggle-file-list.c:886 ../src/giggle-rev-list-view.c:1253
+#: ../src/giggle-file-list.c:882 ../src/giggle-rev-list-view.c:1264
 #, c-format
 msgid "Created in directory %s"
-msgstr ""
+msgstr "创建到 %s 目录"
 
-#: ../src/giggle-file-list.c:921 ../src/giggle-rev-list-view.c:1306
+#: ../src/giggle-file-list.c:917 ../src/giggle-rev-list-view.c:1317
 msgid "Create Patch"
 msgstr "创建补丁"
 
-#: ../src/giggle-file-list.c:1024
+#: ../src/giggle-file-list.c:1020
 msgid "Delete glob pattern?"
 msgstr ""
 
-#: ../src/giggle-file-list.c:1027
+#: ../src/giggle-file-list.c:1023
 msgid ""
 "The selected file was shadowed by a glob pattern that may be hiding other "
 "files, delete it?"
 msgstr ""
 
-#: ../src/giggle-file-list.c:1423
+#: ../src/giggle-file-list.c:1419
 msgid "_Commit Changes"
 msgstr "提交更改(_C)"
 
-#: ../src/giggle-file-list.c:1425
+#: ../src/giggle-file-list.c:1421
 msgid "A_dd file to repository"
 msgstr "添加文件到仓库(_D)"
 
-#: ../src/giggle-file-list.c:1426 ../src/giggle-rev-list-view.c:1660
+#: ../src/giggle-file-list.c:1422 ../src/giggle-rev-list-view.c:1671
 msgid "Create _Patch"
 msgstr "创建补丁(_P)"
 
-#: ../src/giggle-file-list.c:1427
+#: ../src/giggle-file-list.c:1423
 msgid "_Add to .gitignore"
 msgstr "添加到 .gitignore(_A)"
 
-#: ../src/giggle-file-list.c:1428
+#: ../src/giggle-file-list.c:1424
 msgid "_Remove from .gitignore"
 msgstr "从·.gitignore 移除(_R)"
 
-#: ../src/giggle-file-list.c:1432
+#: ../src/giggle-file-list.c:1428
 msgid "_Show all files"
 msgstr "显示所有文件(_S)"
 
-#: ../src/giggle-file-list.c:1471
+#: ../src/giggle-file-list.c:1467
 msgid "Project"
 msgstr "项目"
 
-#: ../src/giggle-main.c:35
+#: ../src/giggle-helpers.c:178
+msgid "An error ocurred:"
+msgstr "出现了一个错误："
+
+#: ../src/giggle-main.c:38
+msgid "Clone a repository"
+msgstr "克隆一个仓库"
+
+#: ../src/giggle-main.c:39 ../src/giggle-remotes-view.c:276
+msgid "URL"
+msgstr "URL"
+
+#: ../src/giggle-main.c:42
 msgid "Show the diff window"
 msgstr "显示 diff 窗口"
 
-#: ../src/giggle-main.c:39
+#: ../src/giggle-main.c:46
 msgid "Show version information and exit"
 msgstr "显示版本信息并退出"
 
-#: ../src/giggle-main.c:63
+#: ../src/giggle-main.c:49
 msgid "[DIRECTORY]"
 msgstr "[目录]"
 
-#: ../src/giggle-main.c:69
+#: ../src/giggle-main.c:79
 #, c-format
 msgid "Report errors (in English, with LC_ALL=C) to <%s>."
 msgstr "报告错误（使用英文，设置·LC_ALL=C）到·<%s>。"
 
-#: ../src/giggle-main.c:70
+#: ../src/giggle-main.c:80
 msgid "Giggle is a graphical frontend for the git content tracker."
 msgstr "Giggle 是 git 内容跟踪器的一个图形前端。"
 
-#: ../src/giggle-main.c:78
+#: ../src/giggle-main.c:88
 #, c-format
 msgid "Try `%s --help' for more information.\n"
 msgstr "尝试 `%s·--help' 以获得更多信息。\n"
 
-#: ../src/giggle-remote-editor.c:154
+#: ../src/giggle-remote-editor.c:148
 msgid "Click to add mapping..."
-msgstr ""
+msgstr "点击添加映射..."
 
-#: ../src/giggle-remote-editor.c:180
-msgid "Branches"
-msgstr "分支"
-
-#: ../src/giggle-remote-editor.c:375
+#: ../src/giggle-remote-editor.c:373
 msgid "Unnamed"
 msgstr "未命名"
 
@@ -301,39 +361,35 @@ msgstr "图标"
 msgid "Name"
 msgstr "名称"
 
-#: ../src/giggle-remotes-view.c:276
-msgid "URL"
-msgstr "URL"
-
 #: ../src/giggle-remotes-view.c:289
 msgid "Double click to add remote..."
 msgstr "双击以添加远程目标..."
 
-#: ../src/giggle-revision-view.c:198 ../src/giggle-view-file.c:1147
+#: ../src/giggle-revision-view.c:202 ../src/giggle-view-file.c:1212
 msgid "Author:"
 msgstr "作者："
 
-#: ../src/giggle-revision-view.c:202 ../src/giggle-view-file.c:1148
+#: ../src/giggle-revision-view.c:206 ../src/giggle-view-file.c:1213
 msgid "Committer:"
 msgstr "提交者："
 
-#: ../src/giggle-revision-view.c:204 ../src/giggle-view-file.c:1149
+#: ../src/giggle-revision-view.c:208 ../src/giggle-view-file.c:1214
 msgid "Date:"
 msgstr "日期："
 
-#: ../src/giggle-revision-view.c:205 ../src/giggle-view-file.c:1150
+#: ../src/giggle-revision-view.c:209 ../src/giggle-view-file.c:1215
 msgid "SHA:"
 msgstr "SHA："
 
-#: ../src/giggle-revision-view.c:224
+#: ../src/giggle-revision-view.c:228
 msgid "Change Log:"
 msgstr "Change Log："
 
-#: ../src/giggle-revision-view.c:507
+#: ../src/giggle-revision-view.c:516
 msgid "_Details"
 msgstr "详细信息(_D)"
 
-#: ../src/giggle-revision-view.c:508
+#: ../src/giggle-revision-view.c:517
 msgid "Display revision details"
 msgstr "显示版本详细信息"
 
@@ -347,96 +403,96 @@ msgstr "删除分支 \"%s\""
 msgid "Delete tag \"%s\""
 msgstr "删除标签 \"%s\""
 
-#: ../src/giggle-rev-list-view.c:523
+#: ../src/giggle-rev-list-view.c:526
 msgid "Branch"
 msgstr "分支"
 
-#: ../src/giggle-rev-list-view.c:526
+#: ../src/giggle-rev-list-view.c:529
 msgid "Tag"
 msgstr "标签"
 
-#: ../src/giggle-rev-list-view.c:529
+#: ../src/giggle-rev-list-view.c:532
 msgid "Remote"
 msgstr "远程"
 
-#: ../src/giggle-rev-list-view.c:1074
+#: ../src/giggle-rev-list-view.c:1085
 msgid "Enter branch name:"
 msgstr "输入分支名称："
 
-#: ../src/giggle-rev-list-view.c:1125
+#: ../src/giggle-rev-list-view.c:1136
 msgid "Enter tag name:"
 msgstr "输入标签名称："
 
-#: ../src/giggle-rev-list-view.c:1186
+#: ../src/giggle-rev-list-view.c:1197
 #, c-format
 msgid "Could not create patch"
 msgstr "无法创建补丁"
 
-#: ../src/giggle-rev-list-view.c:1447
+#: ../src/giggle-rev-list-view.c:1458
 msgid "Uncommitted changes"
 msgstr "未提交的更改"
 
 #. TRANSLATORS: it's a strftime format string
-#: ../src/giggle-rev-list-view.c:1501
+#: ../src/giggle-rev-list-view.c:1512
 msgid "%I:%M %p"
-msgstr ""
+msgstr "%I:%M %p"
 
 #. TRANSLATORS: it's a strftime format string
-#: ../src/giggle-rev-list-view.c:1514
+#: ../src/giggle-rev-list-view.c:1525
 msgid "%a %I:%M %p"
-msgstr ""
+msgstr "%a %I:%M %p"
 
 #. TRANSLATORS: it's a strftime format string
-#: ../src/giggle-rev-list-view.c:1526
+#: ../src/giggle-rev-list-view.c:1537
 msgid "%b %d %I:%M %p"
-msgstr ""
+msgstr "%b %d %I:%M %p"
 
 #. it's older
 #. TRANSLATORS: it's a strftime format string
-#: ../src/giggle-rev-list-view.c:1531
+#: ../src/giggle-rev-list-view.c:1542
 msgid "%b %d %Y"
-msgstr ""
+msgstr "%b %d %Y"
 
-#: ../src/giggle-rev-list-view.c:1657
+#: ../src/giggle-rev-list-view.c:1668
 msgid "Commit"
 msgstr "提交"
 
-#: ../src/giggle-rev-list-view.c:1658
+#: ../src/giggle-rev-list-view.c:1669
 msgid "Create _Branch"
 msgstr "创建分支(_B)"
 
-#: ../src/giggle-rev-list-view.c:1659
+#: ../src/giggle-rev-list-view.c:1670
 msgid "Create _Tag"
 msgstr "创建标签(_T)"
 
-#: ../src/giggle-rev-list-view.c:1720
+#: ../src/giggle-rev-list-view.c:1731
 msgid "Graph"
 msgstr "图表"
 
-#: ../src/giggle-rev-list-view.c:1738
+#: ../src/giggle-rev-list-view.c:1749
 msgid "Short Log"
 msgstr "简短日志"
 
-#: ../src/giggle-rev-list-view.c:1757
+#: ../src/giggle-rev-list-view.c:1768
 msgid "Author"
 msgstr "作者"
 
-#: ../src/giggle-rev-list-view.c:1774
+#: ../src/giggle-rev-list-view.c:1785
 msgid "Date"
 msgstr "日期"
 
-#: ../src/giggle-short-list.c:265
+#: ../src/giggle-short-list.c:303
 msgid "Details"
 msgstr "详细信息"
 
-#: ../src/giggle-short-list.c:375
+#: ../src/giggle-short-list.c:414
 msgid "Show A_ll..."
 msgstr "显示全部(_L)..."
 
 #: ../src/giggle-view-diff.c:108
 #, c-format
 msgid "Change %d of %d"
-msgstr ""
+msgstr "更改 %d / %d"
 
 #: ../src/giggle-view-diff.c:185
 msgid "_Previous Change"
@@ -454,46 +510,46 @@ msgstr "下一个更改(_N)"
 msgid "View next change"
 msgstr "查看下一个更改"
 
-#: ../src/giggle-view-diff.c:349
+#: ../src/giggle-view-diff.c:351
 msgid "_Changes"
 msgstr "更改(_C)"
 
-#: ../src/giggle-view-diff.c:350
+#: ../src/giggle-view-diff.c:352
 msgid "Browse a revision's changes"
 msgstr "查看一个版本的更改"
 
-#: ../src/giggle-view-file.c:328
+#: ../src/giggle-view-file.c:327
 msgid "_Goto Line Number"
 msgstr "转到行(_G)"
 
-#: ../src/giggle-view-file.c:329
+#: ../src/giggle-view-file.c:328
 msgid "Highlight specified line number"
 msgstr "高亮显示指定行"
 
-#: ../src/giggle-view-file.c:333
+#: ../src/giggle-view-file.c:332
 msgid "Show _Changes"
 msgstr "显示更改(_C)"
 
-#: ../src/giggle-view-file.c:334
+#: ../src/giggle-view-file.c:333
 msgid "Show changes for selected revision"
 msgstr "显示选中版本的更改"
 
-#: ../src/giggle-view-file.c:338
+#: ../src/giggle-view-file.c:337
 msgid "Select _Revision"
 msgstr "选择版本(_R)"
 
-#: ../src/giggle-view-file.c:339
+#: ../src/giggle-view-file.c:338
 msgid "Select revision of selected line"
-msgstr ""
+msgstr "选择所选行的版本"
 
-#: ../src/giggle-view-file.c:832
+#: ../src/giggle-view-file.c:894
 #, c-format
 msgid ""
 "An error occurred when getting file ref:\n"
 "%s"
 msgstr ""
 
-#: ../src/giggle-view-file.c:903 ../src/giggle-view-history.c:250
+#: ../src/giggle-view-file.c:965 ../src/giggle-view-history.c:250
 #: ../src/giggle-view-history.c:345
 #, c-format
 msgid ""
@@ -503,194 +559,227 @@ msgstr ""
 "获取版本列表出错：\n"
 "%s"
 
-#: ../src/giggle-view-file.c:1063
+#: ../src/giggle-view-file.c:1125
 msgid "Line Number:"
 msgstr "行号："
 
-#: ../src/giggle-view-file.c:1492
+#: ../src/giggle-view-file.c:1563
 msgid "_Browse"
 msgstr "浏览(_B)"
 
-#: ../src/giggle-view-file.c:1493
+#: ../src/giggle-view-file.c:1564
 msgid "Browse the files of this project"
 msgstr "查看此项目的文件"
 
-#: ../src/giggle-view-history.c:834
+#: ../src/giggle-view-history.c:854
 msgid "_History"
 msgstr "历史(_H)"
 
-#: ../src/giggle-view-history.c:835
+#: ../src/giggle-view-history.c:855
 msgid "Browse the history of this project"
 msgstr "查看此项目的历史"
 
-#: ../src/giggle-view-summary.c:117
-msgid "<b>Description:</b>"
-msgstr "<b>描述：</b>"
+#: ../src/giggle-view-summary.c:118
+msgid "Description:"
+msgstr "描述："
 
-#: ../src/giggle-view-summary.c:163
-msgid "<b>Remotes:</b>"
-msgstr "<b>远程：</b>"
+#: ../src/giggle-view-summary.c:167
+msgid "Remotes:"
+msgstr "远程："
 
-#: ../src/giggle-view-summary.c:189
+#: ../src/giggle-view-summary.c:195
 msgid "_Summary"
 msgstr "摘要(_S)"
 
-#: ../src/giggle-view-summary.c:192
+#: ../src/giggle-view-summary.c:198
 msgid "_Branches"
 msgstr "分支(_B)"
 
-#: ../src/giggle-view-summary.c:195
+#: ../src/giggle-view-summary.c:201
 msgid "_Authors"
 msgstr "作者(_A)"
 
-#: ../src/giggle-view-summary.c:198
+#: ../src/giggle-view-summary.c:204
 msgid "_Remotes"
 msgstr "远程(_R)"
 
-#: ../src/giggle-window.c:562
-msgid "About Giggle"
-msgstr "关于 Giggle"
-
-#: ../src/giggle-window.c:587
+#: ../src/giggle-window.c:563
 #, c-format
 msgid "The directory '%s' does not look like a git repository."
 msgstr "目录 '%s' 不像是一个 git 仓库。"
 
-#: ../src/giggle-window.c:670
+#: ../src/giggle-window.c:646
 msgid "Select git repository"
 msgstr "选择 git 仓库"
 
-#: ../src/giggle-window.c:706
+#: ../src/giggle-window.c:699
 #, c-format
 msgid "Properties of %s"
 msgstr "%s 的属性"
 
-#: ../src/giggle-window.c:920
-msgid "translator-credits"
+#: ../src/giggle-window.c:915
+msgid "Contributors:"
+msgstr "贡献者："
+
+#: ../src/giggle-window.c:928
+msgid ""
+"Copyright © 2007 - 2008 Imendio AB\n"
+"Copyright © 2008 - 2009 Mathias Hasselmann\n"
+"Copyright © 2009 - 2010 The Giggle authors"
 msgstr ""
-"Aron Xu <aronmalache@163.com>, 2009."
+"版权所有 © 2007 - 2008 Imendio AB\n"
+"版权所有 © 2008 - 2009 Mathias Hasselmann\n"
+"版权所有 © 2009 - 2010 The Giggle authors"
 
-#: ../src/giggle-window.c:921
-msgid "A graphical frontend to the git content tracker."
-msgstr "一个 git 内容跟踪器的图形前端。"
+#. Translators: This is a special message that shouldn't be translated
+#. * literally. It is used in the about box to give credits to
+#. * the translators.
+#. * Thus, you should translate it to your name and email address.
+#. * You should also include other translators who have contributed to
+#. * this translation; in that case, please write each of them on a separate
+#. * line seperated by newlines (\n).
+#.
+#: ../src/giggle-window.c:940
+msgid "translator-credits"
+msgstr "Aron Xu <aronmalache@163.com>, 2009."
 
-#: ../src/giggle-window.c:976
+#: ../src/giggle-window.c:945
+msgid "A graphical frontend for Git"
+msgstr "一个 Git 的图形前端。"
+
+#: ../src/giggle-window.c:950
+msgid "About Giggle"
+msgstr "关于 Giggle"
+
+#: ../src/giggle-window.c:954
+msgid "Giggle Website"
+msgstr "Giggle 网站"
+
+#: ../src/giggle-window.c:1010
 msgid "_Find..."
 msgstr "查找(_F)..."
 
-#: ../src/giggle-window.c:977
+#: ../src/giggle-window.c:1011
 msgid "Find..."
 msgstr "查找..."
 
-#: ../src/giggle-window.c:983
+#: ../src/giggle-window.c:1017
 msgid "Find Ne_xt"
 msgstr "查找下一个(_X)"
 
-#: ../src/giggle-window.c:984
+#: ../src/giggle-window.c:1018
 msgid "Find next match"
 msgstr "查找下一个匹配项"
 
-#: ../src/giggle-window.c:987
+#: ../src/giggle-window.c:1021
 msgid "Find Pre_vious"
 msgstr "查找前一个(_V)"
 
-#: ../src/giggle-window.c:988
+#: ../src/giggle-window.c:1022
 msgid "Find previous match"
 msgstr "查找前一个匹配项"
 
-#: ../src/giggle-window.c:994
+#: ../src/giggle-window.c:1028
 msgid "_Project"
 msgstr "项目(_P)"
 
-#: ../src/giggle-window.c:995
+#: ../src/giggle-window.c:1029
 msgid "_Edit"
 msgstr "编辑(_E)"
 
-#: ../src/giggle-window.c:996
+#: ../src/giggle-window.c:1030
 msgid "_Go"
 msgstr "_Go"
 
-#: ../src/giggle-window.c:997
+#: ../src/giggle-window.c:1031
 msgid "_View"
 msgstr "查看(_V)"
 
-#: ../src/giggle-window.c:998
+#: ../src/giggle-window.c:1032
 msgid "_Help"
 msgstr "帮助(_H)"
 
-#: ../src/giggle-window.c:1001
+#: ../src/giggle-window.c:1035
 msgid "Open a git repository"
 msgstr "打开一个 git 仓库"
 
-#: ../src/giggle-window.c:1006
+#: ../src/giggle-window.c:1039
+msgid "Clone _location"
+msgstr "克隆位置(_L)"
+
+#: ../src/giggle-window.c:1039
+msgid "Clone a location"
+msgstr "克隆一个位置"
+
+#: ../src/giggle-window.c:1044
 msgid "_Save patch"
 msgstr "保存补丁(_S)"
 
-#: ../src/giggle-window.c:1006
+#: ../src/giggle-window.c:1044
 msgid "Save a patch"
 msgstr "保存一个补丁"
 
-#: ../src/giggle-window.c:1010
+#: ../src/giggle-window.c:1048
 msgid "_Diff current changes"
 msgstr "_Diff 当前修改"
 
-#: ../src/giggle-window.c:1010
+#: ../src/giggle-window.c:1048
 msgid "Diff current changes"
 msgstr "Diff 当前修改"
 
-#: ../src/giggle-window.c:1015
+#: ../src/giggle-window.c:1053
 msgid "Quit the application"
 msgstr "退出程序"
 
-#: ../src/giggle-window.c:1033
+#: ../src/giggle-window.c:1071
 msgid "Go backward in history"
-msgstr ""
+msgstr "在历史中后退"
 
-#: ../src/giggle-window.c:1037
+#: ../src/giggle-window.c:1075
 msgid "Go forward in history"
-msgstr ""
+msgstr "在历史中前进"
 
-#: ../src/giggle-window.c:1041
-msgid "Visit _Homepage"
-msgstr "访问首页(_H)"
+#: ../src/giggle-window.c:1079
+msgid "_Contents"
+msgstr "内容(_C)"
 
-#: ../src/giggle-window.c:1042
-msgid "Visit the homepage of Giggle"
-msgstr "访问 Giggle 的首页"
+#: ../src/giggle-window.c:1080
+msgid "Show user guide for Giggle"
+msgstr "显示 Giggle 用户指南"
 
-#: ../src/giggle-window.c:1045
+#: ../src/giggle-window.c:1083
 msgid "Report _Issue"
-msgstr ""
+msgstr "报告问题(_I)"
 
-#: ../src/giggle-window.c:1046
+#: ../src/giggle-window.c:1084
 msgid "Report an issue you've found in Giggle"
-msgstr ""
+msgstr "报告您发现的 Giggle 中的问题"
 
-#: ../src/giggle-window.c:1050
+#: ../src/giggle-window.c:1088
 msgid "About this application"
 msgstr "关于此程序"
 
-#: ../src/giggle-window.c:1057
+#: ../src/giggle-window.c:1095
 msgid "Show revision tree"
 msgstr "显示版本树"
 
-#: ../src/giggle-window.c:1064
+#: ../src/giggle-window.c:1102
 msgid "Show and edit project properties"
 msgstr "显示并编辑项目属性"
 
-#: ../src/giggle-window.c:1068
+#: ../src/giggle-window.c:1106
 msgid "Refresh current view"
 msgstr "刷新当前视图"
 
-#: ../src/giggle-window.c:1399
+#: ../src/giggle-window.c:1438
 msgid "Search Inside _Patches"
 msgstr "在补丁中搜索(_P)"
 
-#: ../src/giggle-window.c:1671
+#: ../src/giggle-window.c:1707
 msgid "Save patch file"
 msgstr "保存补丁文件"
 
-#: ../src/giggle-window.c:1691
+#: ../src/giggle-window.c:1727
 #, c-format
 msgid ""
 "An error occurred when saving to file:\n"
@@ -699,31 +788,14 @@ msgstr ""
 "保存到文件时出错：\n"
 "%s"
 
-#: ../plugins/hello-world.xml.h:1
-msgid "Check if the plugin system works"
-msgstr "检查插件系统"
+#~ msgid "<b>Branches</b>"
+#~ msgstr "<b>分支</b>"
 
-#: ../plugins/hello-world.xml.h:2
-msgid "Demonstration of Giggle's Plugin System"
-msgstr ""
+#~ msgid "<b>Remotes:</b>"
+#~ msgstr "<b>远程：</b>"
 
-#: ../plugins/hello-world.xml.h:3
-msgid "Hello World"
-msgstr "Hello World"
+#~ msgid "Visit _Homepage"
+#~ msgstr "访问首页(_H)"
 
-#: ../plugins/personal-details.xml.h:1
-msgid "Edit personal details"
-msgstr "编辑个人详细信息"
-
-#: ../plugins/terminal-view.xml.h:1
-msgid "Create _Terminal"
-msgstr "创建终端(_T)"
-
-#: ../plugins/terminal-view.xml.h:2
-msgid "Create new tab in git terminal"
-msgstr "在 git 终端中打开一个新的标签页"
-
-#: ../plugins/terminal-view.xml.h:3
-msgid "Terminal window"
-msgstr "终端窗口"
-
+#~ msgid "Visit the homepage of Giggle"
+#~ msgstr "访问 Giggle 的首页"

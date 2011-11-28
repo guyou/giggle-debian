@@ -2,19 +2,19 @@
 # Copyright (C) 2010 giggle's COPYRIGHT HOLDER
 # This file is distributed under the same license as the giggle package.
 # Fran Diéguez <frandieguez@ubuntu.com>, 2010.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: giggle master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=giggle\n"
-"POT-Creation-Date: 2010-02-26 04:00+0000\n"
-"PO-Revision-Date: 2010-03-04 13:24+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-06-21 14:23+0200\n"
+"PO-Revision-Date: 2010-06-21 14:25+0200\n"
 "Last-Translator: Fran Diéguez <frandieguez@ubuntu.com>\n"
-"Language-Team: Galician <gnome@g11n.net>\n"
+"Language-Team: Galician <gnome@g11.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\\\n"
 
 #: ../data/giggle.desktop.in.h:1
 msgid "Giggle"
@@ -24,9 +24,21 @@ msgstr "Giggle"
 msgid "Git repository viewer"
 msgstr "Visor de repositorio Git"
 
-#: ../data/main-window.ui.h:1
-msgid "<b>Branches</b>"
-msgstr "<b>Ramas</b>"
+#: ../data/giggle.schemas.in.h:1
+msgid "Run Giggle in a terminal?"
+msgstr "Desexa executar Giggle nunha terminal¿"
+
+#: ../data/giggle.schemas.in.h:2
+msgid "Set it at TRUE if you want it activated"
+msgstr "Estabelecer a TRUE se o quere activado"
+
+#: ../data/giggle.schemas.in.h:3
+msgid "The handler for \"git://\" URLs"
+msgstr "O manexador para os URL «git://»"
+
+#: ../data/main-window.ui.h:1 ../src/giggle-remote-editor.c:174
+msgid "Branches"
+msgstr "Ramas"
 
 #: ../data/main-window.ui.h:2
 msgid "Name:"
@@ -152,7 +164,31 @@ msgstr ""
 msgid "Branches:"
 msgstr "Ramas:"
 
-#: ../src/giggle-diff-tree-view.c:142 ../src/giggle-file-list.c:1675
+#: ../src/giggle-clone-dialog.c:238
+msgid "Clone Repository"
+msgstr "Clonar repositorio"
+
+#: ../src/giggle-clone-dialog.c:247
+msgid "Cl_one"
+msgstr "Cl_onar"
+
+#: ../src/giggle-clone-dialog.c:271
+msgid "_Repository:"
+msgstr "_Repositorio:"
+
+#: ../src/giggle-clone-dialog.c:279
+msgid "_Local name:"
+msgstr "Nome _local:"
+
+#: ../src/giggle-clone-dialog.c:284
+msgid "Please select a location for the clone"
+msgstr "Seleccionar unha localización para o clon"
+
+#: ../src/giggle-clone-dialog.c:287
+msgid "Clone in _folder:"
+msgstr "Clonar no c_artafol:"
+
+#: ../src/giggle-diff-tree-view.c:142 ../src/giggle-file-list.c:1671
 #, c-format
 msgid ""
 "An error occurred when retrieving different files list:\n"
@@ -204,7 +240,7 @@ msgstr ""
 "Produciuse un erro ao obter a lista de ficheiros:\n"
 "%s"
 
-#: ../src/giggle-file-list.c:767
+#: ../src/giggle-file-list.c:763
 #, c-format
 msgid ""
 "An error occurred when adding a file to git:\n"
@@ -213,41 +249,41 @@ msgstr ""
 "Produciuse un erro ao engadir un ficheiro ao git:\n"
 "%s"
 
-#: ../src/giggle-file-list.c:827 ../src/giggle-file-list.c:853
-#: ../src/giggle-rev-list-view.c:1191 ../src/giggle-rev-list-view.c:1222
+#: ../src/giggle-file-list.c:823 ../src/giggle-file-list.c:849
+#: ../src/giggle-rev-list-view.c:1194 ../src/giggle-rev-list-view.c:1225
 #, c-format
 msgid "Could not save the patch as %s"
 msgstr "Non foi posíbel gardar o parche como %s"
 
-#: ../src/giggle-file-list.c:832 ../src/giggle-file-list.c:858
-#: ../src/giggle-rev-list-view.c:1199 ../src/giggle-rev-list-view.c:1227
+#: ../src/giggle-file-list.c:828 ../src/giggle-file-list.c:854
+#: ../src/giggle-rev-list-view.c:1202 ../src/giggle-rev-list-view.c:1230
 msgid "No error was given"
 msgstr "Non se forneceu un erro"
 
-#: ../src/giggle-file-list.c:879 ../src/giggle-rev-list-view.c:1253
+#: ../src/giggle-file-list.c:875 ../src/giggle-rev-list-view.c:1256
 #, c-format
 msgid "Patch saved as %s"
 msgstr "Parche gardado como %s"
 
-#: ../src/giggle-file-list.c:883 ../src/giggle-rev-list-view.c:1257
+#: ../src/giggle-file-list.c:879 ../src/giggle-rev-list-view.c:1260
 #, c-format
 msgid "Created in project directory"
 msgstr "Creado no cartafol do proxecto"
 
-#: ../src/giggle-file-list.c:886 ../src/giggle-rev-list-view.c:1260
+#: ../src/giggle-file-list.c:882 ../src/giggle-rev-list-view.c:1263
 #, c-format
 msgid "Created in directory %s"
 msgstr "Creado no cartafol %s"
 
-#: ../src/giggle-file-list.c:921 ../src/giggle-rev-list-view.c:1313
+#: ../src/giggle-file-list.c:917 ../src/giggle-rev-list-view.c:1316
 msgid "Create Patch"
 msgstr "Crear parche"
 
-#: ../src/giggle-file-list.c:1024
+#: ../src/giggle-file-list.c:1020
 msgid "Delete glob pattern?"
 msgstr "Eliminar o patrón glob?"
 
-#: ../src/giggle-file-list.c:1027
+#: ../src/giggle-file-list.c:1023
 msgid ""
 "The selected file was shadowed by a glob pattern that may be hiding other "
 "files, delete it?"
@@ -255,56 +291,68 @@ msgstr ""
 "O ficheiro seleccionado está oculto por un patrón glob que pode ocultar "
 "outros ficheiros, desexa borrar o patrón?"
 
-#: ../src/giggle-file-list.c:1423
+#: ../src/giggle-file-list.c:1419
 msgid "_Commit Changes"
 msgstr "_Remitir cambios"
 
-#: ../src/giggle-file-list.c:1425
+#: ../src/giggle-file-list.c:1421
 msgid "A_dd file to repository"
 msgstr "Enga_dir ficheiro ao repositorio"
 
-#: ../src/giggle-file-list.c:1426 ../src/giggle-rev-list-view.c:1667
+#: ../src/giggle-file-list.c:1422 ../src/giggle-rev-list-view.c:1670
 msgid "Create _Patch"
 msgstr "Crear _parche"
 
-#: ../src/giggle-file-list.c:1427
+#: ../src/giggle-file-list.c:1423
 msgid "_Add to .gitignore"
 msgstr "_Engadir a .gitignore"
 
-#: ../src/giggle-file-list.c:1428
+#: ../src/giggle-file-list.c:1424
 msgid "_Remove from .gitignore"
 msgstr "_Eliminar do .gitignore"
 
-#: ../src/giggle-file-list.c:1432
+#: ../src/giggle-file-list.c:1428
 msgid "_Show all files"
 msgstr "_Mostrar todos os ficheiros"
 
-#: ../src/giggle-file-list.c:1471
+#: ../src/giggle-file-list.c:1467
 msgid "Project"
 msgstr "Proxecto"
 
-#: ../src/giggle-main.c:36
+#: ../src/giggle-helpers.c:178
+msgid "An error ocurred:"
+msgstr "Produciuse un erro:"
+
+#: ../src/giggle-main.c:38
+msgid "Clone a repository"
+msgstr "Clonar un repositorio"
+
+#: ../src/giggle-main.c:39 ../src/giggle-remotes-view.c:276
+msgid "URL"
+msgstr "URL"
+
+#: ../src/giggle-main.c:42
 msgid "Show the diff window"
 msgstr "Mostrar a xanela de diff"
 
-#: ../src/giggle-main.c:40
+#: ../src/giggle-main.c:46
 msgid "Show version information and exit"
 msgstr "Mostrar a información da versión e saír"
 
-#: ../src/giggle-main.c:43
+#: ../src/giggle-main.c:49
 msgid "[DIRECTORY]"
 msgstr "[CARTAFOL]"
 
-#: ../src/giggle-main.c:73
+#: ../src/giggle-main.c:79
 #, c-format
 msgid "Report errors (in English, with LC_ALL=C) to <%s>."
 msgstr "Informar erros (en inglés, con LC_ALL=C) a <%s>."
 
-#: ../src/giggle-main.c:74
+#: ../src/giggle-main.c:80
 msgid "Giggle is a graphical frontend for the git content tracker."
 msgstr "Giggle é unha interface gráfica para o traceador de contido git."
 
-#: ../src/giggle-main.c:82
+#: ../src/giggle-main.c:88
 #, c-format
 msgid "Try `%s --help' for more information.\n"
 msgstr "TEnte `%s --help' para máis información.\n"
@@ -312,10 +360,6 @@ msgstr "TEnte `%s --help' para máis información.\n"
 #: ../src/giggle-remote-editor.c:148
 msgid "Click to add mapping..."
 msgstr "Prema para engadir un \"mapping\"..."
-
-#: ../src/giggle-remote-editor.c:174
-msgid "Branches"
-msgstr "Ramas"
 
 #: ../src/giggle-remote-editor.c:375
 msgid "Unnamed"
@@ -329,27 +373,23 @@ msgstr "Icona"
 msgid "Name"
 msgstr "Nome"
 
-#: ../src/giggle-remotes-view.c:276
-msgid "URL"
-msgstr "URL"
-
 #: ../src/giggle-remotes-view.c:289
 msgid "Double click to add remote..."
 msgstr "Prema dúas veces para engadir un servidor remoto..."
 
-#: ../src/giggle-revision-view.c:201 ../src/giggle-view-file.c:1222
+#: ../src/giggle-revision-view.c:201 ../src/giggle-view-file.c:1223
 msgid "Author:"
 msgstr "Autor:"
 
-#: ../src/giggle-revision-view.c:205 ../src/giggle-view-file.c:1223
+#: ../src/giggle-revision-view.c:205 ../src/giggle-view-file.c:1224
 msgid "Committer:"
 msgstr "Remisor:"
 
-#: ../src/giggle-revision-view.c:207 ../src/giggle-view-file.c:1224
+#: ../src/giggle-revision-view.c:207 ../src/giggle-view-file.c:1225
 msgid "Date:"
 msgstr "Data:"
 
-#: ../src/giggle-revision-view.c:208 ../src/giggle-view-file.c:1225
+#: ../src/giggle-revision-view.c:208 ../src/giggle-view-file.c:1226
 msgid "SHA:"
 msgstr "SHA:"
 
@@ -357,11 +397,11 @@ msgstr "SHA:"
 msgid "Change Log:"
 msgstr "Rexistro de cambios:"
 
-#: ../src/giggle-revision-view.c:510
+#: ../src/giggle-revision-view.c:514
 msgid "_Details"
 msgstr "_Detalles"
 
-#: ../src/giggle-revision-view.c:511
+#: ../src/giggle-revision-view.c:515
 msgid "Display revision details"
 msgstr "Mostrar os detalles da revisión"
 
@@ -375,81 +415,81 @@ msgstr "Eliminar rama \"%s\""
 msgid "Delete tag \"%s\""
 msgstr "Eliminar etiqueta \"%s\""
 
-#: ../src/giggle-rev-list-view.c:523
+#: ../src/giggle-rev-list-view.c:526
 msgid "Branch"
 msgstr "Rama"
 
-#: ../src/giggle-rev-list-view.c:526
+#: ../src/giggle-rev-list-view.c:529
 msgid "Tag"
 msgstr "Etiqueta"
 
-#: ../src/giggle-rev-list-view.c:529
+#: ../src/giggle-rev-list-view.c:532
 msgid "Remote"
 msgstr "Servidor remoto"
 
-#: ../src/giggle-rev-list-view.c:1081
+#: ../src/giggle-rev-list-view.c:1084
 msgid "Enter branch name:"
 msgstr "Insira o nome da rama:"
 
-#: ../src/giggle-rev-list-view.c:1132
+#: ../src/giggle-rev-list-view.c:1135
 msgid "Enter tag name:"
 msgstr "Insira o nome da etiqueta:"
 
-#: ../src/giggle-rev-list-view.c:1193
+#: ../src/giggle-rev-list-view.c:1196
 #, c-format
 msgid "Could not create patch"
 msgstr "Non é posíbel crear un parche"
 
-#: ../src/giggle-rev-list-view.c:1454
+#: ../src/giggle-rev-list-view.c:1457
 msgid "Uncommitted changes"
 msgstr "Cambios sen remitir"
 
 #. TRANSLATORS: it's a strftime format string
-#: ../src/giggle-rev-list-view.c:1508
+#: ../src/giggle-rev-list-view.c:1511
 msgid "%I:%M %p"
 msgstr "%I:%M %p"
 
 #. TRANSLATORS: it's a strftime format string
-#: ../src/giggle-rev-list-view.c:1521
+#: ../src/giggle-rev-list-view.c:1524
 msgid "%a %I:%M %p"
 msgstr "%a %I:%M %p"
 
 #. TRANSLATORS: it's a strftime format string
-#: ../src/giggle-rev-list-view.c:1533
+#: ../src/giggle-rev-list-view.c:1536
 msgid "%b %d %I:%M %p"
 msgstr "%d %b %I:%M %p"
 
 #. it's older
 #. TRANSLATORS: it's a strftime format string
-#: ../src/giggle-rev-list-view.c:1538
+#: ../src/giggle-rev-list-view.c:1541
 msgid "%b %d %Y"
 msgstr "%d %b %Y"
 
-#: ../src/giggle-rev-list-view.c:1664
+#: ../src/giggle-rev-list-view.c:1667
 msgid "Commit"
 msgstr "Remitir"
 
-#: ../src/giggle-rev-list-view.c:1665
+#: ../src/giggle-rev-list-view.c:1668
 msgid "Create _Branch"
 msgstr "Crear _rama"
 
-#: ../src/giggle-rev-list-view.c:1666
+#: ../src/giggle-rev-list-view.c:1669
 msgid "Create _Tag"
 msgstr "Crear _etiqueta"
 
-#: ../src/giggle-rev-list-view.c:1727
+#: ../src/giggle-rev-list-view.c:1730
 msgid "Graph"
 msgstr "Gráfico"
 
-#: ../src/giggle-rev-list-view.c:1745
+#: ../src/giggle-rev-list-view.c:1748
 msgid "Short Log"
 msgstr "Rexistro curto"
 
-#: ../src/giggle-rev-list-view.c:1764
+#: ../src/giggle-rev-list-view.c:1767
 msgid "Author"
 msgstr "Autor"
 
-#: ../src/giggle-rev-list-view.c:1781
+#: ../src/giggle-rev-list-view.c:1784
 msgid "Date"
 msgstr "Data"
 
@@ -482,11 +522,11 @@ msgstr "_Seguinte cambio"
 msgid "View next change"
 msgstr "Ver seguinte cambio"
 
-#: ../src/giggle-view-diff.c:349
+#: ../src/giggle-view-diff.c:351
 msgid "_Changes"
 msgstr "_Cambios"
 
-#: ../src/giggle-view-diff.c:350
+#: ../src/giggle-view-diff.c:352
 msgid "Browse a revision's changes"
 msgstr "Explorar os cambios da revisión"
 
@@ -514,7 +554,7 @@ msgstr "Seleccionar _revisión"
 msgid "Select revision of selected line"
 msgstr "Seleccionar revisión da liña seleccionada"
 
-#: ../src/giggle-view-file.c:904
+#: ../src/giggle-view-file.c:905
 #, c-format
 msgid ""
 "An error occurred when getting file ref:\n"
@@ -523,8 +563,8 @@ msgstr ""
 "Produciuse un erro ao obter a referencia do ficheiro:\n"
 "%s"
 
-#: ../src/giggle-view-file.c:975 ../src/giggle-view-history.c:256
-#: ../src/giggle-view-history.c:351
+#: ../src/giggle-view-file.c:976 ../src/giggle-view-history.c:254
+#: ../src/giggle-view-history.c:349
 #, c-format
 msgid ""
 "An error occurred when getting the revisions list:\n"
@@ -533,77 +573,83 @@ msgstr ""
 "Produciuse un erro ao obter a lista de revisións:\n"
 "%s"
 
-#: ../src/giggle-view-file.c:1135
+#: ../src/giggle-view-file.c:1136
 msgid "Line Number:"
 msgstr "Número da liña:"
 
-#: ../src/giggle-view-file.c:1571
+#: ../src/giggle-view-file.c:1572
 msgid "_Browse"
 msgstr "_Explorar:"
 
-#: ../src/giggle-view-file.c:1572
+#: ../src/giggle-view-file.c:1573
 msgid "Browse the files of this project"
 msgstr "Explorar os ficheiros neste proxecto"
 
-#: ../src/giggle-view-history.c:845
+#: ../src/giggle-view-history.c:854
 msgid "_History"
 msgstr "_Historial"
 
-#: ../src/giggle-view-history.c:846
+#: ../src/giggle-view-history.c:855
 msgid "Browse the history of this project"
 msgstr "Explorar o historial deste proxecto"
 
-#: ../src/giggle-view-summary.c:117
-msgid "<b>Description:</b>"
-msgstr "<b>Descrición:</b>"
+#: ../src/giggle-view-summary.c:118
+msgid "Description:"
+msgstr "Descrición:"
 
-#: ../src/giggle-view-summary.c:163
-msgid "<b>Remotes:</b>"
-msgstr "<b>Servidores remotos:</b>"
+#: ../src/giggle-view-summary.c:167
+msgid "Remotes:"
+msgstr "Remotas:"
 
-#: ../src/giggle-view-summary.c:189
+#: ../src/giggle-view-summary.c:195
 msgid "_Summary"
 msgstr "_Resumo"
 
-#: ../src/giggle-view-summary.c:192
+#: ../src/giggle-view-summary.c:198
 msgid "_Branches"
 msgstr "_Ramas"
 
-#: ../src/giggle-view-summary.c:195
+#: ../src/giggle-view-summary.c:201
 msgid "_Authors"
 msgstr "_Autores"
 
-#: ../src/giggle-view-summary.c:198
+#: ../src/giggle-view-summary.c:204
 msgid "_Remotes"
 msgstr "Servidores _remotos"
 
-#: ../src/giggle-window.c:562 ../src/giggle-window.c:960
+#: ../src/giggle-window.c:580 ../src/giggle-window.c:1010
 msgid "About Giggle"
 msgstr "Sobre Giggle"
 
-#: ../src/giggle-window.c:587
+#: ../src/giggle-window.c:605
 #, c-format
 msgid "The directory '%s' does not look like a git repository."
 msgstr "O cartafol '%s' non semella un repositorio de git."
 
-#: ../src/giggle-window.c:670
+#: ../src/giggle-window.c:688
 msgid "Select git repository"
 msgstr "Seleccionar un repositorio git"
 
-#: ../src/giggle-window.c:706
+#: ../src/giggle-window.c:741
 #, c-format
 msgid "Properties of %s"
 msgstr "Propiedades de %s"
 
-#: ../src/giggle-window.c:920
+#: ../src/giggle-window.c:956
+msgid "Contributors:"
+msgstr "Colaboradores:"
+
+#: ../src/giggle-window.c:969
 msgid ""
 "Copyright © 2007 - 2008 Imendio AB\n"
-"Copyright © 2008 - 2010 Mathias Hasselmann"
+"Copyright © 2008 - 2009 Mathias Hasselmann\n"
+"Copyright © 2009 - 2010 The Giggle authors"
 msgstr ""
 "Copyright © 2007 - 2008 Imendio AB\n"
-"Copyright © 2008 - 2010 Mathias Hasselmann"
+"Copyright © 2008 - 2009 Mathias Hasselmann\n"
+"Copyright © 2009 - 2010 Os autores de Giggle"
 
-#: ../src/giggle-window.c:924
+#: ../src/giggle-window.c:974
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -615,7 +661,7 @@ msgstr ""
 "Foundation; xa sexa a versión 2, ou (á súa elección) calquera versión "
 "posterior."
 
-#: ../src/giggle-window.c:928
+#: ../src/giggle-window.c:978
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -627,7 +673,7 @@ msgstr ""
 "IDONEIDADE PARA UN PROPÓSITO PARTICULAR. Vexa a Licenza Pública General GNU "
 "para máis detalles."
 
-#: ../src/giggle-window.c:932
+#: ../src/giggle-window.c:982
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program; if not, write to the Free Software Foundation, Inc., 51 "
@@ -645,127 +691,143 @@ msgstr ""
 #. * this translation; in that case, please write each of them on a separate
 #. * line seperated by newlines (\n).
 #.
-#: ../src/giggle-window.c:950
+#: ../src/giggle-window.c:1000
 msgid "translator-credits"
 msgstr "Fran Diéguez <frandieguez@ubuntu.com>, 2010;"
 
-#: ../src/giggle-window.c:955
+#: ../src/giggle-window.c:1005
 msgid "A graphical frontend for Git"
 msgstr "Unha interface gráfica para Git"
 
-#: ../src/giggle-window.c:964
+#: ../src/giggle-window.c:1014
 msgid "Giggle Website"
 msgstr "Sitio web de Giggle"
 
-#: ../src/giggle-window.c:1018
+#: ../src/giggle-window.c:1072
 msgid "_Find..."
 msgstr "_Buscar..."
 
-#: ../src/giggle-window.c:1019
+#: ../src/giggle-window.c:1073
 msgid "Find..."
 msgstr "Buscar..."
 
-#: ../src/giggle-window.c:1025
+#: ../src/giggle-window.c:1079
 msgid "Find Ne_xt"
 msgstr "Buscar se_guinte"
 
-#: ../src/giggle-window.c:1026
+#: ../src/giggle-window.c:1080
 msgid "Find next match"
 msgstr "Buscar seguinte aparición"
 
-#: ../src/giggle-window.c:1029
+#: ../src/giggle-window.c:1083
 msgid "Find Pre_vious"
 msgstr "Buscar ant_erior"
 
-#: ../src/giggle-window.c:1030
+#: ../src/giggle-window.c:1084
 msgid "Find previous match"
 msgstr "Buscar anterior aparición"
 
-#: ../src/giggle-window.c:1036
+#: ../src/giggle-window.c:1090
 msgid "_Project"
 msgstr "_Proxecto"
 
-#: ../src/giggle-window.c:1037
+#: ../src/giggle-window.c:1091
 msgid "_Edit"
 msgstr "_Editar"
 
-#: ../src/giggle-window.c:1038
+#: ../src/giggle-window.c:1092
 msgid "_Go"
 msgstr "_Ir"
 
-#: ../src/giggle-window.c:1039
+#: ../src/giggle-window.c:1093
 msgid "_View"
 msgstr "_Ver"
 
-#: ../src/giggle-window.c:1040
+#: ../src/giggle-window.c:1094
 msgid "_Help"
 msgstr "_Axuda"
 
-#: ../src/giggle-window.c:1043
+#: ../src/giggle-window.c:1097
 msgid "Open a git repository"
 msgstr "Abrir un repositorio git"
 
-#: ../src/giggle-window.c:1048
+#: ../src/giggle-window.c:1101
+msgid "Clone _location"
+msgstr "Clonar _localización"
+
+#: ../src/giggle-window.c:1101
+msgid "Clone a location"
+msgstr "Clonar unha localización"
+
+#: ../src/giggle-window.c:1106
 msgid "_Save patch"
 msgstr "_Gardar parche"
 
-#: ../src/giggle-window.c:1048
+#: ../src/giggle-window.c:1106
 msgid "Save a patch"
 msgstr "Gardar un parche"
 
-#: ../src/giggle-window.c:1052
+#: ../src/giggle-window.c:1110
 msgid "_Diff current changes"
 msgstr "Facer _diff dos cambios actuais"
 
-#: ../src/giggle-window.c:1052
+#: ../src/giggle-window.c:1110
 msgid "Diff current changes"
 msgstr "Facer un diff dos cambiso actuais"
 
-#: ../src/giggle-window.c:1057
+#: ../src/giggle-window.c:1115
 msgid "Quit the application"
 msgstr "Saír do aplicativo"
 
-#: ../src/giggle-window.c:1075
+#: ../src/giggle-window.c:1133
 msgid "Go backward in history"
 msgstr "Ir cara atrás no historial"
 
-#: ../src/giggle-window.c:1079
+#: ../src/giggle-window.c:1137
 msgid "Go forward in history"
 msgstr "Ir cara adiante no historial"
 
-#: ../src/giggle-window.c:1083
+#: ../src/giggle-window.c:1141
+msgid "_Contents"
+msgstr "Índ_ice"
+
+#: ../src/giggle-window.c:1142
+msgid "Show user guide for Giggle"
+msgstr "Mostrar a guía de usuario de Giggle"
+
+#: ../src/giggle-window.c:1145
 msgid "Report _Issue"
 msgstr "Informar dun _problema"
 
-#: ../src/giggle-window.c:1084
+#: ../src/giggle-window.c:1146
 msgid "Report an issue you've found in Giggle"
 msgstr "Informar dun problema que encontrou no Giggle"
 
-#: ../src/giggle-window.c:1088
+#: ../src/giggle-window.c:1150
 msgid "About this application"
 msgstr "Sobre este aplicativo"
 
-#: ../src/giggle-window.c:1095
+#: ../src/giggle-window.c:1157
 msgid "Show revision tree"
 msgstr "Mostrar o árbore de revisións"
 
-#: ../src/giggle-window.c:1102
+#: ../src/giggle-window.c:1164
 msgid "Show and edit project properties"
 msgstr "Mostrar e editar as propiedades do proxecto"
 
-#: ../src/giggle-window.c:1106
+#: ../src/giggle-window.c:1168
 msgid "Refresh current view"
 msgstr "Actualizar a visualización actual"
 
-#: ../src/giggle-window.c:1436
+#: ../src/giggle-window.c:1500
 msgid "Search Inside _Patches"
 msgstr "Buscar dentro dos _parches"
 
-#: ../src/giggle-window.c:1708
+#: ../src/giggle-window.c:1769
 msgid "Save patch file"
 msgstr "Gardar ficheiro de parche"
 
-#: ../src/giggle-window.c:1728
+#: ../src/giggle-window.c:1789
 #, c-format
 msgid ""
 "An error occurred when saving to file:\n"
@@ -774,3 +836,8 @@ msgstr ""
 "Produciuse un erro ao gardar nun ficheiro:\n"
 "%s"
 
+#~ msgid "<b>Branches</b>"
+#~ msgstr "<b>Ramas</b>"
+
+#~ msgid "<b>Remotes:</b>"
+#~ msgstr "<b>Servidores remotos:</b>"

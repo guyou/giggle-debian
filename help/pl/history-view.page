@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="history-view" xml:lang="pl">
+  <info>
+    <link type="guide" xref="index#views"/>
+    <desc>Przeglądanie historii repozytorium</desc>
+
+    <credit type="author">
+      <name>Łukasz Jernaś</name>
+      <email>deejay1@srem.org</email>
+    </credit>
+
+<!--
+    <copyright>
+      <year>2010</year>
+      <name>GNOME Documentation Project</name>
+    </copyright>
+-->
+    <license>
+      <p>Creative Commons Uznanie autorstwa-Na tych samych warunkach 3.0 Polska</p>
+    </license>
+  </info>
+  <title>Widok historii</title>
+  <section id="overview">
+   <title>Przegląd</title>
+   <figure>
+    <desc>Widok historii programu Giggle</desc>
+    <media type="image" src="figures/giggle-history_view_sections.png" alt="Giggle main window in History mode"/>
+   </figure>
+    <p>Widok historii programu <app>Giggle</app> składa się z trzech głównych części:</p>
+     <list type="numbered">
+       <item>
+        <p>Wykres historii</p>
+        <p>Wyświetla graficzne wyobrażenie historii bieżącego repozytorium, zawierające informacje o wszystkich lokalnych i zdalnych gałęziach. Przytrzymując wskaźnik myszy nad wyświetlonymi ikonami, można uzyskać dodatkowe informacje takie jak nazwy etykiet oraz gałęzi. Do poruszania się po historii repozytorium można używać zarówno klawiszy <key>strzałka w górę</key> i <key>strzałka w dół</key>, jak i myszy.</p>
+       </item>
+       <item>
+        <p>Zmienione pliki</p>
+        <p>Wyświetla pliki zmienione w bieżącej rewizji.</p>
+       </item>
+       <item>
+        <p>Różnice</p>
+        <p>Wyświetla różnice dla bieżącego pliku i rewizji.</p>
+        <note style="important">
+          <p>Program <app>Giggle</app> wyświetla różnice w plikach jako pojedyncze fragmenty, między którymi można się przemieszczać za pomocą ikon strzałek w górę i w dół znajdujących się nad listą zmienionych plików, lub przy użyciu skrótów klawiszowych <keyseq><key>Alt</key><key>strzałka w górę</key></keyseq> i <keyseq><key>Alt</key><key>strzałka w dół</key></keyseq>. Czynność ta spowoduje także przesuwanie się po liście zmienionych plików wraz z przebiegiem różnic.</p>
+        </note>
+       </item>
+     </list>
+    </section>
+</page>

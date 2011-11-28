@@ -1,79 +1,146 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <futoshi@momonga-linux.org>, 2007.
+# giggle ja.po
+# Copyright (C) 2007-2010 giggle's copyright holder
+# This file is distributed under the same license as the giggle package.
+# Nishio Futoshi <futoshi@momonga-linux.org>, 2007.
+# Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>, 2010.
+#
+# 訳注: commit: 'コミットで' はなく 'commit' のままにする
+#       clone: '複製' ではなく 'clone' のままにする
+#       repositry: リポジトリ
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-10-08 19:03+0900\n"
-"PO-Revision-Date: 2009-02-25 11:11+0100\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Project-Id-Version: giggle master\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=giggle\n"
+"POT-Creation-Date: 2010-09-09 15:18+0000\n"
+"PO-Revision-Date: 2010-09-09 00:11+0900\n"
+"Last-Translator: Takauyki KUSANO <AE5T-KSN@asahi-net.or.jp>\n"
+"Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../data/giggle.desktop.in.h:1
 msgid "Giggle"
-msgstr ""
+msgstr "Giggle"
 
 #: ../data/giggle.desktop.in.h:2
 msgid "Git repository viewer"
-msgstr "git リポジトリ・ビューア"
+msgstr "Git リポジトリ・ビューア"
 
-#: ../data/main-window.glade.h:1
-msgid "<b>Branches</b>"
-msgstr "<b>ブランチ</b>"
+#: ../data/giggle.schemas.in.h:1
+msgid "Run Giggle in a terminal?"
+msgstr "Giggle を端末で実行しますか?"
 
-#: ../data/main-window.glade.h:2
+#: ../data/giggle.schemas.in.h:2
+msgid "Set it at TRUE if you want it activated"
+msgstr "有効化したいのであれば TRUE に設定してください"
+
+#: ../data/giggle.schemas.in.h:3
+msgid "The handler for \"git://\" URLs"
+msgstr "\"git://\" URL のハンドラ"
+
+#: ../data/main-window.ui.h:1 ../src/giggle-remote-editor.c:174
+msgid "Branches"
+msgstr "ブランチ"
+
+#: ../data/main-window.ui.h:2
 msgid "Name:"
 msgstr "名前:"
 
-#: ../data/main-window.glade.h:3
-#: ../src/giggle-personal-details-window.c:84
-msgid "Personal Details"
-msgstr "個人情報"
-
-#: ../data/main-window.glade.h:4
+#: ../data/main-window.ui.h:3
 msgid "URL:"
-msgstr ""
+msgstr "URL:"
 
-#: ../data/main-window.glade.h:5
-msgid "_Email:"
-msgstr "電子メール(_E):"
+#: ../libgiggle/giggle-plugin.c:528
+#, c-format
+msgid "Cannot find plugin description in '%s'"
+msgstr "'%s' にプラグインの説明を見つけることができません"
 
-#: ../data/main-window.glade.h:6
+#: ../plugins/hello-world.xml.h:1
+msgid "Check if the plugin system works"
+msgstr "プラグインシステムが動作するか確認"
+
+#: ../plugins/hello-world.xml.h:2
+msgid "Demonstration of Giggle's Plugin System"
+msgstr "Giggle のプラグインシステムのデモ"
+
+#: ../plugins/hello-world.xml.h:3
+msgid "Hello World"
+msgstr "Hello World"
+
+#: ../plugins/giggle-personal-details-window.c:82
+msgid "There was an error setting the configuration"
+msgstr "コンフィグレーション設定時にエラーが発生しました"
+
+#: ../plugins/giggle-personal-details-window.c:184
+msgid "There was an error getting the configuration"
+msgstr "コンフィグレーション取得時にエラーが発生しました"
+
+#: ../plugins/giggle-personal-details-window.c:248
 msgid "_Name:"
 msgstr "名前(_N):"
 
-#: ../src/eggfindbar.c:320
+#: ../plugins/giggle-personal-details-window.c:256
+msgid "_Email:"
+msgstr "電子メール(_E):"
+
+#: ../plugins/giggle-personal-details-window.c:267
+#: ../plugins/personal-details.xml.h:2
+msgid "Personal Details"
+msgstr "個人情報"
+
+#: ../plugins/giggle-view-terminal.c:109
+msgid "_Terminal"
+msgstr "端末(_T)"
+
+#: ../plugins/giggle-view-terminal.c:110
+msgid "Issue git commands via terminal"
+msgstr "端末で git コマンドを実行"
+
+#: ../plugins/personal-details.xml.h:1
+msgid "Edit personal details"
+msgstr "個人情報を編集"
+
+#: ../plugins/terminal-view.xml.h:1
+msgid "Create _Terminal"
+msgstr "端末を作成(_T)"
+
+#: ../plugins/terminal-view.xml.h:2
+msgid "Create new tab in git terminal"
+msgstr "git 端末に新しいタブを作成"
+
+#: ../plugins/terminal-view.xml.h:3
+msgid "Terminal window"
+msgstr "端末ウィンドウ"
+
+#: ../src/eggfindbar.c:307
 msgid "Find:"
 msgstr "検索:"
 
-#: ../src/eggfindbar.c:329
+#: ../src/eggfindbar.c:316
 msgid "Find Previous"
 msgstr "前を検索"
 
-#: ../src/eggfindbar.c:332
+#: ../src/eggfindbar.c:319
 msgid "Find previous occurrence of the search string"
 msgstr "前で見つかった検索文字"
 
-#: ../src/eggfindbar.c:337
+#: ../src/eggfindbar.c:323
 msgid "Find Next"
 msgstr "次を検索"
 
-#: ../src/eggfindbar.c:340
+#: ../src/eggfindbar.c:326
 msgid "Find next occurrence of the search string"
 msgstr "次に見つかった検索文字"
 
-#: ../src/eggfindbar.c:348
+#: ../src/eggfindbar.c:333
 msgid "C_ase Sensitive"
 msgstr "大文字小文字を区別する(_C)"
 
-#: ../src/eggfindbar.c:351
+#: ../src/eggfindbar.c:337
 msgid "Toggle case sensitive search"
 msgstr "大文字小文字の区別を切り替える"
 
@@ -86,36 +153,61 @@ msgstr ""
 "著作者リストの取得時にエラーが発生しました:\n"
 "%s"
 
-#: ../src/giggle-authors-view.c:145
+#: ../src/giggle-authors-view.c:146
 msgid "Authors:"
 msgstr "著作者:"
 
-#: ../src/giggle-branches-view.c:80
+#: ../src/giggle-branches-view.c:81
 #, c-format
 msgid ""
 "An error occurred when retrieving branches list:\n"
 "%s"
-msgstr "ブランチリスト取得時にエラーが発生しました:%s"
+msgstr ""
+"ブランチリスト取得時にエラーが発生しました:\n"
+"%s"
 
-#: ../src/giggle-branches-view.c:145
+#: ../src/giggle-branches-view.c:147 ../src/giggle-revision-view.c:209
 msgid "Branches:"
 msgstr "ブランチ:"
 
-#: ../src/giggle-diff-tree-view.c:105
-#: ../src/giggle-file-list.c:1513
+#: ../src/giggle-clone-dialog.c:238
+msgid "Clone Repository"
+msgstr "リポジトリの clone"
+
+#: ../src/giggle-clone-dialog.c:247
+msgid "Cl_one"
+msgstr "clone(_O)"
+
+#: ../src/giggle-clone-dialog.c:271
+msgid "_Repository:"
+msgstr "リポジトリ(_R)"
+
+#: ../src/giggle-clone-dialog.c:279
+msgid "_Local name:"
+msgstr "ローカル名(_L):"
+
+#: ../src/giggle-clone-dialog.c:284
+msgid "Please select a location for the clone"
+msgstr "clone の場所を選択してください"
+
+#: ../src/giggle-clone-dialog.c:287
+msgid "Clone in _folder:"
+msgstr "フォルダに clone(_F)"
+
+#: ../src/giggle-diff-tree-view.c:142 ../src/giggle-file-list.c:1671
 #, c-format
 msgid ""
 "An error occurred when retrieving different files list:\n"
 "%s"
 msgstr ""
 "差異のあるファイルリストの取得時にエラーが発生しました:\n"
-"％s"
+"%s"
 
-#: ../src/giggle-diff-tree-view.c:139
+#: ../src/giggle-diff-tree-view.c:209
 msgid "Changed files"
 msgstr "変更されているファイル"
 
-#: ../src/giggle-diff-view.c:259
+#: ../src/giggle-diff-view.c:603
 #, c-format
 msgid ""
 "An error occurred when retrieving a diff:\n"
@@ -124,19 +216,20 @@ msgstr ""
 "差分の取得時にエラーが発生しました:\n"
 "%s"
 
-#: ../src/giggle-diff-window.c:81
+# 訳注: 'commit' は 'コミットで' はなく 'commit' のままにする
+#: ../src/giggle-diff-window.c:82
 msgid "Commit changes"
 msgstr "変更のcommit"
 
-#: ../src/giggle-diff-window.c:103
+#: ../src/giggle-diff-window.c:104
 msgid "Revision log:"
 msgstr "リビジョンのログ:"
 
-#: ../src/giggle-diff-window.c:133
+#: ../src/giggle-diff-window.c:135
 msgid "Co_mmit"
 msgstr "commit(_M)"
 
-#: ../src/giggle-diff-window.c:206
+#: ../src/giggle-diff-window.c:208
 #, c-format
 msgid ""
 "An error occurred when committing:\n"
@@ -145,31 +238,7 @@ msgstr ""
 "commit時にエラーが発生しました:\n"
 "%s"
 
-#: ../src/giggle-file-list.c:168
-msgid "_Commit Changes"
-msgstr "変更をcommit(_C)"
-
-#: ../src/giggle-file-list.c:169
-msgid "A_dd file to repository"
-msgstr "ファイルをリポジトリに追加(_A)"
-
-#: ../src/giggle-file-list.c:170
-msgid "_Add to .gitignore"
-msgstr ".gitignoreを追加(_A)"
-
-#: ../src/giggle-file-list.c:171
-msgid "_Remove from .gitignore"
-msgstr ".gitignoreから削除(_R)"
-
-#: ../src/giggle-file-list.c:175
-msgid "_Show all files"
-msgstr "すべてのファイルを表示(_S)"
-
-#: ../src/giggle-file-list.c:314
-msgid "Project"
-msgstr "プロジェクト"
-
-#: ../src/giggle-file-list.c:644
+#: ../src/giggle-file-list.c:394
 #, c-format
 msgid ""
 "An error occurred when retrieving the file list:\n"
@@ -178,7 +247,7 @@ msgstr ""
 "ファイルリストの取得時にエラーが発生しました:\n"
 "%s"
 
-#: ../src/giggle-file-list.c:851
+#: ../src/giggle-file-list.c:763
 #, c-format
 msgid ""
 "An error occurred when adding a file to git:\n"
@@ -187,163 +256,322 @@ msgstr ""
 "ファイルのgit追加時にエラーが発生しました:\n"
 "%s"
 
-#: ../src/giggle-file-list.c:1139
+#: ../src/giggle-file-list.c:823 ../src/giggle-file-list.c:849
+#: ../src/giggle-rev-list-view.c:1194 ../src/giggle-rev-list-view.c:1225
+#, c-format
+msgid "Could not save the patch as %s"
+msgstr "パッチを %s として保存できませんでした"
+
+#: ../src/giggle-file-list.c:828 ../src/giggle-file-list.c:854
+#: ../src/giggle-rev-list-view.c:1202 ../src/giggle-rev-list-view.c:1230
+msgid "No error was given"
+msgstr "エラーが不明です"
+
+#: ../src/giggle-file-list.c:875 ../src/giggle-rev-list-view.c:1256
+#, c-format
+msgid "Patch saved as %s"
+msgstr "パッチが %s として保存されました"
+
+#: ../src/giggle-file-list.c:879 ../src/giggle-rev-list-view.c:1260
+#, c-format
+msgid "Created in project directory"
+msgstr "プロジェクトのディレクトリに作成されました"
+
+#: ../src/giggle-file-list.c:882 ../src/giggle-rev-list-view.c:1263
+#, c-format
+msgid "Created in directory %s"
+msgstr "ディレクトリ %s に作成されました"
+
+#: ../src/giggle-file-list.c:917 ../src/giggle-rev-list-view.c:1316
+msgid "Create Patch"
+msgstr "パッチの作成"
+
+#: ../src/giggle-file-list.c:1020
 msgid "Delete glob pattern?"
 msgstr "globパターンを削除しますか?"
 
-#: ../src/giggle-file-list.c:1142
-msgid "The selected file was shadowed by a glob pattern that may be hiding other files, delete it?"
-msgstr "選択されたファイルは、globパターンで表示されていますが、非表示のファイルがある可能性があります。削除しますか？"
+#: ../src/giggle-file-list.c:1023
+msgid ""
+"The selected file was shadowed by a glob pattern that may be hiding other "
+"files, delete it?"
+msgstr ""
+"選択されたファイルは、globパターンで表示されていますが、非表示のファイルがあ"
+"る可能性があります。削除しますか?"
 
-#: ../src/giggle-personal-details-window.c:127
-msgid "There was an error setting the configuration"
-msgstr "コンフィグレーション設定時にエラーが発生しました"
+#: ../src/giggle-file-list.c:1419
+msgid "_Commit Changes"
+msgstr "変更をcommit(_C)"
 
-#: ../src/giggle-personal-details-window.c:180
-msgid "There was an error getting the configuration"
-msgstr "コンフィグレーション取得時にエラーが発生しました"
+#: ../src/giggle-file-list.c:1421
+msgid "A_dd file to repository"
+msgstr "ファイルをリポジトリに追加(_A)"
 
-#: ../src/giggle-remote-editor.c:157
-msgid "Double click to add mapping..."
-msgstr "マップの追加はダブルクリック..."
+#: ../src/giggle-file-list.c:1422 ../src/giggle-rev-list-view.c:1670
+msgid "Create _Patch"
+msgstr "パッチの作成(_P)"
 
-#: ../src/giggle-remote-editor.c:183
-msgid "Branches"
-msgstr "ブランチ"
+#: ../src/giggle-file-list.c:1423
+msgid "_Add to .gitignore"
+msgstr ".gitignoreを追加(_A)"
 
-#: ../src/giggle-remote-editor.c:378
+#: ../src/giggle-file-list.c:1424
+msgid "_Remove from .gitignore"
+msgstr ".gitignoreから削除(_R)"
+
+#: ../src/giggle-file-list.c:1428
+msgid "_Show all files"
+msgstr "すべてのファイルを表示(_S)"
+
+#: ../src/giggle-file-list.c:1467
+msgid "Project"
+msgstr "プロジェクト"
+
+#: ../src/giggle-helpers.c:178
+msgid "An error ocurred:"
+msgstr "エラーが発生しました:"
+
+#: ../src/giggle-main.c:38
+msgid "Clone a repository"
+msgstr "リポジトリを clone"
+
+#: ../src/giggle-main.c:39 ../src/giggle-remotes-view.c:276
+msgid "URL"
+msgstr "URL"
+
+#: ../src/giggle-main.c:42
+msgid "Show the diff window"
+msgstr "差分ウィンドウを表示する"
+
+#: ../src/giggle-main.c:46
+msgid "Show version information and exit"
+msgstr "バージョン情報を表示して終了"
+
+#: ../src/giggle-main.c:49
+msgid "[DIRECTORY]"
+msgstr "[ディレクトリ]"
+
+#: ../src/giggle-main.c:79
+#, c-format
+msgid "Report errors (in English, with LC_ALL=C) to <%s>."
+msgstr "<%s> にエラーを報告 (LC_ALL=C にして英語で)。"
+
+#: ../src/giggle-main.c:80
+msgid "Giggle is a graphical frontend for the git content tracker."
+msgstr "Giggle は git コンテンツトラッカーのグラフィカルなフロントエンドです。"
+
+#: ../src/giggle-main.c:88
+#, c-format
+msgid "Try `%s --help' for more information.\n"
+msgstr "`%s --help' で詳細な情報を表示してください。\n"
+
+#: ../src/giggle-remote-editor.c:148
+msgid "Click to add mapping..."
+msgstr "クリックしてマッピングの追加..."
+
+#: ../src/giggle-remote-editor.c:375
 msgid "Unnamed"
 msgstr "未命名"
 
-#: ../src/giggle-remotes-view.c:114
-msgid "Double click to add remote..."
-msgstr "リモート追加はダブルクリック..."
+#: ../src/giggle-remotes-view.c:265
+msgid "Icon"
+msgstr "アイコン"
 
-#: ../src/giggle-remotes-view.c:206
+#: ../src/giggle-remotes-view.c:271
 msgid "Name"
 msgstr "名前"
 
-#: ../src/giggle-remotes-view.c:213
-msgid "URL"
-msgstr ""
+#: ../src/giggle-remotes-view.c:289
+msgid "Double click to add remote..."
+msgstr "リモート追加はダブルクリック..."
 
-#: ../src/giggle-revision-list.c:178
-msgid "Commit"
-msgstr "commit"
+#: ../src/giggle-revision-view.c:201 ../src/giggle-view-file.c:1223
+msgid "Author:"
+msgstr "著作者:"
 
-#: ../src/giggle-revision-list.c:179
-msgid "Create _Branch"
-msgstr "ブランチの作成(_B)"
+#: ../src/giggle-revision-view.c:205 ../src/giggle-view-file.c:1224
+msgid "Committer:"
+msgstr "コミッタ"
 
-#: ../src/giggle-revision-list.c:180
-msgid "Create _Tag"
-msgstr "タグの作成(_T)"
+#: ../src/giggle-revision-view.c:207 ../src/giggle-view-file.c:1225
+msgid "Date:"
+msgstr "日付:"
 
-#: ../src/giggle-revision-list.c:303
-msgid "Graph"
-msgstr "グラフ"
+#: ../src/giggle-revision-view.c:208 ../src/giggle-view-file.c:1226
+msgid "SHA:"
+msgstr "SHA:"
 
-#: ../src/giggle-revision-list.c:324
-msgid "Short Log"
-msgstr "短いログ"
+#: ../src/giggle-revision-view.c:227
+msgid "Change Log:"
+msgstr "変更履歴:"
 
-#: ../src/giggle-revision-list.c:347
-msgid "Author"
-msgstr "著作者"
+#: ../src/giggle-revision-view.c:514
+msgid "_Details"
+msgstr "詳細(_D)"
 
-#: ../src/giggle-revision-list.c:368
-msgid "Date"
-msgstr "日付"
+#: ../src/giggle-revision-view.c:515
+msgid "Display revision details"
+msgstr "リビジョンの詳細を表示"
 
-#: ../src/giggle-revision-list.c:634
+#: ../src/giggle-rev-list-view.c:353
 #, c-format
 msgid "Delete branch \"%s\""
 msgstr "ブランチ\"%s\"の削除"
 
-#: ../src/giggle-revision-list.c:637
+#: ../src/giggle-rev-list-view.c:356
 #, c-format
 msgid "Delete tag \"%s\""
 msgstr "タグ\"%s\"の削除"
 
-#: ../src/giggle-revision-list.c:909
+#: ../src/giggle-rev-list-view.c:526
+msgid "Branch"
+msgstr "ブランチ"
+
+#: ../src/giggle-rev-list-view.c:529
+msgid "Tag"
+msgstr "タグ"
+
+#: ../src/giggle-rev-list-view.c:532
+msgid "Remote"
+msgstr "リモート"
+
+#: ../src/giggle-rev-list-view.c:1084
+msgid "Enter branch name:"
+msgstr "ブランチ名の入力:"
+
+#: ../src/giggle-rev-list-view.c:1135
+msgid "Enter tag name:"
+msgstr "タグ名の入力:"
+
+#: ../src/giggle-rev-list-view.c:1196
+#, c-format
+msgid "Could not create patch"
+msgstr "パッチを作成できませんでした"
+
+#: ../src/giggle-rev-list-view.c:1457
 msgid "Uncommitted changes"
 msgstr "未commitの変更"
 
 #. TRANSLATORS: it's a strftime format string
-#: ../src/giggle-revision-list.c:967
+#: ../src/giggle-rev-list-view.c:1511
 msgid "%I:%M %p"
-msgstr ""
+msgstr "%p %I:%M"
 
 #. TRANSLATORS: it's a strftime format string
-#: ../src/giggle-revision-list.c:980
+#: ../src/giggle-rev-list-view.c:1524
 msgid "%a %I:%M %p"
-msgstr ""
+msgstr "(%a) %p %I:%M"
 
 #. TRANSLATORS: it's a strftime format string
-#: ../src/giggle-revision-list.c:992
+#: ../src/giggle-rev-list-view.c:1536
 msgid "%b %d %I:%M %p"
-msgstr ""
+msgstr "%b %d日 %p %I:%M"
 
 #. it's older
 #. TRANSLATORS: it's a strftime format string
-#: ../src/giggle-revision-list.c:997
+#: ../src/giggle-rev-list-view.c:1541
 msgid "%b %d %Y"
-msgstr ""
+msgstr "%Y年 %b %d日"
 
-#: ../src/giggle-revision-list.c:1420
-msgid "Enter branch name:"
-msgstr "ブランチ名の入力:"
+#: ../src/giggle-rev-list-view.c:1667
+msgid "Commit"
+msgstr "commit"
 
-#: ../src/giggle-revision-list.c:1471
-msgid "Enter tag name:"
-msgstr "タグ名の入力:"
+#: ../src/giggle-rev-list-view.c:1668
+msgid "Create _Branch"
+msgstr "ブランチの作成(_B)"
 
-#: ../src/giggle-revision-tooltip.c:255
-#: ../src/giggle-view-history.c:453
-msgid "Branch"
-msgid_plural "Branches"
-msgstr[0] "ブランチ"
-msgstr[1] "ブランチ"
+#: ../src/giggle-rev-list-view.c:1669
+msgid "Create _Tag"
+msgstr "タグの作成(_T)"
 
-#: ../src/giggle-revision-tooltip.c:261
-msgid "Tag"
-msgstr "タグ"
+#: ../src/giggle-rev-list-view.c:1730
+msgid "Graph"
+msgstr "グラフ"
 
-#: ../src/giggle-revision-view.c:121
-msgid "Date:"
-msgstr "日付:"
+#: ../src/giggle-rev-list-view.c:1748
+msgid "Short Log"
+msgstr "短いログ"
 
-#: ../src/giggle-revision-view.c:139
-msgid "SHA:"
-msgstr ""
+#: ../src/giggle-rev-list-view.c:1767
+msgid "Author"
+msgstr "著作者"
 
-#: ../src/giggle-revision-view.c:157
-msgid "Change Log:"
-msgstr ""
+#: ../src/giggle-rev-list-view.c:1784
+msgid "Date"
+msgstr "日付"
 
-#: ../src/giggle-short-list.c:139
+#: ../src/giggle-short-list.c:274
 msgid "Details"
 msgstr "詳細"
 
-#: ../src/giggle-short-list.c:252
-msgid "Show all..."
-msgstr "すべて表示..."
+#: ../src/giggle-short-list.c:385
+msgid "Show A_ll..."
+msgstr "すべて表示(_L)..."
 
-#. revision view
-#: ../src/giggle-view-file.c:131
-#: ../src/giggle-view-history.c:177
-msgid "Revision _information"
-msgstr "リビジョンの情報(_I)"
+#: ../src/giggle-view-diff.c:108
+#, c-format
+msgid "Change %d of %d"
+msgstr "%d / %d を変更"
 
-#. diff view
-#: ../src/giggle-view-file.c:139
-#: ../src/giggle-view-history.c:343
-msgid "_Differences"
-msgstr "差分(_D)"
+#: ../src/giggle-view-diff.c:185
+msgid "_Previous Change"
+msgstr "前の変更(_P)"
 
-#: ../src/giggle-view-file.c:189
-#: ../src/giggle-view-history.c:629
-#: ../src/giggle-view-history.c:722
+#: ../src/giggle-view-diff.c:185
+msgid "View previous change"
+msgstr "前の変更を表示"
+
+#: ../src/giggle-view-diff.c:189
+msgid "_Next Change"
+msgstr "次の変更(_N)"
+
+#: ../src/giggle-view-diff.c:189
+msgid "View next change"
+msgstr "次の変更を表示"
+
+#: ../src/giggle-view-diff.c:351
+msgid "_Changes"
+msgstr "変更(_C)"
+
+#: ../src/giggle-view-diff.c:352
+msgid "Browse a revision's changes"
+msgstr "リビジョンの変更を参照"
+
+#: ../src/giggle-view-file.c:328
+msgid "_Goto Line Number"
+msgstr "指定行へ移動(_G)"
+
+#: ../src/giggle-view-file.c:329
+msgid "Highlight specified line number"
+msgstr "指定した番号の行を強調表示"
+
+#: ../src/giggle-view-file.c:333
+msgid "Show _Changes"
+msgstr "変更を表示(_C)"
+
+#: ../src/giggle-view-file.c:334
+msgid "Show changes for selected revision"
+msgstr "選択したリビジョンの変更点を表示"
+
+#: ../src/giggle-view-file.c:338
+msgid "Select _Revision"
+msgstr "リビジョンの選択(_R)"
+
+#: ../src/giggle-view-file.c:339
+msgid "Select revision of selected line"
+msgstr "選択した行のリビジョンを選択します"
+
+#: ../src/giggle-view-file.c:905
+#, c-format
+msgid ""
+"An error occurred when getting file ref:\n"
+"%s"
+msgstr ""
+"file ref の取得時にエラーが発生しました:\n"
+"%s"
+
+#: ../src/giggle-view-file.c:976 ../src/giggle-view-history.c:254
+#: ../src/giggle-view-history.c:349
 #, c-format
 msgid ""
 "An error occurred when getting the revisions list:\n"
@@ -352,152 +580,253 @@ msgstr ""
 "リビジョン・リストの取得時にエラーが発生しました:\n"
 "%s"
 
+#: ../src/giggle-view-file.c:1136
+msgid "Line Number:"
+msgstr "行番号:"
+
+#: ../src/giggle-view-file.c:1572
+msgid "_Browse"
+msgstr "参照(_B)"
+
+#: ../src/giggle-view-file.c:1573
+msgid "Browse the files of this project"
+msgstr "このプロジェクトのファイルを参照します"
+
+#: ../src/giggle-view-history.c:854
+msgid "_History"
+msgstr "歴史(_H)"
+
+#: ../src/giggle-view-history.c:855
+msgid "Browse the history of this project"
+msgstr "このプロジェクトの履歴を参照します"
+
 #: ../src/giggle-view-summary.c:118
-msgid "<b>Description:</b>"
-msgstr "<b>説明:</b>"
+msgid "Description:"
+msgstr "説明:"
 
-#: ../src/giggle-view-summary.c:152
-msgid "<b>Remotes:</b>"
-msgstr "<b>リモート:</b>"
+#: ../src/giggle-view-summary.c:167
+msgid "Remotes:"
+msgstr "リモート:"
 
-#: ../src/giggle-window.c:132
-msgid "_Compact Mode"
-msgstr "小さな表示(_C)"
+#: ../src/giggle-view-summary.c:195
+msgid "_Summary"
+msgstr "概要(_S)"
 
-#: ../src/giggle-window.c:136
-msgid "Show Project _Tree"
-msgstr "プロジェクト・ツリーの表示(_T)"
+#: ../src/giggle-view-summary.c:198
+msgid "_Branches"
+msgstr "ブランチ(_B)"
 
-#: ../src/giggle-window.c:140
-msgid "Show revision tree"
-msgstr "リビジョン・ツリーの表示"
+#: ../src/giggle-view-summary.c:201
+msgid "_Authors"
+msgstr "著作者(_A)"
 
-#: ../src/giggle-window.c:147
-msgid "_Project"
-msgstr "プロジェクト(_P)"
+#: ../src/giggle-view-summary.c:204
+msgid "_Remotes"
+msgstr "リモート(_R)"
 
-#: ../src/giggle-window.c:151
-msgid "_Edit"
-msgstr "編集(_E)"
+#: ../src/giggle-window.c:580 ../src/giggle-window.c:1010
+msgid "About Giggle"
+msgstr "Giggle について"
 
-#: ../src/giggle-window.c:155
-msgid "_Go"
-msgstr "移動(_G)"
+#: ../src/giggle-window.c:605
+#, c-format
+msgid "The directory '%s' does not look like a git repository."
+msgstr "ディレクトリ '%s' は Git リポジトリではないみたいです。"
 
-#: ../src/giggle-window.c:159
-msgid "_View"
-msgstr "表示(_V)"
+#: ../src/giggle-window.c:688
+msgid "Select git repository"
+msgstr "Git リポジトリの選択"
 
-#: ../src/giggle-window.c:163
-msgid "_Help"
-msgstr "ヘルプ(_H)"
+#: ../src/giggle-window.c:741
+#, c-format
+msgid "Properties of %s"
+msgstr "%s のプロパティ"
 
-#: ../src/giggle-window.c:167
-msgid "_Open"
-msgstr "開く(_O)"
+#: ../src/giggle-window.c:956
+msgid "Contributors:"
+msgstr "貢献者:"
 
-#: ../src/giggle-window.c:167
-msgid "Open a git repository"
-msgstr "GITリポジトリを開く"
+#: ../src/giggle-window.c:969
+msgid ""
+"Copyright © 2007 - 2008 Imendio AB\n"
+"Copyright © 2008 - 2009 Mathias Hasselmann\n"
+"Copyright © 2009 - 2010 The Giggle authors"
+msgstr ""
+"Copyright © 2007 - 2008 Imendio AB\n"
+"Copyright © 2008 - 2009 Mathias Hasselmann\n"
+"Copyright © 2009 - 2010 The Giggle authors"
 
-#: ../src/giggle-window.c:171
-msgid "_Save patch"
-msgstr "パッチの保存(_P)"
+#: ../src/giggle-window.c:974
+msgid ""
+"This program is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version."
+msgstr ""
 
-#: ../src/giggle-window.c:171
-msgid "Save a patch"
-msgstr "パッチの保存"
+#: ../src/giggle-window.c:978
+msgid ""
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details."
+msgstr ""
 
-#: ../src/giggle-window.c:175
-msgid "_Diff current changes"
-msgstr "今回変更した差分(_D)"
+#: ../src/giggle-window.c:982
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"this program; if not, write to the Free Software Foundation, Inc., 51 "
+"Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA"
+msgstr ""
 
-#: ../src/giggle-window.c:175
-msgid "Diff current changes"
-msgstr "今回変更した差分"
+#. Translators: This is a special message that shouldn't be translated
+#. * literally. It is used in the about box to give credits to
+#. * the translators.
+#. * Thus, you should translate it to your name and email address.
+#. * You should also include other translators who have contributed to
+#. * this translation; in that case, please write each of them on a separate
+#. * line seperated by newlines (\n).
+#.
+#: ../src/giggle-window.c:1000
+msgid "translator-credits"
+msgstr ""
+"Nishio Futoshi <futoshi@momonga-linux.org>\n"
+"草野 貴之 <AE5T-KSN@asahi-net.or.jp>\n"
+"日本GNOMEユーザ会 <http://www.gnome.gr.jp/>"
 
-#: ../src/giggle-window.c:179
-msgid "_Quit"
-msgstr "終了(_Q)"
+#: ../src/giggle-window.c:1005
+msgid "A graphical frontend for Git"
+msgstr "Git のグラフィカルなフロントエンド"
 
-#: ../src/giggle-window.c:179
-msgid "Quit the application"
-msgstr "アプリケーションの終了"
+#: ../src/giggle-window.c:1014
+msgid "Giggle Website"
+msgstr "Giggle のウェブサイト"
 
-#: ../src/giggle-window.c:183
-msgid "Edit Personal _Details"
-msgstr "個人情報を検索(_D)"
-
-#: ../src/giggle-window.c:183
-msgid "Edit Personal details"
-msgstr "個人情報を編集"
-
-#: ../src/giggle-window.c:187
+#: ../src/giggle-window.c:1072
 msgid "_Find..."
 msgstr "検索(_F)..."
 
-#: ../src/giggle-window.c:187
+#: ../src/giggle-window.c:1073
 msgid "Find..."
 msgstr "検索..."
 
-#: ../src/giggle-window.c:191
+#: ../src/giggle-window.c:1079
 msgid "Find Ne_xt"
 msgstr "次を検索(_X)"
 
-#: ../src/giggle-window.c:191
-msgid "Find next"
-msgstr "次を検索"
+#: ../src/giggle-window.c:1080
+msgid "Find next match"
+msgstr "次の検索"
 
-#: ../src/giggle-window.c:195
+#: ../src/giggle-window.c:1083
 msgid "Find Pre_vious"
 msgstr "前を検索(_V)"
 
-#: ../src/giggle-window.c:195
-msgid "Find previous"
-msgstr "前を検索"
+#: ../src/giggle-window.c:1084
+msgid "Find previous match"
+msgstr "前の検索"
 
-#: ../src/giggle-window.c:199
-msgid "_About"
-msgstr "情報(_A)"
+#: ../src/giggle-window.c:1090
+msgid "_Project"
+msgstr "プロジェクト(_P)"
 
-#: ../src/giggle-window.c:199
+#: ../src/giggle-window.c:1091
+msgid "_Edit"
+msgstr "編集(_E)"
+
+#: ../src/giggle-window.c:1092
+msgid "_Go"
+msgstr "移動(_G)"
+
+#: ../src/giggle-window.c:1093
+msgid "_View"
+msgstr "表示(_V)"
+
+#: ../src/giggle-window.c:1094
+msgid "_Help"
+msgstr "ヘルプ(_H)"
+
+#: ../src/giggle-window.c:1097
+msgid "Open a git repository"
+msgstr "Git リポジトリを開く"
+
+#: ../src/giggle-window.c:1101
+msgid "Clone _location"
+msgstr "場所の clone(_L)"
+
+#: ../src/giggle-window.c:1101
+msgid "Clone a location"
+msgstr "場所をcloneします"
+
+#: ../src/giggle-window.c:1106
+msgid "_Save patch"
+msgstr "パッチの保存(_P)"
+
+#: ../src/giggle-window.c:1106
+msgid "Save a patch"
+msgstr "パッチの保存"
+
+#: ../src/giggle-window.c:1110
+msgid "_Diff current changes"
+msgstr "今回変更した差分(_D)"
+
+#: ../src/giggle-window.c:1110
+msgid "Diff current changes"
+msgstr "今回変更した差分"
+
+#: ../src/giggle-window.c:1115
+msgid "Quit the application"
+msgstr "アプリケーションの終了"
+
+#: ../src/giggle-window.c:1133
+msgid "Go backward in history"
+msgstr "履歴を古いほうへ移動"
+
+#: ../src/giggle-window.c:1137
+msgid "Go forward in history"
+msgstr "履歴を新しいほうへ移動<"
+
+#: ../src/giggle-window.c:1141
+msgid "_Contents"
+msgstr "目次(_C)"
+
+#: ../src/giggle-window.c:1142
+msgid "Show user guide for Giggle"
+msgstr "Giggle のユーザガイドを表示"
+
+#: ../src/giggle-window.c:1145
+msgid "Report _Issue"
+msgstr "問題を報告(_I)"
+
+#: ../src/giggle-window.c:1146
+msgid "Report an issue you've found in Giggle"
+msgstr "発見した Giggle の不具合を報告します"
+
+#: ../src/giggle-window.c:1150
 msgid "About this application"
 msgstr "このアプリケーションについて"
 
-#: ../src/giggle-window.c:205
-msgid "_Back"
-msgstr "戻る(_B)"
+#: ../src/giggle-window.c:1157
+msgid "Show revision tree"
+msgstr "リビジョン・ツリーの表示"
 
-#: ../src/giggle-window.c:209
-msgid "_Forward"
-msgstr "前(_F)"
+#: ../src/giggle-window.c:1164
+msgid "Show and edit project properties"
+msgstr "プロジェクトのプロパティの表示と編集"
 
-#: ../src/giggle-window.c:341
-msgid "Search inside _diffs"
-msgstr "内部の差分を検索(_D)"
+#: ../src/giggle-window.c:1168
+msgid "Refresh current view"
+msgstr "現在のビューを更新"
 
-#: ../src/giggle-window.c:374
-#, c-format
-msgid "The directory '%s' does not look like a git repository."
-msgstr "ディレクトリ'%s'はGITリポジトリではないみたいです。"
+#: ../src/giggle-window.c:1500
+msgid "Search Inside _Patches"
+msgstr "パッチの内部を検索(_P)"
 
-#: ../src/giggle-window.c:517
-msgid "History"
-msgstr "歴史"
-
-#: ../src/giggle-window.c:535
-msgid "Summary"
-msgstr "概要"
-
-#: ../src/giggle-window.c:732
-msgid "Select git repository"
-msgstr "GITリポジトリの選択"
-
-#: ../src/giggle-window.c:767
+#: ../src/giggle-window.c:1769
 msgid "Save patch file"
 msgstr "パッチファイルの保存"
 
-#: ../src/giggle-window.c:787
+#: ../src/giggle-window.c:1789
 #, c-format
 msgid ""
 "An error occurred when saving to file:\n"
@@ -506,7 +835,29 @@ msgstr ""
 "ファイルの保存時にエラーが発生しました:\n"
 "%s"
 
-#: ../src/giggle-window.c:1008
-msgid "translator-credits"
-msgstr "翻訳者のクレジット"
+#~ msgid "<b>Branches</b>"
+#~ msgstr "<b>ブランチ</b>"
 
+#~ msgid "_Differences"
+#~ msgstr "差分(_D)"
+
+#~ msgid "_Compact Mode"
+#~ msgstr "小さな表示(_C)"
+
+#~ msgid "_Open"
+#~ msgstr "開く(_O)"
+
+#~ msgid "_Quit"
+#~ msgstr "終了(_Q)"
+
+#~ msgid "Edit Personal _Details"
+#~ msgstr "個人情報を検索(_D)"
+
+#~ msgid "_About"
+#~ msgstr "情報(_A)"
+
+#~ msgid "_Back"
+#~ msgstr "戻る(_B)"
+
+#~ msgid "_Forward"
+#~ msgstr "前(_F)"

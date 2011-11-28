@@ -25,6 +25,11 @@
 
 G_BEGIN_DECLS
 
+enum {
+	GIGGLE_SHORT_LIST_COL_OBJECT,
+	GIGGLE_SHORT_LIST_N_COLUMNS
+};
+
 #define GIGGLE_TYPE_SHORT_LIST            (giggle_short_list_get_type ())
 #define GIGGLE_SHORT_LIST(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GIGGLE_TYPE_SHORT_LIST, GiggleShortList))
 #define GIGGLE_SHORT_LIST_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GIGGLE_TYPE_SHORT_LIST, GiggleShortListClass))
@@ -32,8 +37,21 @@ G_BEGIN_DECLS
 #define GIGGLE_IS_SHORT_LIST_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GIGGLE_TYPE_SHORT_LIST))
 #define GIGGLE_SHORT_LIST_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GIGGLE_TYPE_SHORT_LIST, GiggleShortListClass))
 
-typedef GtkVBox                     GiggleShortList;
-typedef struct GiggleShortListClass GiggleShortListClass;
+typedef struct _GiggleShortList             GiggleShortList;
+typedef struct _GiggleShortListClass        GiggleShortListClass;
+
+struct _GiggleShortList {
+	GtkBox parent_instance;
+};
+
+struct _GiggleShortListClass {
+	GtkBoxClass parent_class;
+
+	/* signals */
+	gchar* (*display_object) (GiggleShortList* self,
+	                          GObject        * object);
+};
+
 
 GType		      giggle_short_list_get_type (void);
 
@@ -41,19 +59,6 @@ GtkTreeModel         *giggle_short_list_get_model (GiggleShortList *short_list);
 void                  giggle_short_list_set_model (GiggleShortList *short_list,
 						   GtkTreeModel    *model);
 
-
-struct GiggleShortListClass {
-	GtkVBoxClass vbox_class;
-
-	/* signals */
-	gchar* (*display_object) (GiggleShortList* self,
-				  GObject        * object);
-};
-
-enum {
-	GIGGLE_SHORT_LIST_COL_OBJECT,
-	GIGGLE_SHORT_LIST_N_COLUMNS
-};
 
 G_END_DECLS
 

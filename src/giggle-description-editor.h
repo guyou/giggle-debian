@@ -37,11 +37,11 @@ typedef struct _GiggleDescriptionEditor      GiggleDescriptionEditor;
 typedef struct _GiggleDescriptionEditorClass GiggleDescriptionEditorClass;
 
 struct _GiggleDescriptionEditor {
-	GtkVBox parent_instance;
+	GtkBox parent_instance;
 };
 
 struct _GiggleDescriptionEditorClass {
-	GtkVBoxClass parent_class;
+	GtkBoxClass parent_class;
 };
 
 GType              giggle_description_editor_get_type          (void);

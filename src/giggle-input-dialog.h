@@ -47,7 +47,7 @@ struct _GiggleInputDialogClass {
 GType                  giggle_input_dialog_get_type  (void);
 GtkWidget *            giggle_input_dialog_new       (const gchar *text);
 
-G_CONST_RETURN gchar * giggle_input_dialog_get_text  (GiggleInputDialog *input_dialog);
+const gchar *          giggle_input_dialog_get_text  (GiggleInputDialog *input_dialog);
 
 
 G_END_DECLS

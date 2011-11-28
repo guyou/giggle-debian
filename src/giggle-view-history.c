@@ -181,11 +181,7 @@ view_history_set_busy (GtkWidget *widget,
 	GdkCursor *cursor;
 	GdkWindow *window;
 
-#if GTK_CHECK_VERSION (2,19,5)
 	if (!gtk_widget_get_realized (widget))
-#else
-	if (!GTK_WIDGET_REALIZED (widget))
-#endif
 		return;
 
 	window = gtk_widget_get_window (widget);
@@ -193,7 +189,7 @@ view_history_set_busy (GtkWidget *widget,
 	if (busy) {
 		cursor = gdk_cursor_new (GDK_WATCH);
 		gdk_window_set_cursor (window, cursor);
-		gdk_cursor_unref (cursor);
+		g_object_unref (cursor);
 	} else {
 		gdk_window_set_cursor (window, NULL);
 	}
@@ -516,7 +512,8 @@ view_history_revision_list_key_press_cb (GiggleRevListView *list,
 
 	priv = view->priv;
 
-	if (event->keyval != GDK_space && event->keyval != GDK_BackSpace)
+	if (event->keyval != GDK_KEY_space &&
+	    event->keyval != GDK_KEY_BackSpace)
 		return FALSE;
 
 	giggle_view_shell_set_view_name (GIGGLE_VIEW_SHELL (priv->revision_shell), "DiffView");
@@ -525,7 +522,7 @@ view_history_revision_list_key_press_cb (GiggleRevListView *list,
 	adj_value = gtk_adjustment_get_value (adj);
 	page_size = gtk_adjustment_get_page_size (adj);
 
-	value = event->keyval == GDK_space ?
+	value = event->keyval == GDK_KEY_space ?
 		adj_value + (page_size * 0.8) :
 		adj_value - (page_size * 0.8);
 
@@ -534,7 +531,7 @@ view_history_revision_list_key_press_cb (GiggleRevListView *list,
 
 	if (gtk_tree_view_get_visible_range (GTK_TREE_VIEW (priv->revision_list), &start, &end)) {
 		selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->revision_list));
-		path = event->keyval == GDK_space ? end : start;
+		path = event->keyval == GDK_KEY_space ? end : start;
 
 		gtk_tree_selection_unselect_all (selection);
 		gtk_tree_selection_select_path (selection, path);
@@ -584,12 +581,6 @@ view_history_setup_revision_pane (GObject *object)
 
 	priv = GIGGLE_VIEW_HISTORY (object)->priv;
 
-	gtk_rc_parse_string ("style \"view-history-toolbar-style\" {"
-			     "  GtkToolbar::shadow-type = none"
-			     "}"
-			     "widget \"*.ViewHistoryToolbar\" "
-			     "style \"view-history-toolbar-style\"");
-
 	toolbar = gtk_ui_manager_get_widget (priv->ui_manager, "/ViewHistoryToolbar");
 
 	priv->revision_shell = giggle_view_shell_new_with_ui (priv->ui_manager,
@@ -598,7 +589,7 @@ view_history_setup_revision_pane (GObject *object)
 					   "/ViewHistoryToolbar/ViewShell");
 	gtk_container_set_border_width (GTK_CONTAINER (priv->revision_shell), 6);
 
-	vbox = gtk_vbox_new (FALSE, 0);
+	vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
 	gtk_box_pack_start (GTK_BOX (vbox), toolbar, FALSE, TRUE, 0);
 	gtk_box_pack_start (GTK_BOX (vbox), priv->revision_shell, TRUE, TRUE, 0);
 	gtk_paned_pack2 (GTK_PANED (priv->main_vpaned), vbox, FALSE, FALSE);
@@ -635,7 +626,7 @@ view_history_constructed (GObject *object)
 	gtk_widget_push_composite_child ();
 
 	/* widgets */
-	priv->main_vpaned = gtk_vpaned_new ();
+	priv->main_vpaned = gtk_paned_new (GTK_ORIENTATION_VERTICAL);
 	gtk_widget_show (priv->main_vpaned);
 	gtk_container_add (GTK_CONTAINER (object), priv->main_vpaned);
 
@@ -674,19 +665,22 @@ static gboolean
 view_history_search (GiggleSearchable      *searchable,
 		     const gchar           *search_term,
 		     GiggleSearchDirection  direction,
-		     gboolean               full_search)
+		     gboolean               full_search,
+                     gboolean               case_sensitive)
 {
 	GiggleViewHistoryPriv *priv;
 
 	priv = GIGGLE_VIEW_HISTORY (searchable)->priv;
 
 	if (!giggle_searchable_search (GIGGLE_SEARCHABLE (priv->revision_list),
-				       search_term, direction, full_search)) {
+	                               search_term, direction,
+	                               full_search, case_sensitive)) {
 		return FALSE;
 	}
 
 	if (giggle_searchable_search (GIGGLE_SEARCHABLE (priv->revision_view),
-				      search_term, direction, full_search)) {
+	                              search_term, direction,
+	                              full_search, case_sensitive)) {
 		/* search term is contained in the
 		 * revision description, expand it
 		 */
@@ -873,6 +867,20 @@ giggle_view_history_set_graph_visible (GiggleViewHistory *view,
 
 	giggle_rev_list_view_set_graph_visible (
 		GIGGLE_REV_LIST_VIEW (priv->revision_list), visible);
+}
+
+void
+giggle_view_history_set_view_style (GiggleViewHistory *view,
+				    gint              style)
+{
+	GiggleViewHistoryPriv *priv;
+
+	g_return_if_fail (GIGGLE_IS_VIEW_HISTORY (view));
+
+	priv = view->priv;
+
+	giggle_view_diff_set_style (
+		GIGGLE_VIEW_DIFF (priv->view_diff), style);
 }
 
 gboolean

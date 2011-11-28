@@ -81,7 +81,7 @@ giggle_diff_window_init (GiggleDiffWindow *diff_window)
 	gtk_window_set_default_size (GTK_WINDOW (diff_window), 500, 380);
 	gtk_window_set_title (GTK_WINDOW (diff_window), _("Commit changes"));
 
-	vbox = gtk_vbox_new (FALSE, 12);
+	vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 12);
 	gtk_container_set_border_width (GTK_CONTAINER (vbox), 7);
 
 	/* diff view */
@@ -98,11 +98,12 @@ giggle_diff_window_init (GiggleDiffWindow *diff_window)
 	gtk_box_pack_start (GTK_BOX (vbox), scrolled_window, TRUE, TRUE, 0);
 
 	/* commit log textview */
-	vbox2 = gtk_vbox_new (FALSE, 6);
+	vbox2 = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
 
 	label = gtk_label_new (NULL);
 	str = g_strdup_printf ("<b>%s</b>", _("Revision log:"));
-	gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.0);
+	gtk_widget_set_halign (label, GTK_ALIGN_START);
+	gtk_widget_set_valign (label, GTK_ALIGN_START);
 	gtk_label_set_markup (GTK_LABEL (label), str);
 	g_free (str);
 
@@ -124,10 +125,6 @@ giggle_diff_window_init (GiggleDiffWindow *diff_window)
 	gtk_widget_show_all (vbox);
 	gtk_container_add (GTK_CONTAINER (gtk_dialog_get_content_area (GTK_DIALOG (diff_window))),
 	                   vbox);
-
-	g_object_set (diff_window,
-		      "has-separator", FALSE,
-		      NULL);
 
 	gtk_dialog_add_button (GTK_DIALOG (diff_window),
 			       GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);

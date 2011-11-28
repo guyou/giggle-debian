@@ -44,7 +44,8 @@ struct GiggleSearchableIface {
 	gboolean (* search) (GiggleSearchable      *searchable,
 			     const gchar           *search_term,
 			     GiggleSearchDirection  direction,
-			     gboolean               full_search);
+			     gboolean               full_search,
+	                     gboolean               case_insensitive);
 	void     (* cancel) (GiggleSearchable      *searchable);
 };
 
@@ -52,7 +53,8 @@ GType      giggle_searchable_get_type (void);
 gboolean   giggle_searchable_search   (GiggleSearchable      *searchable,
 				       const gchar           *search_term,
 				       GiggleSearchDirection  direction,
-				       gboolean               full_search);
+                                       gboolean               full_search,
+                                       gboolean               case_sensitive);
 
 void       giggle_searchable_cancel   (GiggleSearchable      *searchable);
 

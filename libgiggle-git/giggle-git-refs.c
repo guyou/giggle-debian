@@ -103,10 +103,6 @@ git_refs_get_property (GObject    *object,
 		       GValue     *value,
 		       GParamSpec *pspec)
 {
-	GiggleGitRefsPriv *priv;
-
-	priv = GET_PRIV (object);
-	
 	switch (param_id) {
 	default:
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, param_id, pspec);
@@ -120,10 +116,6 @@ git_refs_set_property (GObject      *object,
 		       const GValue *value,
 		       GParamSpec   *pspec)
 {
-	GiggleGitRefsPriv *priv;
-
-	priv = GET_PRIV (object);
-
 	switch (param_id) {
 	default:
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, param_id, pspec);
@@ -134,10 +126,6 @@ git_refs_set_property (GObject      *object,
 static gboolean
 git_refs_get_command_line (GiggleJob *job, gchar **command_line)
 {
-	GiggleGitRefsPriv *priv;
-
-	priv = GET_PRIV (job);
-
 	*command_line = g_strdup_printf (GIT_COMMAND " show-ref --dereference");
 	return TRUE;
 }

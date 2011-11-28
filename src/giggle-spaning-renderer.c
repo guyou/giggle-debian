@@ -85,7 +85,7 @@ spaning_renderer_set_property (GObject      *object,
 static void
 spaning_renderer_get_size (GtkCellRenderer      *cell,
 			   GtkWidget            *widget,
-			   GdkRectangle         *cell_area,
+			   const GdkRectangle   *cell_area,
 			   gint                 *x_offset,
 			   gint                 *y_offset,
 			   gint                 *width,
@@ -96,11 +96,10 @@ spaning_renderer_get_size (GtkCellRenderer      *cell,
 
 static void
 spaning_renderer_render (GtkCellRenderer      *cell,
-			 GdkDrawable          *window,
+                         cairo_t              *cr,
 			 GtkWidget            *widget,
-			 GdkRectangle         *background_area,
-			 GdkRectangle         *cell_area,
-			 GdkRectangle         *expose_area,
+			 const GdkRectangle   *background_area,
+			 const GdkRectangle   *cell_area,
 			 GtkCellRendererState  flags)
 {
 	GiggleSpaningRendererPriv *priv = GET_PRIV (cell);
@@ -140,8 +139,7 @@ spaning_renderer_render (GtkCellRenderer      *cell,
 	real_background_area.height = cell_area->height;
 
 	GTK_CELL_RENDERER_CLASS (giggle_spaning_renderer_parent_class)->render
-		(cell, window, widget, &real_background_area, &real_cell_area,
-		 &real_cell_area, flags);
+		(cell, cr, widget, &real_background_area, &real_cell_area, flags);
 
 	g_list_free (columns);
 }

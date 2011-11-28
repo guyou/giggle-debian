@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="opening-repositories" xml:lang="cs">
+  <info>
+    <link type="guide" xref="index#basics"/>
+    <desc>Jak otevřít repozitář GIT</desc>
+
+    <credit type="author">
+      <name>Łukasz Jernaś</name>
+      <email>deejay1@srem.org</email>
+    </credit>
+
+<!--
+    <copyright>
+      <year>2010</year>
+      <name>GNOME Documentation Project</name>
+    </copyright>
+-->
+    <license>
+      <p>Creative Commons Share Alike 3.0</p>
+    </license>
+  </info>
+
+  <title>Otevírání repozitáře</title>
+  <p>Repozitář GIT můžete otevřít následujícími způsoby:</p>
+    <steps>
+      <item>
+        <p>použitím <guiseq><gui>Projekt</gui><gui>Otevřít</gui></guiseq> a výběrem složky s vaším repozitářem,</p>
+      </item>
+      <item>
+        <p>spouštěním <cmd>giggle</cmd> ve složce vašeho projektu,</p>
+      </item>
+      <item>
+        <p>spuštěním <cmd>giggle</cmd> s cestou k vašemu repozitáři zadanou jako argument.</p>
+      </item>
+   </steps>
+</page>

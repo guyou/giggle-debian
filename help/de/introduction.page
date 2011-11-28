@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="introduction" xml:lang="de">
+  <info>
+    <link type="guide" xref="index"/>
+    <desc>Einführung in <app>Giggle</app>, einen Betrachter für GIT-Softwarebestände</desc>
+
+    <credit type="author">
+      <name>Łukasz Jernaś</name>
+      <email>deejay1@srem.org</email>
+    </credit>
+
+<!--
+    <copyright>
+      <year>2010</year>
+      <name>GNOME Documentation Project</name>
+    </copyright>
+-->
+    <license>
+      <p>Creative Commons Share Alike 3.0</p>
+    </license>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Mario Blättermann</mal:name>
+      <mal:email>mariobl@freenet.de</mal:email>
+      <mal:years>2010, 2011</mal:years>
+    </mal:credit>
+  </info>
+
+  <title>Einführung</title>
+  <p><app>Giggle</app> ermöglicht Ihnen das Durchsuchen und Bearbeiten des Inhalts einer GIT-Ordnerstruktur in einer grafischen Oberfläche.</p>
+
+  <section id="starting-giggle">
+    <title>Starten von <app>giggle</app></title>
+      <p>Sie können <app>giggle</app> auf folgende Arten starten:</p>
+      <steps>
+        <item>
+          <p>Wählen Sie <guiseq><gui>Entwicklung</gui><gui>Giggle</gui></guiseq> im Menü <gui>Anwendungen</gui>.</p>
+        </item>
+        <item>
+          <p>Rufen Sie <cmd>giggle</cmd> in der Eingabezeile eines Terminalfensters oder im Dialog <gui>Anwendung ausführen</gui> auf.</p>
+        </item>
+      </steps>
+  </section>
+
+  <section id="stoping-giggle">
+    <title>Schließen von <app>giggle</app></title>
+      <p>Um <app>giggle</app> zu schließen, wählen Sie <guiseq><gui>Projekt</gui><gui>Beenden</gui></guiseq>, oder drücken Sie <keyseq><key>Strg</key><key>Q</key></keyseq>.</p>
+  </section>
+
+</page>

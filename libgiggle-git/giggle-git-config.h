@@ -72,7 +72,7 @@ void                    giggle_git_config_commit            (GiggleGitConfig    
 							     GiggleGitConfigFunc   func,
 							     gpointer              data);
 
-G_CONST_RETURN gchar *  giggle_git_config_get_field         (GiggleGitConfig      *config,
+const gchar *           giggle_git_config_get_field         (GiggleGitConfig      *config,
 							     GiggleGitConfigField  field);
 int                     giggle_git_config_get_int_field     (GiggleGitConfig      *config,
 							     GiggleGitConfigField  field);

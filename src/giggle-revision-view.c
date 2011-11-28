@@ -66,7 +66,8 @@ static void       revision_view_set_property       (GObject        *object,
 static gboolean   revision_view_search             (GiggleSearchable      *searchable,
 						    const gchar           *search_term,
 						    GiggleSearchDirection  direction,
-						    gboolean               full_search);
+						    gboolean               full_search,
+						    gboolean               case_insensitive);
 
 static void       revision_view_update             (GiggleRevisionView *view);
 
@@ -110,15 +111,16 @@ giggle_revision_view_searchable_init (GiggleSearchableIface *iface)
 
 static GtkWidget *
 revision_view_create_label (const char *label,
-			    double      xalign,
-			    double      yalign)
+			    GtkAlign    xalign,
+			    GtkAlign    yalign)
 {
 	GtkWidget *widget;
 	char      *markup;
 
 	widget = gtk_label_new (NULL);
 	markup = g_markup_printf_escaped ("<b>%s</b>", label);
-	gtk_misc_set_alignment (GTK_MISC (widget), xalign, yalign);
+	gtk_widget_set_halign (widget, xalign);
+	gtk_widget_set_valign (widget, yalign);
 	gtk_label_set_markup (GTK_LABEL (widget), markup);
 
 	g_free (markup);
@@ -132,27 +134,30 @@ revision_view_attach_info (GtkWidget  *table,
 			   GtkWidget  *info,
 			   int         row)
 {
-	GtkStyle         *style;
+	GtkStyleContext  *context;
 	int               xpad = 6, ypad = 3;
-	double            yalign = 0.5;
+	GtkAlign          yalign = GTK_ALIGN_CENTER;
 	GtkAttachOptions  yattach = GTK_FILL;
 	int               end = 2;
 
-	style = gtk_widget_get_style (info);
+	context = gtk_widget_get_style_context (info);
 
 	if (GTK_IS_BUTTON (info))
 		xpad = ypad = 0;
 
 	if (GTK_IS_SCROLLED_WINDOW (info)) {
-		xpad = MAX (0, xpad - style->xthickness);
-		ypad = MAX (0, ypad - style->ythickness);
+		GtkBorder border;
+
+		gtk_style_context_get_border (context, 0, &border);
+		xpad = MAX (0, xpad - (border.left + border.right) / 2);
+		ypad = MAX (0, ypad - (border.top + border.bottom) / 2);
 		yattach |= GTK_EXPAND;
-		yalign = 0.0;
+		yalign = GTK_ALIGN_START;
 		end = 3;
 	}
 
 	gtk_table_attach (GTK_TABLE (table),
-			  revision_view_create_label (label, 0.0, yalign),
+			  revision_view_create_label (label, GTK_ALIGN_CENTER, yalign),
 			  0, 1, row, row + 1, GTK_FILL, GTK_FILL, 6, 2);
 	gtk_table_attach (GTK_TABLE (table), info, 1, end, row, row + 1,
 			  GTK_FILL | GTK_EXPAND, yattach, xpad, ypad);
@@ -168,7 +173,8 @@ revision_view_create_info (GtkWidget  *table,
 	info = gtk_label_new (NULL);
 	gtk_label_set_ellipsize (GTK_LABEL (info), PANGO_ELLIPSIZE_END);
 	gtk_label_set_selectable (GTK_LABEL (info), TRUE);
-	gtk_misc_set_alignment (GTK_MISC (info), 0.0, 0.5);
+	gtk_widget_set_halign (info, GTK_ALIGN_START);
+	gtk_widget_set_valign (info, GTK_ALIGN_CENTER);
 
 	revision_view_attach_info (table, label, info, row);
 
@@ -190,7 +196,8 @@ giggle_revision_view_init (GiggleRevisionView *view)
 	priv->table = gtk_table_new (5, 3, FALSE);
 
 	priv->avatar = giggle_avatar_image_new ();
-	gtk_misc_set_alignment (GTK_MISC (priv->avatar), 0.5, 0.0);
+	gtk_widget_set_halign (priv->avatar, GTK_ALIGN_CENTER);
+	gtk_widget_set_valign (priv->avatar, GTK_ALIGN_START);
 	giggle_avatar_image_set_image_size (GIGGLE_AVATAR_IMAGE (priv->avatar), 80);
 
 	gtk_table_attach (GTK_TABLE (priv->table), priv->avatar,
@@ -302,7 +309,8 @@ static gboolean
 revision_view_search (GiggleSearchable      *searchable,
 		      const gchar           *search_term,
 		      GiggleSearchDirection  direction,
-		      gboolean               full_search)
+		      gboolean               full_search,
+		      gboolean               case_insensitive)
 {
 	GiggleRevisionViewPriv *priv;
 	const gchar            *str, *p;
@@ -391,6 +399,7 @@ revision_view_update_branches_label (GiggleRevisionView *view)
 	GiggleRef              *ref;
 	GList                  *branches;
 	GString                *str;
+	gchar                  *escaped_string;
 
 	priv = GET_PRIV (view);
 
@@ -410,8 +419,11 @@ revision_view_update_branches_label (GiggleRevisionView *view)
 
 			if (str->len)
 				g_string_append (str, ", ");
-				
-			g_string_append (str, giggle_ref_get_name (ref));
+
+			escaped_string = g_markup_escape_text (giggle_ref_get_name (ref), -1);
+			g_string_append (str, escaped_string);
+			g_free (escaped_string);
+
 			branches = branches->next;
 		}
 

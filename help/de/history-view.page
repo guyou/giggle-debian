@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="history-view" xml:lang="de">
+  <info>
+    <link type="guide" xref="index#views"/>
+    <desc>Betrachten des Verlaufs eines Softwarebestandes</desc>
+
+    <credit type="author">
+      <name>Łukasz Jernaś</name>
+      <email>deejay1@srem.org</email>
+    </credit>
+
+<!--
+    <copyright>
+      <year>2010</year>
+      <name>GNOME Documentation Project</name>
+    </copyright>
+-->
+    <license>
+      <p>Creative Commons Share Alike 3.0</p>
+    </license>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Mario Blättermann</mal:name>
+      <mal:email>mariobl@freenet.de</mal:email>
+      <mal:years>2010, 2011</mal:years>
+    </mal:credit>
+  </info>
+  <title>Verlaufsansicht</title>
+  <section id="overview">
+   <title>Überblick</title>
+   <figure>
+    <desc>Giggle in der Verlaufsansicht</desc>
+    <media type="image" src="figures/giggle-history_view_sections.png" alt="Giggle main window in History mode"/>
+   </figure>
+    <p>Die Verlaufsansicht in <app>Giggle</app> gliedert sich in drei Hauptbestandteile:</p>
+     <list type="numbered">
+       <item>
+        <p>Verlaufs-Graph</p>
+        <p>Zeigt eine visuelle Darstellung des Verlaufs des aktuellen Softwarebestandes an, einschließlich aller lokalen oder entfernten Zweige. Wenn Sie den Mauszeiger über die Symbole bewegen, werden zusätzliche Informationen angezeigt, wie beispielsweise die Namen der Zweige und Markierungen. Sie können siech entweder mit der Maus oder mit den <key>Pfeiltasten hoch und runter</key> durch den Verlauf bewegen.</p>
+       </item>
+       <item>
+        <p>Veränderte Dateien</p>
+        <p>Zeigt geänderte Dateien in der aktuell ausgewählten Revision</p>
+       </item>
+       <item>
+        <p>Diff</p>
+        <p>Zeigt die Unterschiede für die gewählte Datei und Revision an.</p>
+        <note style="important">
+          <p><app>Giggle</app> zeigt die Unterschiede in einzelnen Abschnitten an. Sie können sich darin entweder mit Hilfe der Hoch- und Runter-Symbole oberhalb der Liste der geänderten Dateien oder durch Drücken der Tastenkombinationen <keyseq><key>Alt</key><key>Pfeiltaste hoch</key></keyseq> und <keyseq><key>Alt</key><key>Pfeiltaste runter</key></keyseq> bewegen. Auf diese Weise bewegen Sie sich auch durch die Liste der geänderten Dateien, wenn die Unterschiede fortschreiten.</p>
+        </note>
+       </item>
+     </list>
+    </section>
+</page>

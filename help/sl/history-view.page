@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="history-view" xml:lang="sl">
+  <info>
+    <link type="guide" xref="index#views"/>
+    <desc>Ogled zgodovine skladišča</desc>
+
+    <credit type="author">
+      <name>Łukasz Jernaś</name>
+      <email>deejay1@srem.org</email>
+    </credit>
+
+<!--
+    <copyright>
+      <year>2010</year>
+      <name>GNOME Documentation Project</name>
+    </copyright>
+-->
+    <license>
+      <p>Creative Commons - deljenje pod enakimi pogoji 3.0</p>
+    </license>
+  </info>
+  <title>Pogled zgodovine</title>
+  <section id="overview">
+   <title>Pregled</title>
+   <figure>
+    <desc>Giggle v načinu ogleda zgodovine</desc>
+    <media type="image" src="figures/giggle-history_view_sections.png" alt="Giggle main window in History mode"/>
+   </figure>
+    <p>Pogled zgodovine <app>Giggle</app> je sestavljen iz treh glavnih delov:</p>
+     <list type="numbered">
+       <item>
+        <p>Graf zgodovine</p>
+        <p>Prikaže vidno predstavitev zgodovine trenutnega skladišča, vključno z vsemi vejami tako oddaljenimi in krajevnimi. S prehodom miškine kazalke nad ikonami lahko prikažete dodatne podrobnosti kot sta ime veje in oznake. Premikanje skozi zgodovino je mogoče doseči z uporabo miške ali tipk <key>Navzgor</key> in <key>Navzdol</key>.</p>
+       </item>
+       <item>
+        <p>Spremenjene datoteke</p>
+        <p>Prikaže datoteke spremenjene v trenutno izbrani predelavi</p>
+       </item>
+       <item>
+        <p>Diff</p>
+        <p>Prikaže razlike za izbrano datoteko in predelavo.</p>
+        <note style="important">
+          <p><app>Giggle</app> prikaže razlike kot posamezne delčke med katerimi se lahko premaknete ali z uporabo ikon Navzdol in Navzgor nad seznamom spremenjenih datotek ali s pritiskom na tipki <keyseq><key>Alt</key><key>Navzgor</key></keyseq> in <keyseq><key>Alt</key><key>Navzdol</key></keyseq> keys. To vas bo premaknilo skozi seznam spremenjenih datotek medtem, ko diff napreduje.</p>
+        </note>
+       </item>
+     </list>
+    </section>
+</page>

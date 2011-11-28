@@ -185,8 +185,6 @@ giggle_remote_editor_init (GiggleRemoteEditor *remote_editor)
 
 	priv = GET_PRIV (remote_editor);
 
-	gtk_dialog_set_has_separator (GTK_DIALOG (remote_editor), FALSE);
-
 	builder = gtk_builder_new ();
 	if(!gtk_builder_add_from_file (builder, GLADEDIR "/main-window.ui", &error)) {
 		g_warning ("Couldn't load biulder file: %s", error->message);
@@ -327,10 +325,6 @@ remote_editor_set_remote (GiggleRemoteEditor *editor,
 static void
 remote_editor_finalize (GObject *object)
 {
-	GiggleRemoteEditorPriv *priv;
-
-	priv = GET_PRIV (object);
-	
 	remote_editor_set_remote (GIGGLE_REMOTE_EDITOR (object), NULL);
 
 	G_OBJECT_CLASS (giggle_remote_editor_parent_class)->finalize (object);
@@ -362,10 +356,7 @@ remote_editor_set_property (GObject      *object,
 		    const GValue *value,
 		    GParamSpec   *pspec)
 {
-	GiggleRemoteEditorPriv *priv;
 	GiggleRemote           *remote;
-
-	priv = GET_PRIV (object);
 
 	switch (param_id) {
 	case PROP_REMOTE:

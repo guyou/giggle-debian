@@ -66,12 +66,12 @@ unsigned              giggle_avatar_image_get_image_size  (GiggleAvatarImage *im
 void                  giggle_avatar_image_set_image_uri   (GiggleAvatarImage *image,
 							   const char        *uri);
 
-G_CONST_RETURN char * giggle_avatar_image_get_image_uri   (GiggleAvatarImage *image);
+const char *          giggle_avatar_image_get_image_uri   (GiggleAvatarImage *image);
 
 void                  giggle_avatar_image_set_gravatar_id (GiggleAvatarImage *image,
 							   const char        *id);
 
-G_CONST_RETURN char * giggle_avatar_image_get_gravatar_id (GiggleAvatarImage *image);
+const char *          giggle_avatar_image_get_gravatar_id (GiggleAvatarImage *image);
 
 G_END_DECLS
 

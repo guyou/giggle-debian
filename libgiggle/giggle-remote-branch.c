@@ -81,9 +81,6 @@ giggle_remote_branch_class_init (GiggleRemoteBranchClass *class)
 static void
 giggle_remote_branch_init (GiggleRemoteBranch *remote_branch)
 {
-	GiggleRemoteBranchPriv *priv;
-
-	priv = GET_PRIV (remote_branch);
 }
 
 static void

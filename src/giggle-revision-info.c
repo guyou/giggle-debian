@@ -43,7 +43,7 @@ typedef struct {
 	unsigned        use_markup : 1;
 } GiggleRevisionInfoPriv;
 
-G_DEFINE_TYPE (GiggleRevisionInfo, giggle_revision_info, GTK_TYPE_VBOX)
+G_DEFINE_TYPE (GiggleRevisionInfo, giggle_revision_info, GTK_TYPE_BOX)
 
 static void
 revision_info_set_revision (GiggleRevisionInfoPriv *priv,
@@ -214,32 +214,39 @@ giggle_revision_info_init (GiggleRevisionInfo *info)
 
 	priv = GET_PRIV (info);
 
-	hbox = gtk_hbox_new (FALSE, 6);
+	gtk_orientable_set_orientation (GTK_ORIENTABLE (info),
+	                                GTK_ORIENTATION_VERTICAL);
+
+	hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
 	gtk_box_pack_start (GTK_BOX (info), hbox, FALSE, FALSE, 0);
 
 	priv->label = gtk_label_new (NULL);
-	gtk_misc_set_alignment (GTK_MISC (priv->label), 0.0, 0.5);
+	gtk_widget_set_halign (priv->label, GTK_ALIGN_START);
+	gtk_widget_set_valign (priv->label, GTK_ALIGN_CENTER);
 	gtk_label_set_ellipsize (GTK_LABEL (priv->label), PANGO_ELLIPSIZE_END);
 	gtk_box_pack_start (GTK_BOX (hbox), priv->label, TRUE, TRUE, 0);
 
 	priv->sha1 = gtk_label_new (NULL);
-	gtk_misc_set_alignment (GTK_MISC (priv->sha1), 1.0, 0.5);
+	gtk_widget_set_halign (priv->sha1, GTK_ALIGN_END);
+	gtk_widget_set_valign (priv->sha1, GTK_ALIGN_CENTER);
 	gtk_label_set_selectable (GTK_LABEL (priv->sha1), TRUE);
 	gtk_box_pack_start (GTK_BOX (hbox), priv->sha1, FALSE, FALSE, 0);
 
 	gtk_widget_show_all (hbox);
 
-	hbox = gtk_hbox_new (FALSE, 6);
+	hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
 	gtk_box_pack_start (GTK_BOX (info), hbox, FALSE, FALSE, 0);
 
 	priv->summary = gtk_label_new (NULL);
-	gtk_misc_set_alignment (GTK_MISC (priv->summary), 0.0, 0.5);
+	gtk_widget_set_halign (priv->summary, GTK_ALIGN_START);
+	gtk_widget_set_valign (priv->summary, GTK_ALIGN_CENTER);
 	gtk_label_set_selectable (GTK_LABEL (priv->summary), TRUE);
 	gtk_label_set_ellipsize (GTK_LABEL (priv->summary), PANGO_ELLIPSIZE_END);
 	gtk_box_pack_start (GTK_BOX (hbox), priv->summary, TRUE, TRUE, 0);
 
 	priv->date = gtk_label_new (NULL);
-	gtk_misc_set_alignment (GTK_MISC (priv->date), 1.0, 0.5);
+	gtk_widget_set_halign (priv->date, GTK_ALIGN_END);
+	gtk_widget_set_valign (priv->date, GTK_ALIGN_CENTER);
 	gtk_label_set_selectable (GTK_LABEL (priv->date), TRUE);
 	gtk_box_pack_start (GTK_BOX (hbox), priv->date, FALSE, FALSE, 0);
 

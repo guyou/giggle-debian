@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="introduction" xml:lang="cs">
+  <info>
+    <link type="guide" xref="index"/>
+    <desc>Úvod do prohlížeče repozitářů GIT <app>Giggle</app></desc>
+
+    <credit type="author">
+      <name>Łukasz Jernaś</name>
+      <email>deejay1@srem.org</email>
+    </credit>
+
+<!--
+    <copyright>
+      <year>2010</year>
+      <name>GNOME Documentation Project</name>
+    </copyright>
+-->
+    <license>
+      <p>Creative Commons Share Alike 3.0</p>
+    </license>
+  </info>
+
+  <title>Úvod</title>
+  <p>Aplikace <app>Giggle</app> vám umožňuje v grafickém prohlížeči procházet a upravovat obsah stromu v git.</p>
+
+  <section id="starting-giggle">
+    <title>Jak spustit aplikaci <app>Giggle</app></title>
+      <p>Aplikaci <app>Giggle</app> můžete spustit následujícími způsoby:</p>
+      <steps>
+        <item>
+          <p>Zvolit <guiseq><gui>Programování</gui><gui>Giggle</gui></guiseq> z nabídky <gui>Aplikace</gui>.</p>
+        </item>
+        <item>
+          <p>Spustit <cmd>giggle</cmd> v příkazovém řádku terminálu nebo z dialogového okna <gui>Spustit aplikaci</gui>.</p>
+        </item>
+      </steps>
+  </section>
+
+  <section id="stoping-giggle">
+    <title>Jak zavřít aplikaci <app>Giggle</app></title>
+      <p>Pokud chcete aplikaci <app>Giggle</app> zavřít, zvolte <guiseq><gui>Projekt</gui><gui>Ukončit</gui></guiseq> nebo zmáčkněte <keyseq><key>Ctrl</key><key>Q</key></keyseq>.</p>
+  </section>
+
+</page>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="tagging-commits" xml:lang="de">
+  <info>
+    <link type="guide" xref="index#basics"/>
+    <desc>Markieren von Einspielungen</desc>
+
+    <credit type="author">
+      <name>Łukasz Jernaś</name>
+      <email>deejay1@srem.org</email>
+    </credit>
+
+<!--
+    <copyright>
+      <year>2010</year>
+      <name>GNOME Documentation Project</name>
+    </copyright>
+-->
+    <license>
+      <p>Creative Commons Share Alike 3.0</p>
+    </license>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Mario Blättermann</mal:name>
+      <mal:email>mariobl@freenet.de</mal:email>
+      <mal:years>2010, 2011</mal:years>
+    </mal:credit>
+  </info>
+
+  <title>Markieren von Einspielungen</title>
+    <p>Um eine neue Markierung zu erstellen, öffnen Sie durch Anklicken einer Einspielung im Revisionsfenster mit der rechten Maustaste das Kontextmenü. Dabei spielt es keine Rolle, ob sich dieses derzeit im Datei- oder Verlaufsmodus befindet. Klicken Sie anschließend auf <gui>Neue Markierung</gui> und geben Sie einen Namen im geöffneten Dialogfenster ein.</p>
+    <p>Ihnen wird auffallen, dass neben der ausgewählten Revision ein neues Symbol erschienen ist. Dies ist Ihre neu erstellte Markierung.</p>
+
+</page>

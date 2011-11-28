@@ -107,20 +107,19 @@ static void giggle_graph_renderer_set_property (GObject         *object,
 						guint            param_id,
 						const GValue    *value,
 						GParamSpec      *pspec);
-static void giggle_graph_renderer_get_size     (GtkCellRenderer *cell,
-						GtkWidget       *widget,
-						GdkRectangle    *cell_area,
-						gint            *x_offset,
-						gint            *y_offset,
-						gint            *width,
-						gint            *height);
-static void giggle_graph_renderer_render       (GtkCellRenderer *cell,
-						GdkWindow       *window,
-						GtkWidget       *widget,
-						GdkRectangle    *background_area,
-						GdkRectangle    *cell_area,
-						GdkRectangle    *expose_area,
-						guint            flags);
+static void giggle_graph_renderer_get_size     (GtkCellRenderer    *cell,
+                                                GtkWidget          *widget,
+                                                const GdkRectangle *cell_area,
+                                                gint               *x_offset,
+                                                gint               *y_offset,
+                                                gint               *width,
+                                                gint               *height);
+static void giggle_graph_renderer_render       (GtkCellRenderer      *cell,
+                                                cairo_t              *cr,
+                                                GtkWidget            *widget,
+                                                const GdkRectangle   *background_area,
+                                                const GdkRectangle   *cell_area,
+                                                GtkCellRendererState  flags);
 
 G_DEFINE_TYPE (GiggleGraphRenderer, giggle_graph_renderer, GTK_TYPE_CELL_RENDERER)
 
@@ -210,19 +209,24 @@ giggle_graph_renderer_set_property (GObject      *object,
 }
 
 static void
-giggle_graph_renderer_get_size (GtkCellRenderer *cell,
-				GtkWidget       *widget,
-				GdkRectangle    *cell_area,
-				gint            *x_offset,
-				gint            *y_offset,
-				gint            *width,
-				gint            *height)
+giggle_graph_renderer_get_size (GtkCellRenderer    *cell,
+                                GtkWidget          *widget,
+                                const GdkRectangle *cell_area,
+                                gint               *x_offset,
+                                gint               *y_offset,
+                                gint               *width,
+                                gint               *height)
 {
 	GiggleGraphRendererPrivate *priv;
+	GtkStyleContext            *context;
+	const PangoFontDescription *font_desc;
 	gint size;
 
 	priv = GIGGLE_GRAPH_RENDERER (cell)->_priv;
-	size = PANGO_PIXELS (pango_font_description_get_size (gtk_widget_get_style (widget)->font_desc));
+
+	context = gtk_widget_get_style_context (widget);
+	font_desc = gtk_style_context_get_font (context, gtk_widget_get_state_flags (widget));
+	size = PANGO_PIXELS (pango_font_description_get_size (font_desc));
 
 	if (height) {
 		*height = PATH_SPACE (size);
@@ -247,43 +251,46 @@ set_source_color (cairo_t         *cr,
 		  GtkWidget       *widget,
 		  unsigned	   color_index)
 {
+	GtkStyleContext *context;
+	GdkRGBA rgba;
 	GdkColor  color;
-	GtkStyle *style;
-
 
 	if (gtk_widget_is_sensitive (widget)) {
 		gdk_cairo_set_source_color (cr, &colors[color_index]);
 	} else {
-		style = gtk_widget_get_style (widget);
+		context = gtk_widget_get_style_context (widget);
+		gtk_style_context_get_color (context, GTK_STATE_FLAG_INSENSITIVE, &rgba);
 		color = colors[color_index];
 
-		color.red   = (color.red   + 7 * style->text[GTK_STATE_INSENSITIVE].red)   / 8;
-		color.green = (color.green + 7 * style->text[GTK_STATE_INSENSITIVE].green) / 8;
-		color.blue  = (color.blue  + 7 * style->text[GTK_STATE_INSENSITIVE].blue)  / 8;
+		/* convert color values to rgba values, lying in the [0,1] range */
+		rgba.red   = (color.red / 65535.0   + 7 * rgba.red)   / 8;
+		rgba.green = (color.green / 65535.0 + 7 * rgba.green) / 8;
+		rgba.blue  = (color.blue / 65535.0  + 7 * rgba.blue)  / 8;
 
-		gdk_cairo_set_source_color (cr, &color);
+		gdk_cairo_set_source_rgba (cr, &rgba);
 	}
 }
 
 static void
-giggle_graph_renderer_render (GtkCellRenderer *cell,
-			      GdkWindow       *window,
-			      GtkWidget       *widget,
-			      GdkRectangle    *background_area,
-			      GdkRectangle    *cell_area,
-			      GdkRectangle    *expose_area,
-			      guint            flags)
+giggle_graph_renderer_render (GtkCellRenderer      *cell,
+                              cairo_t              *cr,
+			      GtkWidget            *widget,
+                              const GdkRectangle   *background_area,
+                              const GdkRectangle   *cell_area,
+                              GtkCellRendererState  flags)
 {
 	GiggleGraphRendererPrivate   *priv;
 	GiggleGraphRendererPathState *path_state;
 	GiggleRevision               *revision;
+	GtkStyleContext              *context;
+	const PangoFontDescription   *font_desc;
 	GArray                       *paths_state;
 	GHashTable                   *table;
-	cairo_t                      *cr;
 	gint                          x, y, h;
 	gint                          cur_pos, pos;
 	GList                        *children;
-	gint                          size, i;
+	gint                          size;
+	guint                         i;
 
 	priv = GIGGLE_GRAPH_RENDERER (cell)->_priv;
 
@@ -291,12 +298,13 @@ giggle_graph_renderer_render (GtkCellRenderer *cell,
 		return;
 	}
 
-	cr = gdk_cairo_create (window);
 	x = cell_area->x;
 	y = background_area->y;
 	h = background_area->height;
 	revision = priv->revision;
-	size = PANGO_PIXELS (pango_font_description_get_size (gtk_widget_get_style (widget)->font_desc));
+	context = gtk_widget_get_style_context (widget);
+	font_desc = gtk_style_context_get_font (context, gtk_widget_get_state_flags (widget));
+	size = PANGO_PIXELS (pango_font_description_get_size (font_desc));
 
 	table = g_hash_table_new (g_direct_hash, g_direct_equal);
 	paths_state = g_object_get_qdata (G_OBJECT (revision), revision_paths_state_quark);
@@ -372,7 +380,6 @@ giggle_graph_renderer_render (GtkCellRenderer *cell,
 	cairo_fill (cr);
 	cairo_stroke (cr);
 
-	cairo_destroy (cr);
 	g_hash_table_destroy (table);
 }
 
@@ -455,7 +462,8 @@ giggle_graph_renderer_calculate_revision_state (GiggleGraphRenderer *renderer,
 	GList                        *children;
 	gboolean                      current_path_reused = FALSE;
 	gboolean                      update_color;
-	gint                          n_path, i;
+	gint                          n_path;
+	guint                         i;
 
 	priv = renderer->_priv;
 	children = giggle_revision_get_children (revision);

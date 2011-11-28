@@ -35,55 +35,29 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 bin_PROGRAMS = giggle$(EXEEXT)
-@IGE_PLATFORM_OSX_TRUE@am__append_1 = \
-@IGE_PLATFORM_OSX_TRUE@	ige-mac-menu.c \
-@IGE_PLATFORM_OSX_TRUE@	ige-mac-menu.h \
-@IGE_PLATFORM_OSX_TRUE@	$(NULL)
-
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/intltool.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/gettext.m4 \
+	$(top_srcdir)/m4/iconv.m4 $(top_srcdir)/m4/intlmacosx.m4 \
+	$(top_srcdir)/m4/intltool.m4 $(top_srcdir)/m4/lib-ld.m4 \
+	$(top_srcdir)/m4/lib-link.m4 $(top_srcdir)/m4/lib-prefix.m4 \
 	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
 	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
-	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/acinclude.m4 \
+	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/nls.m4 \
+	$(top_srcdir)/m4/po.m4 $(top_srcdir)/m4/progtest.m4 \
 	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
-mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am__giggle_SOURCES_DIST = eggfindbar.c eggfindbar.h \
-	giggle-authors-view.c giggle-authors-view.h \
-	giggle-avatar-cache.c giggle-avatar-cache.h \
-	giggle-avatar-image.c giggle-avatar-image.h \
-	giggle-branches-view.c giggle-branches-view.h \
-	giggle-description-editor.c giggle-description-editor.h \
-	giggle-diff-view.c giggle-diff-view.h giggle-diff-tree-view.c \
-	giggle-diff-tree-view.h giggle-diff-window.c \
-	giggle-diff-window.h giggle-file-list.c giggle-file-list.h \
-	giggle-graph-renderer.c giggle-graph-renderer.h \
-	giggle-helpers.c giggle-helpers.h giggle-input-dialog.c \
-	giggle-input-dialog.h giggle-label-action.c \
-	giggle-label-action.h giggle-remote-editor.c \
-	giggle-remote-editor.h giggle-remotes-view.c \
-	giggle-remotes-view.h giggle-rev-list-view.c \
-	giggle-rev-list-view.h giggle-revision-info.c \
-	giggle-revision-info.h giggle-revision-info-action.c \
-	giggle-revision-info-action.h giggle-revision-view.c \
-	giggle-revision-view.h giggle-short-list.c giggle-short-list.h \
-	giggle-spaning-renderer.c giggle-spaning-renderer.h \
-	giggle-view-diff.c giggle-view-diff.h giggle-view-file.c \
-	giggle-view-file.h giggle-view-history.c giggle-view-history.h \
-	giggle-view-summary.c giggle-view-summary.h giggle-window.c \
-	giggle-window.h giggle-main.c ige-mac-menu.c ige-mac-menu.h
-@IGE_PLATFORM_OSX_TRUE@am__objects_1 = ige-mac-menu.$(OBJEXT)
 am_giggle_OBJECTS = eggfindbar.$(OBJEXT) giggle-authors-view.$(OBJEXT) \
 	giggle-avatar-cache.$(OBJEXT) giggle-avatar-image.$(OBJEXT) \
-	giggle-branches-view.$(OBJEXT) \
+	giggle-branches-view.$(OBJEXT) giggle-clone-dialog.$(OBJEXT) \
 	giggle-description-editor.$(OBJEXT) giggle-diff-view.$(OBJEXT) \
 	giggle-diff-tree-view.$(OBJEXT) giggle-diff-window.$(OBJEXT) \
 	giggle-file-list.$(OBJEXT) giggle-graph-renderer.$(OBJEXT) \
@@ -96,14 +70,16 @@ am_giggle_OBJECTS = eggfindbar.$(OBJEXT) giggle-authors-view.$(OBJEXT) \
 	giggle-spaning-renderer.$(OBJEXT) giggle-view-diff.$(OBJEXT) \
 	giggle-view-file.$(OBJEXT) giggle-view-history.$(OBJEXT) \
 	giggle-view-summary.$(OBJEXT) giggle-window.$(OBJEXT) \
-	giggle-main.$(OBJEXT) $(am__objects_1)
+	giggle-main.$(OBJEXT)
 giggle_OBJECTS = $(am_giggle_OBJECTS)
-giggle_DEPENDENCIES = ../libgiggle-git/libgiggle-git.la
+am__DEPENDENCIES_1 =
+giggle_DEPENDENCIES = $(am__DEPENDENCIES_1) ../libgiggle/libgiggle.la \
+	../libgiggle-git/libgiggle-git.la
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
 am__v_lt_0 = --silent
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
-depcomp = $(SHELL) $(top_srcdir)/depcomp
+depcomp = $(SHELL) $(top_srcdir)/build-aux/depcomp
 am__depfiles_maybe = depfiles
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
@@ -129,7 +105,7 @@ AM_V_GEN = $(am__v_GEN_$(V))
 am__v_GEN_ = $(am__v_GEN_$(AM_DEFAULT_VERBOSITY))
 am__v_GEN_0 = @echo "  GEN   " $@;
 SOURCES = $(giggle_SOURCES)
-DIST_SOURCES = $(am__giggle_SOURCES_DIST)
+DIST_SOURCES = $(giggle_SOURCES)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -143,23 +119,15 @@ AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
 AWK = @AWK@
-CATALOGS = @CATALOGS@
-CATOBJEXT = @CATOBJEXT@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
-CONFIG_STATUS_DEPENDENCIES = @CONFIG_STATUS_DEPENDENCIES@
 CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
-CXX = @CXX@
-CXXCPP = @CXXCPP@
-CXXDEPMODE = @CXXDEPMODE@
-CXXFLAGS = @CXXFLAGS@
 CYGPATH_W = @CYGPATH_W@
 DATADIRNAME = @DATADIRNAME@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
-DISABLE_DEPRECATED = @DISABLE_DEPRECATED@
 DLLTOOL = @DLLTOOL@
 DSYMUTIL = @DSYMUTIL@
 DUMPBIN = @DUMPBIN@
@@ -171,42 +139,48 @@ ECHO_T = @ECHO_T@
 EGREP = @EGREP@
 EXEEXT = @EXEEXT@
 FGREP = @FGREP@
+GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
 GIGGLE_CFLAGS = @GIGGLE_CFLAGS@
 GIGGLE_LIBS = @GIGGLE_LIBS@
 GIT_COMMAND = @GIT_COMMAND@
 GLIB_GENMARSHAL = @GLIB_GENMARSHAL@
 GLIB_MKENUMS = @GLIB_MKENUMS@
-GMOFILES = @GMOFILES@
 GMSGFMT = @GMSGFMT@
+GMSGFMT_015 = @GMSGFMT_015@
 GREP = @GREP@
+HELP_DIR = @HELP_DIR@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
 INSTALL_SCRIPT = @INSTALL_SCRIPT@
 INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
-INSTOBJEXT = @INSTOBJEXT@
 INTLLIBS = @INTLLIBS@
 INTLTOOL_EXTRACT = @INTLTOOL_EXTRACT@
 INTLTOOL_MERGE = @INTLTOOL_MERGE@
 INTLTOOL_PERL = @INTLTOOL_PERL@
 INTLTOOL_UPDATE = @INTLTOOL_UPDATE@
+INTL_MACOSX_LIBS = @INTL_MACOSX_LIBS@
+ITSTOOL = @ITSTOOL@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
 LIBGIGGLE_ABI = @LIBGIGGLE_ABI@
 LIBGIGGLE_GIT_ABI = @LIBGIGGLE_GIT_ABI@
+LIBICONV = @LIBICONV@
+LIBINTL = @LIBINTL@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LIPO = @LIPO@
 LN_S = @LN_S@
+LTLIBICONV = @LTLIBICONV@
+LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
-MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
+MANIFEST_TOOL = @MANIFEST_TOOL@
 MKDIR_P = @MKDIR_P@
-MKINSTALLDIRS = @MKINSTALLDIRS@
 MSGFMT = @MSGFMT@
-MSGFMT_OPTS = @MSGFMT_OPTS@
+MSGFMT_015 = @MSGFMT_015@
 MSGMERGE = @MSGMERGE@
 NM = @NM@
 NMEDIT = @NMEDIT@
@@ -223,12 +197,9 @@ PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PKG_CONFIG = @PKG_CONFIG@
-PLATFORM_CFLAGS = @PLATFORM_CFLAGS@
-PLATFORM_LDFLAGS = @PLATFORM_LDFLAGS@
-POFILES = @POFILES@
+PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
 POSUB = @POSUB@
-PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
-PO_IN_DATADIR_TRUE = @PO_IN_DATADIR_TRUE@
 RANLIB = @RANLIB@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
@@ -238,15 +209,17 @@ USE_NLS = @USE_NLS@
 VERSION = @VERSION@
 VTE_CFLAGS = @VTE_CFLAGS@
 VTE_LIBS = @VTE_LIBS@
-WARN_CFLAGS = @WARN_CFLAGS@
-WARN_CXXFLAGS = @WARN_CXXFLAGS@
+WARNINGFLAGS_C = @WARNINGFLAGS_C@
 XGETTEXT = @XGETTEXT@
+XGETTEXT_015 = @XGETTEXT_015@
+XGETTEXT_EXTRA_OPTIONS = @XGETTEXT_EXTRA_OPTIONS@
+XMLLINT = @XMLLINT@
 abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
 abs_top_srcdir = @abs_top_srcdir@
+ac_ct_AR = @ac_ct_AR@
 ac_ct_CC = @ac_ct_CC@
-ac_ct_CXX = @ac_ct_CXX@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
 am__include = @am__include@
 am__leading_dot = @am__leading_dot@
@@ -278,7 +251,6 @@ libdir = @libdir@
 libexecdir = @libexecdir@
 localedir = @localedir@
 localstatedir = @localstatedir@
-lt_ECHO = @lt_ECHO@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
@@ -298,45 +270,83 @@ AM_CPPFLAGS = \
 	-I$(top_srcdir) \
 	-DICONDIR='"$(datadir)/icons"' \
 	-DGLADEDIR='"$(pkgdatadir)/glade"' \
-	$(GIGGLE_CFLAGS) $(PLATFORM_CFLAGS) \
-	$(WARN_CFLAGS)
+	-DLOCALEDIR=\"$(localedir)\" \
+	$(GIGGLE_CFLAGS) \
+	$(WARNINGFLAGS_C)
 
 AM_LDFLAGS = \
-	$(PLATFORM_LDFLAGS) \
 	-Wl,--export-dynamic -rpath '$(libdir)'
 
-giggle_SOURCES = eggfindbar.c eggfindbar.h giggle-authors-view.c \
-	giggle-authors-view.h giggle-avatar-cache.c \
-	giggle-avatar-cache.h giggle-avatar-image.c \
-	giggle-avatar-image.h giggle-branches-view.c \
-	giggle-branches-view.h giggle-description-editor.c \
-	giggle-description-editor.h giggle-diff-view.c \
-	giggle-diff-view.h giggle-diff-tree-view.c \
-	giggle-diff-tree-view.h giggle-diff-window.c \
-	giggle-diff-window.h giggle-file-list.c giggle-file-list.h \
-	giggle-graph-renderer.c giggle-graph-renderer.h \
-	giggle-helpers.c giggle-helpers.h giggle-input-dialog.c \
-	giggle-input-dialog.h giggle-label-action.c \
-	giggle-label-action.h giggle-remote-editor.c \
-	giggle-remote-editor.h giggle-remotes-view.c \
-	giggle-remotes-view.h giggle-rev-list-view.c \
-	giggle-rev-list-view.h giggle-revision-info.c \
-	giggle-revision-info.h giggle-revision-info-action.c \
-	giggle-revision-info-action.h giggle-revision-view.c \
-	giggle-revision-view.h giggle-short-list.c giggle-short-list.h \
-	giggle-spaning-renderer.c giggle-spaning-renderer.h \
-	giggle-view-diff.c giggle-view-diff.h giggle-view-file.c \
-	giggle-view-file.h giggle-view-history.c giggle-view-history.h \
-	giggle-view-summary.c giggle-view-summary.h giggle-window.c \
-	giggle-window.h giggle-main.c $(NULL) $(am__append_1)
+giggle_SOURCES = \
+	eggfindbar.c \
+	eggfindbar.h \
+	giggle-authors-view.c \
+	giggle-authors-view.h \
+	giggle-avatar-cache.c \
+	giggle-avatar-cache.h \
+	giggle-avatar-image.c \
+	giggle-avatar-image.h \
+	giggle-branches-view.c \
+	giggle-branches-view.h \
+	giggle-clone-dialog.c \
+	giggle-clone-dialog.h \
+	giggle-description-editor.c \
+	giggle-description-editor.h \
+	giggle-diff-view.c \
+	giggle-diff-view.h \
+	giggle-diff-tree-view.c \
+	giggle-diff-tree-view.h \
+	giggle-diff-window.c \
+	giggle-diff-window.h \
+	giggle-file-list.c \
+	giggle-file-list.h \
+	giggle-graph-renderer.c \
+	giggle-graph-renderer.h \
+	giggle-helpers.c \
+	giggle-helpers.h \
+	giggle-input-dialog.c \
+	giggle-input-dialog.h \
+	giggle-label-action.c \
+	giggle-label-action.h \
+	giggle-remote-editor.c \
+	giggle-remote-editor.h \
+	giggle-remotes-view.c \
+	giggle-remotes-view.h \
+	giggle-rev-list-view.c \
+	giggle-rev-list-view.h \
+	giggle-revision-info.c \
+	giggle-revision-info.h \
+	giggle-revision-info-action.c \
+	giggle-revision-info-action.h \
+	giggle-revision-view.c \
+	giggle-revision-view.h \
+	giggle-short-list.c \
+	giggle-short-list.h \
+	giggle-spaning-renderer.c \
+	giggle-spaning-renderer.h \
+	giggle-view-diff.c \
+	giggle-view-diff.h \
+	giggle-view-file.c \
+	giggle-view-file.h \
+	giggle-view-history.c \
+	giggle-view-history.h \
+	giggle-view-summary.c \
+	giggle-view-summary.h \
+	giggle-window.c \
+	giggle-window.h \
+	giggle-main.c \
+	$(NULL)
+
 giggle_LDADD = \
+	$(GIGGLE_LIBS) \
+	../libgiggle/libgiggle.la \
 	../libgiggle-git/libgiggle-git.la
 
 all: all-am
 
 .SUFFIXES:
 .SUFFIXES: .c .lo .o .obj
-$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -361,9 +371,9 @@ Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 
-$(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
+$(top_srcdir)/configure:  $(am__configure_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
-$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
+$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
 install-binPROGRAMS: $(bin_PROGRAMS)
@@ -424,6 +434,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/giggle-avatar-cache.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/giggle-avatar-image.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/giggle-branches-view.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/giggle-clone-dialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/giggle-description-editor.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/giggle-diff-tree-view.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/giggle-diff-view.Po@am__quote@
@@ -447,7 +458,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/giggle-view-history.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/giggle-view-summary.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/giggle-window.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ige-mac-menu.Po@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<

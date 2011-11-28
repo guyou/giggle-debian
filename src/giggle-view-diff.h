@@ -52,6 +52,9 @@ void		   giggle_view_diff_set_revisions     (GiggleViewDiff *view,
 						       GiggleRevision *revision2,
 						       GList          *files);
 
+void		   giggle_view_diff_set_style         (GiggleViewDiff *view,
+						       gint style);
+
 G_END_DECLS
 
 #endif /* __GIGGLE_VIEW_DIFF_H__ */

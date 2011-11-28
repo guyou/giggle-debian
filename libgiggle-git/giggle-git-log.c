@@ -236,7 +236,7 @@ giggle_git_log_new (GiggleRevision *revision)
 			     NULL);
 }
 
-G_CONST_RETURN gchar *
+const gchar *
 giggle_git_log_get_log (GiggleGitLog *log)
 {
 	GiggleGitLogPriv *priv;

@@ -1,3 +1,68 @@
+Giggle 0.6, 2011-10-20
+======================
+Changes:
+
+ * Port to GTK+3 (Javier Jardón)
+ * Added new mallard documentation (Łukasz Jernaś)
+ * Establish giggle as url-handler for git:// links (Florian Müllner)
+ * Allow diff view to display diffs by chunks, files or all (Sebastien Ponce)
+ * Several bugfixes
+
+Contributors:
+
+Diego Celix
+Florian Müllner
+Guilhem Bonnefille
+Jasper Lievisse Adriaanse
+Javier Jardón
+João Pedro Forjaz de Lacerda
+Kenneth Nielsen
+Olav Vitters
+Sebastien Ponce
+
+
+Translations:
+
+UI translations:
+
+Alexandre Franke (fr)
+Andrej Žnidaršič (sl)
+A S Alam (pa)
+Ask H. Larsen (da)
+Carles Ferrando (ca@valencia)
+Christian.Kirbach (de)
+Claude Paroz (fr)
+Daniel Mustieles (es)
+Fran Diéguez (gl)
+Gil Forcada (ca)
+Jorge González (es)
+Kjartan Maraas (nb)
+Lucian Adrian Grijincu (ro)
+Łukasz Jernaś (pl)
+Marek Černocký (cs)
+Mario Blättermann (de)
+Maxim V. Dziumanenko (uk)
+Petr Kovar (cs)
+Spoiala Marian (ro)
+Takayuki KUSANO (ja)
+Taylon Silmer (pt_BR)
+Yinghua Wang (zh_CN)
+
+Doc translations:
+
+Andrej Žnidaršič (sl)
+Bruno Brouard (fr)
+Daniel Mustieles (es)
+Guilhem Bonnefille (pl)
+Jorge González (es)
+Julien Hardelin (fr)
+Łukasz Jernaś (pl)
+Marek Černocký (cs)
+Mario Blättermann (de)
+Matej Urbančič (sl)
+Petr Kovar (cs)
+
+
 Giggle 0.5, 2010-03-29
 =========================
 Changes:

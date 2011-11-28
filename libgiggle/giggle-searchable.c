@@ -52,7 +52,8 @@ gboolean
 giggle_searchable_search (GiggleSearchable      *searchable,
 			  const gchar           *search_term,
 			  GiggleSearchDirection  direction,
-			  gboolean               full_search)
+                          gboolean               full_search,
+                          gboolean               case_sensitive)
 {
 	GiggleSearchableIface *iface;
 	gboolean result = FALSE;
@@ -68,7 +69,7 @@ giggle_searchable_search (GiggleSearchable      *searchable,
 
 		casefold_search_term = g_utf8_casefold (search_term, -1);
 		result = (* iface->search) (searchable, casefold_search_term,
-					    direction, full_search);
+					    direction, full_search, case_sensitive);
 
 		g_free (casefold_search_term);
 	}

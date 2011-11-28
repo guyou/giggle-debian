@@ -42,6 +42,7 @@ struct GiggleDiffViewPriv {
 	gchar       *search_term;
 
 	int          current_hunk;
+	int          current_style;
 	GArray      *files, *hunks;
 	GtkTextTag  *invalid_char;
 
@@ -62,7 +63,7 @@ struct GiggleDiffViewHunk {
 
 static void       giggle_diff_view_searchable_init (GiggleSearchableIface *iface);
 
-G_DEFINE_TYPE_WITH_CODE (GiggleDiffView, giggle_diff_view, GTK_TYPE_SOURCE_VIEW,
+G_DEFINE_TYPE_WITH_CODE (GiggleDiffView, giggle_diff_view, GTK_SOURCE_TYPE_VIEW,
 			 G_IMPLEMENT_INTERFACE (GIGGLE_TYPE_SEARCHABLE,
 						giggle_diff_view_searchable_init))
 
@@ -71,9 +72,33 @@ G_DEFINE_TYPE_WITH_CODE (GiggleDiffView, giggle_diff_view, GTK_TYPE_SOURCE_VIEW,
 enum {
 	PROP_0,
 	PROP_CURRENT_FILE,
+	PROP_N_FILES,
 	PROP_CURRENT_HUNK,
 	PROP_N_HUNKS,
+	PROP_CURRENT_STYLE,
 };
+
+#define GIGGLE_DIFF_STYLE_TYPE (giggle_diff_style_type ())
+static GType
+giggle_diff_style_type (void)
+{
+  static GType diff_style_type = 0;
+
+  if (!diff_style_type) {
+    static GEnumValue style_types[] = {
+      { STYLE_CHUNK, "Chunk by chunk", "chunk" },
+      { STYLE_FILE,  "File by file",   "file"  },
+      { STYLE_ALL,   "All in one",     "all" },
+      { 0, NULL, NULL },
+    };
+
+    diff_style_type =
+	g_enum_register_static ("giggle_diff_style",
+				style_types);
+  }
+
+  return diff_style_type;
+}
 
 inline static GiggleDiffViewFile *
 diff_view_get_file (GiggleDiffViewPriv *priv,
@@ -153,12 +178,20 @@ diff_view_get_property (GObject    *object,
 		g_value_set_string (value, giggle_diff_view_get_current_file (view));
 		break;
 
+	case PROP_N_FILES:
+		g_value_set_int (value, priv->files->len);
+		break;
+
 	case PROP_CURRENT_HUNK:
 		g_value_set_int (value, priv->current_hunk);
 		break;
 
 	case PROP_N_HUNKS:
 		g_value_set_int (value, priv->hunks->len);
+		break;
+
+	case PROP_CURRENT_STYLE:
+		g_value_set_int (value, priv->current_style);
 		break;
 
 	default:
@@ -220,46 +253,97 @@ diff_view_set_current_hunk (GiggleDiffView *view,
 			    int             hunk_index)
 {
 	GiggleDiffViewPriv *priv = GET_PRIV (view);
-	int                 hunk_offset, i;
+	guint               i;
+	int                 hunk_offset;
 	GiggleDiffViewHunk *hunk = NULL;
 	GiggleDiffViewFile *file = NULL;
+	GiggleDiffViewFile *curfile = NULL;
 	GtkTextBuffer      *buffer;
 	GtkTextIter         iter;
+	GtkTextMark        *curhunk_mark = NULL;
+	gboolean            firsthunk = TRUE;
 
 	g_return_if_fail (hunk_index >= -1);
 	g_return_if_fail (hunk_index < (int) priv->hunks->len);
 
+	// get current file
 	priv->current_hunk = hunk_index;
+	if (hunk_index < 0) return;
+	hunk = diff_view_get_hunk (priv, priv->current_hunk);
+	if (hunk)
+		curfile = diff_view_get_file (priv, hunk->file);
 
-	hunk = diff_view_get_hunk (priv, hunk_index);
-
-	if (hunk && hunk_index >= 0)
-		file = diff_view_get_file (priv, hunk->file);
+	// get first hunk to be displayed
+	if (priv->current_style == STYLE_FILE)
+		for (hunk_index = 0; (guint) hunk_index < priv->hunks->len; ++hunk_index) {
+			hunk = diff_view_get_hunk (priv, hunk_index);
+			file = diff_view_get_file (priv, hunk->file);
+			if (file == curfile)
+				break;
+		}
+	if (priv->current_style == STYLE_ALL)
+		hunk_index = 0;
 
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
 	gtk_text_buffer_set_text (buffer, "", 0);
 
-	if (file) {
-		gtk_text_buffer_get_end_iter (buffer, &iter);
-		diff_view_insert_text (view, &iter, file->header, -1);
+	while (hunk_index < (int)priv->hunks->len) {
+		hunk = diff_view_get_hunk (priv, hunk_index);
 
-		hunk_offset = gtk_text_iter_get_offset (&iter);
-		diff_view_insert_text (view, &iter, hunk->text, -1);
+		if (hunk)
+			file = diff_view_get_file (priv, hunk->file);
 
-		if (hunk->errors) {
-			for (i = 0; i < hunk->errors->len; i += 2) {
-				int first = g_array_index (hunk->errors, int, i);
-				int last = g_array_index (hunk->errors, int, i + 1);
+		if (priv->current_style == STYLE_FILE)
+			if (curfile != file)
+				break;
 
-				GtkTextIter start = iter, end = iter;
+		if (file) {
+			if (!firsthunk)
+				gtk_text_buffer_insert_at_cursor(buffer, "\n", 1);
+			gtk_text_buffer_get_end_iter (buffer, &iter);
+			if (hunk_index == priv->current_hunk)
+				curhunk_mark = gtk_text_buffer_create_mark (buffer, NULL,
+									    &iter, TRUE);
 
-				gtk_text_iter_set_offset (&start, first + hunk_offset);
-				gtk_text_iter_set_offset (&end, last + hunk_offset);
+			if ((curfile != file) || firsthunk)
+				diff_view_insert_text (view, &iter, file->header, -1);
+			firsthunk = FALSE;
 
-				gtk_text_buffer_apply_tag (buffer, priv->invalid_char, &start, &end);
+			hunk_offset = gtk_text_iter_get_offset (&iter);
+			diff_view_insert_text (view, &iter, hunk->text, -1);
+
+			if (hunk->errors) {
+				for (i = 0; i < hunk->errors->len; i += 2) {
+					int first = g_array_index (hunk->errors, int, i);
+					int last = g_array_index (hunk->errors, int, i + 1);
+
+					GtkTextIter start = iter, end = iter;
+
+					gtk_text_iter_set_offset (&start, first + hunk_offset);
+					gtk_text_iter_set_offset (&end, last + hunk_offset);
+
+					gtk_text_buffer_apply_tag (buffer, priv->invalid_char, &start, &end);
+				}
 			}
 		}
+		if (priv->current_style == STYLE_CHUNK) break;
+		hunk_index++;
 	}
+	if (curhunk_mark) {
+		gtk_text_view_scroll_to_mark (GTK_TEXT_VIEW (view),
+					      curhunk_mark, 0.0, TRUE, 0.0, 0.0);
+		gtk_text_buffer_delete_mark (buffer, curhunk_mark);
+	}
+}
+
+static void
+diff_view_set_current_style (GiggleDiffView *view,
+			     gint            style)
+{
+	GiggleDiffViewPriv *priv = GET_PRIV (view);
+
+	priv->current_style = style;
+	diff_view_set_current_hunk(view, priv->current_hunk);
 }
 
 static void
@@ -274,6 +358,11 @@ diff_view_set_property (GObject      *object,
 					    g_value_get_int (value));
 		break;
 
+	case PROP_CURRENT_STYLE:
+		diff_view_set_current_style (GIGGLE_DIFF_VIEW (object),
+					     g_value_get_enum (value));
+		break;
+
 	default:
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, param_id, pspec);
 		break;
@@ -281,22 +370,34 @@ diff_view_set_property (GObject      *object,
 }
 
 static void
-diff_view_style_set (GtkWidget *widget,
-		     GtkStyle  *prev)
+diff_view_style_updated (GtkWidget *widget)
 {
 	GiggleDiffViewPriv *priv = GET_PRIV (widget);
+	GtkStyleContext *context;
 	static const GdkColor red = { 0, 0xffff, 0, 0 };
 	GdkColor *error_color;
+	GdkColor color;
+	GdkRGBA rgba;
 
-	GTK_WIDGET_CLASS (giggle_diff_view_parent_class)->style_set (widget, prev);
+	GTK_WIDGET_CLASS (giggle_diff_view_parent_class)->style_updated (widget);
+
 	gtk_widget_style_get (widget, "error-underline-color", &error_color, NULL);
 
 	if (!error_color)
 		error_color = gdk_color_copy (&red);
 
+	context = gtk_widget_get_style_context (widget);
+	gtk_style_context_get_color (context, GTK_STATE_FLAG_NORMAL, &rgba);
+
+	color.red = rgba.red * 65535;
+	color.green = rgba.green * 65535;
+	color.blue = rgba.blue * 65535;
+
 	g_object_set (priv->invalid_char,
-		      "foreground-gdk", &gtk_widget_get_style (widget)->base[GTK_STATE_NORMAL],
-		      "background-gdk", error_color, "style", PANGO_STYLE_ITALIC, NULL);
+		      "foreground-gdk", &color,
+	              "background-gdk", error_color,
+	              "style", PANGO_STYLE_ITALIC,
+	              NULL);
 
 	gdk_color_free (error_color);
 }
@@ -311,7 +412,7 @@ giggle_diff_view_class_init (GiggleDiffViewClass *class)
 	object_class->set_property = diff_view_set_property;
 	object_class->get_property = diff_view_get_property;
 
-	widget_class->style_set    = diff_view_style_set;
+	widget_class->style_updated = diff_view_style_updated;
 
 	g_object_class_install_property (
 		object_class,
@@ -338,6 +439,15 @@ giggle_diff_view_class_init (GiggleDiffViewClass *class)
 				  "The number of hunks in the current patch",
 				  0, G_MAXINT, 0,
 				  G_PARAM_READABLE));
+
+	g_object_class_install_property (
+		object_class,
+		PROP_CURRENT_STYLE,
+		g_param_spec_enum ("current-style",
+				   "Current Style",
+				   "Current style of the diff display",
+				   GIGGLE_DIFF_STYLE_TYPE, STYLE_CHUNK,
+				   G_PARAM_READWRITE));
 
 	g_type_class_add_private (object_class, sizeof (GiggleDiffViewPriv));
 }
@@ -384,7 +494,8 @@ static gboolean
 diff_view_search (GiggleSearchable      *searchable,
 		  const gchar           *search_term,
 		  GiggleSearchDirection  direction,
-		  gboolean               full_search)
+		  gboolean               full_search,
+		  gboolean               case_insensitive)
 {
 	GiggleDiffViewPriv *priv;
 
@@ -428,12 +539,13 @@ giggle_diff_view_init (GiggleDiffView *diff_view)
 	priv->files = g_array_new (FALSE, TRUE, sizeof (GiggleDiffViewFile));
 	priv->hunks = g_array_new (FALSE, TRUE, sizeof (GiggleDiffViewHunk));
 	priv->current_hunk = -1;
+	priv->current_style = STYLE_CHUNK;
 
 	gtk_text_view_set_editable (GTK_TEXT_VIEW (diff_view), FALSE);
 	gtk_text_view_set_cursor_visible (GTK_TEXT_VIEW (diff_view), FALSE);
 
 	font_desc = pango_font_description_from_string ("monospace");
-	gtk_widget_modify_font (GTK_WIDGET (diff_view), font_desc);
+	gtk_widget_override_font (GTK_WIDGET (diff_view), font_desc);
 	pango_font_description_free (font_desc);
 
 	manager = gtk_source_language_manager_new ();
@@ -721,8 +833,8 @@ giggle_diff_view_scroll_to_file (GiggleDiffView *diff_view,
 	GiggleDiffViewPriv *priv;
 	GiggleDiffViewHunk *hunk;
 	GiggleDiffViewFile *file;
-	GtkTextMark        *mark;
-	unsigned	    i;
+        GtkTextMark        *mark;
+	gint                i;
 
 	g_return_if_fail (GIGGLE_IS_DIFF_VIEW (diff_view));
 	g_return_if_fail (NULL != filename);
@@ -739,38 +851,67 @@ giggle_diff_view_scroll_to_file (GiggleDiffView *diff_view,
 						      mark, 0.0, TRUE, 0.0, 0.0);
 		}
 	} else {
-		for (i = 0; i < priv->hunks->len; ++i) {
+		for (i = 0; (guint) i < priv->hunks->len; ++i) {
 			hunk = diff_view_get_hunk (priv, i);
 			file = diff_view_get_file (priv, hunk->file);
 
-			if (!strcmp (file->filename, filename)) {
-				if (i != priv->current_hunk)
-					giggle_diff_view_set_current_hunk (diff_view, i);
+                       if (!strcmp (file->filename, filename)) {
+			       giggle_diff_view_set_current_hunk (diff_view, i);
 
-				break;
-			}
+                               break;
+                       }
 		}
 	}
+}
+
+int
+giggle_diff_view_get_current_file_nb (GiggleDiffView *diff_view)
+{
+       GiggleDiffViewPriv *priv;
+       GiggleDiffViewHunk *hunk = NULL;
+
+       g_return_val_if_fail (GIGGLE_IS_DIFF_VIEW (diff_view), 0);
+
+       priv = GET_PRIV (diff_view);
+
+       if (priv->current_hunk >= 0)
+	       hunk = diff_view_get_hunk (priv, priv->current_hunk);
+       if (hunk)
+               return hunk->file;
+
+       return 0;
 }
 
 const char *
 giggle_diff_view_get_current_file (GiggleDiffView *diff_view)
 {
-	GiggleDiffViewPriv *priv;
-	GiggleDiffViewHunk *hunk = NULL;
-	GiggleDiffViewFile *file = NULL;
+       GiggleDiffViewPriv *priv;
+       GiggleDiffViewFile *file = NULL;
+       int file_nb;
 
-	g_return_val_if_fail (GIGGLE_IS_DIFF_VIEW (diff_view), NULL);
+       g_return_val_if_fail (GIGGLE_IS_DIFF_VIEW (diff_view), NULL);
 
-	priv = GET_PRIV (diff_view);
+       priv = GET_PRIV (diff_view);
 
-	if (priv->current_hunk >= 0)
-		hunk = diff_view_get_hunk (priv, priv->current_hunk);
-	if (hunk)
-		file = diff_view_get_file (priv, hunk->file);
-	if (file)
-		return file->filename;
+       file_nb = giggle_diff_view_get_current_file_nb(diff_view);
+       file = diff_view_get_file (priv, file_nb);
+       if (file)
+               return file->filename;
 
-	return NULL;
+       return NULL;
 }
 
+void
+giggle_diff_view_set_current_style (GiggleDiffView *diff_view,
+				    int             style)
+{
+	g_return_if_fail (GIGGLE_IS_DIFF_VIEW (diff_view));
+	g_object_set (diff_view, "current-style", style, NULL);
+}
+
+int
+giggle_diff_view_get_current_style (GiggleDiffView *diff_view)
+{
+	g_return_val_if_fail (GIGGLE_IS_DIFF_VIEW (diff_view), -1);
+	return GET_PRIV (diff_view)->current_style;
+}

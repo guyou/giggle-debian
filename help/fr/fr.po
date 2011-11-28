@@ -1,0 +1,457 @@
+# French translation for giggle.
+# Copyright (C) 2010-2011 Listed translators
+# This file is distributed under the same license as the giggle package.
+#
+# Denis Jasselette <denis.jasselette@yahoo.fr>, 2010.
+# Gérard Baylard <gerard.b@bbox.fr>, 2010.
+# Bruno Brouard <annoa.b@gmail.com>, 2010.
+# Julien Hardelin <jhardlin@orange.fr>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: giggle master\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-09-15 11:56+0000\n"
+"PO-Revision-Date: 2011-09-19 08:10+0200\n"
+"Last-Translator: Julien Hardelin <jhardlin@orange.fr>\n"
+"Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
+msgctxt "_"
+msgid "translator-credits"
+msgstr ""
+"Denis Jasselette <denis.jasselette@yahoo.fr>, 2010\n"
+"Gérard Baylard <gerard dot b at bbox dot fr>, 2010\n"
+"Bruno Brouard <annoa.b@gmail.com>, 2010\n"
+"Julien Hardelin <jhardlin@orangefr>, 2011"
+
+#: C/index.page:7(credit/name) C/browse-view.page:11(credit/name)
+#: C/history-view.page:11(credit/name) C/introduction.page:11(credit/name)
+#: C/opening-repositories.page:11(credit/name)
+#: C/tagging-commits.page:11(credit/name)
+msgid "Łukasz Jernaś"
+msgstr "Łukasz Jernaś"
+
+#: C/index.page:18(license/p) C/browse-view.page:22(license/p)
+#: C/history-view.page:22(license/p) C/introduction.page:22(license/p)
+#: C/opening-repositories.page:22(license/p)
+#: C/tagging-commits.page:22(license/p)
+msgid "Creative Commons Share Alike 3.0"
+msgstr "Creative Commons Share Alike 3.0"
+
+#: C/index.page:22(page/title)
+msgid "Giggle Help"
+msgstr "Aide de Giggle"
+
+#: C/index.page:25(section/title)
+msgid "Working with <app>Giggle</app>"
+msgstr "Utilisation de <app>Giggle</app>"
+
+#: C/index.page:28(section/title)
+msgid "Working with GIT repositories"
+msgstr "Gestion des dépôts git"
+
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/browse-view.page:31(media)
+msgctxt "_"
+msgid ""
+"external ref='figures/giggle-browse_view_sections.png' "
+"md5='390225c079a94ec75fd1c172f90c6b3c'"
+msgstr ""
+"@@image: 'figures/giggle-browse_view_sections.png'; "
+"md5=390225c079a94ec75fd1c172f90c6b3c"
+
+#: C/browse-view.page:6(info/desc)
+msgid "Viewing the contents of the repository"
+msgstr "Affichage du contenu du dépôt"
+
+#: C/browse-view.page:26(page/title)
+msgid "Browse view"
+msgstr "Vue Parcourir"
+
+#: C/browse-view.page:28(section/title) C/history-view.page:27(section/title)
+msgid "Overview"
+msgstr "Vue d'ensemble"
+
+#: C/browse-view.page:30(figure/desc)
+msgid "Giggle in Browse view mode"
+msgstr "Giggle en vue Parcourir"
+
+#: C/browse-view.page:33(section/p)
+msgid "<app>Giggle</app>'s browse view is set up in three main parts:"
+msgstr ""
+"La vue Parcourir de <app>Giggle</app> est composée de trois parties "
+"principales :"
+
+#: C/browse-view.page:36(item/p)
+msgid "Project tree"
+msgstr "L'arborescence du projet"
+
+#: C/browse-view.page:37(item/p)
+msgid "Displays all the files included in the current repository."
+msgstr "Elle affiche tous les fichiers contenus dans le dépôt actuel."
+
+#: C/browse-view.page:40(item/p)
+msgid "File preview"
+msgstr "L'aperçu d'un fichier"
+
+#: C/browse-view.page:41(item/p)
+msgid ""
+"Displays the contents of the currently selected file according as of the "
+"selected revision."
+msgstr ""
+"Elle affiche le contenu du fichier sélectionné dans l'état correspondant à "
+"la révision sélectionnée."
+
+#: C/browse-view.page:44(item/p) C/history-view.page:35(item/p)
+msgid "History graph"
+msgstr "Le graphe chronologique"
+
+#: C/browse-view.page:45(item/p)
+msgid ""
+"Displays a visual representation of the currently selected file's history"
+msgstr ""
+"Elle affiche une représentation graphique de l'historique du fichier "
+"actuellement sélectionné."
+
+#: C/browse-view.page:50(section/title)
+msgid "About the Project tree"
+msgstr "À propos de l'arborescence du projet"
+
+#: C/browse-view.page:51(section/p)
+msgid ""
+"The Project tree is a powerful part of Giggle's interface, of course if you "
+"know about it. By default it doesn't display files hidden by <file>."
+"gitignore</file>. You can change this behaviour by using the right-click "
+"context menu option <gui>Show all files</gui>. Files which are not part of "
+"your repository are greyed out."
+msgstr ""
+"L'arborescence du projet est une partie puissante de l'interface de Giggle "
+"si on sait s'en servir. Par défaut, elle n'affiche pas les fichiers cachés "
+"par le fichier <file>.gitignore</file>. Ce comportement peut être modifié en "
+"utilisant l'option <gui>Afficher tous les fichiers</gui> du menu contextuel. "
+"Les fichiers ne faisant pas partie du dépôt sont alors grisés."
+
+#: C/browse-view.page:52(section/p)
+msgid "The Project tree offers you the following:"
+msgstr "L'arborescence du projet permet les opérations suivantes :"
+
+#: C/browse-view.page:55(item/p)
+msgid "Adding files to the repository."
+msgstr "Ajouter des fichiers au dépôt"
+
+#: C/browse-view.page:56(item/p)
+msgid "By using the <gui>Add file to repository</gui> context menu option."
+msgstr ""
+"en utilisant l'option <gui>Ajouter un fichier au dépôt</gui> du menu "
+"contextuel."
+
+#: C/browse-view.page:59(item/p)
+msgid "Adding/removing files to <file>.gitignore</file>."
+msgstr "Ajouter/supprimer des fichiers dans le fichier <file>.gitignore</file>"
+
+#: C/browse-view.page:60(item/p)
+msgid ""
+"By using the <gui>Add to .gitignore</gui> or <gui>Remove from .gitignore</"
+"gui> context menu options."
+msgstr ""
+"en utilisant respectivement les options <gui>Ajouter à .gitignore</gui> et "
+"<gui>Supprimer de .gitignore</gui> du menu contextuel."
+
+#: C/browse-view.page:63(item/p)
+msgid "Editing files"
+msgstr "Modifier des fichiers"
+
+#: C/browse-view.page:66(item/p)
+msgid "Committing"
+msgstr "Faire des <em>commits</em>"
+
+#: C/browse-view.page:69(item/p)
+msgid "Creating patches"
+msgstr "Générer des correctifs"
+
+#: C/browse-view.page:70(item/p)
+msgid ""
+"When there are any unstaged changes in the file list, you can create a patch "
+"by using the <gui>Create patch</gui> context menu option."
+msgstr ""
+"en utilisant l'option <gui>Créer un correctif</gui> du menu contextuel dès "
+"qu'il y a des modifications non suivis (unstaged) dans la liste des fichiers."
+
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/history-view.page:30(media)
+msgctxt "_"
+msgid ""
+"external ref='figures/giggle-history_view_sections.png' "
+"md5='3b487583a028a4d087e3d6a5bcd589b8'"
+msgstr ""
+"@@image: 'figures/giggle-history_view_sections.png'; "
+"md5=3b487583a028a4d087e3d6a5bcd589b8"
+
+#: C/history-view.page:6(info/desc)
+msgid "Viewing the history of a repository"
+msgstr "Afficher l'historique du dépôt"
+
+#: C/history-view.page:25(page/title)
+msgid "History view"
+msgstr "Affichage de l'historique"
+
+#: C/history-view.page:29(figure/desc)
+msgid "Giggle in History view mode"
+msgstr "Giggle en mode d'affichage Historique"
+
+#: C/history-view.page:32(section/p)
+msgid "<app>Giggle</app>'s history view is set up in three main parts:"
+msgstr ""
+"La vue Historique de <app>Giggle</app> se compose de trois parties "
+"principales :"
+
+#: C/history-view.page:36(item/p)
+msgid ""
+"Displays a visual representation of the current repository history, "
+"including all the branches be it remote or local. By hovering the mouse "
+"cursor over the icons you can display additional information, such as branch "
+"and tag names. Moving through history is accomplished either by using the "
+"mouse or the <key>Up</key> and <key>Down</key> keys."
+msgstr ""
+"Elle représente graphiquement l'historique du dépôt actuel, ainsi que toutes "
+"ses branches qu'elles soient locales ou distantes. En survolant les icônes "
+"avec le pointeur de la souris, vous pouvez afficher des informations "
+"complémentaires telles que le nom de la branche ou de l'étiquette. Vous "
+"pouvez naviguer dans l'historique à l'aide de la souris ou des touches "
+"<key>Haut</key> et <key>Bas</key>."
+
+#: C/history-view.page:39(item/p)
+msgid "Changed files"
+msgstr "Les fichiers modifiés"
+
+#: C/history-view.page:40(item/p)
+msgid "Displays files changed in the currently selected revision"
+msgstr ""
+"Elle affiche les fichiers modifiés dans la révision actuellement "
+"sélectionnée."
+
+#: C/history-view.page:43(item/p)
+msgid "Diff"
+msgstr "Le résultat de la commande « diff »"
+
+#: C/history-view.page:44(item/p)
+msgid "Displays the differences for the selected file and revision."
+msgstr ""
+"Elle affiche les différences apportées par la révision considérée dans le "
+"fichier sélectionné."
+
+#: C/history-view.page:46(note/p)
+msgid ""
+"<app>Giggle</app> displays the differences as individual chunks, you can "
+"move between them either by using the Up and Down icons above the list of "
+"changed files, or by pressing <keyseq><key>Alt</key><key>Up</key></keyseq> "
+"and <keyseq><key>Alt</key><key>Down</key></keyseq> keys. Doing so will also "
+"move you through the list of changed files as the diff progresses."
+msgstr ""
+"<app>Giggle</app> affiche les différences par blocs séparés. Vous pouvez les "
+"faire défiler soit à l'aide des icônes Haut et Bas au-dessus de la liste des "
+"fichiers modifiés, soit en appuyant sur <keyseq><key>Alt</key><key>Haut</"
+"key></keyseq> et <keyseq><key>Alt</key><key>Bas</key></keyseq>. Ces "
+"commandes vous permettent également de vous déplacer dans la liste des "
+"fichiers modifiés au cours de vos progressions dans les différences."
+
+#: C/introduction.page:6(info/desc)
+msgid "Introduction to the <app>Giggle</app> GIT repository viewer"
+msgstr "Introduction à <app>Giggle</app>, l'explorateur de dépôt GIT"
+
+#: C/introduction.page:26(page/title)
+msgid "Introduction"
+msgstr "Introduction"
+
+#: C/introduction.page:27(page/p)
+msgid ""
+"The <app>Giggle</app> application enables you to graphically browse and "
+"manipulate the contents of a git directory tree."
+msgstr ""
+"L'application <app>Giggle</app> vous permet de parcourir et de manipuler le "
+"contenu d'un dépôt git graphiquement."
+
+#: C/introduction.page:30(section/title)
+msgid "Starting <app>giggle</app>"
+msgstr "Démarrage de <app>giggle</app>"
+
+#: C/introduction.page:31(section/p)
+msgid "You can start <app>giggle</app> in the following ways:"
+msgstr ""
+"Vous pouvez démarrer <app>Giggle</app> de l'une des manières suivantes :"
+
+#: C/introduction.page:34(item/p)
+msgid ""
+"Choose <guiseq><gui>Programming</gui> <gui>Giggle</gui></guiseq> from the "
+"<gui>Applications</gui> menu."
+msgstr ""
+"sélectionnez <guiseq><gui>Programmation</gui> <gui>Giggle</gui></guiseq> "
+"dans le menu <gui>Applications</gui>,"
+
+#: C/introduction.page:37(item/p)
+msgid ""
+"Run <cmd>giggle</cmd> at the prompt in a terminal such or from the <gui>Run "
+"Application</gui> dialog."
+msgstr ""
+"Exécutez la commande <cmd>giggle</cmd> depuis un terminal ou depuis la boîte "
+"de dialogue <gui>Lancer une application</gui>."
+
+#: C/introduction.page:43(section/title)
+msgid "Closing <app>giggle</app>"
+msgstr "Fermeture de <app>Giggle</app>"
+
+#: C/introduction.page:44(section/p)
+msgid ""
+"To close <app>giggle</app> choose <guiseq><gui>Project</gui><gui>Quit</gui></"
+"guiseq>, or press <keyseq><key>Ctrl</key><key>Q</key></keyseq>."
+msgstr ""
+"Pour quitter <app>Giggle</app>, sélectionnez <guiseq><gui>Projet</"
+"gui><gui>Quitter</gui></guiseq> ou appuyez sur <keyseq><key>Ctrl</"
+"key><key>Q</key></keyseq>."
+
+#: C/license.page:7(info/desc)
+msgid "Legal information."
+msgstr "Informations légales."
+
+#: C/license.page:10(page/title)
+msgid "License"
+msgstr "Licence"
+
+#: C/license.page:11(page/p)
+msgid ""
+"This work is distributed under a CreativeCommons Attribution-Share Alike 3.0 "
+"Unported license."
+msgstr ""
+"Cette œuvre est distribuée sous licence Creative Commons Paternité-Partage "
+"des Conditions Initiales à l'Identique 3.0 Unported."
+
+#: C/license.page:19(page/p)
+msgid "You are free:"
+msgstr "Vous êtes libre :"
+
+#: C/license.page:24(item/title)
+msgid "<em>To share</em>"
+msgstr "<em>de partager</em>"
+
+#: C/license.page:25(item/p)
+msgid "To copy, distribute and transmit the work."
+msgstr "de reproduire, distribuer et communiquer cette création"
+
+#: C/license.page:28(item/title)
+msgid "<em>To remix</em>"
+msgstr "<em>de modifier</em>"
+
+#: C/license.page:29(item/p)
+msgid "To adapt the work."
+msgstr "d'adapter cette création,"
+
+#: C/license.page:32(page/p)
+msgid "Under the following conditions:"
+msgstr "selon les conditions suivantes :"
+
+#: C/license.page:37(item/title)
+msgid "<em>Attribution</em>"
+msgstr "<em>Paternité</em>"
+
+#: C/license.page:38(item/p)
+msgid ""
+"You must attribute the work in the manner specified by the author or "
+"licensor (but not in any way that suggests that they endorse you or your use "
+"of the work)."
+msgstr ""
+"Vous devez citer le nom de l'auteur original de la manière indiquée par "
+"l'auteur de l'œuvre ou le titulaire des droits qui vous confère cette "
+"autorisation (mais pas d'une manière qui suggérerait qu'ils vous soutiennent "
+"ou approuvent votre utilisation de l'œuvre)."
+
+#: C/license.page:45(item/title)
+msgid "<em>Share Alike</em>"
+msgstr "<em>Partage des conditions initiales à l'identique</em>"
+
+#: C/license.page:46(item/p)
+msgid ""
+"If you alter, transform, or build upon this work, you may distribute the "
+"resulting work only under the same, similar or a compatible license."
+msgstr ""
+"Si vous modifiez, transformez ou adaptez cette création, vous n'avez le "
+"droit de distribuer la création qui en résulte que sous un contrat identique "
+"à celui-ci."
+
+#: C/license.page:52(page/p)
+msgid ""
+"For the full text of the license, see the <link href=\"http://"
+"creativecommons.org/licenses/by-sa/3.0/legalcode\">CreativeCommons website</"
+"link>, or read the full <link href=\"http://creativecommons.org/licenses/by-"
+"sa/3.0/\">Commons Deed</link>."
+msgstr ""
+"Pour prendre connaissance du texte complet de la licence, consultez le <link "
+"href=\"http://creativecommons.org/licenses/by-sa/3.0/legalcode\">site Web "
+"CreativeCommons</link> ou lisez in extenso le <link href=\"http://"
+"creativecommons.org/licenses/by-sa/3.0/\">contrat Commons</link>."
+
+#: C/opening-repositories.page:6(info/desc)
+msgid "Opening GIT repositories"
+msgstr "Ouvrir des dépôts git"
+
+#: C/opening-repositories.page:26(page/title)
+msgid "Opening a repository"
+msgstr "Ouverture d'un dépôt"
+
+#: C/opening-repositories.page:27(page/p)
+msgid "You can open a git repository in the following ways:"
+msgstr "Vous pouvez ouvrir un dépôt git par méthodes suivantes :"
+
+#: C/opening-repositories.page:30(item/p)
+msgid ""
+"using <guiseq><gui>Project</gui><gui>Open</gui></guiseq>, and selecting the "
+"directory with your repository,"
+msgstr ""
+"en utilisant le menu <guiseq><gui>Projet</gui><gui>Ouvrir</gui></guiseq> et "
+"en sélectionnant le dossier contenant le dépôt,"
+
+#: C/opening-repositories.page:33(item/p)
+msgid "running <cmd>giggle</cmd> in your project's directory,"
+msgstr "en lançant <cmd>giggle</cmd> dans le dossier du projet,"
+
+#: C/opening-repositories.page:36(item/p)
+msgid ""
+"running <cmd>giggle</cmd> with the repository path specified as an argument."
+msgstr ""
+"en lançant <cmd>giggle</cmd> avec le chemin d'accès au dossier comme "
+"paramètre."
+
+#: C/tagging-commits.page:6(info/desc) C/tagging-commits.page:26(page/title)
+msgid "Tagging commits"
+msgstr "Étiquetage de <em>commits</em>"
+
+#: C/tagging-commits.page:27(page/p)
+msgid ""
+"To make a new tag open the context menu by right clicking on a commit in the "
+"revision window (it doesn't matter if it's the Browse or History view), then "
+"click <gui>Create tag</gui> and enter a name in the just opened dialog "
+"window."
+msgstr ""
+"Pour créer une nouvelle étiquette, ouvrez le menu contextuel en cliquant "
+"avec le bouton droit sur un <em>commit</em> dans la fenêtre des révisions "
+"(peu importe que vous soyez en vue Parcourir ou Historique). Ensuite, "
+"choisissez <gui>Créer une étiquette</gui> et saisissez un nom dans la boîte "
+"de dialogue qui apparaît."
+
+#: C/tagging-commits.page:28(page/p)
+msgid ""
+"You will notice that near the revision you have selected a new icon has "
+"appeared - it's your newly created tag."
+msgstr ""
+"Notez qu'une nouvelle icône est apparue à côté de la révision "
+"sélectionnée ; c'est la nouvelle étiquette."

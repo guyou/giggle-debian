@@ -415,7 +415,7 @@ git_config_read_cb (GiggleGit *git,
 static gboolean
 GIT_CONFIG_is_global (const char *key)
 {
-	int i;
+	guint i;
 
 	for (i = 0; i < G_N_ELEMENTS (fields); ++i) {
 		if (!strcmp (key, fields[i].name))
@@ -541,7 +541,7 @@ giggle_git_config_update (GiggleGitConfig     *config,
 				 git_config_read_cb, task, g_free);
 }
 
-G_CONST_RETURN gchar *
+const gchar *
 giggle_git_config_get_field (GiggleGitConfig      *config,
 			     GiggleGitConfigField  field)
 {

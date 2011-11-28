@@ -44,7 +44,7 @@ enum {
 	LAST_SIGNAL
 };
 
-G_DEFINE_ABSTRACT_TYPE (GiggleView, giggle_view, GTK_TYPE_VBOX)
+G_DEFINE_ABSTRACT_TYPE (GiggleView, giggle_view, GTK_TYPE_BOX)
 
 static guint signals[LAST_SIGNAL] = { 0, };
 
@@ -209,10 +209,21 @@ view_unrealize (GtkWidget *widget)
 }
 
 static void
+view_add (GtkContainer *container,
+          GtkWidget    *widget)
+{
+	gtk_box_pack_start (GTK_BOX (container), widget,
+	                    TRUE,
+	                    TRUE,
+	                    0);
+}
+
+static void
 giggle_view_class_init (GiggleViewClass *class)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (class);
 	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (class);
+	GtkContainerClass *container_class = GTK_CONTAINER_CLASS (class);
 
 	object_class->get_property = view_get_property;
 	object_class->set_property = view_set_property;
@@ -222,6 +233,8 @@ giggle_view_class_init (GiggleViewClass *class)
 
 	widget_class->realize      = view_realize;
 	widget_class->unrealize    = view_unrealize;
+
+	container_class->add       = view_add;
 
 	g_object_class_install_property (object_class,
 					 PROP_ACTION,
@@ -265,6 +278,8 @@ giggle_view_class_init (GiggleViewClass *class)
 static void
 giggle_view_init (GiggleView *view)
 {
+	gtk_orientable_set_orientation (GTK_ORIENTABLE (view),
+	                                GTK_ORIENTATION_VERTICAL);
 }
 
 GtkAction *
