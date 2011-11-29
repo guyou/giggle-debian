@@ -1,4 +1,4 @@
-giggle (0.5-2) unstable; urgency=low
+giggle (0.5-2) UNRELEASED; urgency=low
 
   * Added path that remove rpath option
   * Added plugins as Suggests
