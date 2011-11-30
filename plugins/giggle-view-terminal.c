@@ -163,6 +163,8 @@ giggle_view_terminal_append_tab (GiggleViewTerminal *view,
 	GError                 *error = NULL;
 	GSpawnFlags             spawn_flags;
 	char                   *title;
+	const gchar            *shell;
+	gchar                 **real_argv;
 	gboolean                succes;
 	int                     i;
 
@@ -180,15 +182,23 @@ giggle_view_terminal_append_tab (GiggleViewTerminal *view,
 				  G_CALLBACK (giggle_clipboard_changed), view);
 
 	pty_flags = VTE_PTY_NO_LASTLOG | VTE_PTY_NO_UTMP | VTE_PTY_NO_WTMP;
-	spawn_flags = G_SPAWN_CHILD_INHERITS_STDIN | G_SPAWN_SEARCH_PATH;
+	shell = g_getenv ("SHELL");
+	real_argv = g_new (char *, 2);
+	real_argv[0] = g_strdup (shell ? shell : "/bin/sh");
+	real_argv[1] = NULL;
+	spawn_flags = G_SPAWN_CHILD_INHERITS_STDIN | G_SPAWN_SEARCH_PATH | G_SPAWN_FILE_AND_ARGV_ZERO;
 
 	succes = vte_terminal_fork_command_full (VTE_TERMINAL (terminal),
 	                                         pty_flags,
-	                                         directory, NULL, NULL,
+	                                         directory,
+	                                         real_argv,
+	                                         NULL,
 	                                         spawn_flags,
 	                                         NULL, NULL,
 	                                         NULL,
 	                                         &error);
+	g_strfreev (real_argv);
+
 	if (succes == FALSE) {
 		g_warning ("%s: %s: vte_terminal_fork_command_full failed %s",
 		           G_STRLOC, G_STRFUNC, error->message);
@@ -203,10 +213,11 @@ giggle_view_terminal_append_tab (GiggleViewTerminal *view,
 	/*FIXME:gtk_notebook_set_show_tabs (GTK_NOTEBOOK (priv->notebook), i > 0);*/
 	gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), i);
 
-	g_object_set (terminal,
-	              "tab-expand", TRUE,
-	              "tab-fill", TRUE,
-	              NULL);
+	gtk_container_child_set (GTK_CONTAINER (priv->notebook),
+	                         terminal,
+	                         "tab-expand", TRUE,
+	                         "tab-fill", TRUE,
+	                         NULL);
 
 	gtk_action_set_visible (giggle_view_get_action (GIGGLE_VIEW (view)), TRUE);
 }
