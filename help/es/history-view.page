@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="history-view" xml:lang="es">
+  <info>
+    <link type="guide" xref="index#views"/>
+    <desc>Ver el histórico de un repositorio</desc>
+
+    <credit type="author">
+      <name>Łukasz Jernaś</name>
+      <email>deejay1@srem.org</email>
+    </credit>
+
+<!--
+    <copyright>
+      <year>2010</year>
+      <name>GNOME Documentation Project</name>
+    </copyright>
+-->
+    <license>
+      <p>Creative Commons Share Alike 3.0</p>
+    </license>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Daniel Mustieles</mal:name>
+      <mal:email>daniel.mustieles@gmail.com</mal:email>
+      <mal:years>2011</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Jorge González</mal:name>
+      <mal:email>jorgegonz@svn.gnome.org</mal:email>
+      <mal:years>2007-2008.</mal:years>
+    </mal:credit>
+  </info>
+  <title>Vista del histórico</title>
+  <section id="overview">
+   <title>Vista general</title>
+   <figure>
+    <desc>Modo de vista del histórico de Giggle</desc>
+    <media type="image" src="figures/giggle-history_view_sections.png" alt="Giggle main window in History mode"/>
+   </figure>
+    <p>La vista del histórico <app>Giggle</app> está compuesta de tres partes principales:</p>
+     <list type="numbered">
+       <item>
+        <p>Gráfico del histórico</p>
+        <p>Muestra una representación visual del histórico del repositorio actual, incluyendo todas las ramas remotas o locales. Posando el cursor del ratón encima de los iconos puede mostrar información adicional, tal como la rama y los nombres de las etiquetas. Moverse por el histórico se consigue usando el ratón o con las teclas <key>Arriba</key> y <key>Abajo</key>.</p>
+       </item>
+       <item>
+        <p>Archivos cambiados</p>
+        <p>Muestra los archivos cambiados en la revisión actualmente seleccionada</p>
+       </item>
+       <item>
+        <p>Diff</p>
+        <p>Muestra las diferencias para el archivo seleccionado y la revisión.</p>
+        <note style="important">
+          <p><app>Giggle</app> muestra las diferencias como elementos individuales, puede moverse entre ellas usando los iconos Arriba y Abajo encima de la lista de archivos cambiados o pulsando las teclas <keyseq><key>Alt</key><key>Arriba</key></keyseq> y <keyseq><key>Alt</key><key>Abajo</key></keyseq>. Haciéndolo también se moverá a través de la lista de archivos cambiados según progrese en el archivo de diferencias.</p>
+        </note>
+       </item>
+     </list>
+    </section>
+</page>

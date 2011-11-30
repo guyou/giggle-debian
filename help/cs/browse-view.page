@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="browse-view" xml:lang="cs">
+  <info>
+    <link type="guide" xref="index#views"/>
+    <desc>Jak zobrazit obsah repozitáře</desc>
+
+    <credit type="author">
+      <name>Łukasz Jernaś</name>
+      <email>deejay1@srem.org</email>
+    </credit>
+
+<!--
+    <copyright>
+      <year>2010</year>
+      <name>GNOME Documentation Project</name>
+    </copyright>
+-->
+    <license>
+      <p>Creative Commons Share Alike 3.0</p>
+    </license>
+  </info>
+
+  <title>Zobrazení Procházet</title>
+   <section id="overview">
+   <title>Přehled</title>
+   <figure>
+    <desc>Aplikace Giggle v režimu zobrazení Procházet</desc>
+    <media type="image" src="figures/giggle-browse_view_sections.png" alt="Giggle main window in Browse mode"/>
+   </figure>
+    <p>Zobrazení Procházet aplikace <app>Giggle</app> sestává ze tří hlavních částí:</p>
+     <list type="numbered">
+       <item>
+        <p>Strom projektu</p>
+        <p>Zobrazuje všechny soubory obsažené v aktuálním repozitáři.</p>
+       </item>
+       <item>
+        <p>Náhled souboru</p>
+        <p>Zobrazuje obsah právě vybraného souboru podle právě vybrané revize.</p>
+       </item>
+       <item>
+        <p>Graf historie</p>
+        <p>Zobrazuje vizuální podobu historie právě vybraného souboru.</p>
+       </item>
+     </list>
+    </section>
+    <section id="project_tree">
+    <title>O stromu projektu</title>
+    <p>Seznam projektu je mocná část rozhraní aplikace Giggle, pokud o ní samozřejmě víte. Standardně nezobrazuje soubory skryté pomocí <file>.gitignore</file>. Toto chování můžete změnit pomocí volby <gui>Zobrazit všechny soubory</gui> v místní nabídce vyvolané kliknutím pravým tlačítkem. Soubory, které nejsou součástí vašeho repozitáře, jsou zašedlé.</p>
+    <p>Strom projektu nabízí následující:</p>
+     <list>
+       <item>
+        <p>Přidávání souborů do repozitáře.</p>
+        <p>Pomocí volby <gui>Přidat soubor do repozitáře</gui> v místní nabídce.</p>
+       </item>
+       <item>
+        <p>Přidávání/odebírání souborů do/z <file>.gitignore</file>.</p>
+        <p>Pomocí volby <gui>Přidat do .gitignore</gui> nebo <gui>Odebrat z .gitignore</gui> v místní nabídce.</p>
+       </item>
+       <item>
+         <p>Úpravu souborů</p>
+       </item>
+       <item>
+         <p>Zařazování</p>
+       </item>
+       <item>
+         <p>Vytváření záplat</p>
+         <p>Pokud jsou v seznamu souborů nějaké nepřipravené změny, můžete vytvořit záplatu pomocí volby <gui>Vytvořit záplatu</gui> v místní nabídce.</p>
+       </item>
+     </list>
+
+    </section>
+<!-- FIXME: I don't really know what's going on in this section so somebody please fill in
+    <section id="file_preview">
+      <title>About the File preview</title>
+    </section>
+-->
+
+</page>

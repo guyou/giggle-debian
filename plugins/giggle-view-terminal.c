@@ -70,18 +70,6 @@ giggle_view_terminal_class_init (GiggleViewTerminalClass *class)
 
 	object_class->dispose = view_terminal_dispose;
 
-	gtk_rc_parse_string
-		("style \"giggle-terminal-tab-close-button-style\" {"
-		 "	GtkButton::inner-border = { 0, 0, 0, 0 }"
-		 "	GtkWidget::focus-padding = 0"
-		 "	GtkWidget::focus-line-width = 0"
-		 "	xthickness = 0"
-		 "	ythickness = 0"
-		 "}"
-		 "widget \"*.giggle-terminal-tab-close-button\" "
-		 "style \"giggle-terminal-tab-close-button-style\"");
-
-
 	g_type_class_add_private (class, sizeof (GiggleViewTerminalPriv));
 }
 
@@ -154,7 +142,7 @@ view_terminal_create_label (GiggleViewTerminal *view,
 	image = gtk_image_new_from_stock (GTK_STOCK_CLOSE, GTK_ICON_SIZE_MENU);
 	gtk_container_add (GTK_CONTAINER (button), image);
 
-	hbox = gtk_hbox_new (FALSE, 0);
+	hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
 	gtk_box_pack_start (GTK_BOX (hbox), label, TRUE, TRUE, 0);
 	gtk_box_pack_start (GTK_BOX (hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show_all (hbox);
@@ -170,9 +158,12 @@ giggle_view_terminal_append_tab (GiggleViewTerminal *view,
 				 const char         *directory)
 {
 	GiggleViewTerminalPriv *priv = GET_PRIV (view);
+	VtePtyFlags             pty_flags;
 	GtkWidget              *terminal, *label;
-	const char             *shell;
+	GError                 *error = NULL;
+	GSpawnFlags             spawn_flags;
 	char                   *title;
+	gboolean                succes;
 	int                     i;
 
 	g_return_if_fail (GIGGLE_IS_VIEW_TERMINAL (view));
@@ -188,12 +179,21 @@ giggle_view_terminal_append_tab (GiggleViewTerminal *view,
 	g_signal_connect_swapped (terminal, "selection-changed",
 				  G_CALLBACK (giggle_clipboard_changed), view);
 
-	shell = g_getenv ("SHELL");
+	pty_flags = VTE_PTY_NO_LASTLOG | VTE_PTY_NO_UTMP | VTE_PTY_NO_WTMP;
+	spawn_flags = G_SPAWN_CHILD_INHERITS_STDIN | G_SPAWN_SEARCH_PATH;
 
-	vte_terminal_fork_command (VTE_TERMINAL (terminal),
-				   shell ? shell : "/bin/sh",
-				   NULL, NULL, directory,
-				   FALSE, FALSE, FALSE);
+	succes = vte_terminal_fork_command_full (VTE_TERMINAL (terminal),
+	                                         pty_flags,
+	                                         directory, NULL, NULL,
+	                                         spawn_flags,
+	                                         NULL, NULL,
+	                                         NULL,
+	                                         &error);
+	if (succes == FALSE) {
+		g_warning ("%s: %s: vte_terminal_fork_command_full failed %s",
+		           G_STRLOC, G_STRFUNC, error->message);
+		g_error_free (error);
+	}
 
 	title = g_filename_display_name (directory);
 	label = view_terminal_create_label (view, terminal, title);

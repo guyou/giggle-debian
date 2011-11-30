@@ -1,0 +1,432 @@
+# Czech translation for giggle help.
+# Copyright (C) 2010 giggle's COPYRIGHT HOLDER
+# This file is distributed under the same license as the giggle help.
+#
+# Marek Černocký <marek@manet.cz>, 2010, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: giggle master\n"
+"POT-Creation-Date: 2011-07-09 16:39+0000\n"
+"PO-Revision-Date: 2011-07-12 20:36+0200\n"
+"Last-Translator: Marek Černocký <marek@manet.cz>\n"
+"Language-Team: Czech <gnome-cs-list@gnome.org>\n"
+"MIME-Version: 1.0\n"
+"Language: cs\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
+msgctxt "_"
+msgid "translator-credits"
+msgstr "Marek Černocký <marek@manet.cz>"
+
+#: C/index.page:7(credit/name) C/browse-view.page:11(credit/name)
+#: C/history-view.page:11(credit/name) C/introduction.page:11(credit/name)
+#: C/opening-repositories.page:11(credit/name)
+#: C/tagging-commits.page:11(credit/name)
+msgid "Łukasz Jernaś"
+msgstr "Łukasz Jernaś"
+
+#: C/index.page:18(license/p) C/browse-view.page:22(license/p)
+#: C/history-view.page:22(license/p) C/introduction.page:22(license/p)
+#: C/opening-repositories.page:22(license/p)
+#: C/tagging-commits.page:22(license/p)
+msgid "Creative Commons Share Alike 3.0"
+msgstr "Creative Commons Share Alike 3.0"
+
+#: C/index.page:22(page/title)
+msgid "Giggle Help"
+msgstr "Nápověda Giggle"
+
+#: C/index.page:25(section/title)
+msgid "Working with <app>Giggle</app>"
+msgstr "Práce s aplikací <app>Giggle</app>"
+
+#: C/index.page:28(section/title)
+msgid "Working with GIT repositories"
+msgstr "Práce s repozitáři GIT"
+
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/browse-view.page:31(media)
+msgctxt "_"
+msgid ""
+"external ref='figures/giggle-browse_view_sections.png' "
+"md5='390225c079a94ec75fd1c172f90c6b3c'"
+msgstr ""
+"external ref='figures/giggle-browse_view_sections.png' "
+"md5='390225c079a94ec75fd1c172f90c6b3c'"
+
+#: C/browse-view.page:6(info/desc)
+msgid "Viewing the contents of the repository"
+msgstr "Jak zobrazit obsah repozitáře"
+
+#: C/browse-view.page:26(page/title)
+msgid "Browse view"
+msgstr "Zobrazení Procházet"
+
+#: C/browse-view.page:28(section/title) C/history-view.page:27(section/title)
+msgid "Overview"
+msgstr "Přehled"
+
+#: C/browse-view.page:30(figure/desc)
+msgid "Giggle in Browse view mode"
+msgstr "Aplikace Giggle v režimu zobrazení Procházet"
+
+#: C/browse-view.page:33(section/p)
+msgid "<app>Giggle</app>'s browse view is set up in three main parts:"
+msgstr ""
+"Zobrazení Procházet aplikace <app>Giggle</app> sestává ze tří hlavních částí:"
+
+#: C/browse-view.page:36(item/p)
+msgid "Project tree"
+msgstr "Strom projektu"
+
+#: C/browse-view.page:37(item/p)
+msgid "Displays all the files included in the current repository."
+msgstr "Zobrazuje všechny soubory obsažené v aktuálním repozitáři."
+
+#: C/browse-view.page:40(item/p)
+msgid "File preview"
+msgstr "Náhled souboru"
+
+#: C/browse-view.page:41(item/p)
+msgid ""
+"Displays the contents of the currently selected file according as of the "
+"selected revision."
+msgstr "Zobrazuje obsah právě vybraného souboru podle právě vybrané revize."
+
+#: C/browse-view.page:44(item/p) C/history-view.page:35(item/p)
+msgid "History graph"
+msgstr "Graf historie"
+
+#: C/browse-view.page:45(item/p)
+msgid ""
+"Displays a visual representation of the currently selected file's history"
+msgstr "Zobrazuje vizuální podobu historie právě vybraného souboru."
+
+#: C/browse-view.page:50(section/title)
+msgid "About the Project tree"
+msgstr "O stromu projektu"
+
+#: C/browse-view.page:51(section/p)
+msgid ""
+"The Project tree is a powerful part of Giggle's interface, of course if you "
+"know about it. By default it doesn't display files hidden by <file>."
+"gitignore</file>. You can change this behaviour by using the right-click "
+"context menu option <gui>Show all files</gui>. Files which are not part of "
+"your repository are greyed out."
+msgstr ""
+"Seznam projektu je mocná část rozhraní aplikace Giggle, pokud o ní "
+"samozřejmě víte. Standardně nezobrazuje soubory skryté pomocí <file>."
+"gitignore</file>. Toto chování můžete změnit pomocí volby <gui>Zobrazit "
+"všechny soubory</gui> v místní nabídce vyvolané kliknutím pravým tlačítkem. "
+"Soubory, které nejsou součástí vašeho repozitáře, jsou zašedlé."
+
+#: C/browse-view.page:52(section/p)
+msgid "The Project tree offers you the following:"
+msgstr "Strom projektu nabízí následující:"
+
+#: C/browse-view.page:55(item/p)
+msgid "Adding files to the repository."
+msgstr "Přidávání souborů do repozitáře."
+
+#: C/browse-view.page:56(item/p)
+msgid "By using the <gui>Add file to repository</gui> context menu option."
+msgstr "Pomocí volby <gui>Přidat soubor do repozitáře</gui> v místní nabídce."
+
+#: C/browse-view.page:59(item/p)
+msgid "Adding/removing files to <file>.gitignore</file>."
+msgstr "Přidávání/odebírání souborů do/z <file>.gitignore</file>."
+
+#: C/browse-view.page:60(item/p)
+msgid ""
+"By using the <gui>Add to .gitignore</gui> or <gui>Remove from .gitignore</"
+"gui> context menu options."
+msgstr ""
+"Pomocí volby <gui>Přidat do .gitignore</gui> nebo <gui>Odebrat z .gitignore</"
+"gui> v místní nabídce."
+
+#: C/browse-view.page:63(item/p)
+msgid "Editing files"
+msgstr "Úpravu souborů"
+
+#: C/browse-view.page:66(item/p)
+msgid "Committing"
+msgstr "Zařazování"
+
+#: C/browse-view.page:69(item/p)
+msgid "Creating patches"
+msgstr "Vytváření záplat"
+
+#: C/browse-view.page:70(item/p)
+msgid ""
+"When there are any unstaged changes in the file list, you can create a patch "
+"by using the <gui>Create patch</gui> context menu option."
+msgstr ""
+"Pokud jsou v seznamu souborů nějaké nepřipravené změny, můžete vytvořit "
+"záplatu pomocí volby <gui>Vytvořit záplatu</gui> v místní nabídce."
+
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/history-view.page:30(media)
+msgctxt "_"
+msgid ""
+"external ref='figures/giggle-history_view_sections.png' "
+"md5='3b487583a028a4d087e3d6a5bcd589b8'"
+msgstr ""
+"external ref='figures/giggle-history_view_sections.png' "
+"md5='3b487583a028a4d087e3d6a5bcd589b8'"
+
+#: C/history-view.page:6(info/desc)
+msgid "Viewing the history of a repository"
+msgstr "Jak zobrazit historii repozitáře"
+
+#: C/history-view.page:25(page/title)
+msgid "History view"
+msgstr "Zobrazení Historie"
+
+#: C/history-view.page:29(figure/desc)
+msgid "Giggle in History view mode"
+msgstr "Aplikace Giggle v režimu zobrazení Historie"
+
+#: C/history-view.page:32(section/p)
+msgid "<app>Giggle</app>'s history view is set up in three main parts:"
+msgstr ""
+"Zobrazení Historie aplikace <app>Giggle</app> sestává ze tří hlavních částí:"
+
+#: C/history-view.page:36(item/p)
+msgid ""
+"Displays a visual representation of the current repository history, "
+"including all the branches be it remote or local. By hovering the mouse "
+"cursor over the icons you can display additional information, such as branch "
+"and tag names. Moving through history is accomplished either by using the "
+"mouse or the <key>Up</key> and <key>Down</key> keys."
+msgstr ""
+"Zobrazuje vizuální podobu historie současného repozitáře, včetně všech "
+"větví, vzdálených i místních. Po najetí ukazatelem myši nad ikonu se vám "
+"mohou zobrazit doplňující informace, jako jsou název větve nebo název "
+"značky. Přesun historií lze provádět buď pomocí myši nebo klávesami "
+"<key>nahoru</key> a <key>dolů</key>."
+
+#: C/history-view.page:39(item/p)
+msgid "Changed files"
+msgstr "Změněné soubory"
+
+#: C/history-view.page:40(item/p)
+msgid "Displays files changed in the currently selected revision"
+msgstr "Zobrazuje soubory změněné v právě vybrané revizi."
+
+#: C/history-view.page:43(item/p)
+msgid "Diff"
+msgstr "Rozdíl (diff)"
+
+#: C/history-view.page:44(item/p)
+msgid "Displays the differences for the selected file and revision."
+msgstr "Zobrazuje rozdíly pro vybraný soubor a revizi."
+
+#: C/history-view.page:46(note/p)
+msgid ""
+"<app>Giggle</app> displays the differences as individual chunks, you can "
+"move between them either by using the Up and Down icons above the list of "
+"changed files, or by pressing <keyseq><key>Alt</key><key>Up</key></keyseq> "
+"and <keyseq><key>Alt</key><key>Down</key></keyseq> keys. Doing so will also "
+"move you through the list of changed files as the diff progresses."
+msgstr ""
+"Aplikace <app>Giggle</app> zobrazuje rozdíly po jednotlivých částech. Mezi "
+"nimi se můžete přesouvat buď pomocí ikon se šipkami nahoru a dolů nad "
+"seznamem změněných souborů nebo stiskem kláves <keyseq><key>Alt</"
+"key><key>nahoru</key></keyseq> a <keyseq><key>Alt</key><key>dolů</key></"
+"keyseq>. Když to budete dělat, budete se zároveň přesouvat v seznamu "
+"změněných souborů, v závislosti na tom, jak probíhají rozdíly."
+
+#: C/introduction.page:6(info/desc)
+msgid "Introduction to the <app>Giggle</app> GIT repository viewer"
+msgstr "Úvod do prohlížeče repozitářů GIT <app>Giggle</app>"
+
+#: C/introduction.page:26(page/title)
+msgid "Introduction"
+msgstr "Úvod"
+
+#: C/introduction.page:27(page/p)
+msgid ""
+"The <app>Giggle</app> application enables you to graphically browse and "
+"manipulate the contents of a git directory tree."
+msgstr ""
+"Aplikace <app>Giggle</app> vám umožňuje v grafickém prohlížeči procházet a "
+"upravovat obsah stromu v git."
+
+#: C/introduction.page:30(section/title)
+msgid "Starting <app>giggle</app>"
+msgstr "Jak spustit aplikaci <app>Giggle</app>"
+
+#: C/introduction.page:31(section/p)
+msgid "You can start <app>giggle</app> in the following ways:"
+msgstr "Aplikaci <app>Giggle</app> můžete spustit následujícími způsoby:"
+
+#: C/introduction.page:34(item/p)
+msgid ""
+"Choose <guiseq><gui>Programming</gui> <gui>Giggle</gui></guiseq> from the "
+"<gui>Applications</gui> menu."
+msgstr ""
+"Zvolit <guiseq><gui>Programování</gui><gui>Giggle</gui></guiseq> z nabídky "
+"<gui>Aplikace</gui>."
+
+#: C/introduction.page:37(item/p)
+msgid ""
+"Run <cmd>giggle</cmd> at the prompt in a terminal such or from the <gui>Run "
+"Application</gui> dialog."
+msgstr ""
+"Spustit <cmd>giggle</cmd> v příkazovém řádku terminálu nebo z dialogového "
+"okna <gui>Spustit aplikaci</gui>."
+
+#: C/introduction.page:43(section/title)
+msgid "Closing <app>giggle</app>"
+msgstr "Jak zavřít aplikaci <app>Giggle</app>"
+
+#: C/introduction.page:44(section/p)
+msgid ""
+"To close <app>giggle</app> choose <guiseq><gui>Project</gui><gui>Quit</gui></"
+"guiseq>, or press <keyseq><key>Ctrl</key><key>Q</key></keyseq>."
+msgstr ""
+"Pokud chcete aplikaci <app>Giggle</app> zavřít, zvolte <guiseq><gui>Projekt</"
+"gui><gui>Ukončit</gui></guiseq> nebo zmáčkněte <keyseq><key>Ctrl</"
+"key><key>Q</key></keyseq>."
+
+#: C/license.page:7(info/desc)
+msgid "Legal information."
+msgstr "Právní informace."
+
+#: C/license.page:10(page/title)
+msgid "License"
+msgstr "Licence"
+
+#: C/license.page:11(page/p)
+msgid ""
+"This work is distributed under a CreativeCommons Attribution-Share Alike 3.0 "
+"Unported license."
+msgstr ""
+"Toto dílo je šířeno pod licencí CreativeCommons Attribution-Share Alike 3.0 "
+"Unported license."
+
+#: C/license.page:19(page/p)
+msgid "You are free:"
+msgstr "Můžete volně:"
+
+#: C/license.page:24(item/title)
+msgid "<em>To share</em>"
+msgstr "<em>Sdílet</em>"
+
+#: C/license.page:25(item/p)
+msgid "To copy, distribute and transmit the work."
+msgstr "Kopírovat, šířit a rozesílat dílo."
+
+#: C/license.page:28(item/title)
+msgid "<em>To remix</em>"
+msgstr "<em>Měnit</em>"
+
+#: C/license.page:29(item/p)
+msgid "To adapt the work."
+msgstr "Přizpůsobovat dílo."
+
+#: C/license.page:32(page/p)
+msgid "Under the following conditions:"
+msgstr "Za následujících podmínek:"
+
+#: C/license.page:37(item/title)
+msgid "<em>Attribution</em>"
+msgstr "<em>Označení</em>"
+
+#: C/license.page:38(item/p)
+msgid ""
+"You must attribute the work in the manner specified by the author or "
+"licensor (but not in any way that suggests that they endorse you or your use "
+"of the work)."
+msgstr ""
+"Musíte dílo označit v souladu s požadavky autora nebo licence (ale ne žádným "
+"způsobem, který předpokládá, že schvalují vás nebo vaše použití díla)."
+
+#: C/license.page:45(item/title)
+msgid "<em>Share Alike</em>"
+msgstr "<em>Stejné sdílení</em>"
+
+#: C/license.page:46(item/p)
+msgid ""
+"If you alter, transform, or build upon this work, you may distribute the "
+"resulting work only under the same, similar or a compatible license."
+msgstr ""
+"Pokud dílo změníte, převedete nebo na něm založíte jiné, můžete výsledek "
+"této práce šířit pouze pod stejnou, podobnou nebo kompatibilní licencí."
+
+#: C/license.page:52(page/p)
+msgid ""
+"For the full text of the license, see the <link href=\"http://"
+"creativecommons.org/licenses/by-sa/3.0/legalcode\">CreativeCommons website</"
+"link>, or read the full <link href=\"http://creativecommons.org/licenses/by-"
+"sa/3.0/\">Commons Deed</link>."
+msgstr ""
+"Text licence v plném znění najdete na <link href=\"http://creativecommons."
+"org/licenses/by-sa/3.0/legalcode\">webových stránkách CreativeCommons</link> "
+"nebo si přečtěte <link href=\"http://creativecommons.org/licenses/by-sa/3.0/"
+"\">výtah dokumentu pro neprávníky</link>."
+
+#: C/opening-repositories.page:6(info/desc)
+msgid "Opening GIT repositories"
+msgstr "Jak otevřít repozitář GIT"
+
+#: C/opening-repositories.page:26(page/title)
+msgid "Opening a repository"
+msgstr "Otevírání repozitáře"
+
+#: C/opening-repositories.page:27(page/p)
+msgid "You can open a git repository in the following ways:"
+msgstr "Repozitář GIT můžete otevřít následujícími způsoby:"
+
+#: C/opening-repositories.page:30(item/p)
+msgid ""
+"using <guiseq><gui>Project</gui><gui>Open</gui></guiseq>, and selecting the "
+"directory with your repository,"
+msgstr ""
+"použitím <guiseq><gui>Projekt</gui><gui>Otevřít</gui></guiseq> a výběrem "
+"složky s vaším repozitářem,"
+
+#: C/opening-repositories.page:33(item/p)
+msgid "running <cmd>giggle</cmd> in your project's directory,"
+msgstr "spouštěním <cmd>giggle</cmd> ve složce vašeho projektu,"
+
+#: C/opening-repositories.page:36(item/p)
+msgid ""
+"running <cmd>giggle</cmd> with the repository path specified as an argument."
+msgstr ""
+"spuštěním <cmd>giggle</cmd> s cestou k vašemu repozitáři zadanou jako "
+"argument."
+
+#: C/tagging-commits.page:6(info/desc) C/tagging-commits.page:26(page/title)
+msgid "Tagging commits"
+msgstr "Značení zařazení"
+
+#: C/tagging-commits.page:27(page/p)
+msgid ""
+"To make a new tag open the context menu by right clicking on a commit in the "
+"revision window (it doesn't matter if it's the Browse or History view), then "
+"click <gui>Create tag</gui> and enter a name in the just opened dialog "
+"window."
+msgstr ""
+"Když chcete vytvořit novou značku, otevřete místní nabídku kliknutím pravým "
+"tlačítkem na zařazení v okně revizí (nezáleží zda v zobrazení Procházet nebo "
+"Historie), pak klikněte na <gui>Vytvořit značku</gui> a zadejte název v "
+"právě otevřeném dialogovém okně."
+
+#: C/tagging-commits.page:28(page/p)
+msgid ""
+"You will notice that near the revision you have selected a new icon has "
+"appeared - it's your newly created tag."
+msgstr ""
+"Poznamenejme, že poblíž vámi vybrané revize se objeví nová ikona - to je "
+"vaše nově vytvořená značka."

@@ -621,7 +621,7 @@ giggle_plugin_merge_ui (GigglePlugin *plugin,
 			GError      **error)
 {
 	GigglePluginPriv *priv = GET_PRIV (plugin);
-	int               i;
+	guint             i;
 
 	g_return_val_if_fail (GIGGLE_IS_PLUGIN (plugin), 0);
 	g_return_val_if_fail (GTK_IS_UI_MANAGER (ui), 0);

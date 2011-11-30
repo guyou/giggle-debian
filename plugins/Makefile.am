@@ -4,11 +4,10 @@ AM_CPPFLAGS = \
 	-I$(top_srcdir) \
 	-DGLADEDIR='"$(pkgdatadir)/glade"' \
 	-DPLUGINDIR='"$(plugindir)"' \
-	$(GIGGLE_CFLAGS) $(PLATFORM_CFLAGS) \
-	$(WARN_CFLAGS)
+	$(GIGGLE_CFLAGS) \
+	$(WARNINGFLAGS_C)
 
 AM_LDFLAGS = \
-	$(PLATFORM_LDFLAGS) \
 	-module -rpath "$(plugindir)" \
 	-Wl,--as-needed -Wl,--no-undefined \
 	-avoid-version

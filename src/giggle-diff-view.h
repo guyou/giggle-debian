@@ -37,6 +37,12 @@ G_BEGIN_DECLS
 #define GIGGLE_IS_DIFF_VIEW_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GIGGLE_TYPE_DIFF_VIEW))
 #define GIGGLE_DIFF_VIEW_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GIGGLE_TYPE_DIFF_VIEW, GiggleDiffViewClass))
 
+enum {
+	STYLE_CHUNK,
+	STYLE_FILE,
+	STYLE_ALL,
+} giggle_diff_style;
+
 typedef struct GiggleDiffView      GiggleDiffView;
 typedef struct GiggleDiffViewClass GiggleDiffViewClass;
 
@@ -57,10 +63,13 @@ void               giggle_diff_view_set_revisions     (GiggleDiffView *diff_view
 						       GList          *files);
 void               giggle_diff_view_diff_current      (GiggleDiffView *diff_view,
 						       GList          *files);
-
 void               giggle_diff_view_set_current_hunk  (GiggleDiffView *diff_view,
 						       int             hunk_index);
+void               giggle_diff_view_set_current_style (GiggleDiffView *diff_view,
+						       gint            style);
 int                giggle_diff_view_get_current_hunk  (GiggleDiffView *diff_view);
+
+int                giggle_diff_view_get_current_style (GiggleDiffView *diff_view);
 
 int                giggle_diff_view_get_n_hunks       (GiggleDiffView *diff_view);
 
@@ -68,6 +77,8 @@ void               giggle_diff_view_scroll_to_file    (GiggleDiffView *diff_view
 						       const char     *filename);
 
 const char *       giggle_diff_view_get_current_file  (GiggleDiffView *diff_view);
+
+int                giggle_diff_view_get_current_file_nb (GiggleDiffView *diff_view);
 
 G_END_DECLS
 

@@ -40,7 +40,6 @@
 #include <gio/gio.h>
 #include <glib/gi18n.h>
 
-#include <gtksourceview/gtksourceiter.h>
 #include <gtksourceview/gtksourcelanguagemanager.h>
 #include <gtksourceview/gtksourceview.h>
 
@@ -420,7 +419,7 @@ render_chunk_marker (cairo_t    *cr,
 		     const char *name,
 		     int         width,
 		     int         height,
-		     GdkColor   *color)
+		     GdkRGBA    *rgba)
 {
 	double           r, g, b;
 	double           x0, y0, x1, y1;
@@ -444,9 +443,9 @@ render_chunk_marker (cairo_t    *cr,
 	x1 = width - 3;
 	y1 = height - 1;
 
-	r = color->red   / 65535.0;
-	g = color->green / 65535.0;
-	b = color->blue  / 65535.0;
+	r = rgba->red;
+	g = rgba->green;
+	b = rgba->blue;
 
 	gradient = cairo_pattern_create_linear (0, 0, 0, height);
 
@@ -529,7 +528,6 @@ create_category_icon (GiggleViewFilePriv *priv,
 		      const char         *name)
 {
 	int              width, height;
-	GdkColor        *color;
 	GdkPixbuf       *pixbuf;
 	cairo_surface_t *image;
 	cairo_t         *canvas;
@@ -538,7 +536,6 @@ create_category_icon (GiggleViewFilePriv *priv,
 	image = cairo_image_surface_create (CAIRO_FORMAT_ARGB32, width, height);
 
 	canvas = cairo_create (image);
-	color = &gtk_widget_get_style (priv->source_view)->base[GTK_STATE_SELECTED];
 	pixbuf = create_pixbuf_from_image (image);
 
 	cairo_surface_destroy (image);
@@ -553,25 +550,28 @@ create_category (GiggleViewFilePriv *priv,
 {
 	GdkPixbuf *pixbuf;
 
-	pixbuf = gtk_widget_render_icon (priv->source_view, name,
-					 GTK_ICON_SIZE_MENU, NULL);
+	pixbuf = gtk_widget_render_icon_pixbuf (priv->source_view, name,
+					        GTK_ICON_SIZE_MENU);
 
 	if (!pixbuf)
 		pixbuf = create_category_icon (priv, name);
 	
 	if (pixbuf) {
-		gtk_source_view_set_mark_category_icon_from_pixbuf
-			(GTK_SOURCE_VIEW (priv->source_view),
-			 name, pixbuf);
+		GtkSourceMarkAttributes *attrs;
+
+                attrs = gtk_source_mark_attributes_new ();
+                gtk_source_mark_attributes_set_pixbuf (attrs, pixbuf);
+
+                gtk_source_view_set_mark_attributes (GTK_SOURCE_VIEW (priv->source_view),
+                                                    name, attrs, 2);
 
 		g_object_unref (pixbuf);
 	}
 }
 
 static void
-source_view_style_set_cb (GtkWidget      *widget,
-			  GtkStyle       *prev,
-			  GiggleViewFile *view)
+source_view_style_updated_cb (GtkWidget      *widget,
+                              GiggleViewFile *view)
 {
 	GiggleViewFilePriv *priv = GET_PRIV (view);
 
@@ -587,9 +587,9 @@ source_view_style_set_cb (GtkWidget      *widget,
 }
 
 static gboolean
-source_view_expose_event_cb (GtkTextView    *text_view,
-			     GdkEventExpose *event,
-			     GiggleViewFile *view)
+source_view_draw_cb (GtkTextView    *text_view,
+                     cairo_t        *cr,
+                     GiggleViewFile *view)
 {
 	GiggleViewFilePriv *priv = GET_PRIV (view);
 	GtkSourceBuffer    *buffer;
@@ -599,27 +599,17 @@ source_view_expose_event_cb (GtkTextView    *text_view,
 	GdkWindow          *left_margin;
 	GSList             *markers;
 	const char         *name;
-	GdkColor           *color;
 	GtkTextIter         iter;
-	cairo_t            *cr;
 
 	left_margin = gtk_text_view_get_window (text_view, GTK_TEXT_WINDOW_LEFT);
 
-	if (left_margin != event->window)
-		return FALSE;
-
 	buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (text_view));
-	color = &gtk_widget_get_style (priv->source_view)->base[GTK_STATE_SELECTED];
-
-	cr = gdk_cairo_create (event->window);
-	gdk_cairo_region (cr, event->region);
-	cairo_clip (cr);
 
 	gtk_text_view_get_visible_rect (text_view, &visible_rect);
 	gtk_text_view_get_iter_at_location (text_view, &iter, visible_rect.x, visible_rect.y);
 	visible_rect.y += visible_rect.height;
 
-	gdk_drawable_get_size (left_margin, &margin_width, NULL);
+	margin_width = gdk_window_get_width (left_margin);
 	cairo_translate (cr, margin_width - 16, 0); /* FIXME: see GB#572785 */
 
 	do {
@@ -639,15 +629,20 @@ source_view_expose_event_cb (GtkTextView    *text_view,
 			markers = g_slist_delete_link (markers, markers);
 		}
 
-		if (name) /* FIXME: see GB#572785 */
-			render_chunk_marker (cr, name, 16, height, color);
+		if (name) { /* FIXME: see GB#572785 */
+			GtkStyleContext *context;
+			GdkRGBA  rgba;
+
+			context = gtk_widget_get_style_context (priv->source_view);
+			gtk_style_context_get_background_color (context, GTK_STATE_FLAG_SELECTED, &rgba);
+
+			render_chunk_marker (cr, name, 16, height, &rgba);
+		}
 
 		g_slist_free (markers);
 
 		cairo_translate (cr, 0, height);
 	} while (gtk_text_iter_forward_line (&iter));
-
-	cairo_destroy (cr);
 
 	return FALSE;
 }
@@ -1115,8 +1110,8 @@ goto_entry_activate_cb (GtkEntry       *entry,
 }
 
 static void
-goto_item_clicked_cb (GtkObject *button,
-	 	      GtkWidget *entry)
+goto_item_clicked_cb (GtkToolButton *toolbutton,
+                      GtkWidget     *entry)
 {
 	g_signal_emit_by_name (entry, "activate", 0);
 }
@@ -1140,7 +1135,7 @@ goto_toolbar_init (GiggleViewFile *view)
 	gtk_entry_set_max_length (GTK_ENTRY (priv->goto_entry), 16);
 	gtk_label_set_mnemonic_widget (GTK_LABEL (label), priv->goto_entry);
 
-	box = gtk_hbox_new (FALSE, 12);
+	box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 12);
 	gtk_box_pack_start (GTK_BOX (box), label, FALSE, FALSE, 0);
 	gtk_box_pack_start (GTK_BOX (box), priv->goto_entry, TRUE, TRUE, 0);
 
@@ -1250,10 +1245,11 @@ static gboolean
 view_file_search (GiggleSearchable      *searchable,
 		  const gchar           *search_term,
 		  GiggleSearchDirection  direction,
-		  gboolean               full_search)
+                  gboolean               full_search,
+                  gboolean               case_sensitive)
 {
 	GiggleViewFilePriv   *priv;
-	GtkSourceSearchFlags  flags;
+	GtkTextSearchFlags    flags;
 	gboolean	      result = FALSE;
 	int		      cursor_position;
 	GtkTextIter	      start, end, cursor;
@@ -1262,8 +1258,9 @@ view_file_search (GiggleSearchable      *searchable,
 
 	priv = GET_PRIV (searchable);
 
-	flags = GTK_SOURCE_SEARCH_TEXT_ONLY |
-		GTK_SOURCE_SEARCH_CASE_INSENSITIVE;
+	flags = GTK_TEXT_SEARCH_TEXT_ONLY;
+	if (case_sensitive == FALSE)
+		flags |= GTK_TEXT_SEARCH_CASE_INSENSITIVE;
 
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (priv->source_view));
 	g_object_get (buffer, "cursor-position", &cursor_position, NULL);
@@ -1274,37 +1271,37 @@ view_file_search (GiggleSearchable      *searchable,
 
 	switch (direction) {
 	case GIGGLE_SEARCH_DIRECTION_NEXT:
-		result = gtk_source_iter_forward_search (&cursor, search_term,
-							 flags, &match_start, &match_end, NULL);
+		result = gtk_text_iter_forward_search (&cursor, search_term,
+		                                       flags, &match_start, &match_end, NULL);
 
 		if (result && gtk_text_iter_get_offset (&cursor) == gtk_text_iter_get_offset (&match_start)) {
 			gtk_text_iter_forward_char (&cursor);
 
-			result = gtk_source_iter_forward_search (&cursor, search_term,
-								 flags, &match_start, &match_end, NULL);
+			result = gtk_text_iter_forward_search (&cursor, search_term,
+			                                       flags, &match_start, &match_end, NULL);
 		}
 
 		if (!result) {
-			result = gtk_source_iter_forward_search (&start, search_term,
-								 flags, &match_start, &match_end, NULL);
+			result = gtk_text_iter_forward_search (&start, search_term,
+			                                       flags, &match_start, &match_end, NULL);
 		}
 
 		break;
 
 	case GIGGLE_SEARCH_DIRECTION_PREV:
-		result = gtk_source_iter_backward_search (&cursor, search_term,
-							  flags, &match_start, &match_end, NULL);
+		result = gtk_text_iter_backward_search (&cursor, search_term,
+		                                        flags, &match_start, &match_end, NULL);
 
 		if (result && gtk_text_iter_get_offset (&cursor) == gtk_text_iter_get_offset (&match_start)) {
 			gtk_text_iter_backward_char (&cursor);
 
-			result = gtk_source_iter_backward_search (&cursor, search_term,
-								  flags, &match_start, &match_end, NULL);
+			result = gtk_text_iter_backward_search (&cursor, search_term,
+			                                        flags, &match_start, &match_end, NULL);
 		}
 
 		if (!result) {
-			result = gtk_source_iter_backward_search (&end, search_term,
-								  flags, &match_start, &match_end, NULL);
+			result = gtk_text_iter_backward_search (&end, search_term,
+			                                        flags, &match_start, &match_end, NULL);
 		}
 
 		break;
@@ -1473,11 +1470,11 @@ giggle_view_file_init (GiggleViewFile *view)
 
 	goto_toolbar_init (view);
 
-	priv->hpaned = gtk_hpaned_new ();
+	priv->hpaned = gtk_paned_new (GTK_ORIENTATION_HORIZONTAL);
 	gtk_paned_set_position (GTK_PANED (priv->hpaned), 200);
 	gtk_widget_show (priv->hpaned);
 
-	priv->vpaned = gtk_vpaned_new ();
+	priv->vpaned = gtk_paned_new (GTK_ORIENTATION_VERTICAL);
 	gtk_widget_show (priv->vpaned);
 	gtk_paned_pack2 (GTK_PANED (priv->hpaned), priv->vpaned, TRUE, FALSE);
 
@@ -1516,13 +1513,13 @@ giggle_view_file_init (GiggleViewFile *view)
 
 	g_signal_connect (priv->source_view, "query-tooltip",
 			  G_CALLBACK (source_view_query_tooltip_cb), view);
-	g_signal_connect (priv->source_view, "style-set",
-			  G_CALLBACK (source_view_style_set_cb), view);
-	g_signal_connect (priv->source_view, "expose-event",
-			  G_CALLBACK (source_view_expose_event_cb), view);
+	g_signal_connect (priv->source_view, "style-updated",
+			  G_CALLBACK (source_view_style_updated_cb), view);
+	g_signal_connect (priv->source_view, "draw",
+			  G_CALLBACK (source_view_draw_cb), view);
 
 	monospaced = pango_font_description_from_string ("Mono");
-	gtk_widget_modify_font (priv->source_view, monospaced);
+	gtk_widget_override_font (priv->source_view, monospaced);
 	pango_font_description_free (monospaced);
 
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (priv->source_view));
@@ -1549,7 +1546,7 @@ giggle_view_file_init (GiggleViewFile *view)
 	gtk_container_add (GTK_CONTAINER (scrolled_window), priv->revision_list);
 	gtk_paned_pack2 (GTK_PANED (priv->vpaned), scrolled_window, FALSE, TRUE);
 
-	vbox = gtk_vbox_new (FALSE, 0);
+	vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
 	gtk_box_pack_start (GTK_BOX (vbox), priv->hpaned, TRUE, TRUE, 0);
 	gtk_box_pack_start (GTK_BOX (vbox), priv->goto_toolbar, FALSE, TRUE, 0);
 	gtk_container_add (GTK_CONTAINER (view), vbox);

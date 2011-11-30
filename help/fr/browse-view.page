@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="browse-view" xml:lang="fr">
+  <info>
+    <link type="guide" xref="index#views"/>
+    <desc>Affichage du contenu du dépôt</desc>
+
+    <credit type="author">
+      <name>Łukasz Jernaś</name>
+      <email>deejay1@srem.org</email>
+    </credit>
+
+<!--
+    <copyright>
+      <year>2010</year>
+      <name>GNOME Documentation Project</name>
+    </copyright>
+-->
+    <license>
+      <p>Creative Commons Share Alike 3.0</p>
+    </license>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Denis Jasselette</mal:name>
+      <mal:email>denis.jasselette@yahoo.fr</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Gérard Baylard</mal:name>
+      <mal:email>gerard dot b at bbox dot fr</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Bruno Brouard</mal:name>
+      <mal:email>annoa.b@gmail.com</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Julien Hardelin</mal:name>
+      <mal:email>jhardlin@orangefr</mal:email>
+      <mal:years>2011</mal:years>
+    </mal:credit>
+  </info>
+
+  <title>Vue Parcourir</title>
+   <section id="overview">
+   <title>Vue d'ensemble</title>
+   <figure>
+    <desc>Giggle en vue Parcourir</desc>
+    <media type="image" src="figures/giggle-browse_view_sections.png" alt="Giggle main window in Browse mode"/>
+   </figure>
+    <p>La vue Parcourir de <app>Giggle</app> est composée de trois parties principales :</p>
+     <list type="numbered">
+       <item>
+        <p>L'arborescence du projet</p>
+        <p>Elle affiche tous les fichiers contenus dans le dépôt actuel.</p>
+       </item>
+       <item>
+        <p>L'aperçu d'un fichier</p>
+        <p>Elle affiche le contenu du fichier sélectionné dans l'état correspondant à la révision sélectionnée.</p>
+       </item>
+       <item>
+        <p>Le graphe chronologique</p>
+        <p>Elle affiche une représentation graphique de l'historique du fichier actuellement sélectionné.</p>
+       </item>
+     </list>
+    </section>
+    <section id="project_tree">
+    <title>À propos de l'arborescence du projet</title>
+    <p>L'arborescence du projet est une partie puissante de l'interface de Giggle si on sait s'en servir. Par défaut, elle n'affiche pas les fichiers cachés par le fichier <file>.gitignore</file>. Ce comportement peut être modifié en utilisant l'option <gui>Afficher tous les fichiers</gui> du menu contextuel. Les fichiers ne faisant pas partie du dépôt sont alors grisés.</p>
+    <p>L'arborescence du projet permet les opérations suivantes :</p>
+     <list>
+       <item>
+        <p>Ajouter des fichiers au dépôt</p>
+        <p>en utilisant l'option <gui>Ajouter un fichier au dépôt</gui> du menu contextuel.</p>
+       </item>
+       <item>
+        <p>Ajouter/supprimer des fichiers dans le fichier <file>.gitignore</file></p>
+        <p>en utilisant respectivement les options <gui>Ajouter à .gitignore</gui> et <gui>Supprimer de .gitignore</gui> du menu contextuel.</p>
+       </item>
+       <item>
+         <p>Modifier des fichiers</p>
+       </item>
+       <item>
+         <p>Faire des <em>commits</em></p>
+       </item>
+       <item>
+         <p>Générer des correctifs</p>
+         <p>en utilisant l'option <gui>Créer un correctif</gui> du menu contextuel dès qu'il y a des modifications non suivis (unstaged) dans la liste des fichiers.</p>
+       </item>
+     </list>
+
+    </section>
+<!-- FIXME: I don't really know what's going on in this section so somebody please fill in
+    <section id="file_preview">
+      <title>About the File preview</title>
+    </section>
+-->
+
+</page>

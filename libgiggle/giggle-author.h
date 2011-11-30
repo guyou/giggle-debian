@@ -49,6 +49,10 @@ GiggleAuthor * giggle_author_new_from_name   (const char   *name,
 					      const char   *email);
 GiggleAuthor * giggle_author_new_from_string (const char   *string);
 
+void           giggle_author_set_commits     (GiggleAuthor *author,
+                                              guint         commits);
+guint          giggle_author_get_commits     (GiggleAuthor *author);
+
 void           giggle_author_set_email       (GiggleAuthor *author,
 					      char const   *email);
 char const *   giggle_author_get_email       (GiggleAuthor *author);

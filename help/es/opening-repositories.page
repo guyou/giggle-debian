@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="opening-repositories" xml:lang="es">
+  <info>
+    <link type="guide" xref="index#basics"/>
+    <desc>Abrir repositorios GIT</desc>
+
+    <credit type="author">
+      <name>Łukasz Jernaś</name>
+      <email>deejay1@srem.org</email>
+    </credit>
+
+<!--
+    <copyright>
+      <year>2010</year>
+      <name>GNOME Documentation Project</name>
+    </copyright>
+-->
+    <license>
+      <p>Creative Commons Share Alike 3.0</p>
+    </license>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Daniel Mustieles</mal:name>
+      <mal:email>daniel.mustieles@gmail.com</mal:email>
+      <mal:years>2011</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Jorge González</mal:name>
+      <mal:email>jorgegonz@svn.gnome.org</mal:email>
+      <mal:years>2007-2008.</mal:years>
+    </mal:credit>
+  </info>
+
+  <title>Abrir un repositorio</title>
+  <p>Puede abrir un repositorio GIT de las siguientes formas:</p>
+    <steps>
+      <item>
+        <p>usando <guiseq><gui>Proyecto</gui><gui>Abrir</gui></guiseq> y seleccionado la carpeta con su repositorio,</p>
+      </item>
+      <item>
+        <p>ejecutando <cmd>giggle</cmd> en la carpeta de su proyecto,</p>
+      </item>
+      <item>
+        <p>ejecutando <cmd>giggle</cmd> con la ruta del repositorio especificada como un argumento.</p>
+      </item>
+   </steps>
+</page>

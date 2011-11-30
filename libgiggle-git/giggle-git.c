@@ -82,7 +82,8 @@ enum {
 	PROP_GIT_DIR,
 	PROP_PROJECT_DIR,
 	PROP_PROJECT_NAME,
-	PROP_REMOTES
+	PROP_REMOTES,
+	N_PROPERTIES
 };
 
 enum {
@@ -90,6 +91,7 @@ enum {
 	LAST_SIGNAL
 };
 
+static GParamSpec *properties[N_PROPERTIES] = { NULL, };
 static guint signals[LAST_SIGNAL] = { 0, };
 
 
@@ -102,47 +104,50 @@ giggle_git_class_init (GiggleGitClass *class)
 	object_class->get_property = git_get_property;
 	object_class->set_property = git_set_property;
 
-	g_object_class_install_property (object_class,
-					 PROP_DESCRIPTION,
-					 g_param_spec_string ("description",
-						 	      "Description",
-							      "The project's description",
-							      NULL,
-							      G_PARAM_READABLE));
-	g_object_class_install_property (object_class,
-					 PROP_DIRECTORY,
-					 g_param_spec_string ("directory",
-							      "Directory",
-							      "the working directory",
-							      NULL,
-							      G_PARAM_READABLE));
-	g_object_class_install_property (object_class,
-					 PROP_GIT_DIR,
-					 g_param_spec_string ("git-dir",
-						 	      "Git-Directory",
-							      "The equivalent of $GIT_DIR",
-							      NULL,
-							      G_PARAM_READABLE));
-	g_object_class_install_property (object_class,
-					 PROP_PROJECT_DIR,
-					 g_param_spec_string ("project-dir",
-						 	      "Project Directory",
-							      "The location of the checkout currently being worked on",
-							      NULL,
-							      G_PARAM_READABLE));
-	g_object_class_install_property (object_class,
-					 PROP_PROJECT_NAME,
-					 g_param_spec_string ("project-name",
-						 	      "Project Name",
-							      "The name of the project (guessed)",
-							      NULL,
-							      G_PARAM_READABLE));
-	g_object_class_install_property (object_class,
-					 PROP_REMOTES,
-					 g_param_spec_string ("remotes",
-						 	      "Remotes",
-							      "The remote sources",
-							      NULL, G_PARAM_READABLE));
+	properties[PROP_DESCRIPTION] =
+		g_param_spec_string ("description",
+	                             "Description",
+	                             "The project's description",
+	                             NULL,
+	                             G_PARAM_READABLE);
+
+	properties[PROP_DIRECTORY] =
+		g_param_spec_string ("directory",
+		                     "Directory",
+		                     "the working directory",
+		                     NULL,
+		                     G_PARAM_READABLE);
+
+	properties[PROP_GIT_DIR] =
+		g_param_spec_string ("git-dir",
+		                     "Git-Directory",
+		                     "The equivalent of $GIT_DIR",
+		                     NULL,
+		                     G_PARAM_READABLE);
+
+	properties[PROP_PROJECT_DIR] =
+		g_param_spec_string ("project-dir",
+		                     "Project Directory",
+		                     "The location of the checkout currently being worked on",
+		                     NULL,
+		                     G_PARAM_READABLE);
+
+	properties[PROP_PROJECT_NAME] =
+		g_param_spec_string ("project-name",
+		                     "Project Name",
+		                     "The name of the project (guessed)",
+		                     NULL,
+		                     G_PARAM_READABLE);
+
+	properties[PROP_REMOTES] =
+		g_param_spec_string ("remotes",
+		                     "Remotes",
+		                     "The remote sources",
+		                     NULL,
+		                     G_PARAM_READABLE);
+
+	/* Install all properties */
+	g_object_class_install_properties (object_class, N_PROPERTIES, properties);
 
 	signals[CHANGED] =
 		g_signal_new ("changed",
@@ -262,7 +267,7 @@ git_verify_directory (const gchar  *directory,
 		      GError      **error)
 {
 	/* Do some funky stuff to verify that it's a valid GIT repo */
-	gchar   *argv[] = { GIT_COMMAND, "rev-parse", "--git-dir", NULL };
+	const gchar *argv[] = { GIT_COMMAND, "rev-parse", "--git-dir", NULL };
 	gchar   *std_out = NULL;
 	gchar   *std_err = NULL;
 	gint     exit_code = 0;
@@ -273,7 +278,7 @@ git_verify_directory (const gchar  *directory,
 		*git_dir = NULL;
 	}
 
-	g_spawn_sync (directory, argv, NULL,
+	g_spawn_sync (directory, (gchar **) argv, NULL,
 		      0, NULL, NULL,
 		      &std_out, &std_err,
 		      &exit_code, &local_error);
@@ -414,7 +419,7 @@ giggle_git_update_description (GiggleGit *git)
 
 	g_free (description);
 
-	g_object_notify (G_OBJECT (git), "description");
+	g_object_notify_by_pspec (G_OBJECT (git), properties[PROP_DESCRIPTION]);
 }
 
 static void
@@ -468,7 +473,7 @@ giggle_git_remote_config_cb (GiggleGit *git,
 	/* update */
 	g_object_unref (job);
 	priv->remotes = g_list_reverse (priv->remotes);
-	g_object_notify (G_OBJECT (git), "remotes");
+	g_object_notify_by_pspec (G_OBJECT (git), properties[PROP_REMOTES]);
 }
 
 static void
@@ -566,7 +571,7 @@ giggle_git_write_description (GiggleGit    *git,
 	g_free (filename);
 
 	/* notify will become unnecessary once we have file monitoring */
-	g_object_notify (G_OBJECT (git), "description");
+	g_object_notify_by_pspec (G_OBJECT (git), properties[PROP_DESCRIPTION]);
 }
 
 const gchar *
@@ -645,10 +650,10 @@ giggle_git_set_directory (GiggleGit    *git,
 	priv->project_name = tmp_dir;
 
 	/* notify */
-	g_object_notify (G_OBJECT (git), "directory");
-	g_object_notify (G_OBJECT (git), "git-dir");
-	g_object_notify (G_OBJECT (git), "project-dir");
-	g_object_notify (G_OBJECT (git), "project-name");
+	g_object_notify_by_pspec (G_OBJECT (git), properties[PROP_DIRECTORY]);
+	g_object_notify_by_pspec (G_OBJECT (git), properties[PROP_GIT_DIR]);
+	g_object_notify_by_pspec (G_OBJECT (git), properties[PROP_PROJECT_DIR]);
+	g_object_notify_by_pspec (G_OBJECT (git), properties[PROP_PROJECT_NAME]);
 
 	giggle_git_update_description (git);
 	giggle_git_update_remotes (git);

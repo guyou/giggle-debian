@@ -1,0 +1,336 @@
+# Slovenian translation for giggle help.
+# Copyright (C) 2010 giggle's COPYRIGHT HOLDER
+# This file is distributed under the same license as the giggle package.
+# Andrej Žnidaršič <andrej.znidarsic@gmail.com>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: giggle help master\n"
+"POT-Creation-Date: 2010-11-20 08:42+0000\n"
+"PO-Revision-Date: 2010-11-22 13:01+0100\n"
+"Last-Translator: Andrej Žnidaršič <andrej.znidarsic@gmail.com>\n"
+"Language-Team: Slovenščina <gnome-si@googlegroups.com>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n%100==4 ? 3 : 0)\n"
+"X-Poedit-Country: SLOVENIA\n"
+"X-Poedit-Language: Slovenian\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: C/tagging-commits.page:6(desc)
+#: C/tagging-commits.page:26(title)
+msgid "Tagging commits"
+msgstr "Označevanje uveljav"
+
+#: C/tagging-commits.page:11(name)
+#: C/opening-repositories.page:11(name)
+#: C/introduction.page:11(name)
+#: C/index.page:7(name)
+#: C/history-view.page:11(name)
+#: C/browse-view.page:11(name)
+msgid "Łukasz Jernaś"
+msgstr "Łukasz Jernaś"
+
+#: C/tagging-commits.page:12(email)
+#: C/opening-repositories.page:12(email)
+#: C/introduction.page:12(email)
+#: C/index.page:8(email)
+#: C/history-view.page:12(email)
+#: C/browse-view.page:12(email)
+msgid "deejay1@srem.org"
+msgstr "deejay1@srem.org"
+
+#: C/tagging-commits.page:22(p)
+#: C/opening-repositories.page:22(p)
+#: C/introduction.page:22(p)
+#: C/index.page:18(p)
+#: C/history-view.page:22(p)
+#: C/browse-view.page:22(p)
+msgid "Creative Commons Share Alike 3.0"
+msgstr "Creative Commons - deljenje pod enakimi pogoji 3.0"
+
+#: C/tagging-commits.page:27(p)
+msgid "To make a new tag open the context menu by right clicking on a commit in the revision window (it doesn't matter if it's the Browse or History view), then click <gui>Create tag</gui> and enter a name in the just opened dialog window."
+msgstr "Za ustvarjanje nove oznake odprite vsebinski meni z desnim klikom na uveljavitev v oknu predelav (ni pomembno ali vse v pogledu brskanja ali zgodovine), nato kliknite <gui>Ustvari oznako</gui> in vnesite ime v pravkar odprto pogovorno okno."
+
+#: C/tagging-commits.page:28(p)
+msgid "You will notice that near the revision you have selected a new icon has appeared - it's your newly created tag."
+msgstr "Opazili boste da se je blizu izbrane predelave pojavila nova ikona - to je vaša novo ustvarjena oznaka."
+
+#: C/opening-repositories.page:6(desc)
+msgid "Opening GIT repositories"
+msgstr "Odpiranje skladišč GIT"
+
+#: C/opening-repositories.page:26(title)
+msgid "Opening a repository"
+msgstr "Odpiranje skladišča"
+
+#: C/opening-repositories.page:27(p)
+msgid "You can open a git repository in the following ways:"
+msgstr "Skladišče gir lahko odprete na naslednje načine:"
+
+#: C/opening-repositories.page:30(p)
+msgid "using <guiseq><gui>Project</gui><gui>Open</gui></guiseq>, and selecting the directory with your repository,"
+msgstr "uporabite <guiseq><gui>Projekt</gui><gui>Odpri</gui></guiseq> in izberite mapo s svojim skladiščem,"
+
+#: C/opening-repositories.page:33(p)
+msgid "running <cmd>giggle</cmd> in your project's directory,"
+msgstr "poženite <cmd>giggle</cmd> v mapi vašega projekta,"
+
+#: C/opening-repositories.page:36(p)
+msgid "running <cmd>giggle</cmd> with the repository path specified as an argument."
+msgstr "poženite <cmd>giggle</cmd> s potjo skladišča navedeno kot argument."
+
+#: C/license.page:7(desc)
+msgid "Legal information."
+msgstr "Pravne podrobnosti."
+
+#: C/license.page:10(title)
+msgid "License"
+msgstr "Dovoljenje"
+
+#: C/license.page:11(p)
+msgid "This work is distributed under a CreativeCommons Attribution-Share Alike 3.0 Unported license."
+msgstr "To delo se razširja pod licenco CreativeCommons priznanje avtorstva - deljenje pod enakimi pogoji 3.0 neprenosljiva."
+
+#: C/license.page:19(p)
+msgid "You are free:"
+msgstr "Lahko:"
+
+#: C/license.page:24(em)
+msgid "To share"
+msgstr "Delite delo"
+
+#: C/license.page:25(p)
+msgid "To copy, distribute and transmit the work."
+msgstr "Kopirati, razširjati in priobčevati delo javnosti."
+
+#: C/license.page:28(em)
+msgid "To remix"
+msgstr "Predelate delo"
+
+#: C/license.page:29(p)
+msgid "To adapt the work."
+msgstr "Prilagoditi delo."
+
+#: C/license.page:32(p)
+msgid "Under the following conditions:"
+msgstr "Pod naslednjimi pogoji:"
+
+#: C/license.page:37(em)
+msgid "Attribution"
+msgstr "Priznanje avtorstva"
+
+#: C/license.page:38(p)
+msgid "You must attribute the work in the manner specified by the author or licensor (but not in any way that suggests that they endorse you or your use of the work)."
+msgstr "Avtorstvo dela morate priznati na način kot ga je navedel avtor ali lastnik licence (toda ne na način, ki predlaga da podpirajo vas ali vašo uporabo dela)."
+
+#: C/license.page:45(em)
+msgid "Share Alike"
+msgstr "Deljenje pod enakimi pogoji"
+
+#: C/license.page:46(p)
+msgid "If you alter, transform, or build upon this work, you may distribute the resulting work only under the same, similar or a compatible license."
+msgstr "Če spremenite, prilagodite ali gradite na tem delu, lahko nastalo delo distribuirate le pod enako, podobno ali združljivo licenco."
+
+#: C/license.page:52(p)
+msgid "For the full text of the license, see the <link href=\"http://creativecommons.org/licenses/by-sa/3.0/legalcode\">CreativeCommons website</link>, or read the full <link href=\"http://creativecommons.org/licenses/by-sa/3.0/\">Commons Deed</link>."
+msgstr "Za polno besedilo licence si oglejte <link href=\"http://creativecommons.org/licenses/by-sa/3.0/legalcode\">spletišče CreativeCommons website</link> ali preberite polno <link href=\"http://creativecommons.org/licenses/by-sa/3.0/\">zavezo Commons</link>."
+
+#: C/introduction.page:6(desc)
+msgid "Introduction to the <app>Giggle</app> GIT repository viewer"
+msgstr "Uvod v <app>Giggle</app> pregledovalnik skladišč GIT"
+
+#: C/introduction.page:26(title)
+msgid "Introduction"
+msgstr "Uvod"
+
+#: C/introduction.page:27(p)
+msgid "The <app>Giggle</app> application enables you to graphically browse and manipulate the contents of a git directory tree."
+msgstr "Program <app>Giggle</app> vam omogoča grafično brskanje in upravljanje vsebine drevesa map git."
+
+#: C/introduction.page:30(title)
+msgid "Starting <app>giggle</app>"
+msgstr "Začenjanje programa <app>giggle</app>"
+
+#: C/introduction.page:31(p)
+msgid "You can start <app>giggle</app> in the following ways:"
+msgstr "<app>giggle</app> lahko začnete na naslednje načine:"
+
+#: C/introduction.page:34(p)
+msgid "Choose <guiseq><gui>Programming</gui><gui>Giggle</gui></guiseq> from the <gui>Applications</gui> menu."
+msgstr "V meniju <gui>Programi</gui> izberite <guiseq><gui>Programiranje</gui><gui>Giggle</gui></guiseq>."
+
+#: C/introduction.page:37(p)
+msgid "Run <cmd>giggle</cmd> at the prompt in a terminal such or from the <gui>Run Application</gui> dialog."
+msgstr "V poziv v terminalu ali v pogovorno okno <gui>Zaženi program</gui> vpišite <cmd>giggle</cmd> ."
+
+#: C/introduction.page:43(title)
+msgid "Closing <app>giggle</app>"
+msgstr "Zapiranje programa <app>giggle</app>"
+
+#: C/introduction.page:44(p)
+msgid "To close <app>giggle</app> choose <guiseq><gui>Project</gui><gui>Quit</gui></guiseq>, or press <keyseq><key>Ctrl</key><key>Q</key></keyseq>."
+msgstr "Za zaprtje <app>giggle</app> izberite <guiseq><gui>Projekt</gui><gui>Končaj</gui></guiseq> ali pritisnite <keyseq><key>Ctrl</key><key>Q</key></keyseq>."
+
+#: C/index.page:22(title)
+msgid "Giggle Help"
+msgstr "Pomoč Giggle"
+
+#: C/index.page:25(title)
+msgid "Working with <app>Giggle</app>"
+msgstr "Delo z <app>Giggle</app>"
+
+#: C/index.page:28(title)
+msgid "Working with GIT repositories"
+msgstr "Delo s skladišči GIT"
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/history-view.page:30(None)
+msgid "@@image: 'figures/giggle-history_view_sections.png'; md5=3b487583a028a4d087e3d6a5bcd589b8"
+msgstr ""
+
+#: C/history-view.page:6(desc)
+msgid "Viewing the history of a repository"
+msgstr "Ogled zgodovine skladišča"
+
+#: C/history-view.page:25(title)
+msgid "History view"
+msgstr "Pogled zgodovine"
+
+#: C/history-view.page:27(title)
+#: C/browse-view.page:28(title)
+msgid "Overview"
+msgstr "Pregled"
+
+#: C/history-view.page:29(desc)
+msgid "Giggle in History view mode"
+msgstr "Giggle v načinu ogleda zgodovine"
+
+#: C/history-view.page:32(p)
+msgid "<app>Giggle</app>'s history view is set up in three main parts:"
+msgstr "Pogled zgodovine <app>Giggle</app> je sestavljen iz treh glavnih delov:"
+
+#: C/history-view.page:35(p)
+#: C/browse-view.page:44(p)
+msgid "History graph"
+msgstr "Graf zgodovine"
+
+#: C/history-view.page:36(p)
+msgid "Displays a visual representation of the current repository history, including all the branches be it remote or local. By hovering the mouse cursor over the icons you can display additional information, such as branch and tag names. Moving through history is accomplished either by using the mouse or the <key>Up</key> and <key>Down</key> keys."
+msgstr "Prikaže vidno predstavitev zgodovine trenutnega skladišča, vključno z vsemi vejami tako oddaljenimi in krajevnimi. S prehodom miškine kazalke nad ikonami lahko prikažete dodatne podrobnosti kot sta ime veje in oznake. Premikanje skozi zgodovino je mogoče doseči z uporabo miške ali tipk <key>Navzgor</key> in <key>Navzdol</key>."
+
+#: C/history-view.page:39(p)
+msgid "Changed files"
+msgstr "Spremenjene datoteke"
+
+#: C/history-view.page:40(p)
+msgid "Displays files changed in the currently selected revision"
+msgstr "Prikaže datoteke spremenjene v trenutno izbrani predelavi"
+
+#: C/history-view.page:43(p)
+msgid "Diff"
+msgstr "Diff"
+
+#: C/history-view.page:44(p)
+msgid "Displays the differences for the selected file and revision."
+msgstr "Prikaže razlike za izbrano datoteko in predelavo."
+
+#: C/history-view.page:46(p)
+msgid "<app>Giggle</app> displays the differences as individual chunks, you can move between them either by using the Up and Down icons above the list of changed files, or by pressing <keyseq><key>Alt</key><key>Up</key></keyseq> and <keyseq><key>Alt</key><key>Down</key></keyseq> keys. Doing so will also move you through the list of changed files as the diff progresses."
+msgstr "<app>Giggle</app> prikaže razlike kot posamezne delčke med katerimi se lahko premaknete ali z uporabo ikon Navzdol in Navzgor nad seznamom spremenjenih datotek ali s pritiskom na tipki <keyseq><key>Alt</key><key>Navzgor</key></keyseq> in <keyseq><key>Alt</key><key>Navzdol</key></keyseq> keys. To vas bo premaknilo skozi seznam spremenjenih datotek medtem, ko diff napreduje."
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/browse-view.page:31(None)
+msgid "@@image: 'figures/giggle-browse_view_sections.png'; md5=390225c079a94ec75fd1c172f90c6b3c"
+msgstr "@@image: 'figures/giggle-browse_view_sections.png'; md5=390225c079a94ec75fd1c172f90c6b3c"
+
+#: C/browse-view.page:6(desc)
+msgid "Viewing the contents of the repository"
+msgstr "Ogled vsebine skladišča"
+
+#: C/browse-view.page:26(title)
+msgid "Browse view"
+msgstr "Pogled brskanja"
+
+#: C/browse-view.page:30(desc)
+msgid "Giggle in Browse view mode"
+msgstr "Giggle v načinu pogled brskanja"
+
+#: C/browse-view.page:33(p)
+msgid "<app>Giggle</app>'s browse view is set up in three main parts:"
+msgstr "Pogled brskanja <app>Giggle</app> je sestavljen iz treh glavnih delov:"
+
+#: C/browse-view.page:36(p)
+msgid "Project tree"
+msgstr "Drevo projekta"
+
+#: C/browse-view.page:37(p)
+msgid "Displays all the files included in the current repository."
+msgstr "Prikaže vse datoteke vključene v trenutno skladišče."
+
+#: C/browse-view.page:40(p)
+msgid "File preview"
+msgstr "Predogled datoteke"
+
+#: C/browse-view.page:41(p)
+msgid "Displays the contents of the currently selected file according as of the selected revision."
+msgstr "Prikaže vsebino trenutno izbrane datoteke glede na izbrano predelavo."
+
+#: C/browse-view.page:45(p)
+msgid "Displays a visual representation of the currently selected file's history"
+msgstr "Prikaže vidno predstavitev zgodovine trenutno izbrane datotke"
+
+#: C/browse-view.page:50(title)
+msgid "About the Project tree"
+msgstr "O drevesu projekta"
+
+#: C/browse-view.page:51(p)
+msgid "The Project tree is a powerful part of Giggle's interface, of course if you know about it. By default it doesn't display files hidden by <file>.gitignore</file>. You can change this behaviour by using the right-click context menu option <gui>Show all files</gui>. Files which are not part of your repository are greyed out."
+msgstr "Drevo projekta je zmogljiv del vmesnika Giggle, če ga seveda poznate. Privzeto ne prikazuje skritih datotek, ki jih skrije <file>.gitignore</file>. To obnašanje lahko spremenite z uporabo možnosti vsebinskega menija desnega klika <gui>Pokaži vse datoteke</gui>. Datoteke, ki niso del vašega skladišča so sivo obarvane."
+
+#: C/browse-view.page:52(p)
+msgid "The Project tree offers you the following:"
+msgstr "Drevo projekta vam ponuja naslednje:"
+
+#: C/browse-view.page:55(p)
+msgid "Adding files to the repository."
+msgstr "Dodajanje datotek v skladišče."
+
+#: C/browse-view.page:56(p)
+msgid "By using the <gui>Add file to repository</gui> context menu option."
+msgstr "Z uporabo možnosti vsebinskega menija <gui>Dodaj datoteko v skladišče</gui>."
+
+#: C/browse-view.page:59(p)
+msgid "Adding/removing files to <file>.gitignore</file>."
+msgstr "Dodajanje/odstranjevanje datotek iz <file>.gitignore</file>."
+
+#: C/browse-view.page:60(p)
+msgid "By using the <gui>Add to .gitignore</gui> or <gui>Remove from .gitignore</gui> context menu options."
+msgstr "Z uporabo možnosti vsebinskega menija <gui>Dodaj v .gitignore</gui> ali <gui>Odstrani iz .gitignore</gui>"
+
+#: C/browse-view.page:63(p)
+msgid "Editing files"
+msgstr "Urejanje datotek"
+
+#: C/browse-view.page:66(p)
+msgid "Committing"
+msgstr "Uveljavljanje"
+
+#: C/browse-view.page:69(p)
+msgid "Creating patches"
+msgstr "Ustvarjanje popravkov"
+
+#: C/browse-view.page:70(p)
+msgid "When there are any unstaged changes in the file list, you can create a patch by using the <gui>Create patch</gui> context menu option."
+msgstr "Ko so na seznamu datotek spremembe za počiščenje pripravljenost, lahko ustvarite popravek z možnostjo vsebinskega menija <gui>Ustvari popravek</gui>."
+
+#. Put one translator per line, in the form of NAME <EMAIL>, YEAR1, YEAR2
+#: C/index.page:0(None)
+msgid "translator-credits"
+msgstr "Andrej Žnidaršič"
+

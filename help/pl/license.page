@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="license" xml:lang="pl">
+
+  <info>
+    <link type="seealso" xref="index"/>
+    <desc>Informacje prawne.</desc>
+  </info>
+
+  <title>Licencja</title>
+  <p>Dzieło to jest rozpowszechniane na warunkach licencji CreativeCommons Uznanie autorstwa-Na tych samych warunkach 3.0 Polska.</p>
+  <p>Wolno:</p>
+  <terms>
+    <item>
+      <title><em>To share</em></title>
+      <p>kopiować, rozpowszechniać, odtwarzać i wykonywać utwór</p>
+    </item>
+    <item>
+      <title><em>To remix</em></title>
+      <p>tworzyć utwory zależne</p>
+    </item>
+  </terms>
+  <p>Na następujących warunkach:</p>
+  <terms>
+    <item>
+      <title><em>Attribution</em></title>
+      <p>Utwór należy oznaczyć w sposób określony przez Twórcę lub Licencjodawcę.</p>
+    </item>
+    <item>
+      <title><em>Share Alike</em></title>
+      <p>Zmieniając utwór, przekształcając go lub tworząc na jego podstawie, wolno rozpowszechniać powstały utwór zależny jedynie na tej samej, podobnej lub kompatybilnej licencji.</p>
+    </item>
+  </terms>
+  <p>Aby otrzymać pełny tekst licencji udaj się na stronę <link href="http://creativecommons.org/licenses/by-sa/3.0/pl/legalcode">CreativeCommons</link> lub przeczytaj <link href="http://creativecommons.org/licenses/by-sa/3.0/pl/">przystępne podsumowanie</link>.</p>
+</page>

@@ -238,31 +238,35 @@ static void
 giggle_personal_details_window_init (GigglePersonalDetailsWindow *window)
 {
 	GigglePersonalDetailsWindowPriv *priv = GET_PRIV (window);
-	GtkWidget                       *label, *table;
+	GtkWidget                       *label, *grid;
 
-	table = gtk_table_new (2, 2, FALSE);
-	gtk_table_set_col_spacings (GTK_TABLE (table), 6);
-	gtk_table_set_row_spacings (GTK_TABLE (table), 6);
-	gtk_container_set_border_width (GTK_CONTAINER (table), 6);
+	grid = gtk_grid_new ();
+	gtk_grid_set_column_spacing (GTK_GRID (grid), 6);
+	gtk_grid_set_row_spacing (GTK_GRID (grid), 6);
+	gtk_container_set_border_width (GTK_CONTAINER (grid), 6);
 
 	label = gtk_label_new_with_mnemonic (_("_Name:"));
-	gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
-	gtk_table_attach (GTK_TABLE (table), label, 0, 1, 0, 1, GTK_FILL, GTK_FILL, 0, 0);
+	gtk_widget_set_halign (label, GTK_ALIGN_CENTER);
+	gtk_grid_attach (GTK_GRID (grid), label,
+	                 0, 0, 1, 1);
 
 	priv->name_entry = gtk_entry_new ();
 	gtk_label_set_mnemonic_widget (GTK_LABEL (label), priv->name_entry);
-	gtk_table_attach (GTK_TABLE (table), priv->name_entry, 1, 2, 0, 1, GTK_FILL|GTK_EXPAND, GTK_FILL, 0, 0);
+	gtk_grid_attach_next_to (GTK_GRID (grid), priv->name_entry,
+	                         label, GTK_POS_RIGHT, 1, 1);
 
 	label = gtk_label_new_with_mnemonic (_("_Email:"));
-	gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
-	gtk_table_attach (GTK_TABLE (table), label, 0, 1, 1, 2, GTK_FILL, GTK_FILL, 0, 0);
+	gtk_widget_set_halign (label, GTK_ALIGN_CENTER);
+	gtk_grid_attach (GTK_GRID (grid), label,
+	                 0, 1, 1, 1);
 
 	priv->email_entry = gtk_entry_new ();
 	gtk_label_set_mnemonic_widget (GTK_LABEL (label), priv->email_entry);
-	gtk_table_attach (GTK_TABLE (table), priv->email_entry, 1, 2, 1, 2, GTK_FILL|GTK_EXPAND, GTK_FILL, 0, 0);
+	gtk_grid_attach_next_to (GTK_GRID (grid), priv->email_entry,
+	                         label, GTK_POS_RIGHT, 1, 1);
 
-	gtk_widget_show_all (table);
-	gtk_container_add (GTK_CONTAINER (gtk_dialog_get_content_area (GTK_DIALOG (window))), table);
+	gtk_widget_show_all (grid);
+	gtk_container_add (GTK_CONTAINER (gtk_dialog_get_content_area (GTK_DIALOG (window))), grid);
 
 	gtk_window_set_title (GTK_WINDOW (window), _("Personal Details"));
 	gtk_window_set_resizable (GTK_WINDOW (window), FALSE);
@@ -281,6 +285,5 @@ GtkWidget*
 giggle_personal_details_window_new (void)
 {
 	return g_object_new (GIGGLE_TYPE_PERSONAL_DETAILS_WINDOW,
-			     "has-separator", FALSE,
 			     NULL);
 }

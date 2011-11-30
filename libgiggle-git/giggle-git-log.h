@@ -47,7 +47,7 @@ struct GiggleGitLogClass {
 GType	               giggle_git_log_get_type      (void);
 GiggleJob *            giggle_git_log_new           (GiggleRevision *revision);
 
-G_CONST_RETURN gchar * giggle_git_log_get_log       (GiggleGitLog   *log);
+const gchar *          giggle_git_log_get_log       (GiggleGitLog   *log);
 
 
 G_END_DECLS

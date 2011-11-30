@@ -95,8 +95,9 @@ create_summary_page (GiggleViewSummaryPriv *priv)
 {
 	GtkWidget *page;
 	GtkWidget *label;
+	gchar     *markup;
 
-	page = gtk_vbox_new (FALSE, 6);
+	page = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
 
 	/* create header */
 
@@ -113,8 +114,11 @@ create_summary_page (GiggleViewSummaryPriv *priv)
 	/* add decription editor */
 
 	label = gtk_label_new (NULL);
-	gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
-	gtk_label_set_markup (GTK_LABEL (label), _("<b>Description:</b>"));
+	gtk_widget_set_halign (label, GTK_ALIGN_START);
+	gtk_widget_set_valign (label, GTK_ALIGN_CENTER);
+	markup = g_strdup_printf ("<b>%s</b>", _("Description:"));
+	gtk_label_set_markup (GTK_LABEL (label), markup);
+	g_free (markup);
 	gtk_box_pack_start (GTK_BOX (page), label, FALSE, FALSE, 0);
 
 	priv->description_editor = giggle_description_editor_new ();
@@ -152,15 +156,19 @@ static GtkWidget *
 create_remotes_page (GiggleViewSummaryPriv *priv)
 {
 	GtkWidget *page, *label, *scrolled_window;
+	gchar     *markup;
 
 	/* add remotes view */
 	priv->remotes_view = giggle_remotes_view_new ();
-	page = gtk_vbox_new (FALSE, 6);
+	page = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
 
 	/* FIXME: string should not contain markup */
 	label = gtk_label_new (NULL);
-	gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
-	gtk_label_set_markup (GTK_LABEL (label), _("<b>Remotes:</b>"));
+	gtk_widget_set_halign (label, GTK_ALIGN_START);
+	gtk_widget_set_valign (label, GTK_ALIGN_CENTER);
+	markup = g_strdup_printf ("<b>%s</b>", _("Remotes:"));
+	gtk_label_set_markup (GTK_LABEL (label), markup);
+	g_free (markup);
 	gtk_box_pack_start (GTK_BOX (page), label, FALSE, FALSE, 0);
 
 	scrolled_window = gtk_scrolled_window_new (NULL, NULL);

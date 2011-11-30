@@ -49,11 +49,7 @@ static void
 avatar_cache_loader_finish (GiggleAvatarCacheLoader *loader,
 			    GError                  *error)
 {
-	GiggleAvatarCachePriv *priv;
-
 	if (loader->cache) {
-		priv = GET_PRIV (loader->cache);
-
 		g_object_remove_weak_pointer
 			(G_OBJECT (loader->cache),
 			 (gpointer) &loader->cache);

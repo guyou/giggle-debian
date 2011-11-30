@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="tagging-commits" xml:lang="es">
+  <info>
+    <link type="guide" xref="index#basics"/>
+    <desc>Etiquetar «commits»</desc>
+
+    <credit type="author">
+      <name>Łukasz Jernaś</name>
+      <email>deejay1@srem.org</email>
+    </credit>
+
+<!--
+    <copyright>
+      <year>2010</year>
+      <name>GNOME Documentation Project</name>
+    </copyright>
+-->
+    <license>
+      <p>Creative Commons Share Alike 3.0</p>
+    </license>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Daniel Mustieles</mal:name>
+      <mal:email>daniel.mustieles@gmail.com</mal:email>
+      <mal:years>2011</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Jorge González</mal:name>
+      <mal:email>jorgegonz@svn.gnome.org</mal:email>
+      <mal:years>2007-2008.</mal:years>
+    </mal:credit>
+  </info>
+
+  <title>Etiquetar «commits»</title>
+    <p>Para crear una etiqueta nueva abra el menú contextual pulsando con el botón derecho del ratón sobre un «commit» en la ventana de revisión (no importa si la vista es del examinador o del histórico), después pulse <gui>Crear etiqueta</gui> e introduzca un nombre en la ventana de diálogo que se acaba de abrir.</p>
+    <p>Notará que junto a la revisión que ha seleccionado aparece un icono nuevo; es su etiqueta nueva creada.</p>
+
+</page>

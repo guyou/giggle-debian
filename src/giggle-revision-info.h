@@ -38,11 +38,11 @@ typedef struct GiggleRevisionInfo      GiggleRevisionInfo;
 typedef struct GiggleRevisionInfoClass GiggleRevisionInfoClass;
 
 struct GiggleRevisionInfo {
-	GtkVBox parent_instance;
+	GtkBox parent_instance;
 };
 
 struct GiggleRevisionInfoClass {
-	GtkVBoxClass parent_class;
+	GtkBoxClass parent_class;
 };
 
 GType

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="browse-view" xml:lang="de">
+  <info>
+    <link type="guide" xref="index#views"/>
+    <desc>Betrachten des Inhalts eines Softwarebestandes</desc>
+
+    <credit type="author">
+      <name>Łukasz Jernaś</name>
+      <email>deejay1@srem.org</email>
+    </credit>
+
+<!--
+    <copyright>
+      <year>2010</year>
+      <name>GNOME Documentation Project</name>
+    </copyright>
+-->
+    <license>
+      <p>Creative Commons Share Alike 3.0</p>
+    </license>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Mario Blättermann</mal:name>
+      <mal:email>mariobl@freenet.de</mal:email>
+      <mal:years>2010, 2011</mal:years>
+    </mal:credit>
+  </info>
+
+  <title>Dateiansicht</title>
+   <section id="overview">
+   <title>Überblick</title>
+   <figure>
+    <desc>Giggle in der Dateiansicht</desc>
+    <media type="image" src="figures/giggle-browse_view_sections.png" alt="Giggle main window in Browse mode"/>
+   </figure>
+    <p>Die Dateiansicht in <app>Giggle</app> gliedert sich in drei Hauptbestandteile:</p>
+     <list type="numbered">
+       <item>
+        <p>Projektbaum</p>
+        <p>Zeigt alle im aktuellen Softwarebstand enthaltenen Dateien an.</p>
+       </item>
+       <item>
+        <p>Dateivorschau</p>
+        <p>Zeigt den Inhalt der aktuell ausgewählten Datei an, gemäß der gewählten Revision.</p>
+       </item>
+       <item>
+        <p>Verlaufs-Graph</p>
+        <p>Zeigt eine visuelle Darstellung des Verlaufs der aktuell ausgewählten Datei an</p>
+       </item>
+     </list>
+    </section>
+    <section id="project_tree">
+    <title>Über den Projektbaum</title>
+    <p>Der Projektbaum ist ein bedeutsamer Bestandteil der Benutzeroberfläche von Giggle. Standardmäßig werden keine aufgrund der Liste in <file>.gitignore</file> verborgenen Dateien angezeigt. Sie können dieses Verhalten mit der Option <gui>Alle Dateien anzeigen</gui> im Kontexmenü ändern. Dateien, die nicht von der Softwareverwaltung erfasst sind, werden dann ausgegraut dargestellt.</p>
+    <p>Der Projektbaum ermöglicht Folgendes:</p>
+     <list>
+       <item>
+        <p>Dateien zum Softwarebestand hinzufügen.</p>
+        <p>Mit Hilfe der Option <gui>Datei zum Softwarebestand hinzufügen</gui> im Kontexmenü.</p>
+       </item>
+       <item>
+        <p>Hinzufügen und Entfernen von Dateien in <file>.gitignore</file>.</p>
+        <p>Mit Hilfe der Optionen <gui>Zu .gitignore hinzufügen</gui> und <gui>Aus .gitignore entfernen</gui> im Kontexmenü.</p>
+       </item>
+       <item>
+         <p>Bearbeiten von Dateien</p>
+       </item>
+       <item>
+         <p>Einspielen</p>
+       </item>
+       <item>
+         <p>Erstellen von Patches</p>
+         <p>Falls es zurückgenommene Änderungen in der Dateiliste gibt, können Sie mit der Option <gui>Patch erstellen</gui> im Kontextmenü einen Patch erstellen.</p>
+       </item>
+     </list>
+
+    </section>
+<!-- FIXME: I don't really know what's going on in this section so somebody please fill in
+    <section id="file_preview">
+      <title>About the File preview</title>
+    </section>
+-->
+
+</page>

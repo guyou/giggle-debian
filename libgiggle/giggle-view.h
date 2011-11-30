@@ -37,11 +37,11 @@ typedef struct GiggleView      GiggleView;
 typedef struct GiggleViewClass GiggleViewClass;
 
 struct GiggleView {
-	GtkVBox parent_instance;
+	GtkBox parent_instance;
 };
 
 struct GiggleViewClass {
-	GtkVBoxClass parent_class;
+	GtkBoxClass parent_class;
 
 	void (* add_ui)    (GiggleView   *view,
 		    	    GtkUIManager *manager);

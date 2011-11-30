@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="introduction" xml:lang="pl">
+  <info>
+    <link type="guide" xref="index"/>
+    <desc>Wprowadzenie do przeglądarki repozytoriów GIT <app>Giggle</app></desc>
+
+    <credit type="author">
+      <name>Łukasz Jernaś</name>
+      <email>deejay1@srem.org</email>
+    </credit>
+
+<!--
+    <copyright>
+      <year>2010</year>
+      <name>GNOME Documentation Project</name>
+    </copyright>
+-->
+    <license>
+      <p>Creative Commons Uznanie autorstwa-Na tych samych warunkach 3.0 Polska</p>
+    </license>
+  </info>
+
+  <title>Wprowadzenie</title>
+  <p>Program <app>Giggle</app> umożliwia graficzne przeglądanie oraz zmianę zawartości drzewa katalogów GIT.</p>
+
+  <section id="starting-giggle">
+    <title>Uruchamianie programu <app>giggle</app></title>
+      <p>Program <app>Giggle</app> można uruchomić w jeden z następujących sposobów:</p>
+      <steps>
+        <item>
+          <p>Choose <guiseq><gui>Programming</gui> <gui>Giggle</gui></guiseq> from the <gui>Applications</gui> menu.</p>
+        </item>
+        <item>
+          <p>Wpisując z oknie terminala lub oknie <gui>Uruchom program</gui> polecenie <cmd>giggle</cmd>.</p>
+        </item>
+      </steps>
+  </section>
+
+  <section id="stoping-giggle">
+    <title>Zamykanie programu <app>giggle</app></title>
+      <p>Aby zamknąć program <app>giggle</app>, należy wybrać z menu polecenie <guiseq><gui>Projekt</gui><gui>Zakończ</gui></guiseq> lub skorzystać ze skrótu klawiszowego <keyseq><key>Ctrl</key><key>Q</key></keyseq>.</p>
+  </section>
+
+</page>

@@ -176,7 +176,7 @@ giggle_ref_new (const gchar *name)
 			     NULL);
 }
 
-G_CONST_RETURN gchar *
+const gchar *
 giggle_ref_get_name (GiggleRef *ref)
 {
 	if (G_LIKELY (ref))
@@ -185,7 +185,7 @@ giggle_ref_get_name (GiggleRef *ref)
 	return NULL;
 }
 
-G_CONST_RETURN gchar *
+const gchar *
 giggle_ref_get_sha (GiggleRef *ref)
 {
 	if (G_LIKELY (ref))

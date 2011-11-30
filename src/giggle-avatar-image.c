@@ -334,37 +334,35 @@ rounded_rectangle (cairo_t *cr,
 }
 
 static gboolean
-avatar_image_expose_event (GtkWidget      *widget,
-			   GdkEventExpose *event)
+avatar_image_draw (GtkWidget  *widget,
+                   cairo_t    *cr)
 {
 	GiggleAvatarImagePriv *priv = GET_PRIV (widget);
-	GtkAllocation          allocation;
 	GtkRequisition         requisition;
-	GtkStyle              *style;
+	GtkStyleContext       *context;
+	GdkRGBA                rgba;
 	float                  xalign, yalign;
 	double                 x, y;
+	gint                   width, height;
 	int                    w, h;
-	cairo_t               *cr;
 
-	gtk_widget_size_request (widget, &requisition);
-	gtk_widget_get_allocation (widget, &allocation);
-	style = gtk_widget_get_style (widget);
-
-	cr = gdk_cairo_create (event->window);
-	gdk_cairo_region (cr, event->region);
-	cairo_clip (cr);
+	gtk_widget_get_preferred_size (widget, &requisition, NULL);
+	width = gtk_widget_get_allocated_width (widget);
+	height = gtk_widget_get_allocated_height (widget);
+	context = gtk_widget_get_style_context (widget);
 
 	w = requisition.width;
 	h = requisition.height;
 
 	gtk_misc_get_alignment (GTK_MISC (widget), &xalign, &yalign);
 
-	cairo_translate
-		(cr, (int) ((allocation.width - w) * xalign),
-		 (int) ((allocation.height - h) * yalign));
+	cairo_translate (cr,
+	                 (int) ((width - w) * xalign),
+	                 (int) ((height - h) * yalign));
 
 	rounded_rectangle (cr, 0.5, 0.5, w - 1, h - 1, MIN (w, h) * 0.2);
-	gdk_cairo_set_source_color (cr, &style->base[GTK_STATE_NORMAL]);
+	gtk_style_context_get_color (context, GTK_STATE_FLAG_NORMAL, &rgba);
+	gdk_cairo_set_source_rgba (cr, &rgba);
 	cairo_fill_preserve (cr);
 
 	if (priv->pixbuf) {
@@ -375,11 +373,10 @@ avatar_image_expose_event (GtkWidget      *widget,
 		cairo_fill_preserve (cr);
 	}
 
-	gdk_cairo_set_source_color (cr, &style->text[GTK_STATE_NORMAL]);
+	gtk_style_context_get_background_color (context, GTK_STATE_FLAG_NORMAL, &rgba);
+	gdk_cairo_set_source_rgba (cr, &rgba);
 	cairo_set_line_width (cr, 1);
 	cairo_stroke (cr);
-
-	cairo_destroy (cr);
 
 	return TRUE;
 }
@@ -399,6 +396,30 @@ avatar_image_size_request (GtkWidget      *widget,
 }
 
 static void
+avatar_image_get_preferred_width (GtkWidget *widget,
+                                  gint      *minimum,
+                                  gint      *natural)
+{
+	GtkRequisition requisition;
+
+	avatar_image_size_request (widget, &requisition);
+
+	*minimum = *natural = requisition.width;
+}
+
+static void
+avatar_image_get_preferred_height (GtkWidget *widget,
+                                   gint      *minimum,
+                                   gint      *natural)
+{
+	GtkRequisition requisition;
+
+	avatar_image_size_request (widget, &requisition);
+
+	*minimum = *natural = requisition.height;
+}
+
+static void
 giggle_avatar_image_class_init (GiggleAvatarImageClass *class)
 {
 	GObjectClass   *object_class = G_OBJECT_CLASS (class);
@@ -408,8 +429,9 @@ giggle_avatar_image_class_init (GiggleAvatarImageClass *class)
 	object_class->get_property = avatar_image_get_property;
 	object_class->finalize     = avatar_image_finalize;
 
-	widget_class->expose_event = avatar_image_expose_event;
-	widget_class->size_request = avatar_image_size_request;
+	widget_class->draw = avatar_image_draw;
+	widget_class->get_preferred_width = avatar_image_get_preferred_width;
+	widget_class->get_preferred_height = avatar_image_get_preferred_height;
 
 	g_object_class_install_property
 		(object_class, PROP_CACHE,
@@ -515,7 +537,7 @@ giggle_avatar_image_set_image_uri (GiggleAvatarImage *image,
 	g_object_set (image, "image-uri", uri, NULL);
 }
 
-G_CONST_RETURN char *
+const char *
 giggle_avatar_image_get_image_uri (GiggleAvatarImage *image)
 {
 	g_return_val_if_fail (GIGGLE_IS_AVATAR_IMAGE (image), NULL);
@@ -530,7 +552,7 @@ giggle_avatar_image_set_gravatar_id (GiggleAvatarImage *image,
 	g_object_set (image, "gravatar-id", id, NULL);
 }
 
-G_CONST_RETURN char *
+const char *
 giggle_avatar_image_get_gravatar_id (GiggleAvatarImage *image)
 {
 	g_return_val_if_fail (GIGGLE_IS_AVATAR_IMAGE (image), NULL);

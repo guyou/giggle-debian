@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="tagging-commits" xml:lang="pl">
+  <info>
+    <link type="guide" xref="index#basics"/>
+    <desc>Tworzenie etykiet</desc>
+
+    <credit type="author">
+      <name>Łukasz Jernaś</name>
+      <email>deejay1@srem.org</email>
+    </credit>
+
+<!--
+    <copyright>
+      <year>2010</year>
+      <name>GNOME Documentation Project</name>
+    </copyright>
+-->
+    <license>
+      <p>Creative Commons Uznanie autorstwa-Na tych samych warunkach 3.0 Polska</p>
+    </license>
+  </info>
+
+  <title>Tworzenie etykiet</title>
+    <p>W celu utworzenia nowej etykiety, należy kliknąć prawym przyciskiem myszy na zmianie w oknie rewizji (nie ma znaczenia czy aktywny jest widok historii, czy widok przeglądania), a następnie z menu podręcznego wybrać polecenie <gui>Utwórz etykietę</gui> i wprowadzić nazwę etykiety w nowo otwartym oknie dialogowym.</p>
+    <p>Obok zaznaczonej rewizji pojawi się nowa ikona przedstawiająca utworzoną etykietę.</p>
+
+</page>

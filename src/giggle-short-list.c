@@ -58,14 +58,17 @@ static void     dummy_set_property        (GObject           *object,
 					   guint              param_id,
 					   const GValue      *value,
 					   GParamSpec        *pspec);
-
-static void     short_list_size_request   (GtkWidget      *widget,
-					   GtkRequisition *requisition);
+static void     short_list_get_preferred_width  (GtkWidget *widget,
+                                                 gint      *minimum,
+                                                 gint      *maximum);
+static void     short_list_get_preferred_height (GtkWidget *widget,
+                                                 gint      *minimum,
+                                                 gint      *maximum);
 static void     short_list_size_allocate  (GtkWidget      *widget,
 					   GtkAllocation  *allocation);
 
 
-G_DEFINE_TYPE (GiggleShortList, giggle_short_list, GTK_TYPE_VBOX)
+G_DEFINE_TYPE (GiggleShortList, giggle_short_list, GTK_TYPE_BOX)
 
 #define GET_PRIV(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), GIGGLE_TYPE_SHORT_LIST, GiggleShortListPriv))
 
@@ -79,7 +82,8 @@ giggle_short_list_class_init (GiggleShortListClass *class)
 	object_class->get_property = dummy_get_property;
 	object_class->set_property = dummy_set_property;
 
-	widget_class->size_request = short_list_size_request;
+	widget_class->get_preferred_width = short_list_get_preferred_width;
+	widget_class->get_preferred_height = short_list_get_preferred_height;
 	widget_class->size_allocate = short_list_size_allocate;
 
 	g_object_class_install_property (object_class,
@@ -120,15 +124,40 @@ short_list_size_request (GtkWidget      *widget,
 	border_width = gtk_container_get_border_width (GTK_CONTAINER (widget));
 	spacing = gtk_box_get_spacing (GTK_BOX (widget));
 
-	gtk_widget_size_request (priv->label, &req);
+	gtk_widget_get_preferred_size (priv->label, &req, NULL);
 	*requisition = req;
 
-	gtk_widget_size_request (priv->content_box, &req);
+	gtk_widget_get_preferred_size (priv->content_box, &req, NULL);
+	gtk_widget_get_preferred_size (priv->more_button, &req, NULL);
 
-	gtk_widget_size_request (priv->more_button, &req);
 	requisition->width = MAX (requisition->width, req.width) + (2 * border_width);
 	requisition->height += req.width + spacing + (2 * border_width);
 }
+
+static void
+short_list_get_preferred_width (GtkWidget *widget,
+                                gint      *minimum,
+                                gint      *maximum)
+{
+	GtkRequisition requisition;
+
+	short_list_size_request (widget, &requisition);
+
+	*minimum = *maximum = requisition.width;
+}
+
+static void
+short_list_get_preferred_height (GtkWidget *widget,
+                                 gint      *minimum,
+                                 gint      *maximum)
+{
+	GtkRequisition requisition;
+
+	short_list_size_request (widget, &requisition);
+
+	*minimum = *maximum = requisition.height;
+}
+
 
 static void
 short_list_size_allocate (GtkWidget     *widget,
@@ -164,7 +193,7 @@ short_list_size_allocate (GtkWidget     *widget,
 	child_allocation.width = allocation->width;
 
 	/* allocate label */
-	gtk_widget_size_request (priv->label, &label_requisition);
+	gtk_widget_get_preferred_size (priv->label, &label_requisition, NULL);
 
 	child_allocation.y = allocation->y;
 	child_allocation.height = label_requisition.height;
@@ -176,7 +205,7 @@ short_list_size_allocate (GtkWidget     *widget,
 	children = list = gtk_container_get_children (GTK_CONTAINER (priv->content_box));
 
 	while (list) {
-		gtk_widget_size_request (list->data, &data_requisition);
+		gtk_widget_get_preferred_size (list->data, &data_requisition, NULL);
 
 		content_height += data_requisition.height;
 		list = list->next;
@@ -185,7 +214,7 @@ short_list_size_allocate (GtkWidget     *widget,
 	if (content_height > allocation->height) {
 		GtkRequisition  button_requisition;
 
-		gtk_widget_size_request (priv->more_button, &button_requisition);
+		gtk_widget_get_preferred_size (priv->more_button, &button_requisition, NULL);
 
 		/* just show the elements that fit in the allocation */
 		child_allocation.y = allocation->y;
@@ -199,7 +228,7 @@ short_list_size_allocate (GtkWidget     *widget,
 		content_height = child_allocation.height;
 
 		while (list) {
-			gtk_widget_size_request (list->data, &data_requisition);
+			gtk_widget_get_preferred_size (list->data, &data_requisition, NULL);
 
 			if (content_height > data_requisition.height) {
 				gtk_widget_set_child_visible (GTK_WIDGET (list->data), TRUE);
@@ -273,7 +302,7 @@ short_list_show_dialog (GiggleShortList* self)
 
 	dialog = gtk_dialog_new_with_buttons (_("Details"),
 					      GTK_WINDOW (gtk_widget_get_toplevel (GTK_WIDGET (self))),
-					      GTK_DIALOG_NO_SEPARATOR,
+	                                      0,
 					      GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE,
 					      NULL);
 
@@ -331,7 +360,8 @@ short_list_update_label_idle (gpointer user_data)
 				       object, &text);
 
 			label = gtk_label_new (text);
-			gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
+			gtk_widget_set_halign (label, GTK_ALIGN_START);
+			gtk_widget_set_valign (label, GTK_ALIGN_CENTER);
 			gtk_widget_show (label);
 			gtk_box_pack_start (GTK_BOX (priv->content_box), label, FALSE, FALSE, 0);
 
@@ -363,6 +393,9 @@ giggle_short_list_init (GiggleShortList *self)
 
 	priv = GET_PRIV (self);
 
+	gtk_orientable_set_orientation (GTK_ORIENTABLE (self),
+	                                GTK_ORIENTATION_VERTICAL);
+
 	gtk_box_set_homogeneous (GTK_BOX (self), FALSE);
 	gtk_box_set_spacing (GTK_BOX (self), 6);
 
@@ -374,12 +407,13 @@ giggle_short_list_init (GiggleShortList *self)
 
 	priv->label = gtk_label_new (NULL);
 	gtk_label_set_attributes (GTK_LABEL (priv->label), attributes);
-	gtk_misc_set_alignment (GTK_MISC (priv->label), 0.0, 0.5);
+	gtk_widget_set_halign (priv->label, GTK_ALIGN_START);
+	gtk_widget_set_valign (priv->label, GTK_ALIGN_CENTER);
 	gtk_box_pack_start (GTK_BOX (self), priv->label, FALSE, FALSE, 0);
 
 	pango_attr_list_unref (attributes);
 
-	priv->content_box = gtk_vbox_new (FALSE, 0);
+	priv->content_box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
 	gtk_box_pack_start (GTK_BOX (self), priv->content_box, TRUE, TRUE, 0);
 
 	priv->more_button = gtk_button_new_with_mnemonic (_("Show A_ll..."));

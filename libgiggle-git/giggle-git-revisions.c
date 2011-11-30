@@ -21,6 +21,7 @@
 #include "config.h"
 #include "giggle-git-revisions.h"
 #include <string.h>
+#include <stdio.h>
 
 
 enum {

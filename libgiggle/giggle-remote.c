@@ -44,8 +44,11 @@ enum {
 	PROP_ICON_NAME,
 	PROP_MECHANISM,
 	PROP_NAME,
-	PROP_URL
+	PROP_URL,
+	N_PROPERTIES
 };
+
+static GParamSpec *properties[N_PROPERTIES] = { NULL, };
 
 static void     remote_finalize            (GObject           *object);
 static void     remote_get_property        (GObject           *object,
@@ -70,34 +73,33 @@ giggle_remote_class_init (GiggleRemoteClass *class)
 	object_class->get_property = remote_get_property;
 	object_class->set_property = remote_set_property;
 
-	g_object_class_install_property (object_class,
-					 PROP_BRANCHES,
-					 g_param_spec_pointer ("branches", "Branches",
-						 	       "The list of remote branches",
-							       G_PARAM_READABLE));
-	g_object_class_install_property (object_class,
-					 PROP_ICON_NAME,
-					 g_param_spec_string ("icon-name", "Icon Name",
-							      "This remote's icon",
-							      NULL, G_PARAM_READWRITE));
-	g_object_class_install_property (object_class,
-					 PROP_MECHANISM,
-					 g_param_spec_enum ("mechanism", "Mechanism",
-							    "This remote's mechanism",
-							    GIGGLE_TYPE_REMOTE_MECHANISM,
-							    GIGGLE_REMOTE_MECHANISM_GIT,
-							    G_PARAM_READWRITE));
+	properties[PROP_BRANCHES] = g_param_spec_pointer ("branches", "Branches",
+	                                                  "The list of remote branches",
+	                                                  G_PARAM_READABLE);
 
-	g_object_class_install_property (object_class,
-					 PROP_NAME,
-					 g_param_spec_string ("name", "Name",
-							      "This remote's name",
-							      NULL, G_PARAM_READWRITE));
-	g_object_class_install_property (object_class,
-					 PROP_URL,
-					 g_param_spec_string ("url", "URL",
-							      "This remote's URL",
-							      NULL, G_PARAM_READWRITE));
+	properties[PROP_ICON_NAME] = g_param_spec_string ("icon-name", "Icon Name",
+	                                                  "This remote's icon",
+	                                                  NULL,
+	                                                  G_PARAM_READWRITE);
+
+	properties[PROP_MECHANISM] = g_param_spec_enum ("mechanism", "Mechanism",
+	                                                "This remote's mechanism",
+	                                                GIGGLE_TYPE_REMOTE_MECHANISM,
+	                                                GIGGLE_REMOTE_MECHANISM_GIT,
+	                                                G_PARAM_READWRITE);
+
+	properties[PROP_NAME] = g_param_spec_string ("name", "Name",
+	                                             "This remote's name",
+	                                             NULL,
+	                                             G_PARAM_READWRITE);
+
+	properties[PROP_URL] = g_param_spec_string ("url", "URL",
+	                                            "This remote's URL",
+	                                            NULL,
+	                                            G_PARAM_READWRITE);
+
+	/* Install all properties */
+	g_object_class_install_properties (object_class, N_PROPERTIES, properties);
 
 	g_type_class_add_private (object_class, sizeof (GiggleRemotePriv));
 }
@@ -105,9 +107,6 @@ giggle_remote_class_init (GiggleRemoteClass *class)
 static void
 giggle_remote_init (GiggleRemote *remote)
 {
-	GiggleRemotePriv *priv;
-
-	priv = GET_PRIV (remote);
 }
 
 static void
@@ -184,10 +183,6 @@ remote_set_property (GObject      *object,
 		     const GValue *value,
 		     GParamSpec   *pspec)
 {
-	GiggleRemotePriv *priv;
-
-	priv = GET_PRIV (object);
-
 	switch (param_id) {
 	case PROP_ICON_NAME:
 		giggle_remote_set_icon_name (GIGGLE_REMOTE (object),
@@ -222,7 +217,7 @@ giggle_remote_add_branch (GiggleRemote       *remote,
 	priv = GET_PRIV (remote);
 
 	priv->branches = g_list_append (priv->branches, g_object_ref (branch));
-	g_object_notify (G_OBJECT (remote), "branches");
+	g_object_notify_by_pspec (G_OBJECT (remote), properties[PROP_BRANCHES]);
 }
 
 GiggleRemote *
@@ -360,7 +355,7 @@ giggle_remote_remove_branches (GiggleRemote *self)
 	g_list_foreach (priv->branches, (GFunc)g_object_unref, NULL);
 	g_list_free (priv->branches);
 	priv->branches = NULL;
-	g_object_notify (G_OBJECT (self), "branches");
+	g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_BRANCHES]);
 }
 
 const gchar *
@@ -389,7 +384,7 @@ giggle_remote_set_icon_name (GiggleRemote *self,
 	g_free (priv->icon_name);
 	priv->icon_name = g_strdup (icon_name);
 
-	g_object_notify (G_OBJECT (self), "icon-name");
+	g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_ICON_NAME]);
 }
 
 GiggleRemoteMechanism
@@ -414,7 +409,7 @@ giggle_remote_set_mechanism (GiggleRemote          *self,
 
 	if (mechanism != priv->mechanism) {
 		priv->mechanism = mechanism;
-		g_object_notify (G_OBJECT (self), "mechanism");
+		g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_MECHANISM]);
 	}
 }
 
@@ -444,7 +439,7 @@ giggle_remote_set_name (GiggleRemote *self,
 	g_free (priv->name);
 	priv->name = g_strdup (name);
 
-	g_object_notify (G_OBJECT (self), "name");
+	g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_NAME]);
 }
 
 const gchar *
@@ -471,7 +466,7 @@ giggle_remote_set_url (GiggleRemote *remote,
 	g_free (priv->url);
 	priv->url = g_strdup (url);
 
-	g_object_notify (G_OBJECT (remote), "url");
+	g_object_notify_by_pspec (G_OBJECT (remote), properties[PROP_URL]);
 }
 
 void

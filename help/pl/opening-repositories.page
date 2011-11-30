@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="opening-repositories" xml:lang="pl">
+  <info>
+    <link type="guide" xref="index#basics"/>
+    <desc>Otwieranie repozytoriów systemu GIT</desc>
+
+    <credit type="author">
+      <name>Łukasz Jernaś</name>
+      <email>deejay1@srem.org</email>
+    </credit>
+
+<!--
+    <copyright>
+      <year>2010</year>
+      <name>GNOME Documentation Project</name>
+    </copyright>
+-->
+    <license>
+      <p>Creative Commons Uznanie autorstwa-Na tych samych warunkach 3.0 Polska</p>
+    </license>
+  </info>
+
+  <title>Otwieranie repozytorów</title>
+  <p>Repozytorium programu Git można otworzyć w jeden z następujących sposobów:</p>
+    <steps>
+      <item>
+        <p>Korzystając z polecenia menu <guiseq><gui>Projekt</gui><gui>Otwórz</gui></guiseq>, a następnie wskazując odpowiedni katalog z repozytorium.</p>
+      </item>
+      <item>
+        <p>Wykonując polecenie <cmd>giggle</cmd> w katalogu z repozytorium.</p>
+      </item>
+      <item>
+        <p>Wykonując polecenie <cmd>giggle</cmd> ze ścieżką do repozytorium podaną jako argument.</p>
+      </item>
+   </steps>
+</page>

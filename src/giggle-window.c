@@ -24,6 +24,7 @@
 #include "giggle-window.h"
 
 #include "eggfindbar.h"
+#include "giggle-clone-dialog.h"
 #include "giggle-diff-window.h"
 #include "giggle-helpers.h"
 #include "giggle-view-file.h"
@@ -37,10 +38,6 @@
 #include <libgiggle/giggle-view-shell.h>
 
 #include <libgiggle-git/giggle-git-config.h>
-
-#ifdef GDK_WINDOWING_QUARTZ
-#include "ige-mac-menu.h"
-#endif
 
 #include <glib/gi18n.h>
 #include <string.h>
@@ -545,44 +542,6 @@ giggle_window_clipboard_init (GiggleClipboardIface *iface)
 	iface->do_copy  = window_do_copy;
 }
 
-#if 0
-static void
-window_create_menu (GiggleWindow *window)
-{
-	GiggleWindowPriv *priv;
-	GtkActionGroup   *action_group;
-	GError           *error = NULL;
-
-	priv = window->priv;;
-
-
-#ifdef GDK_WINDOWING_QUARTZ
-	{
-		GtkWidget       *menu;
-		GtkWidget       *item;
-		IgeMacMenuGroup *group;
-
-		menu = gtk_ui_manager_get_widget (priv->ui_manager,
-						  "/MainMenubar");
-
-		ige_mac_menu_set_menu_bar (GTK_MENU_SHELL (menu));
-		gtk_widget_hide (menu);
-
-		item = gtk_ui_manager_get_widget (priv->ui_manager,
-						  "/MainMenubar/ProjectMenu/Quit");
-		ige_mac_menu_set_quit_menu_item (GTK_MENU_ITEM (item));
-
-		item = gtk_ui_manager_get_widget (priv->ui_manager,
-						  "/MainMenubar/HelpMenu/About");
-		group =  ige_mac_menu_add_app_menu_group ();
-		ige_mac_menu_add_app_menu_item  (group, GTK_MENU_ITEM (item),
-						 _("About Giggle"));
-	}
-#endif
-}
-
-#endif
-
 void
 giggle_window_set_directory (GiggleWindow *window,
 			     const gchar  *directory)
@@ -708,6 +667,23 @@ window_action_open_cb (GtkAction    *action,
 }
 
 static void
+window_action_clone_cb (GtkAction    *action,
+		       GiggleWindow *window)
+{
+	GtkWidget *clone_dialog;
+
+	clone_dialog = giggle_clone_dialog_new (NULL, NULL);
+	gtk_window_set_transient_for (GTK_WINDOW (clone_dialog),
+	                              GTK_WINDOW (window));
+	if (gtk_dialog_run (GTK_DIALOG (clone_dialog)) == GTK_RESPONSE_ACCEPT)
+		giggle_window_set_directory (window,
+				giggle_clone_dialog_get_directory (
+					GIGGLE_CLONE_DIALOG (clone_dialog)
+				));
+	gtk_widget_destroy (clone_dialog);
+}
+
+static void
 window_action_properties_cb (GtkAction    *action,
 		             GiggleWindow *window)
 {
@@ -724,7 +700,7 @@ window_action_properties_cb (GtkAction    *action,
 
 		priv->summary_dialog = gtk_dialog_new_with_buttons
 			(title, GTK_WINDOW (window),
-			 GTK_DIALOG_DESTROY_WITH_PARENT | GTK_DIALOG_NO_SEPARATOR,
+			 GTK_DIALOG_DESTROY_WITH_PARENT,
 			 GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE, NULL);
 
 		summary_view = giggle_view_summary_new ();
@@ -801,7 +777,7 @@ window_find (EggFindBar            *find_bar,
 	GiggleWindowPriv *priv;
 	GiggleView       *view;
 	const gchar      *search_string;
-	gboolean          full_search;
+	gboolean          full_search, case_sensitive;
 
 	priv = window->priv;
 
@@ -815,8 +791,11 @@ window_find (EggFindBar            *find_bar,
 		full_search = gtk_toggle_tool_button_get_active (
 			GTK_TOGGLE_TOOL_BUTTON (priv->full_search));
 
+		case_sensitive = egg_find_bar_get_case_sensitive (find_bar);
+
 		giggle_searchable_search (GIGGLE_SEARCHABLE (view),
-					  search_string, direction, full_search);
+					  search_string, direction,
+		                          full_search, case_sensitive);
 	}
 }
 
@@ -875,6 +854,20 @@ window_action_view_graph_cb (GtkAction    *action,
 }
 
 static void
+window_action_view_diff_cb (GtkRadioAction *action,
+			    GtkRadioAction *current,
+			    GiggleWindow *window)
+{
+	GiggleWindowPriv *priv;
+	gint             current_value;
+
+	priv = window->priv;
+
+	current_value = gtk_radio_action_get_current_value (current);
+	giggle_view_history_set_view_style (GIGGLE_VIEW_HISTORY (priv->history_view), current_value);
+}
+
+static void
 window_action_refresh_history (GtkAction    *action,
 			       GiggleWindow *window)
 {
@@ -891,17 +884,23 @@ static void
 window_visit_uri (GiggleWindow *window,
 		  const char   *uri)
 {
-	GAppLaunchContext *context;
 	GError            *error = NULL;
 
-	context = giggle_create_app_launch_context (GTK_WIDGET (window));
+	gtk_show_uri (gtk_widget_get_screen (GTK_WIDGET (window)),
+	              uri,  gtk_get_current_event_time (),
+	              &error);
 
-	if (!g_app_info_launch_default_for_uri (uri, context, &error)) {
-		g_warning ("%s: %s", G_STRFUNC, error->message);
+	if (error != NULL) {
+		giggle_error_dialog (GTK_WINDOW (window), error);
 		g_clear_error (&error);
 	}
+}
 
-	g_object_unref (context);
+static void
+window_action_help_index_cb (GtkAction    *action,
+                             GiggleWindow *window)
+{
+	window_visit_uri (window, "ghelp:" PACKAGE_TARNAME);
 }
 
 static void
@@ -915,8 +914,6 @@ static void
 window_action_about_cb (GtkAction    *action,
 			GiggleWindow *window)
 {
-	gchar *license_translated;
-
 	const char *artists[] = {
 		"Andreas Nilsson",
 		NULL
@@ -937,34 +934,14 @@ window_action_about_cb (GtkAction    *action,
 		NULL
 	};
 
-	/*
 	const gchar *documenters[] = {
+		"Łukasz Jernaś",
 		NULL
 	};
-	*/
 
 	const gchar *copyright = _("Copyright © 2007 - 2008 Imendio AB\n"
 	                           "Copyright © 2008 - 2009 Mathias Hasselmann\n"
-	                           "Copyright © 2009 - 2010 The Giggle authors");
-
-	const gchar *license[] = {
-		N_("This program is free software; you can redistribute it and/or modify "
-		   "it under the terms of the GNU General Public License as published by "
-		   "the Free Software Foundation; either version 2 of the License, or "
-		   "(at your option) any later version."),
-		N_("This program is distributed in the hope that it will be useful, "
-		   "but WITHOUT ANY WARRANTY; without even the implied warranty of "
-		   "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the "
-		   "GNU General Public License for more details."),
-		N_("You should have received a copy of the GNU General Public License "
-		   "along with this program; if not, write to the Free Software Foundation, Inc., "
-		   "51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA")
-	};
-	license_translated = g_strjoin ("\n\n",
-	                                _(license[0]),
-	                                _(license[1]),
-	                                _(license[2]),
-	                                NULL);
+	                           "Copyright © 2009 - 2011 The Giggle authors");
 
 	/* Translators: This is a special message that shouldn't be translated
          * literally. It is used in the about box to give credits to
@@ -981,8 +958,8 @@ window_action_about_cb (GtkAction    *action,
 	                       "authors", authors,
 	                       "comments", _("A graphical frontend for Git"),
 			       "copyright", copyright,
-	                       /* "documenters", documenters, */
-	                       "license", license_translated,
+	                       "documenters", documenters,
+	                       "license-type", GTK_LICENSE_GPL_2_0,
 	                       "logo-icon-name", PACKAGE,
 	                       "title", _("About Giggle"),
 			       "translator-credits", translators,
@@ -991,8 +968,6 @@ window_action_about_cb (GtkAction    *action,
 	                       "website-label", _("Giggle Website"),
 	                       "wrap-license", TRUE,
 			       NULL);
-
-	g_free (license_translated);
 }
 
 static void
@@ -1074,6 +1049,10 @@ window_create_ui_manager (GiggleWindow *window)
 		  NULL, N_("Open a git repository"),
 		  G_CALLBACK (window_action_open_cb)
 		},
+		{ "Clone", NULL,
+		  N_("Clone _location"), "<control>L", N_("Clone a location"),
+		  G_CALLBACK (window_action_clone_cb)
+		},
 #if 0
 		{ "SavePatch", GTK_STOCK_SAVE,
 		  N_("_Save patch"), "<control>S", N_("Save a patch"),
@@ -1111,6 +1090,10 @@ window_create_ui_manager (GiggleWindow *window)
 		  G_CALLBACK (window_action_history_go_forward)
 		},
 
+		{ "HelpIndex", "help-contents", N_("_Contents"),
+		  "F1", N_("Show user guide for Giggle"),
+		  G_CALLBACK (window_action_help_index_cb)
+		},
 		{ "BugReport", NULL, N_("Report _Issue"),
 		  NULL, N_("Report an issue you've found in Giggle"),
 		  G_CALLBACK (window_action_bug_report_cb)
@@ -1125,6 +1108,18 @@ window_create_ui_manager (GiggleWindow *window)
 		{ "ShowGraph", NULL,
 		  N_("Show revision tree"), "F12", NULL,
 		  G_CALLBACK (window_action_view_graph_cb), TRUE
+		},
+	};
+
+	static const GtkRadioActionEntry radio_action_entries[] = {
+		{ "ShowDiffChunk", NULL,
+		  N_("Show diffs by chunk"), NULL, NULL, 0
+		},
+		{ "ShowDiffFile", NULL,
+		  N_("Show diffs by file"), NULL, NULL, 1
+		},
+		{ "ShowDiffAll", NULL,
+		  N_("Show all diffs"), NULL, NULL, 2
 		},
 	};
 
@@ -1144,6 +1139,7 @@ window_create_ui_manager (GiggleWindow *window)
 		"  <menubar name='MainMenubar'>"
 		"    <menu action='ProjectMenu'>"
 		"      <menuitem action='Open'/>"
+		"      <menuitem action='Clone'/>"
 #if 0
 		"      <menuitem action='SavePatch'/>"
 		"      <menuitem action='Diff'/>"
@@ -1173,6 +1169,10 @@ window_create_ui_manager (GiggleWindow *window)
 		"      <placeholder name='ViewShell'/>"
 		"      <separator/>"
 		"      <menuitem action='ShowGraph'/>"
+		"      <separator/>"
+		"      <menuitem action='ShowDiffChunk'/>"
+		"      <menuitem action='ShowDiffFile'/>"
+		"      <menuitem action='ShowDiffAll'/>"
 		"      <placeholder name='ViewMenuPreferences'/>"
 		"      <separator/>"
 		"      <menuitem action='RefreshHistory'/>"
@@ -1183,6 +1183,8 @@ window_create_ui_manager (GiggleWindow *window)
 		"      <menuitem action='HistoryGoForward'/>"
 		"    </menu>"
 		"    <menu action='HelpMenu'>"
+		"      <menuitem action='HelpIndex'/>"
+		"      <separator/>"
 		"      <menuitem action='BugReport'/>"
 		"      <separator/>"
 		"      <menuitem action='About'/>"
@@ -1233,6 +1235,10 @@ window_create_ui_manager (GiggleWindow *window)
 					     G_N_ELEMENTS (toggle_action_entries),
 					     window);
 
+	gtk_action_group_add_radio_actions (action_group, radio_action_entries,
+					    G_N_ELEMENTS (radio_action_entries),
+					    0, G_CALLBACK (window_action_view_diff_cb),
+					    window);
 	gtk_ui_manager_insert_action_group (priv->ui_manager, action_group, 0);
 	g_object_unref (action_group);
 
@@ -1505,7 +1511,7 @@ window_update_search_ui (GiggleWindow *window)
 
 static void
 window_view_shell_switch_page_cb (GtkNotebook     *notebook,
-				  GtkNotebookPage *page,
+                                  GtkWidget       *page,
 				  guint            page_num,
 				  GiggleWindow    *window)
 {
@@ -1584,7 +1590,7 @@ window_directory_changed_cb (GiggleGit    *git,
 static void
 window_recent_repositories_add (GiggleWindow *window)
 {
-	static gchar     *groups[] = { PACKAGE, NULL };
+	static const gchar *groups[] = { PACKAGE, NULL };
 	GiggleWindowPriv *priv;
 	GtkRecentData     data = { 0, };
 	const gchar      *repository;
@@ -1601,8 +1607,8 @@ window_recent_repositories_add (GiggleWindow *window)
 	g_return_if_fail (repository != NULL);
 
 	data.display_name = (gchar *) giggle_git_get_project_name (priv->git);
-	data.groups = groups;
-	data.mime_type = "x-directory/normal";
+	data.groups = (gchar **) groups;
+	data.mime_type = g_strdup ("x-directory/normal");
 	data.app_name = (gchar *) g_get_application_name ();
 	data.app_exec = g_strjoin (" ", g_get_prgname (), "%u", NULL);
 
@@ -1610,6 +1616,7 @@ window_recent_repositories_add (GiggleWindow *window)
 	gtk_recent_manager_add_full (priv->recent_manager,
                                      tmp_string, &data);
 	g_free (tmp_string);
+	g_free (data.mime_type);
 	g_free (data.app_exec);
 }
 
@@ -1638,22 +1645,6 @@ window_plugin_added_cb (GigglePluginManager *manager,
 }
 
 static void
-about_activate_link (GtkAboutDialog *about,
-                     const char     *uri,
-                     gpointer        data)
-{
-	window_visit_uri (data, uri);
-}
-
-static void
-button_activate_link (GtkLinkButton *button,
-                      const char    *uri,
-                      gpointer       data)
-{
-	window_visit_uri (data, uri);
-}
-
-static void
 giggle_window_init (GiggleWindow *window)
 {
 	GiggleWindowPriv *priv;
@@ -1666,7 +1657,7 @@ giggle_window_init (GiggleWindow *window)
 	priv->git = giggle_git_get ();
 	priv->configuration = giggle_git_config_new ();
 
-	priv->content_vbox = gtk_vbox_new (FALSE, 0);
+	priv->content_vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
 	window_create_ui_manager (window);
 
 	priv->view_shell = giggle_view_shell_new_with_ui (priv->ui_manager,
@@ -1721,9 +1712,6 @@ giggle_window_init (GiggleWindow *window)
 
 	g_signal_connect (priv->plugin_manager, "plugin-added",
 			  G_CALLBACK (window_plugin_added_cb), window);
-
-	gtk_about_dialog_set_url_hook (about_activate_link, window, NULL);
-	gtk_link_button_set_uri_hook (button_activate_link, window, NULL);
 
 	window_update_search_ui (window);
 	window_history_update_ui (window);

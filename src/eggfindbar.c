@@ -1,28 +1,30 @@
 /* Copyright (C) 2004 Red Hat, Inc.
-
-This library is free software; you can redistribute it and/or
-modify it under the terms of the GNU Library General Public License as
-published by the Free Software Foundation; either version 2 of the
-License, or (at your option) any later version.
-
-This library is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-Library General Public License for more details.
-
-You should have received a copy of the GNU Library General Public
-License along with the Gnome Library; see the file COPYING.LIB.  If not,
-write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-Boston, MA 02111-1307, USA.
-*/
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public License as
+ * published by the Free Software Foundation; either version 2 of the
+ * License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with the Gnome Library; see the file COPYING.LIB.  If not,
+ * write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ * Boston, MA 02110-1301, USA.
+ */
 
 #include "config.h"
-#include "eggfindbar.h"
+
+#include <string.h>
 
 #include <glib/gi18n.h>
-#include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
-#include <string.h>
+#include <gdk/gdkkeysyms.h>
+
+#include "eggfindbar.h"
 
 struct _EggFindBarPrivate
 {
@@ -160,35 +162,31 @@ egg_find_bar_class_init (EggFindBarClass *klass)
                                                          FALSE,
                                                          G_PARAM_READWRITE));
 
-  /* Style properties */
-  gtk_widget_class_install_style_property (widget_class,
-                                           g_param_spec_boxed ("all_matches_color",
-                                                               "Highlight color",
-                                                               "Color of highlight for all matches",
-                                                               GDK_TYPE_COLOR,
-                                                               G_PARAM_READABLE));
-
-  gtk_widget_class_install_style_property (widget_class,
-                                           g_param_spec_boxed ("current_match_color",
-                                                               "Current color",
-                                                               "Color of highlight for the current match",
-                                                               GDK_TYPE_COLOR,
-                                                               G_PARAM_READABLE));
-
   g_type_class_add_private (object_class, sizeof (EggFindBarPrivate));
 
   binding_set = gtk_binding_set_by_class (klass);
 
-  gtk_binding_entry_add_signal (binding_set, GDK_Escape, 0,
+  gtk_binding_entry_add_signal (binding_set, GDK_KEY_Escape, 0,
 				"close", 0);
 
-  gtk_binding_entry_add_signal (binding_set, GDK_Up, 0,
+  gtk_binding_entry_add_signal (binding_set, GDK_KEY_Up, 0,
                                 "scroll", 1,
                                 GTK_TYPE_SCROLL_TYPE, GTK_SCROLL_STEP_BACKWARD);
-
-  gtk_binding_entry_add_signal (binding_set, GDK_Down, 0,
+  gtk_binding_entry_add_signal (binding_set, GDK_KEY_Down, 0,
                                 "scroll", 1,
                                 GTK_TYPE_SCROLL_TYPE, GTK_SCROLL_STEP_FORWARD);
+  gtk_binding_entry_add_signal (binding_set, GDK_KEY_Page_Up, 0,
+				"scroll", 1,
+				GTK_TYPE_SCROLL_TYPE, GTK_SCROLL_PAGE_BACKWARD);
+  gtk_binding_entry_add_signal (binding_set, GDK_KEY_KP_Page_Up, 0,
+				"scroll", 1,
+				GTK_TYPE_SCROLL_TYPE, GTK_SCROLL_PAGE_BACKWARD);
+  gtk_binding_entry_add_signal (binding_set, GDK_KEY_Page_Down, 0,
+				"scroll", 1,
+				GTK_TYPE_SCROLL_TYPE, GTK_SCROLL_PAGE_FORWARD);
+  gtk_binding_entry_add_signal (binding_set, GDK_KEY_KP_Page_Down, 0,
+				"scroll", 1,
+				GTK_TYPE_SCROLL_TYPE, GTK_SCROLL_PAGE_FORWARD);
 }
 
 static void
@@ -222,13 +220,13 @@ previous_clicked_callback (GtkButton *button,
 }
 
 static void
-case_sensitive_toggled_callback (GtkToggleToolButton *button,
-                                 void                *data)
+case_sensitive_toggled_callback (GtkCheckButton *button,
+                                 void           *data)
 {
   EggFindBar *find_bar = EGG_FIND_BAR (data);
 
   egg_find_bar_set_case_sensitive (find_bar,
-                                   gtk_toggle_tool_button_get_active (button));
+                                   gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (button)));
 }
 
 static void
@@ -299,7 +297,7 @@ egg_find_bar_init (EggFindBar *find_bar)
 
   /* Find: |_____| */
   item = gtk_tool_item_new ();
-  box = gtk_hbox_new (FALSE, 12);
+  box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 12);
   
   alignment = gtk_alignment_new (0.0, 0.5, 1.0, 0.0);
   gtk_alignment_set_padding (GTK_ALIGNMENT (alignment), 0, 0, 2, 2);
@@ -313,28 +311,30 @@ egg_find_bar_init (EggFindBar *find_bar)
 
   /* Prev */
   arrow = gtk_arrow_new (GTK_ARROW_LEFT, GTK_SHADOW_NONE);
-  priv->previous_button = gtk_tool_button_new (arrow, Q_("Find Previous"));
+  priv->previous_button = gtk_tool_button_new (arrow, Q_("Find Pre_vious"));
+  gtk_tool_button_set_use_underline (GTK_TOOL_BUTTON (priv->previous_button), TRUE);
   gtk_tool_item_set_is_important (priv->previous_button, TRUE);
-  gtk_tool_item_set_tooltip_text (priv->previous_button,
-                                  _("Find previous occurrence of the search string"));
+  gtk_widget_set_tooltip_text (GTK_WIDGET (priv->previous_button),
+			       _("Find previous occurrence of the search string"));
 
   /* Next */
   arrow = gtk_arrow_new (GTK_ARROW_RIGHT, GTK_SHADOW_NONE);
-  priv->next_button = gtk_tool_button_new (arrow, Q_("Find Next"));
+  priv->next_button = gtk_tool_button_new (arrow, Q_("Find Ne_xt"));
+  gtk_tool_button_set_use_underline (GTK_TOOL_BUTTON (priv->next_button), TRUE);
   gtk_tool_item_set_is_important (priv->next_button, TRUE);
-  gtk_tool_item_set_tooltip_text (priv->next_button,
-                                  _("Find next occurrence of the search string"));
+  gtk_widget_set_tooltip_text (GTK_WIDGET (priv->next_button),
+			       _("Find next occurrence of the search string"));
 
   /* Separator*/
   priv->status_separator = gtk_separator_tool_item_new();
 
   /* Case button */
   priv->case_button = gtk_toggle_tool_button_new ();
-  g_object_set (G_OBJECT (priv->case_button), "label", _("C_ase Sensitive"), NULL);
+  gtk_tool_button_set_label (GTK_TOOL_BUTTON (priv->case_button), _("C_ase Sensitive"));
   gtk_tool_button_set_use_underline (GTK_TOOL_BUTTON (priv->case_button), TRUE);
   gtk_tool_item_set_is_important (priv->case_button, TRUE);
-  gtk_tool_item_set_tooltip_text (priv->case_button,
-                                  _("Toggle case sensitive search"));
+  gtk_widget_set_tooltip_text (GTK_WIDGET (priv->case_button),
+			       _("Toggle case sensitive search"));
 
   /* Status */
   priv->status_item = gtk_tool_item_new();
@@ -342,7 +342,8 @@ egg_find_bar_init (EggFindBar *find_bar)
   priv->status_label = gtk_label_new (NULL);
   gtk_label_set_ellipsize (GTK_LABEL (priv->status_label),
                            PANGO_ELLIPSIZE_END);
-  gtk_misc_set_alignment (GTK_MISC (priv->status_label), 0.0, 0.5);
+  gtk_widget_set_halign (priv->status_label, GTK_ALIGN_START);
+  gtk_widget_set_valign (priv->status_label, GTK_ALIGN_CENTER);
 
 
   g_signal_connect (priv->find_entry, "changed",
@@ -614,8 +615,8 @@ egg_find_bar_set_case_sensitive (EggFindBar *find_bar,
     {
       priv->case_sensitive = case_sensitive;
 
-      gtk_toggle_tool_button_set_active (GTK_TOGGLE_TOOL_BUTTON (priv->case_button),
-                                    	 priv->case_sensitive);
+      gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->case_button),
+                                    priv->case_sensitive);
 
       g_object_notify (G_OBJECT (find_bar),
                        "case_sensitive");
@@ -645,61 +646,6 @@ egg_find_bar_get_case_sensitive (EggFindBar *find_bar)
   return priv->case_sensitive;
 }
 
-static void
-get_style_color (EggFindBar *find_bar,
-                 const char *style_prop_name,
-                 GdkColor   *color)
-{
-  GdkColor *style_color;
-
-  gtk_widget_ensure_style (GTK_WIDGET (find_bar));
-  gtk_widget_style_get (GTK_WIDGET (find_bar),
-                        "color", &style_color, NULL);
-  if (style_color)
-    {
-      *color = *style_color;
-      gdk_color_free (style_color);
-    }
-}
-
-/**
- * egg_find_bar_get_all_matches_color:
- *
- * Gets the color to use to highlight all the
- * known matches.
- *
- * Since: 2.6
- */
-void
-egg_find_bar_get_all_matches_color (EggFindBar *find_bar,
-                                    GdkColor   *color)
-{
-  GdkColor found_color = { 0, 0, 0, 0x0f0f };
-
-  get_style_color (find_bar, "all_matches_color", &found_color);
-
-  *color = found_color;
-}
-
-/**
- * egg_find_bar_get_current_match_color:
- *
- * Gets the color to use to highlight the match
- * we're currently on.
- *
- * Since: 2.6
- */
-void
-egg_find_bar_get_current_match_color (EggFindBar *find_bar,
-                                      GdkColor   *color)
-{
-  GdkColor found_color = { 0, 0, 0, 0xffff };
-
-  get_style_color (find_bar, "current_match_color", &found_color);
-
-  *color = found_color;
-}
-
 /**
  * egg_find_bar_set_status_text:
  *
@@ -721,6 +667,6 @@ egg_find_bar_set_status_text (EggFindBar *find_bar,
   priv = (EggFindBarPrivate *)find_bar->priv;
   
   gtk_label_set_text (GTK_LABEL (priv->status_label), text);
-  g_object_set (priv->status_separator, "visible", text != NULL && *text != '\0', NULL);
-  g_object_set (priv->status_item, "visible", text != NULL && *text !='\0', NULL);
+  gtk_widget_set_visible (GTK_WIDGET (priv->status_separator), text != NULL && *text != '\0');
+  gtk_widget_set_visible (GTK_WIDGET (priv->status_item), text != NULL && *text !='\0');
 }

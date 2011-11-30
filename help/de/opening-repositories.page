@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="opening-repositories" xml:lang="de">
+  <info>
+    <link type="guide" xref="index#basics"/>
+    <desc>Öffnen von GIT-Softwarebeständen</desc>
+
+    <credit type="author">
+      <name>Łukasz Jernaś</name>
+      <email>deejay1@srem.org</email>
+    </credit>
+
+<!--
+    <copyright>
+      <year>2010</year>
+      <name>GNOME Documentation Project</name>
+    </copyright>
+-->
+    <license>
+      <p>Creative Commons Share Alike 3.0</p>
+    </license>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Mario Blättermann</mal:name>
+      <mal:email>mariobl@freenet.de</mal:email>
+      <mal:years>2010, 2011</mal:years>
+    </mal:credit>
+  </info>
+
+  <title>Öffnen eines Softwarebestandes</title>
+  <p>Sie können einen Softwarebestand folgendermaßen öffnen:</p>
+    <steps>
+      <item>
+        <p>Wählen Sie <guiseq><gui>Projekt</gui><gui>Öffnen</gui></guiseq> und wählen Sie den Ordner aus, welcher Ihren Softwarebestand enthält.</p>
+      </item>
+      <item>
+        <p>Rufen Sie <cmd>giggle</cmd> im Ordner Ihres Softwarebestandes auf.</p>
+      </item>
+      <item>
+        <p>Rufen Sie <cmd>giggle</cmd> auf und fügen Sie zum Befehl den Pfad zum Softwarebestand als Argument hinzu.</p>
+      </item>
+   </steps>
+</page>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="tagging-commits" xml:lang="cs">
+  <info>
+    <link type="guide" xref="index#basics"/>
+    <desc>Značení zařazení</desc>
+
+    <credit type="author">
+      <name>Łukasz Jernaś</name>
+      <email>deejay1@srem.org</email>
+    </credit>
+
+<!--
+    <copyright>
+      <year>2010</year>
+      <name>GNOME Documentation Project</name>
+    </copyright>
+-->
+    <license>
+      <p>Creative Commons Share Alike 3.0</p>
+    </license>
+  </info>
+
+  <title>Značení zařazení</title>
+    <p>Když chcete vytvořit novou značku, otevřete místní nabídku kliknutím pravým tlačítkem na zařazení v okně revizí (nezáleží zda v zobrazení Procházet nebo Historie), pak klikněte na <gui>Vytvořit značku</gui> a zadejte název v právě otevřeném dialogovém okně.</p>
+    <p>Poznamenejme, že poblíž vámi vybrané revize se objeví nová ikona - to je vaše nově vytvořená značka.</p>
+
+</page>

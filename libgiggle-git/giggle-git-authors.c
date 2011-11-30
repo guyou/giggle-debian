@@ -40,6 +40,7 @@ typedef struct {
 typedef struct {
 	GHashTable* known_names;
 	GHashTable* known_emails;
+	guint       commits;
 } GiggleFlexibleAuthor;
 
 static void
@@ -68,6 +69,12 @@ giggle_flexible_author_add_email (GiggleFlexibleAuthor* self,
 				  gchar const * email)
 {
 	_giggle_flexible_author_add_ballot (self->known_emails, email);
+}
+
+static void
+giggle_flexible_author_add_commit (GiggleFlexibleAuthor* self)
+{
+	self->commits += 1;
 }
 
 static void
@@ -116,6 +123,7 @@ giggle_flexible_author_new (gchar const* name,
 						    g_free, g_free);
 	giggle_flexible_author_add_name  (self, name);
 	giggle_flexible_author_add_email (self, email);
+	self->commits = 1;
 	return self;
 }
 /* END: GiggleFlexibleAuthor API */
@@ -168,9 +176,6 @@ giggle_git_authors_class_init (GiggleGitAuthorsClass *class)
 static void
 giggle_git_authors_init (GiggleGitAuthors *git_authors)
 {
-	GiggleGitAuthorsPriv *priv;
-
-	priv = GET_PRIV (git_authors);
 }
 
 static void
@@ -179,7 +184,7 @@ git_authors_finalize (GObject *object)
 	GiggleGitAuthorsPriv *priv;
 
 	priv = GET_PRIV (object);
-	
+
 	g_list_foreach (priv->authors, (GFunc) g_object_unref, NULL);
 	g_list_free (priv->authors);
 	priv->authors = NULL;
@@ -193,10 +198,6 @@ git_authors_get_property (GObject    *object,
 		    GValue     *value,
 		    GParamSpec *pspec)
 {
-	GiggleGitAuthorsPriv *priv;
-
-	priv = GET_PRIV (object);
-
 	switch (param_id) {
 	default:
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, param_id, pspec);
@@ -210,10 +211,6 @@ git_authors_set_property (GObject      *object,
 		    const GValue *value,
 		    GParamSpec   *pspec)
 {
-	GiggleGitAuthorsPriv *priv;
-
-	priv = GET_PRIV (object);
-
 	switch (param_id) {
 	default:
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, param_id, pspec);
@@ -225,7 +222,7 @@ static gboolean
 authors_get_command_line (GiggleJob *job,
 			  gchar    **command_line)
 {
-	*command_line = g_strdup (GIT_COMMAND " log");
+	*command_line = g_strdup (GIT_COMMAND " log --format=format:'%an <%ae>'");
 	return TRUE;
 }
 
@@ -235,6 +232,7 @@ add_author (gchar const          *key,
 	    GiggleGitAuthorsPriv *priv)
 {
 	/* FIXME: giggle_author_new (name, email) */
+	GiggleAuthor *author_to_add;
 	gchar const* popular_name  = giggle_flexible_author_get_voted_name (value);
 	gchar const* popular_email = giggle_flexible_author_get_voted_email (value);
 	gchar* string = NULL;
@@ -249,8 +247,28 @@ add_author (gchar const          *key,
 	} else {
 		string = g_strdup (popular_name);
 	}
-	priv->authors = g_list_prepend (priv->authors, giggle_author_new_from_string (string));
+
+	author_to_add = giggle_author_new_from_string (string);
+	giggle_author_set_commits (author_to_add, value->commits);
+	priv->authors = g_list_prepend (priv->authors, author_to_add);
 	g_free (string);
+}
+
+static gint
+authors_compare_commits (gconstpointer a,
+			 gconstpointer b)
+{
+	guint commits_a = giggle_author_get_commits (GIGGLE_AUTHOR (a));
+	guint commits_b = giggle_author_get_commits (GIGGLE_AUTHOR (b));
+	gint result = commits_a - commits_b;
+
+	if (result < 0) {
+		return 1;
+	} else if (result > 0) {
+		return -1;
+	} else {
+		return 0;
+	}
 }
 
 static void
@@ -261,7 +279,6 @@ authors_handle_output (GiggleJob   *job,
 	GiggleGitAuthorsPriv *priv;
 	GHashTable           *authors_by_name;
 	GHashTable           *authors_by_email;
-	GList                *authors;
 	gchar               **lines;
 	gchar               **line;
 
@@ -272,10 +289,9 @@ authors_handle_output (GiggleJob   *job,
 	authors_by_name  = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
 	authors_by_email = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
 
-	authors = NULL;
 	for (line = lines; line && *line; line++) {
-		if (g_str_has_prefix (*line, "Author: ")) {
-			GiggleAuthor* author = giggle_author_new_from_string (*line + strlen ("Author: "));
+		if (**line != '\0') {
+			GiggleAuthor* author = giggle_author_new_from_string (*line);
 			gchar const * email = giggle_author_get_email (author);
 			gchar const * name  = giggle_author_get_name  (author);
 
@@ -296,6 +312,7 @@ authors_handle_output (GiggleJob   *job,
 						     (gpointer) g_strdup (giggle_author_get_email (author)),
 						     by_name);
 			} else if (!by_name) {
+				giggle_flexible_author_add_commit (by_email);
 				/* add the name to by_email */
 				giggle_flexible_author_add_name (by_email,
 								 giggle_author_get_name (author));
@@ -305,6 +322,7 @@ authors_handle_output (GiggleJob   *job,
 						     (gpointer) g_strdup (giggle_author_get_name (author)),
 						     by_email);
 			} else if (!by_email) {
+				giggle_flexible_author_add_commit (by_name);
 				/* add the email to by_name */
 				giggle_flexible_author_add_email (by_name,
 								  giggle_author_get_email (author));
@@ -314,6 +332,7 @@ authors_handle_output (GiggleJob   *job,
 						     (gpointer) g_strdup (giggle_author_get_email (author)),
 						     by_name);
 			} else if (by_name == by_email) {
+				giggle_flexible_author_add_commit (by_name);
 				/* just increase the counters */
 				giggle_flexible_author_add_email (by_name,
 								  giggle_author_get_email (author));
@@ -327,11 +346,13 @@ authors_handle_output (GiggleJob   *job,
 		}
 	}
 
-	g_list_foreach (priv->authors, (GFunc)g_object_unref, NULL);
+	g_list_foreach (priv->authors, (GFunc) g_object_unref, NULL);
 	g_list_free (priv->authors);
 
 	priv->authors = NULL;
-	g_hash_table_foreach (authors_by_name, (GHFunc)add_author, priv);
+	g_hash_table_foreach (authors_by_name, (GHFunc) add_author, priv);
+
+	priv->authors = g_list_sort (priv->authors, (GCompareFunc) authors_compare_commits);
 
 	g_strfreev (lines);
 }
@@ -353,4 +374,3 @@ giggle_git_authors_get_list (GiggleGitAuthors *authors)
 
 	return priv->authors;
 }
-

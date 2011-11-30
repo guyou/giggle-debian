@@ -98,10 +98,6 @@ git_config_read_get_property (GObject    *object,
 			      GValue     *value,
 			      GParamSpec *pspec)
 {
-	GiggleGitConfigReadPriv *priv;
-
-	priv = GET_PRIV (object);
-	
 	switch (param_id) {
 	default:
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, param_id, pspec);
@@ -115,10 +111,6 @@ git_config_read_set_property (GObject      *object,
 			      const GValue *value,
 			      GParamSpec   *pspec)
 {
-	GiggleGitConfigReadPriv *priv;
-
-	priv = GET_PRIV (object);
-
 	switch (param_id) {
 	default:
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, param_id, pspec);

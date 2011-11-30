@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="introduction" xml:lang="fr">
+  <info>
+    <link type="guide" xref="index"/>
+    <desc>Introduction à <app>Giggle</app>, l'explorateur de dépôt GIT</desc>
+
+    <credit type="author">
+      <name>Łukasz Jernaś</name>
+      <email>deejay1@srem.org</email>
+    </credit>
+
+<!--
+    <copyright>
+      <year>2010</year>
+      <name>GNOME Documentation Project</name>
+    </copyright>
+-->
+    <license>
+      <p>Creative Commons Share Alike 3.0</p>
+    </license>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Denis Jasselette</mal:name>
+      <mal:email>denis.jasselette@yahoo.fr</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Gérard Baylard</mal:name>
+      <mal:email>gerard dot b at bbox dot fr</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Bruno Brouard</mal:name>
+      <mal:email>annoa.b@gmail.com</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Julien Hardelin</mal:name>
+      <mal:email>jhardlin@orangefr</mal:email>
+      <mal:years>2011</mal:years>
+    </mal:credit>
+  </info>
+
+  <title>Introduction</title>
+  <p>L'application <app>Giggle</app> vous permet de parcourir et de manipuler le contenu d'un dépôt git graphiquement.</p>
+
+  <section id="starting-giggle">
+    <title>Démarrage de <app>giggle</app></title>
+      <p>Vous pouvez démarrer <app>Giggle</app> de l'une des manières suivantes :</p>
+      <steps>
+        <item>
+          <p>sélectionnez <guiseq><gui>Programmation</gui> <gui>Giggle</gui></guiseq> dans le menu <gui>Applications</gui>,</p>
+        </item>
+        <item>
+          <p>Exécutez la commande <cmd>giggle</cmd> depuis un terminal ou depuis la boîte de dialogue <gui>Lancer une application</gui>.</p>
+        </item>
+      </steps>
+  </section>
+
+  <section id="stoping-giggle">
+    <title>Fermeture de <app>Giggle</app></title>
+      <p>Pour quitter <app>Giggle</app>, sélectionnez <guiseq><gui>Projet</gui><gui>Quitter</gui></guiseq> ou appuyez sur <keyseq><key>Ctrl</key><key>Q</key></keyseq>.</p>
+  </section>
+
+</page>

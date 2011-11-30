@@ -1,0 +1,991 @@
+# Translation to Ukrainian
+# Serhij Dubyk / Сергій Дубик, 2010
+msgid ""
+msgstr ""
+"Project-Id-Version: Giggle\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-01-18 14:45+0200\n"
+"PO-Revision-Date: 2010-12-26 11:15+0300\n"
+"Last-Translator: Serhij Dubyk <serhijdubyk@gmail.com>\n"
+"Language-Team: Ukrainian Linux Translators <translate@linux.org.ua>\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Pootle 2.0.5\n"
+"X-Poedit-Language: Ukrainian\n"
+"X-Poedit-Country: UKRAINE\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+# Хихикати
+#: ../data/giggle.desktop.in.h:1
+msgid "Giggle"
+msgstr "Giggle"
+
+# Git репозиторій перегляду
+#: ../data/giggle.desktop.in.h:2
+msgid "Git repository viewer"
+msgstr "Огляд git-сховища"
+
+# Філії
+#: ../data/main-window.ui.h:1 ../src/giggle-remote-editor.c:174
+msgid "Branches"
+msgstr "Гілки"
+
+# Назва:
+#: ../data/main-window.ui.h:2
+msgid "Name:"
+msgstr "Ім’я:"
+
+# URL:
+#: ../data/main-window.ui.h:3
+msgid "URL:"
+msgstr "URL:"
+
+# Не можете знайти плагін опис у „%s“
+#: ../libgiggle/giggle-plugin.c:528
+#, c-format
+msgid "Cannot find plugin description in '%s'"
+msgstr "Не вдалося знайти опис додатку у „%s“"
+
+# Перевірте, якщо плагін працює система
+#: ../plugins/hello-world.xml.h:1
+msgid "Check if the plugin system works"
+msgstr "Перевірте, чи працює система додатків"
+
+# Демонстрація Giggle плагіном системи
+#: ../plugins/hello-world.xml.h:2
+msgid "Demonstration of Giggle's Plugin System"
+msgstr "Демонстрація системи додатків Giggle"
+
+# Привіт світ
+#: ../plugins/hello-world.xml.h:3
+msgid "Hello World"
+msgstr "Привіт світ"
+
+# Існував помилка при установці конфігурації
+#: ../plugins/giggle-personal-details-window.c:82
+msgid "There was an error setting the configuration"
+msgstr "Сталася помилка встановлення конфігурації"
+
+# Існував помилка при отриманні конфігурації
+#: ../plugins/giggle-personal-details-window.c:184
+msgid "There was an error getting the configuration"
+msgstr "Сталася помилка під час отримання конфігурації"
+
+# Назва:
+#: ../plugins/giggle-personal-details-window.c:248
+msgid "_Name:"
+msgstr "_Ім’я:"
+
+# Електронна пошта:
+#: ../plugins/giggle-personal-details-window.c:258
+msgid "_Email:"
+msgstr "_Електронна пошта:"
+
+# Особисті дані
+#: ../plugins/giggle-personal-details-window.c:271
+#: ../plugins/personal-details.xml.h:2
+msgid "Personal Details"
+msgstr "Персональна інформація"
+
+# Термінал
+#: ../plugins/giggle-view-terminal.c:109
+msgid "_Terminal"
+msgstr "_Термінал"
+
+# Випуск Git команди через термінал
+#: ../plugins/giggle-view-terminal.c:110
+msgid "Issue git commands via terminal"
+msgstr "Запускати git-команди через термінал"
+
+# Змінити особисті дані
+#: ../plugins/personal-details.xml.h:1
+msgid "Edit personal details"
+msgstr "Змінити персональну інформацію"
+
+# Створення терміналу
+#: ../plugins/terminal-view.xml.h:1
+msgid "Create _Terminal"
+msgstr "Створити вікно _терміналу"
+
+# Створити нову вкладку у Git термінал
+#: ../plugins/terminal-view.xml.h:2
+msgid "Create new tab in git terminal"
+msgstr "Створити нову вкладку у вікні терміналу"
+
+# Термінал вікна
+#: ../plugins/terminal-view.xml.h:3
+msgid "Terminal window"
+msgstr "Вікно терміналу"
+
+# Пошук по сайту:
+#: ../src/eggfindbar.c:307
+msgid "Find:"
+msgstr "Знайти:"
+
+# Знайти Попередня
+#: ../src/eggfindbar.c:316
+msgid "Find Previous"
+msgstr "Знайти попереднє"
+
+# Знайти попереднє входження рядка пошуку
+#: ../src/eggfindbar.c:319
+msgid "Find previous occurrence of the search string"
+msgstr "Знайти попереднє входження рядка"
+
+# Знайти далі
+#: ../src/eggfindbar.c:323
+msgid "Find Next"
+msgstr "Знайти наступне"
+
+# Знайти наступне входження рядка пошуку
+#: ../src/eggfindbar.c:326
+msgid "Find next occurrence of the search string"
+msgstr "Знайти наступне входження рядка"
+
+# З урахуванням регістру
+#: ../src/eggfindbar.c:333
+msgid "C_ase Sensitive"
+msgstr "З урахуванням _регістру"
+
+# Переключити пошук з урахуванням регістру
+#: ../src/eggfindbar.c:337
+msgid "Toggle case sensitive search"
+msgstr "Використовувати чутливість до регістру символів при пошуку"
+
+# Сталася помилка під час отримання списку авторів:\n
+# %s
+#: ../src/giggle-authors-view.c:80
+#, c-format
+msgid ""
+"An error occurred when retrieving authors list:\n"
+"%s"
+msgstr ""
+"Сталася помилка під час отримання списку авторів:\n"
+"%s"
+
+# Автори:
+#: ../src/giggle-authors-view.c:146
+msgid "Authors:"
+msgstr "Автори:"
+
+# Сталася помилка під час отримання списку галузей:\n
+# %s
+#: ../src/giggle-branches-view.c:81
+#, c-format
+msgid ""
+"An error occurred when retrieving branches list:\n"
+"%s"
+msgstr ""
+"Сталася помилка під час отримання списку гілок:\n"
+"%s"
+
+# Філії:
+#: ../src/giggle-branches-view.c:147 ../src/giggle-revision-view.c:210
+msgid "Branches:"
+msgstr "Гілки:"
+
+# Виберіть Git репозиторій
+#: ../src/giggle-clone-dialog.c:238
+#, fuzzy
+msgid "Clone Repository"
+msgstr "Виберіть git-сховище"
+
+#: ../src/giggle-clone-dialog.c:246
+msgid "Cl_one"
+msgstr ""
+
+# Історія
+#: ../src/giggle-clone-dialog.c:270
+#, fuzzy
+msgid "_Repository:"
+msgstr "_Історія"
+
+#: ../src/giggle-clone-dialog.c:278
+msgid "_Local name:"
+msgstr ""
+
+#: ../src/giggle-clone-dialog.c:283
+msgid "Please select a location for the clone"
+msgstr ""
+
+#: ../src/giggle-clone-dialog.c:286
+msgid "Clone in _folder:"
+msgstr ""
+
+# Сталася помилка при отриманні різних список файлів:\n
+# %s
+#: ../src/giggle-diff-tree-view.c:142 ../src/giggle-file-list.c:1671
+#, c-format
+msgid ""
+"An error occurred when retrieving different files list:\n"
+"%s"
+msgstr ""
+"Сталася помилка під час отримання списку змінених файлів:\n"
+"%s"
+
+# Змінені файли
+#: ../src/giggle-diff-tree-view.c:209
+msgid "Changed files"
+msgstr "Змінені файли"
+
+# Сталася помилка при отриманні змін:\n
+# %s
+#: ../src/giggle-diff-view.c:605
+#, c-format
+msgid ""
+"An error occurred when retrieving a diff:\n"
+"%s"
+msgstr ""
+"Сталася помилка при отриманні змін:\n"
+"%s"
+
+# Фіксація змін
+#: ../src/giggle-diff-window.c:82
+msgid "Commit changes"
+msgstr "Фіксація змін"
+
+# Версія журналу:
+#: ../src/giggle-diff-window.c:104
+msgid "Revision log:"
+msgstr "Журнал версії:"
+
+# Здійснювати
+#: ../src/giggle-diff-window.c:131
+msgid "Co_mmit"
+msgstr "За_фіксувати зміни"
+
+# Помилка при здійсненні:\n
+# %s
+#: ../src/giggle-diff-window.c:204
+#, c-format
+msgid ""
+"An error occurred when committing:\n"
+"%s"
+msgstr ""
+"Сталася помилка при фіксації змін:\n"
+"%s"
+
+# Сталася помилка під час отримання списку файлів:\n
+# %s
+#: ../src/giggle-file-list.c:394
+#, c-format
+msgid ""
+"An error occurred when retrieving the file list:\n"
+"%s"
+msgstr ""
+"Сталася помилка під час отримання списку файлів:\n"
+"%s"
+
+# Сталася помилка при додаванні файлу у Git:\n
+# %s
+#: ../src/giggle-file-list.c:763
+#, c-format
+msgid ""
+"An error occurred when adding a file to git:\n"
+"%s"
+msgstr ""
+"Сталася помилка при додаванні файлу до git:\n"
+"%s"
+
+# Не вдалося зберегти патч %s
+#: ../src/giggle-file-list.c:823 ../src/giggle-file-list.c:849
+#: ../src/giggle-rev-list-view.c:1195 ../src/giggle-rev-list-view.c:1226
+#, c-format
+msgid "Could not save the patch as %s"
+msgstr "Не вдалося зберегти латку як %s"
+
+# Помилки не було дано
+#: ../src/giggle-file-list.c:828 ../src/giggle-file-list.c:854
+#: ../src/giggle-rev-list-view.c:1203 ../src/giggle-rev-list-view.c:1231
+msgid "No error was given"
+msgstr "Не отримано ніякої помилки"
+
+# Патч збережений як %s
+#: ../src/giggle-file-list.c:875 ../src/giggle-rev-list-view.c:1257
+#, c-format
+msgid "Patch saved as %s"
+msgstr "Латку збережено як %s"
+
+# Створена у тека проекту
+#: ../src/giggle-file-list.c:879 ../src/giggle-rev-list-view.c:1261
+#, c-format
+msgid "Created in project directory"
+msgstr "Створено у теці проекту"
+
+# Створено у теці %s
+#: ../src/giggle-file-list.c:882 ../src/giggle-rev-list-view.c:1264
+#, c-format
+msgid "Created in directory %s"
+msgstr "Створено у теці %s"
+
+# Створити латку
+#: ../src/giggle-file-list.c:917 ../src/giggle-rev-list-view.c:1317
+msgid "Create Patch"
+msgstr "Створити латку"
+
+# Вилучити шаблон кулю?
+#: ../src/giggle-file-list.c:1020
+msgid "Delete glob pattern?"
+msgstr "Вилучити глобальний шаблон?"
+
+# Обраний файл був затьмарений перевіряти підпис, що може ховатися інші файли, вилучити його?
+#: ../src/giggle-file-list.c:1023
+msgid ""
+"The selected file was shadowed by a glob pattern that may be hiding other "
+"files, delete it?"
+msgstr ""
+"Зазначений файл був прихований глобальним шаблоном, що може приховувати інші "
+"файли. Вилучити його?"
+
+#: ../src/giggle-file-list.c:1419
+msgid "_Commit Changes"
+msgstr "За_фіксувати зміни"
+
+# Додати файл у сховищі
+#: ../src/giggle-file-list.c:1421
+msgid "A_dd file to repository"
+msgstr "_Додати файл до сховища"
+
+# Створити латку
+#: ../src/giggle-file-list.c:1422 ../src/giggle-rev-list-view.c:1671
+msgid "Create _Patch"
+msgstr "Створити _латку"
+
+# Додати в. Gitignore
+#: ../src/giggle-file-list.c:1423
+msgid "_Add to .gitignore"
+msgstr "_Додати до .gitignore"
+
+# Вилучити з. Gitignore
+#: ../src/giggle-file-list.c:1424
+msgid "_Remove from .gitignore"
+msgstr "_Вилучити з .gitignore"
+
+# Показати усі файли
+#: ../src/giggle-file-list.c:1428
+msgid "_Show all files"
+msgstr "Показати усі файли"
+
+# Проект
+#: ../src/giggle-file-list.c:1467
+msgid "Project"
+msgstr "Проект"
+
+# Помилка при здійсненні:\n
+# %s
+#: ../src/giggle-helpers.c:178
+#, fuzzy
+msgid "An error ocurred:"
+msgstr ""
+"Сталася помилка при фіксації змін:\n"
+"%s"
+
+# Виберіть Git репозиторій
+#: ../src/giggle-main.c:38
+#, fuzzy
+msgid "Clone a repository"
+msgstr "Виберіть git-сховище"
+
+# URL
+#: ../src/giggle-main.c:39 ../src/giggle-remotes-view.c:276
+msgid "URL"
+msgstr "URL"
+
+# Показати різн. Вікні
+#: ../src/giggle-main.c:42
+msgid "Show the diff window"
+msgstr "Показати вікно змін"
+
+# Показати інформацію про версію і вийти
+#: ../src/giggle-main.c:46
+msgid "Show version information and exit"
+msgstr "Показати інформацію про версію та вийти"
+
+# [Тека]
+#: ../src/giggle-main.c:49
+msgid "[DIRECTORY]"
+msgstr "[ТЕКА]"
+
+# Повідомлення про помилки (англійською мовою, з командами LCALL = C), щоб<%s>.
+#: ../src/giggle-main.c:79
+#, c-format
+msgid "Report errors (in English, with LC_ALL=C) to <%s>."
+msgstr "Повідомляти про помилки (англійською мовою, з LCALL = C) до <%s>."
+
+# Giggle це графічна оболонка для Git трекер контенту.
+#: ../src/giggle-main.c:80
+msgid "Giggle is a graphical frontend for the git content tracker."
+msgstr ""
+"Giggle це графічна оболонка для розподіленої системи керування версіями "
+"файлів git."
+
+# Спробуйте `%s - Довідка&quot; для отримання додаткової інформації.\n
+#: ../src/giggle-main.c:88
+#, c-format
+msgid "Try `%s --help' for more information.\n"
+msgstr "Використовуйте „%s - help“ для отримання додаткової інформації.\n"
+
+# Натисніть, щоб додати відображення…
+#: ../src/giggle-remote-editor.c:148
+msgid "Click to add mapping..."
+msgstr "Натисніть, щоб додати відображення…"
+
+# Неназваний
+#: ../src/giggle-remote-editor.c:373
+msgid "Unnamed"
+msgstr "Безіменний"
+
+# Піктограмка
+#: ../src/giggle-remotes-view.c:265
+msgid "Icon"
+msgstr "Піктограмка"
+
+# Назва
+#: ../src/giggle-remotes-view.c:271
+msgid "Name"
+msgstr "Ім’я"
+
+# Двічі клацніть додати віддаленого…
+#: ../src/giggle-remotes-view.c:289
+msgid "Double click to add remote..."
+msgstr "Двічі клацніть для додавання віддаленого репозиторію…"
+
+# Автор:
+#: ../src/giggle-revision-view.c:202 ../src/giggle-view-file.c:1212
+msgid "Author:"
+msgstr "Автор:"
+
+# Комміттера:
+#: ../src/giggle-revision-view.c:206 ../src/giggle-view-file.c:1213
+msgid "Committer:"
+msgstr "Зафіксовувач:"
+
+# Дата:
+#: ../src/giggle-revision-view.c:208 ../src/giggle-view-file.c:1214
+msgid "Date:"
+msgstr "Дата:"
+
+# ССЗ:
+#: ../src/giggle-revision-view.c:209 ../src/giggle-view-file.c:1215
+msgid "SHA:"
+msgstr "SHA:"
+
+# Зміни реєстрації:
+#: ../src/giggle-revision-view.c:228
+msgid "Change Log:"
+msgstr "Журнал змін:"
+
+# Детальна інформація
+#: ../src/giggle-revision-view.c:516
+msgid "_Details"
+msgstr "_Подробиці"
+
+# Детальна інформація Дисплей перегляду
+#: ../src/giggle-revision-view.c:517
+msgid "Display revision details"
+msgstr "Показати подробиці версії"
+
+# Вилучити „%s“ філії
+#: ../src/giggle-rev-list-view.c:353
+#, c-format
+msgid "Delete branch \"%s\""
+msgstr "Вилучити гілку „%s“"
+
+# Вилучити тег „%s“
+#: ../src/giggle-rev-list-view.c:356
+#, c-format
+msgid "Delete tag \"%s\""
+msgstr "Вилучити мітку „%s“"
+
+# Відділення
+#: ../src/giggle-rev-list-view.c:526
+msgid "Branch"
+msgstr "Гілка"
+
+# Тег
+#: ../src/giggle-rev-list-view.c:529
+msgid "Tag"
+msgstr "Мітка"
+
+# Віддаленого
+#: ../src/giggle-rev-list-view.c:532
+msgid "Remote"
+msgstr "Віддалений репозиторій"
+
+# Введіть назву філії:
+#: ../src/giggle-rev-list-view.c:1085
+msgid "Enter branch name:"
+msgstr "Введіть назву гілки:"
+
+# Введіть ім’я тега:
+#: ../src/giggle-rev-list-view.c:1136
+msgid "Enter tag name:"
+msgstr "Введіть назву мітки:"
+
+# Не вдалося створити патч
+#: ../src/giggle-rev-list-view.c:1197
+#, c-format
+msgid "Could not create patch"
+msgstr "Не вдалося створити латку"
+
+# Незафіксовані зміни
+#: ../src/giggle-rev-list-view.c:1458
+msgid "Uncommitted changes"
+msgstr "Незафіксовані зміни"
+
+# % I: %M% р
+#. TRANSLATORS: it's a strftime format string
+#: ../src/giggle-rev-list-view.c:1512
+msgid "%I:%M %p"
+msgstr "%H:%M"
+
+# %a я%: %M% р
+#. TRANSLATORS: it's a strftime format string
+#: ../src/giggle-rev-list-view.c:1525
+msgid "%a %I:%M %p"
+msgstr "%a %H:%M"
+
+# % B %d я%: %M% р
+#. TRANSLATORS: it's a strftime format string
+#: ../src/giggle-rev-list-view.c:1537
+msgid "%b %d %I:%M %p"
+msgstr "%d %B %H:%M"
+
+# % B %d %Y
+#. it's older
+#. TRANSLATORS: it's a strftime format string
+#: ../src/giggle-rev-list-view.c:1542
+msgid "%b %d %Y"
+msgstr "%d %B %Y"
+
+# Здійснювати
+#: ../src/giggle-rev-list-view.c:1668
+msgid "Commit"
+msgstr "Зафіксувати"
+
+# Створення відділення
+#: ../src/giggle-rev-list-view.c:1669
+msgid "Create _Branch"
+msgstr "Створити _гілку"
+
+# Створення тегів
+#: ../src/giggle-rev-list-view.c:1670
+msgid "Create _Tag"
+msgstr "Створити _мітку"
+
+# Графа
+#: ../src/giggle-rev-list-view.c:1731
+msgid "Graph"
+msgstr "Дерево"
+
+# Короткі Вхід
+#: ../src/giggle-rev-list-view.c:1749
+msgid "Short Log"
+msgstr "Стислий журнал"
+
+# Автор
+#: ../src/giggle-rev-list-view.c:1768
+msgid "Author"
+msgstr "Автор"
+
+# Дата
+#: ../src/giggle-rev-list-view.c:1785
+msgid "Date"
+msgstr "Дата"
+
+# Детальна інформація
+#: ../src/giggle-short-list.c:303
+msgid "Details"
+msgstr "Подробиці"
+
+# Показати усе…
+#: ../src/giggle-short-list.c:414
+msgid "Show A_ll..."
+msgstr "Показати _усе…"
+
+# Зміна %d з %d
+#: ../src/giggle-view-diff.c:108
+#, c-format
+msgid "Change %d of %d"
+msgstr "Зміни %d з %d"
+
+# Попередні зміни
+#: ../src/giggle-view-diff.c:185
+msgid "_Previous Change"
+msgstr "_Попередні зміни"
+
+# Переглянути попередні зміни
+#: ../src/giggle-view-diff.c:185
+msgid "View previous change"
+msgstr "Переглянути попередні зміни"
+
+# Наступна зміна
+#: ../src/giggle-view-diff.c:189
+msgid "_Next Change"
+msgstr "_Наступні зміни"
+
+# Наступна зміни
+#: ../src/giggle-view-diff.c:189
+msgid "View next change"
+msgstr "Переглянути наступні зміни"
+
+# Зміни
+#: ../src/giggle-view-diff.c:351
+msgid "_Changes"
+msgstr "_Зміни"
+
+# Огляд перегляду змінюється
+#: ../src/giggle-view-diff.c:352
+msgid "Browse a revision's changes"
+msgstr "Перегляд змін у версіях"
+
+# Goto Line Number
+#: ../src/giggle-view-file.c:327
+msgid "_Goto Line Number"
+msgstr "Пере_йти до рядка з номером"
+
+# Виділіть вказаний номер рядка
+#: ../src/giggle-view-file.c:328
+msgid "Highlight specified line number"
+msgstr "Підсвітити вказаний номер рядка"
+
+# Показати зміни
+#: ../src/giggle-view-file.c:332
+msgid "Show _Changes"
+msgstr "Показати _зміни"
+
+# Показати зміни для обраної ревізії
+#: ../src/giggle-view-file.c:333
+msgid "Show changes for selected revision"
+msgstr "Показати зміни для обраної версії"
+
+# Виберіть Версія
+#: ../src/giggle-view-file.c:337
+msgid "Select _Revision"
+msgstr "Вибрати версію"
+
+# Виберіть перегляду обраної лінії
+#: ../src/giggle-view-file.c:338
+msgid "Select revision of selected line"
+msgstr "Вибрати версію для вибраного рядка"
+
+# Сталася помилка під час отримання файлу посилання:\n
+# %s
+#: ../src/giggle-view-file.c:894
+#, c-format
+msgid ""
+"An error occurred when getting file ref:\n"
+"%s"
+msgstr ""
+"Сталася помилка під час отриманні посилання на файл:\n"
+"%s"
+
+# Сталася помилка під час отримання списку змін:\n
+# %s
+#: ../src/giggle-view-file.c:965 ../src/giggle-view-history.c:250
+#: ../src/giggle-view-history.c:345
+#, c-format
+msgid ""
+"An error occurred when getting the revisions list:\n"
+"%s"
+msgstr ""
+"Сталася помилка під час отримання списку версій:\n"
+"%s"
+
+# Номер рядки:
+#: ../src/giggle-view-file.c:1125
+msgid "Line Number:"
+msgstr "Номер рядка:"
+
+# Огляд
+#: ../src/giggle-view-file.c:1563
+msgid "_Browse"
+msgstr "_Огляд списку файлів"
+
+# Перегляньте файли цього проекту
+#: ../src/giggle-view-file.c:1564
+msgid "Browse the files of this project"
+msgstr "Огляд файлів цього проекту"
+
+# Історія
+#: ../src/giggle-view-history.c:854
+msgid "_History"
+msgstr "_Історія"
+
+# Огляд історії цього проекту
+#: ../src/giggle-view-history.c:855
+msgid "Browse the history of this project"
+msgstr "Перегляд історії цього проекту"
+
+# <б>Опис:</б>
+#: ../src/giggle-view-summary.c:118
+#, fuzzy
+msgid "Description:"
+msgstr "<b>Опис:</b>"
+
+# Дистанційне керування
+#: ../src/giggle-view-summary.c:167
+#, fuzzy
+msgid "Remotes:"
+msgstr "_Віддалені репозиторії"
+
+# Резюме
+#: ../src/giggle-view-summary.c:195
+msgid "_Summary"
+msgstr "_Зведення"
+
+# Філії
+#: ../src/giggle-view-summary.c:198
+msgid "_Branches"
+msgstr "_Гілки"
+
+# Автори
+#: ../src/giggle-view-summary.c:201
+msgid "_Authors"
+msgstr "Автори"
+
+# Дистанційне керування
+#: ../src/giggle-view-summary.c:204
+msgid "_Remotes"
+msgstr "_Віддалені репозиторії"
+
+# Тека „%s“ не схожий на Git репозиторій.
+#: ../src/giggle-window.c:563
+#, c-format
+msgid "The directory '%s' does not look like a git repository."
+msgstr "Тека „%s“ не схожа на git-сховище."
+
+# Виберіть Git репозиторій
+#: ../src/giggle-window.c:646
+msgid "Select git repository"
+msgstr "Виберіть git-сховище"
+
+# Властивості %s
+#: ../src/giggle-window.c:699
+#, c-format
+msgid "Properties of %s"
+msgstr "Властивості %s"
+
+#: ../src/giggle-window.c:915
+msgid "Contributors:"
+msgstr ""
+
+#: ../src/giggle-window.c:928
+msgid ""
+"Copyright © 2007 - 2008 Imendio AB\n"
+"Copyright © 2008 - 2009 Mathias Hasselmann\n"
+"Copyright © 2009 - 2010 The Giggle authors"
+msgstr ""
+
+# Перекладач-кредитів
+#. Translators: This is a special message that shouldn't be translated
+#. * literally. It is used in the about box to give credits to
+#. * the translators.
+#. * Thus, you should translate it to your name and email address.
+#. * You should also include other translators who have contributed to
+#. * this translation; in that case, please write each of them on a separate
+#. * line seperated by newlines (\n).
+#.
+#: ../src/giggle-window.c:940
+msgid "translator-credits"
+msgstr "Сергій Дубик <dubyk@ukr.net>"
+
+# Графічний інтерфейс до Git трекер контенту.
+#: ../src/giggle-window.c:945
+#, fuzzy
+msgid "A graphical frontend for Git"
+msgstr ""
+"Графічний інтерфейс до розподіленої системи керування версіями файлів Git."
+
+# Про Giggle
+#: ../src/giggle-window.c:950
+msgid "About Giggle"
+msgstr "Про Giggle"
+
+# Хихикати
+#: ../src/giggle-window.c:954
+#, fuzzy
+msgid "Giggle Website"
+msgstr "Giggle"
+
+# Знайти…
+#: ../src/giggle-window.c:1010
+msgid "_Find..."
+msgstr "_Пошук…"
+
+# Знайти…
+#: ../src/giggle-window.c:1011
+msgid "Find..."
+msgstr "Пошук…"
+
+# Знайти далі
+#: ../src/giggle-window.c:1017
+msgid "Find Ne_xt"
+msgstr "Знайти _наступне"
+
+# Знайти наступний матч
+#: ../src/giggle-window.c:1018
+msgid "Find next match"
+msgstr "Знайти наступний збіг"
+
+# Знайти Попередня
+#: ../src/giggle-window.c:1021
+msgid "Find Pre_vious"
+msgstr "Знайти _попереднє"
+
+# Знайти попередній матч
+#: ../src/giggle-window.c:1022
+msgid "Find previous match"
+msgstr "Знайти попередній збіг"
+
+# Проект
+#: ../src/giggle-window.c:1028
+msgid "_Project"
+msgstr "_Проект"
+
+# Змінити
+#: ../src/giggle-window.c:1029
+msgid "_Edit"
+msgstr "_Редагування"
+
+# Перейти
+#: ../src/giggle-window.c:1030
+msgid "_Go"
+msgstr "_Перехід"
+
+# Відкрити
+#: ../src/giggle-window.c:1031
+msgid "_View"
+msgstr "_Вид"
+
+# Довідка
+#: ../src/giggle-window.c:1032
+msgid "_Help"
+msgstr "_Довідка"
+
+# Відкрити Git репозиторій
+#: ../src/giggle-window.c:1035
+msgid "Open a git repository"
+msgstr "Відкрити git-сховище"
+
+#: ../src/giggle-window.c:1039
+msgid "Clone _location"
+msgstr ""
+
+#: ../src/giggle-window.c:1039
+msgid "Clone a location"
+msgstr ""
+
+# Зберегти патч
+#: ../src/giggle-window.c:1044
+msgid "_Save patch"
+msgstr "_Зберегти латку"
+
+# Зберегти патч
+#: ../src/giggle-window.c:1044
+msgid "Save a patch"
+msgstr "Зберегти латку"
+
+# Diff поточних змін
+#: ../src/giggle-window.c:1048
+msgid "_Diff current changes"
+msgstr "_Різниця для поточних змін"
+
+# Diff поточних змін
+#: ../src/giggle-window.c:1048
+msgid "Diff current changes"
+msgstr "Різниця для поточних змін"
+
+# Вийти з програми
+#: ../src/giggle-window.c:1053
+msgid "Quit the application"
+msgstr "Вийти з програми"
+
+# Повернутися назад у історії
+#: ../src/giggle-window.c:1071
+msgid "Go backward in history"
+msgstr "Перейти назад у історії"
+
+# Ідіть вперед у історії
+#: ../src/giggle-window.c:1075
+msgid "Go forward in history"
+msgstr "Перейти вперед у історії"
+
+#: ../src/giggle-window.c:1079
+msgid "_Contents"
+msgstr ""
+
+#: ../src/giggle-window.c:1080
+msgid "Show user guide for Giggle"
+msgstr ""
+
+# Повідомити про проблему
+#: ../src/giggle-window.c:1083
+msgid "Report _Issue"
+msgstr "Повідомити про _проблему"
+
+# Доповідь питання Ви знайшли у Giggle
+#: ../src/giggle-window.c:1084
+msgid "Report an issue you've found in Giggle"
+msgstr "Повідомити про проблему знайденою Вами у Giggle"
+
+# Про цю програму
+#: ../src/giggle-window.c:1088
+msgid "About this application"
+msgstr "Про застосунок"
+
+# Показати перегляду дерева
+#: ../src/giggle-window.c:1095
+msgid "Show revision tree"
+msgstr "Показати дерево версій"
+
+# Показати й відредагувати властивості проекту
+#: ../src/giggle-window.c:1102
+msgid "Show and edit project properties"
+msgstr "Показати й відредагувати властивості проекту"
+
+# Оновити поточний вигляд
+#: ../src/giggle-window.c:1106
+msgid "Refresh current view"
+msgstr "Оновити поточний вигляд"
+
+# Пошук Всередині Патчі
+#: ../src/giggle-window.c:1438
+msgid "Search Inside _Patches"
+msgstr "Пошук всередині _латок"
+
+# Збережіть файл заплатки
+#: ../src/giggle-window.c:1707
+msgid "Save patch file"
+msgstr "Зберегти файл латки"
+
+# Сталася помилка при збереженні у файл:\n
+# %s
+#: ../src/giggle-window.c:1727
+#, c-format
+msgid ""
+"An error occurred when saving to file:\n"
+"%s"
+msgstr ""
+"Сталася помилка при збереженні до файлу:\n"
+"%s"
+
+# <б>Філії</б>
+#~ msgid "<b>Branches</b>"
+#~ msgstr "<b>Гілки</b>"
+
+# <б>пульти:</б>
+#~ msgid "<b>Remotes:</b>"
+#~ msgstr "<b>Віддалені репозиторії:</b>"
+
+# Відвідати домашню сторінку
+#~ msgid "Visit _Homepage"
+#~ msgstr "Відвідати _домашню сторінку"
+
+# Відвідати домашню сторінку Giggle
+#~ msgid "Visit the homepage of Giggle"
+#~ msgstr "Відвідати домашню сторінку Giggle"

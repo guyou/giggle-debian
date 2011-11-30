@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="introduction" xml:lang="es">
+  <info>
+    <link type="guide" xref="index"/>
+    <desc>Introducción al visor de repositorios GIT <app>Giggle</app></desc>
+
+    <credit type="author">
+      <name>Łukasz Jernaś</name>
+      <email>deejay1@srem.org</email>
+    </credit>
+
+<!--
+    <copyright>
+      <year>2010</year>
+      <name>GNOME Documentation Project</name>
+    </copyright>
+-->
+    <license>
+      <p>Creative Commons Share Alike 3.0</p>
+    </license>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Daniel Mustieles</mal:name>
+      <mal:email>daniel.mustieles@gmail.com</mal:email>
+      <mal:years>2011</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Jorge González</mal:name>
+      <mal:email>jorgegonz@svn.gnome.org</mal:email>
+      <mal:years>2007-2008.</mal:years>
+    </mal:credit>
+  </info>
+
+  <title>Introducción</title>
+  <p>La aplicación <app>Giggle</app> le permite examinar y manipular gráficamente el contenido de un árbol de directorio GIT.</p>
+
+  <section id="starting-giggle">
+    <title>Iniciar <app>giggle</app></title>
+      <p>Puede iniciar <app>Giggle</app> de las siguientes formas:</p>
+      <steps>
+        <item>
+          <p>Elija <guiseq><gui>Programación</gui><gui>Giggle</gui></guiseq> del menú <gui>Aplicaciones</gui>.</p>
+        </item>
+        <item>
+          <p>Ejecute <cmd>giggle</cmd> en una terminal o desde el diálogo <gui>Ejecutar una aplicación</gui>.</p>
+        </item>
+      </steps>
+  </section>
+
+  <section id="stoping-giggle">
+    <title>Cerrar <app>Giggle</app></title>
+      <p>Para cerrar <app>Giggle</app> elija <guiseq><gui>Proyecto</gui><gui>Salir</gui></guiseq> o pulse <keyseq><key>Ctrl</key><key>Q</key></keyseq>.</p>
+  </section>
+
+</page>

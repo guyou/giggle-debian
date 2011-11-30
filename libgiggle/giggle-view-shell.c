@@ -230,7 +230,7 @@ view_shell_set_property (GObject      *object,
 
 static void
 view_shell_switch_page (GtkNotebook     *notebook,
-			GtkNotebookPage *page,
+                        GtkWidget       *page,
 			guint            page_num)
 {
 	GiggleViewShellPriv *priv;

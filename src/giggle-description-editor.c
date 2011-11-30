@@ -38,7 +38,7 @@ struct GiggleDescriptionEditorPriv {
 static void description_editor_finalize                (GObject *object);
 
 
-G_DEFINE_TYPE (GiggleDescriptionEditor, giggle_description_editor, GTK_TYPE_VBOX)
+G_DEFINE_TYPE (GiggleDescriptionEditor, giggle_description_editor, GTK_TYPE_BOX)
 
 #define GET_PRIV(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), GIGGLE_TYPE_DESCRIPTION_EDITOR, GiggleDescriptionEditorPriv))
 
@@ -117,6 +117,9 @@ giggle_description_editor_init (GiggleDescriptionEditor *editor)
 
 	priv = GET_PRIV (editor);
 
+	gtk_orientable_set_orientation (GTK_ORIENTABLE (editor),
+	                                GTK_ORIENTATION_VERTICAL);
+
 	gtk_box_set_spacing (GTK_BOX (editor), 6);
 
 	priv->git = giggle_git_get ();
@@ -141,7 +144,7 @@ giggle_description_editor_init (GiggleDescriptionEditor *editor)
 	g_signal_connect_swapped (buffer, "modified-changed",
 				  G_CALLBACK (description_editor_modified_changed_cb), editor);
 
-	buttonbox = gtk_hbutton_box_new ();
+	buttonbox = gtk_button_box_new (GTK_ORIENTATION_HORIZONTAL);
 	gtk_widget_show (buttonbox);
 	gtk_button_box_set_layout (GTK_BUTTON_BOX (buttonbox), GTK_BUTTONBOX_START);
 	gtk_box_pack_start (GTK_BOX (editor), buttonbox, FALSE, FALSE, 0);

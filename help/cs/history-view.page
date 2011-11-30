@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="history-view" xml:lang="cs">
+  <info>
+    <link type="guide" xref="index#views"/>
+    <desc>Jak zobrazit historii repozitáře</desc>
+
+    <credit type="author">
+      <name>Łukasz Jernaś</name>
+      <email>deejay1@srem.org</email>
+    </credit>
+
+<!--
+    <copyright>
+      <year>2010</year>
+      <name>GNOME Documentation Project</name>
+    </copyright>
+-->
+    <license>
+      <p>Creative Commons Share Alike 3.0</p>
+    </license>
+  </info>
+  <title>Zobrazení Historie</title>
+  <section id="overview">
+   <title>Přehled</title>
+   <figure>
+    <desc>Aplikace Giggle v režimu zobrazení Historie</desc>
+    <media type="image" src="figures/giggle-history_view_sections.png" alt="Giggle main window in History mode"/>
+   </figure>
+    <p>Zobrazení Historie aplikace <app>Giggle</app> sestává ze tří hlavních částí:</p>
+     <list type="numbered">
+       <item>
+        <p>Graf historie</p>
+        <p>Zobrazuje vizuální podobu historie současného repozitáře, včetně všech větví, vzdálených i místních. Po najetí ukazatelem myši nad ikonu se vám mohou zobrazit doplňující informace, jako jsou název větve nebo název značky. Přesun historií lze provádět buď pomocí myši nebo klávesami <key>nahoru</key> a <key>dolů</key>.</p>
+       </item>
+       <item>
+        <p>Změněné soubory</p>
+        <p>Zobrazuje soubory změněné v právě vybrané revizi.</p>
+       </item>
+       <item>
+        <p>Rozdíl (diff)</p>
+        <p>Zobrazuje rozdíly pro vybraný soubor a revizi.</p>
+        <note style="important">
+          <p>Aplikace <app>Giggle</app> zobrazuje rozdíly po jednotlivých částech. Mezi nimi se můžete přesouvat buď pomocí ikon se šipkami nahoru a dolů nad seznamem změněných souborů nebo stiskem kláves <keyseq><key>Alt</key><key>nahoru</key></keyseq> a <keyseq><key>Alt</key><key>dolů</key></keyseq>. Když to budete dělat, budete se zároveň přesouvat v seznamu změněných souborů, v závislosti na tom, jak probíhají rozdíly.</p>
+        </note>
+       </item>
+     </list>
+    </section>
+</page>
