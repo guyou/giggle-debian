@@ -2,7 +2,7 @@ Source: giggle
 Section: vcs
 Priority: optional
 Maintainer: Andrea Corradi <lash@unstable.it>
-Build-Depends: debhelper (>= 5.0.51), autotools-dev, libglib2.0-dev (>= 2.18), libgtk2.0-dev (>= 2.18), libgtksourceview2.0-dev (>= 2.0), libxml-parser-perl, git-core (>= 1:1.5.6.3), libebook1.2-dev, libvte-dev (>= 1:0.17), intltool (>= 0.35)
+Build-Depends: debhelper (>= 5.0.51), autotools-dev, libglib2.0-dev (>= 2.18), libgdk-pixbuf2.0-dev (>= 2.22.0), libgtk-3.0-dev (>= 3.0), libgtksourceview-3.0-dev (>= 3.0), libxml-parser-perl, git-core (>= 1:1.5.6.3), libebook1.2-dev, libvte-dev (>= 1:0.26), intltool (>= 0.35)
 Homepage: http://live.gnome.org/giggle
 Standards-Version: 3.9.1
 
