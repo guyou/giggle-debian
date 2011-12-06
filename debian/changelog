@@ -1,3 +1,10 @@
+giggle (0.6.1-1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * New Upstream version
+
+ -- Guilhem (Guyou) Bonnefille <guilhem@localhost>  Tue, 06 Dec 2011 13:45:21 +0100
+
 giggle (0.5-2) UNRELEASED; urgency=low
 
   * Added path that remove rpath option
