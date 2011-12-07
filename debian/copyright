@@ -144,3 +144,51 @@ Public License can be found in `/usr/share/common-licenses/GPL'.
 The Debian packaging is
 Copyright (C) 2007-2010, Andrea Corradi <lash@unstable.it>
 and is licensed under the GPL, see above.
+
+Files: help/C/*
+
+Copyright (C) 2010 Łukasz Jernaś
+
+License: Creative Commons Share Alike 3.0
+
+Files: help/de/*
+
+
+Copyright (C) 2010-2011 Mario Blättermann
+
+License: Creative Commons Share Alike 3.0
+
+Files: help/es/*
+
+Copyright (C) 2011 Daniel Mustieles
+Copyright (C) 2007-2008 Jorge González
+
+License: Creative Commons Share Alike 3.0
+
+Files: help/fr/*
+
+Copyright (C) 2010 Denis Jasselette
+Copyright (C) 2010 Gérard Baylard
+Copyright (C) 2010 Bruno Brouard
+Copyright (C) 2011 Julien Hardelin
+
+License: Creative Commons Share Alike 3.0
+
+Files: help/pl/*
+
+Copyright (C) 2010 Łukasz Jernaś
+
+License: Creative Commons Share Alike 3.0
+
+Files: help/sl/*
+
+Copyright (C) 2010 Andrej Žnidaršič
+Copyright (C) 2010 Matej Urbančič
+
+License: Creative Commons Share Alike 3.0
+
+Files: help/cs/*
+
+Copyright (C) 2010-2011 Marek Černocký
+
+License: Creative Commons Share Alike 3.0
