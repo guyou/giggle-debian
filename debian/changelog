@@ -1,9 +1,18 @@
 giggle (0.6.1-1) unstable; urgency=low
 
   * New upstream release (Closes: #646858)
+  * Update git-core dependency to git | git-core.
+    Thanks to Denis Laxalde for the suggestion (Closes: #600233)
+  * Fix watch URL (Closes: #646293)
+  * Declare image files as binary files for dpkg-source
+  * Update dependencies to respect new needs of upstream
+  * Update the directory to look for plugins
+  * Update copyright file about help files
+  * Update copyright file with sources changes
+  * Declare myself as maintainer (package orphaned)
   * Thanks to Andrea Corradi <lash@unstable.it> for previous work on packaging
 
- -- Guilhem BONNEFILLE <bonnefil@hercules.olympe.fr>  Mon, 28 Nov 2011 23:15:20 +0100
+ -- Guilhem Bonnefille <guilhem.bonnefille@gmail.com>  Fri, 06 Jan 2012 23:27:17 +0000
 
 giggle (0.5-2) UNRELEASED; urgency=low
 
