@@ -1,7 +1,7 @@
 giggle (0.6.1-1) unstable; urgency=low
 
-  * Non-maintainer upload.
   * New upstream release (Closes: #646858)
+  * Thanks to Andrea Corradi <lash@unstable.it> for previous work on packaging
 
  -- Guilhem BONNEFILLE <bonnefil@hercules.olympe.fr>  Mon, 28 Nov 2011 23:15:20 +0100
 
