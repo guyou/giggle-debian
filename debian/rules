@@ -66,6 +66,7 @@ binary-arch: build install
 	dh_installman debian/giggle.1
 	dh_installmenu
 	dh_icons
+	dh_link
 	dh_strip
 	dh_compress
 	dh_fixperms

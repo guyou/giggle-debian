@@ -9,6 +9,8 @@ giggle (0.6.1-1) unstable; urgency=low
   * Update the directory to look for plugins
   * Update copyright file about help files
   * Update copyright file with sources changes
+  * Update rules files
+    - call dh_link to clean symbolic links
   * Declare myself as maintainer (package orphaned)
   * Thanks to Andrea Corradi <lash@unstable.it> for previous work on packaging
 
