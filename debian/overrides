@@ -1,0 +1,10 @@
+# The following license files are for documentation purpose
+# in help manual.
+giggle: extra-license-file usr/share/help/C/giggle/license.page
+giggle: extra-license-file usr/share/help/cs/giggle/license.page
+giggle: extra-license-file usr/share/help/de/giggle/license.page
+giggle: extra-license-file usr/share/help/es/giggle/license.page
+giggle: extra-license-file usr/share/help/fr/giggle/license.page
+giggle: extra-license-file usr/share/help/pl/giggle/license.page
+giggle: extra-license-file usr/share/help/sl/giggle/license.page
+
